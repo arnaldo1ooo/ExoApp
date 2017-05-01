@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.arnal.exofpune.tipo_evalu">
+    tools:context="com.example.arnal.exofpune.Tipo_evalu">
 
     <RelativeLayout
         android:layout_width="370dp"
@@ -23,39 +23,40 @@
             android:text="Seleccione el tipo de evaluación"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:typeface="serif" />
 
         <Button
-            android:id="@+id/btnopc1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/btnopc3"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="59dp"
-            android:soundEffectsEnabled="false"
-            android:text="Personalizado"
-            android:textSize="26sp" />
 
-        <Button
-            android:id="@+id/btnopc3"
+            android:id="@+id/btnopc2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="57dp"
             android:soundEffectsEnabled="false"
             android:text="20 - 20"
             android:textSize="26sp"
-            android:layout_below="@+id/button2"
+            android:layout_below="@+id/btnopc1"
             android:layout_centerHorizontal="true" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btnopc1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="33dp"
+            android:layout_marginTop="35dp"
             android:soundEffectsEnabled="false"
             android:text="15 - 15 -10"
+            android:textSize="26sp"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:id="@+id/btnopc3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnopc2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="57dp"
+            android:text="Personalizado"
             android:textSize="26sp" />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
