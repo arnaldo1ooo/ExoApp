@@ -109,7 +109,6 @@ public class PrincipalActivity extends AppCompatActivity {
                 }
                 else{
                     if (Double.parseDouble(et2parcial.getText().toString())>total2p){
-
                         MensajeErrorPuntos(v, (int)total2p);
                     }
                     else{
