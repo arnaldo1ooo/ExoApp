@@ -27,7 +27,8 @@
             android:text="Ingrese los Puntajes Obtenidos"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="23sp" />
+            android:textSize="23sp"
+            android:typeface="serif" />
 
         <Button
             android:id="@+id/btnCalculo"
@@ -41,17 +42,15 @@
 
         <TextView
             android:id="@+id/tvResultado"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/btnCalculo"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:textAlignment="center"
             android:textIsSelectable="false"
-            android:textSize="28sp" />
+            android:textSize="28sp"
+            android:layout_below="@+id/btnCalculo"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <EditText
             android:id="@+id/et1parcial"
@@ -96,12 +95,13 @@
             android:id="@+id/sp1"
             android:layout_width="95dp"
             android:layout_height="52dp"
-            android:layout_alignTop="@+id/et1parcial"
-            android:layout_toEndOf="@+id/et1parcial"
-            android:layout_toRightOf="@+id/et1parcial"
             android:nestedScrollingEnabled="false"
             android:spinnerMode="dialog"
-            android:textAlignment="textStart" />
+            android:textAlignment="textStart"
+            android:layout_alignBottom="@+id/tvTotalText1"
+            android:layout_toRightOf="@+id/et1parcial"
+            android:layout_toEndOf="@+id/et1parcial"
+            android:layout_alignTop="@+id/et1parcial" />
 
         <TextView
             android:id="@+id/tvTotalText1"
@@ -122,12 +122,25 @@
             android:id="@+id/sp2"
             android:layout_width="95dp"
             android:layout_height="52dp"
-            android:layout_alignTop="@+id/et2parcial"
-            android:layout_toEndOf="@+id/et2parcial"
-            android:layout_toRightOf="@+id/et2parcial"
             android:nestedScrollingEnabled="false"
             android:spinnerMode="dialog"
-            android:textAlignment="textStart" />
+            android:textAlignment="textStart"
+            android:layout_alignBottom="@+id/tvTotalText2"
+            android:layout_toRightOf="@+id/et2parcial"
+            android:layout_toEndOf="@+id/et2parcial"
+            android:layout_alignTop="@+id/et2parcial" />
+
+        <Spinner
+            android:id="@+id/sp3"
+            android:layout_width="95dp"
+            android:layout_height="52dp"
+            android:nestedScrollingEnabled="false"
+            android:spinnerMode="dialog"
+            android:textAlignment="textStart"
+            android:layout_above="@+id/btnCalculo"
+            android:layout_toRightOf="@+id/et2parcial"
+            android:layout_toEndOf="@+id/et2parcial"
+            android:layout_alignTop="@+id/tvTotalText3" />
 
         <TextView
             android:id="@+id/tvTotalText2"
@@ -143,17 +156,6 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
-        <Spinner
-            android:id="@+id/sp3"
-            android:layout_width="95dp"
-            android:layout_height="52dp"
-            android:layout_alignLeft="@+id/sp2"
-            android:layout_alignStart="@+id/sp2"
-            android:layout_alignTop="@+id/etTp"
-            android:nestedScrollingEnabled="false"
-            android:spinnerMode="dialog"
-            android:textAlignment="textStart" />
-
         <TextView
             android:id="@+id/tvTotalText3"
             android:layout_width="52dp"
@@ -164,10 +166,11 @@
             android:textIsSelectable="false"
             android:textSize="20dp"
             android:layout_below="@+id/sp2"
-            android:layout_toRightOf="@+id/sp3"
             android:layout_marginTop="34dp"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@+id/sp3"
+            android:layout_toEndOf="@+id/sp3" />
 
     </RelativeLayout>
 
@@ -175,10 +178,12 @@
         android:id="@+id/tvFeli"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:textAlignment="center"
         android:textColor="@android:color/holo_orange_dark"
         android:textSize="36sp"
-        android:typeface="sans" />
+        android:typeface="sans"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
