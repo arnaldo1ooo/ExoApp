@@ -58,7 +58,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
 
         //Spinner
-        ArrayAdapter<String> adaptadorsp = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, array);
+        ArrayAdapter<String> adaptadorsp = new ArrayAdapter<String>(this, R.layout.spinner_configuracion, array);
         sp1.setAdapter(adaptadorsp);
         sp2.setAdapter(adaptadorsp);
         sp3.setAdapter(adaptadorsp);
@@ -82,7 +82,9 @@ public class PrincipalActivity extends AppCompatActivity {
                         MensajeErrorPorcentaje(v);
                     }
                     else{
-                        p1 = (Double.parseDouble(et1parcial.getText().toString()) * total1p) / 100;
+                        if(MensajeErrorPorcentaje(v)==false){
+                            p1 = (Double.parseDouble(et1parcial.getText().toString()) * total1p) / 100;
+                        }
                     }
                 }
                 else{
@@ -90,7 +92,7 @@ public class PrincipalActivity extends AppCompatActivity {
                         MensajeErrorPuntos(v, (int)total1p);
                     }
                     else{
-                        p1 = Double.parseDouble(et1parcial.getText().toString());
+                            p1 = Double.parseDouble(et1parcial.getText().toString());
                     }
                 }
 
@@ -100,7 +102,9 @@ public class PrincipalActivity extends AppCompatActivity {
                         MensajeErrorPorcentaje(v);
                     }
                     else{
-                        p2 = (Double.parseDouble(et2parcial.getText().toString()) * total2p) / 100;
+                        if(MensajeErrorPorcentaje(v)==false){
+                            p2 = (Double.parseDouble(et2parcial.getText().toString()) * total2p) / 100;
+                        }
                     }
                 }
                 else{
@@ -141,14 +145,16 @@ public class PrincipalActivity extends AppCompatActivity {
     }
 
 //Metodo Mensaje de error
-    public void MensajeErrorPorcentaje(View v) {
+    public boolean MensajeErrorPorcentaje(View v) {
         Toast toast = Toast.makeText(this,"El porcentaje obtenido no puede ser mayor al 100%",Toast.LENGTH_SHORT);
         toast.show();
+        return true;
     }
 
-    public void MensajeErrorPuntos(View v, int TotalPuntos) {
+    public boolean MensajeErrorPuntos(View v, int TotalPuntos) {
         Toast toast = Toast.makeText(this,"El punto obtenido no puede ser mayor a "+TotalPuntos+" Puntos",Toast.LENGTH_SHORT);
         toast.show();
+        return true;
     }
 
     public void SiEsVacio(View v){
