@@ -39,9 +39,9 @@ public class PrincipalActivity extends AppCompatActivity {
     TextView totaltext2;
     TextView totaltext3;
     TextView tvFeli;
-    double puntos = 0;
-    double puntos2 = 0;
-    double puntos3 = 0;
+    double puntos = 0.00;
+    double puntos2 = 0.00;
+    double puntos3 = 0.00;
     DecimalFormat df = new DecimalFormat("#.##");
 
 
@@ -85,14 +85,18 @@ public class PrincipalActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {  //cuando se modifica un texto
+            public void onTextChanged(CharSequence s, int start, int before, int count) {  //Cuando se esta modificando un texto
 
             }
 
             @Override
-            public void afterTextChanged(Editable s) { //Despeus de escribir
+            public void afterTextChanged(Editable s) { //Despues de escribir
                 if(s.length() >= 1) {//Si es vacio
                     puntos = (Double.parseDouble(et1parcial.getText().toString()) * total1p) / 100;
+                    totaltext1.setText(df.format(puntos) + " de " +total1p+ " Puntos");
+                }
+                else{
+                    puntos = 0;
                     totaltext1.setText(df.format(puntos) + " de " +total1p+ " Puntos");
                 }
             }
