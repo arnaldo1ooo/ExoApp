@@ -113,7 +113,7 @@ public class PrincipalActivity extends AppCompatActivity {
                 SiEsVacio();
 
                 if (sp1.getSelectedItemId() == 0){
-                    if(MensajeErrorPorcentaje(Double.parseDouble(et1parcial.toString())) == false){
+                    if(MensajeErrorPorcentaje(Double.parseDouble(et1parcial.getText().toString())) == false){
                             p1 = (Double.parseDouble(et1parcial.getText().toString()) * total1p) / 100;
                     }
                 }
@@ -156,11 +156,9 @@ public class PrincipalActivity extends AppCompatActivity {
                         tp = Double.parseDouble(etTp.getText().toString());
                     }
                 }
-
                 resultado = p1+p2+tp;
                 tvResultado.setText(df.format(resultado)+" Puntos de 40 Puntos");
                 Felicitar();
-
             }
         });
 

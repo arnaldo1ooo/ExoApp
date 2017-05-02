@@ -99,10 +99,6 @@
             android:id="@+id/etTp"
             android:layout_width="wrap_content"
             android:layout_height="52dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/sp3"
-            android:layout_marginLeft="16dp"
             android:hint="Trabajo P."
             android:imeOptions="actionDone"
             android:inputType="numberDecimal"
@@ -111,7 +107,10 @@
             android:textColor="#ffffff"
             android:textColorHint="#b8b8b8"
             android:textSize="20sp"
-            android:translationY="1dp" />
+            android:translationY="1dp"
+            android:layout_alignTop="@+id/sp3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <Spinner
             android:id="@+id/sp1"
