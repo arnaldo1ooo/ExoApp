@@ -27,7 +27,9 @@
             android:textAlignment="center"
             android:textColor="#ffffff"
             android:textSize="22sp"
-            android:typeface="serif" />
+            android:typeface="serif"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <Button
 
