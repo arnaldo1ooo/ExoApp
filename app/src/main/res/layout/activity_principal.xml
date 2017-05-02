@@ -116,13 +116,13 @@
             android:id="@+id/sp1"
             android:layout_width="80dp"
             android:layout_height="52dp"
-            android:layout_above="@+id/et2parcial"
-            android:layout_alignTop="@+id/et1parcial"
-            android:layout_toRightOf="@+id/et1parcial"
             android:nestedScrollingEnabled="false"
             android:spinnerMode="dialog"
             android:textAlignment="textStart"
-            android:translationY="1dp" />
+            android:translationY="1dp"
+            android:layout_alignTop="@+id/et1parcial"
+            android:layout_alignLeft="@+id/sp2"
+            android:layout_alignStart="@+id/sp2" />
 
         <TextView
             android:id="@+id/tvTotalText1"
@@ -150,8 +150,8 @@
             android:textAlignment="textStart"
             android:translationY="1dp"
             android:layout_alignTop="@+id/et2parcial"
-            android:layout_toRightOf="@+id/et2parcial"
-            android:layout_toEndOf="@+id/et2parcial" />
+            android:layout_toRightOf="@+id/etTp"
+            android:layout_toEndOf="@+id/etTp" />
 
         <Spinner
             android:id="@+id/sp3"
@@ -162,8 +162,8 @@
             android:textAlignment="textStart"
             android:translationY="1dp"
             android:layout_alignTop="@+id/tvTotalText3"
-            android:layout_toLeftOf="@+id/tvTotalText3"
-            android:layout_toStartOf="@+id/tvTotalText3" />
+            android:layout_toRightOf="@+id/etTp"
+            android:layout_toEndOf="@+id/etTp" />
 
         <TextView
             android:id="@+id/tvTotalText2"
