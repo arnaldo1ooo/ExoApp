@@ -3,8 +3,11 @@ package com.example.arnal.exofpune;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,9 +24,9 @@ public class PrincipalActivity extends AppCompatActivity {
     EditText et2parcial;
     EditText etTp;
     TextView tvResultado;
-    double total1p = 15;
-    double total2p = 15;
-    double totaltp = 10;
+    int total1p = 15;
+    int total2p = 15;
+    int totaltp = 10;
     double resultado;
     double p1;
     double p2;
@@ -36,6 +39,10 @@ public class PrincipalActivity extends AppCompatActivity {
     TextView totaltext2;
     TextView totaltext3;
     TextView tvFeli;
+    double puntos = 0;
+    double puntos2 = 0;
+    double puntos3 = 0;
+    DecimalFormat df = new DecimalFormat("#.##");
 
 
     @Override
@@ -65,17 +72,39 @@ public class PrincipalActivity extends AppCompatActivity {
 
 
         //TotalText
-        DecimalFormat df = new DecimalFormat("##");
-        totaltext1.setText("de " +df.format(total1p)+ " Puntos");
-        totaltext2.setText("de " +df.format(total1p)+ " Puntos");
-        totaltext3.setText("de " +df.format(totaltp)+ " Puntos");
+        totaltext1.setText(df.format(puntos) + " de " +total1p+ " Puntos");
+        totaltext2.setText(df.format(puntos2) + " de " +total2p+ " Puntos");
+        totaltext3.setText(df.format(puntos3) + " de " +totaltp+ " Puntos");
+
+
+//Al cambiar texto
+        et1parcial.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {  //Antes de escritir
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {  //cuando se modifica un texto
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) { //Despeus de escribir
+                if(s.length() >= 1) {//Si es vacio
+                    puntos = (Double.parseDouble(et1parcial.getText().toString()) * total1p) / 100;
+                    totaltext1.setText(df.format(puntos) + " de " +total1p+ " Puntos");
+                }
+            }
+        });
 
 
 
         btnCalculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               SiEsVacio(v);
+                OcultarTeclado(v);
+                SiEsVacio(v);
 
                 if (sp1.getSelectedItemId() == 0){
                     if (Double.parseDouble(et1parcial.getText().toString())>100){
@@ -135,7 +164,6 @@ public class PrincipalActivity extends AppCompatActivity {
                 }
 
                 resultado = p1+p2+tp;
-                DecimalFormat df = new DecimalFormat("#.##");
                 tvResultado.setText(df.format(resultado)+" Puntos de 40 Puntos");
                 Felicitar(v);
 
@@ -143,6 +171,11 @@ public class PrincipalActivity extends AppCompatActivity {
         });
 
     }
+
+
+
+
+
 
 //Metodo Mensaje de error
     public boolean MensajeErrorPorcentaje(View v) {
@@ -177,4 +210,11 @@ public class PrincipalActivity extends AppCompatActivity {
             tvFeli.setText("No exoneraste :(");
         }
     }
+
+
+    public void OcultarTeclado (View v){
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+    }
+
 }
