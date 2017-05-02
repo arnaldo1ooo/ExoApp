@@ -170,19 +170,20 @@
             android:layout_width="52dp"
             android:layout_height="25dp"
             android:layout_above="@+id/tvTotalText3"
+            android:layout_alignEnd="@+id/tvTitulo"
             android:layout_alignLeft="@+id/tvTotalText1"
+            android:layout_alignRight="@+id/tvTitulo"
             android:layout_alignStart="@+id/tvTotalText1"
             android:layout_alignTop="@+id/sp2"
             android:text="00.00 de 15 Puntos"
             android:textColor="@android:color/background_light"
             android:textIsSelectable="false"
-            android:textSize="18sp"
-            android:translationY="13dp"
-            android:layout_alignRight="@+id/tvTitulo"
-            android:layout_alignEnd="@+id/tvTitulo" />
+            android:textSize="17sp"
+            android:translationY="13dp" />
 
         <TextView
             android:id="@+id/tvTotalText3"
+            android:layout_width="wrap_content"
             android:layout_height="52dp"
             android:layout_alignEnd="@+id/tvTitulo"
             android:layout_alignLeft="@+id/tvTotalText2"
@@ -194,9 +195,8 @@
             android:textAlignment="textStart"
             android:textColor="@android:color/background_light"
             android:textIsSelectable="false"
-            android:textSize="18sp"
-            android:translationY="13dp"
-            android:layout_width="wrap_content" />
+            android:textSize="17sp"
+            android:translationY="13dp" />
 
     </RelativeLayout>
 
