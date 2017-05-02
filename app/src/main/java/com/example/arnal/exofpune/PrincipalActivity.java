@@ -111,9 +111,7 @@ public class PrincipalActivity extends AppCompatActivity {
                         MensajeErrorPorcentaje(v);
                     }
                     else{
-                        if(MensajeErrorPorcentaje(v)==false){
                             p1 = (Double.parseDouble(et1parcial.getText().toString()) * total1p) / 100;
-                        }
                     }
                 }
                 else{
@@ -131,9 +129,7 @@ public class PrincipalActivity extends AppCompatActivity {
                         MensajeErrorPorcentaje(v);
                     }
                     else{
-                        if(MensajeErrorPorcentaje(v)==false){
                             p2 = (Double.parseDouble(et2parcial.getText().toString()) * total2p) / 100;
-                        }
                     }
                 }
                 else{

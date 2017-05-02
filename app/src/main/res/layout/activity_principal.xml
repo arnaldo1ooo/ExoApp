@@ -116,7 +116,8 @@
             android:layout_toRightOf="@+id/et1parcial"
             android:nestedScrollingEnabled="false"
             android:spinnerMode="dialog"
-            android:textAlignment="textStart" />
+            android:textAlignment="textStart"
+            android:translationY="1dp" />
 
         <TextView
             android:id="@+id/tvTotalText1"
@@ -145,7 +146,8 @@
             android:layout_toRightOf="@+id/et2parcial"
             android:nestedScrollingEnabled="false"
             android:spinnerMode="dialog"
-            android:textAlignment="textStart" />
+            android:textAlignment="textStart"
+            android:translationY="1dp" />
 
         <TextView
             android:id="@+id/tvTotalText2"
@@ -207,5 +209,5 @@
         android:layout_marginTop="201dp"
         android:spinnerMode="dialog"
         android:translationX="10dp"
-        android:translationY="1dp" />
+        android:translationZ="-5dp" />
 </RelativeLayout>
