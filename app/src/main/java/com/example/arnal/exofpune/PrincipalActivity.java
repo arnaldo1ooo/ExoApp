@@ -91,7 +91,9 @@ public class PrincipalActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) { //Despues de escribir
-                if(s.length() >= 1) {//Si es vacio
+                if(s.length() >= 1 && MensajeErrorPorcentaje(Double.parseDouble(et1parcial.getText().toString()))== false) {//Si es vacio
+
+                   //et1parcial.setText(df.format(Double.parseDouble(et1parcial.getText().toString())));
                     puntos = (Double.parseDouble(et1parcial.getText().toString()) * total1p) / 100;
                     totaltext1.setText(df.format(puntos) + " de " +total1p+ " Puntos");
                 }
@@ -108,19 +110,16 @@ public class PrincipalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 OcultarTeclado(v);
-                SiEsVacio(v);
+                SiEsVacio();
 
                 if (sp1.getSelectedItemId() == 0){
-                    if (Double.parseDouble(et1parcial.getText().toString())>100){
-                        MensajeErrorPorcentaje(v);
-                    }
-                    else{
+                    if(MensajeErrorPorcentaje(Double.parseDouble(et1parcial.toString())) == false){
                             p1 = (Double.parseDouble(et1parcial.getText().toString()) * total1p) / 100;
                     }
                 }
                 else{
                     if (Double.parseDouble(et1parcial.getText().toString())>total1p){
-                        MensajeErrorPuntos(v, (int)total1p);
+                        MensajeErrorPuntos((int)total1p);
                     }
                     else{
                             p1 = Double.parseDouble(et1parcial.getText().toString());
@@ -129,16 +128,14 @@ public class PrincipalActivity extends AppCompatActivity {
 
 
                 if (sp2.getSelectedItemId() == 0){
-                    if (Double.parseDouble(et2parcial.getText().toString())>100) {
-                        MensajeErrorPorcentaje(v);
-                    }
-                    else{
+
+                    if (MensajeErrorPorcentaje(Double.parseDouble(et2parcial.getText().toString())) == false) {
                             p2 = (Double.parseDouble(et2parcial.getText().toString()) * total2p) / 100;
                     }
                 }
                 else{
                     if (Double.parseDouble(et2parcial.getText().toString())>total2p){
-                        MensajeErrorPuntos(v, (int)total2p);
+                        MensajeErrorPuntos((int)total2p);
                     }
                     else{
                         p2 = Double.parseDouble(et2parcial.getText().toString());
@@ -147,16 +144,13 @@ public class PrincipalActivity extends AppCompatActivity {
 
 
                 if (sp3.getSelectedItemId() == 0){
-                    if (Double.parseDouble(etTp.getText().toString())>100) {
-                        MensajeErrorPorcentaje(v);
-                    }
-                    else{
+                    if (MensajeErrorPorcentaje(Double.parseDouble(etTp.getText().toString())) == false) {
                         tp = (Double.parseDouble(etTp.getText().toString()) * totaltp) / 100;
                     }
                 }
                 else{
                     if (Double.parseDouble(etTp.getText().toString())>totaltp){
-                        MensajeErrorPuntos(v, (int)totaltp);
+                        MensajeErrorPuntos((int)totaltp);
                     }
                     else{
                         tp = Double.parseDouble(etTp.getText().toString());
@@ -165,7 +159,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
                 resultado = p1+p2+tp;
                 tvResultado.setText(df.format(resultado)+" Puntos de 40 Puntos");
-                Felicitar(v);
+                Felicitar();
 
             }
         });
@@ -178,19 +172,24 @@ public class PrincipalActivity extends AppCompatActivity {
 
 
 //Metodo Mensaje de error
-    public boolean MensajeErrorPorcentaje(View v) {
-        Toast toast = Toast.makeText(this,"El porcentaje obtenido no puede ser mayor al 100%",Toast.LENGTH_SHORT);
-        toast.show();
-        return true;
+    public boolean MensajeErrorPorcentaje(double porc) {
+        if (porc > 100){
+            Toast toast = Toast.makeText(this,"El porcentaje obtenido no puede ser mayor al 100%",Toast.LENGTH_SHORT);
+            toast.show();
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
-    public boolean MensajeErrorPuntos(View v, int TotalPuntos) {
+    public boolean MensajeErrorPuntos( int TotalPuntos) {
         Toast toast = Toast.makeText(this,"El punto obtenido no puede ser mayor a "+TotalPuntos+" Puntos",Toast.LENGTH_SHORT);
         toast.show();
         return true;
     }
 
-    public void SiEsVacio(View v){
+    public void SiEsVacio(){
         if(et1parcial.getText().toString().equals("")){//Si es vacio
             et1parcial.setText("0");
         }
@@ -202,7 +201,7 @@ public class PrincipalActivity extends AppCompatActivity {
         }
     }
 
-    public void Felicitar (View v){
+    public void Felicitar (){
         if(resultado >= 32.4){
             tvFeli.setText("EXONERASTE!! :D");
         }
