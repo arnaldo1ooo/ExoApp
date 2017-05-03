@@ -35,13 +35,11 @@ public class PrincipalActivity extends AppCompatActivity {
     Spinner sp2;
     Spinner sp3;
     String[] array = {"%","Puntos"};
-    TextView totaltext1;
-    TextView totaltext2;
-    TextView totaltext3;
+    TextView tvTotalText1;
+    TextView tvTotalText2;
+    TextView tvTotalText3;
     TextView tvFeli;
-    TextView tvPuntosObtenidos;
-    TextView tvPuntosObtenidos2;
-    TextView tvPuntosObtenidos3;
+    double PuntosObtenidos = 0;
     DecimalFormat df = new DecimalFormat("#.##");
 
 
@@ -58,9 +56,9 @@ public class PrincipalActivity extends AppCompatActivity {
         sp1 = (Spinner) findViewById(R.id.sp1);
         sp2 = (Spinner) findViewById(R.id.sp2);
         sp3 = (Spinner) findViewById(R.id.sp3);
-        totaltext1 = (TextView) findViewById(R.id.tvTotalText1);
-        totaltext2 = (TextView) findViewById(R.id.tvTotalText2);
-        totaltext3 = (TextView) findViewById(R.id.tvTotalText3);
+        tvTotalText1 = (TextView) findViewById(R.id.tvTotalText1);
+        tvTotalText2 = (TextView) findViewById(R.id.tvTotalText2);
+        tvTotalText3 = (TextView) findViewById(R.id.tvTotalText3);
         tvFeli = (TextView) findViewById(R.id.tvFeli);
 
 
@@ -77,7 +75,31 @@ public class PrincipalActivity extends AppCompatActivity {
         totaltext3.setText(df.format(puntos3) + " de " +totaltp+ " Puntos");*/
 
 
-        5PorcentajeApuntos(et1parcial,tvPuntosObtenidos, totaltext1);
+
+            //Al cambiar texto
+            et1parcial.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {  //Antes de escritir
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {  //Cuando se esta modificando un texto
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) { //Despues de escribir
+                    if(s.length() >= 1 && MensajeErrorPorcentaje(Double.parseDouble(et1parcial.getText().toString()))== false) {//Si es vacio
+                        PuntosObtenidos = (Double.parseDouble(et1parcial.getText().toString()) * total1p) / 100;
+                        tvTotalText1.setText(df.format(PuntosObtenidos) + " de " +total1p+ " Puntos");
+                    }
+                    else{
+                        tvTotalText1.setText("0 de " +total1p+ " Puntos");
+                    }
+                }
+            });
+
 
 
 
@@ -187,35 +209,5 @@ public class PrincipalActivity extends AppCompatActivity {
     public void OcultarTeclado (View v){
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-    }
-
-
-
-    public void PorcentajeApuntos (final EditText ET, final TextView PuntosObtenidos, final TextView PuntosTotales){
-        //Al cambiar texto
-        ET.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {  //Antes de escritir
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {  //Cuando se esta modificando un texto
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) { //Despues de escribir
-                if(s.length() >= 1 && MensajeErrorPorcentaje(Double.parseDouble(ET.getText().toString()))== false) {//Si es vacio
-                    //et1parcial.setText(df.format(Double.parseDouble(et1parcial.getText().toString())));
-                    PuntosObtenidos.setText(String.valueOf(Double.parseDouble(ET.getText().toString()) * Double.parseDouble(PuntosTotales.getText().toString()) / 100));
-                    PuntosObtenidos.setText(df.format(Double.parseDouble(PuntosObtenidos.getText().toString())) + " de " +PuntosTotales+ " Puntos");
-                }
-                else{
-                    PuntosObtenidos.setText("0");
-                    PuntosObtenidos.setText(df.format(Double.parseDouble(PuntosObtenidos.getText().toString())) + " de " +PuntosTotales+ " Puntos");
-                }
-            }
-        });
     }
 }
