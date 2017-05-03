@@ -39,9 +39,9 @@ public class PrincipalActivity extends AppCompatActivity {
     TextView totaltext2;
     TextView totaltext3;
     TextView tvFeli;
-    double puntos = 0.00;
-    double puntos2 = 0.00;
-    double puntos3 = 0.00;
+    TextView tvPuntosObtenidos;
+    TextView tvPuntosObtenidos2;
+    TextView tvPuntosObtenidos3;
     DecimalFormat df = new DecimalFormat("#.##");
 
 
@@ -69,40 +69,15 @@ public class PrincipalActivity extends AppCompatActivity {
         sp1.setAdapter(adaptadorsp);
         sp2.setAdapter(adaptadorsp);
         sp3.setAdapter(adaptadorsp);
-
+/*
 
         //TotalText
         totaltext1.setText(df.format(puntos) + " de " +total1p+ " Puntos");
         totaltext2.setText(df.format(puntos2) + " de " +total2p+ " Puntos");
-        totaltext3.setText(df.format(puntos3) + " de " +totaltp+ " Puntos");
+        totaltext3.setText(df.format(puntos3) + " de " +totaltp+ " Puntos");*/
 
 
-//Al cambiar texto
-        et1parcial.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {  //Antes de escritir
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {  //Cuando se esta modificando un texto
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) { //Despues de escribir
-                if(s.length() >= 1 && MensajeErrorPorcentaje(Double.parseDouble(et1parcial.getText().toString()))== false) {//Si es vacio
-
-                   //et1parcial.setText(df.format(Double.parseDouble(et1parcial.getText().toString())));
-                    puntos = (Double.parseDouble(et1parcial.getText().toString()) * total1p) / 100;
-                    totaltext1.setText(df.format(puntos) + " de " +total1p+ " Puntos");
-                }
-                else{
-                    puntos = 0;
-                    totaltext1.setText(df.format(puntos) + " de " +total1p+ " Puntos");
-                }
-            }
-        });
+        5PorcentajeApuntos(et1parcial,tvPuntosObtenidos, totaltext1);
 
 
 
@@ -214,4 +189,33 @@ public class PrincipalActivity extends AppCompatActivity {
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 
+
+
+    public void PorcentajeApuntos (final EditText ET, final TextView PuntosObtenidos, final TextView PuntosTotales){
+        //Al cambiar texto
+        ET.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {  //Antes de escritir
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {  //Cuando se esta modificando un texto
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) { //Despues de escribir
+                if(s.length() >= 1 && MensajeErrorPorcentaje(Double.parseDouble(ET.getText().toString()))== false) {//Si es vacio
+                    //et1parcial.setText(df.format(Double.parseDouble(et1parcial.getText().toString())));
+                    PuntosObtenidos.setText(String.valueOf(Double.parseDouble(ET.getText().toString()) * Double.parseDouble(PuntosTotales.getText().toString()) / 100));
+                    PuntosObtenidos.setText(df.format(Double.parseDouble(PuntosObtenidos.getText().toString())) + " de " +PuntosTotales+ " Puntos");
+                }
+                else{
+                    PuntosObtenidos.setText("0");
+                    PuntosObtenidos.setText(df.format(Double.parseDouble(PuntosObtenidos.getText().toString())) + " de " +PuntosTotales+ " Puntos");
+                }
+            }
+        });
+    }
 }
