@@ -176,7 +176,7 @@
             android:layout_alignStart="@+id/tvTotalText1"
             android:layout_alignTop="@+id/sp2"
             android:text="0 de 15 Puntos"
-            android:textColor="@android:color/background_light"
+            android:textColor="#ffffff"
             android:textIsSelectable="false"
             android:textSize="17sp"
             android:translationY="13dp" />
