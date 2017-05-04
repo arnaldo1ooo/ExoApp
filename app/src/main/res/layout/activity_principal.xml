@@ -37,13 +37,13 @@
             android:id="@+id/btnCalculo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/etTp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="18dp"
             android:background="@drawable/boton_borde_redondo"
             android:text="="
             android:textColor="@android:color/background_light"
-            android:textSize="35dp" />
+            android:textSize="35dp"
+            android:layout_below="@+id/sp3"
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:id="@+id/tvResultado"
@@ -62,10 +62,6 @@
             android:id="@+id/et1parcial"
             android:layout_width="wrap_content"
             android:layout_height="52dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/tvTitulo"
-            android:layout_marginTop="33dp"
             android:hint="1ª Parcial"
             android:inputType="numberDecimal"
             android:maxLength="3"
@@ -75,7 +71,11 @@
             android:textSize="20sp"
             android:translationX="0dp"
             android:translationY="1dp"
-            android:translationZ="0dp" />
+            android:translationZ="0dp"
+            android:layout_marginTop="24dp"
+            android:layout_below="@+id/tvTitulo"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <EditText
             android:id="@+id/et2parcial"
@@ -108,7 +108,8 @@
             android:textColorHint="#b8b8b8"
             android:textSize="20sp"
             android:translationY="1dp"
-            android:layout_alignTop="@+id/sp3"
+            android:layout_marginTop="24dp"
+            android:layout_below="@+id/et2parcial"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
@@ -138,7 +139,7 @@
             android:textAlignment="textStart"
             android:textColor="@android:color/background_light"
             android:textIsSelectable="false"
-            android:textSize="17sp"
+            android:textSize="16sp"
             android:translationY="13dp" />
 
         <Spinner
@@ -161,7 +162,7 @@
             android:spinnerMode="dialog"
             android:textAlignment="textStart"
             android:translationY="1dp"
-            android:layout_alignTop="@+id/tvTotalText3"
+            android:layout_alignTop="@+id/etTp"
             android:layout_toRightOf="@+id/etTp"
             android:layout_toEndOf="@+id/etTp" />
 
@@ -169,7 +170,6 @@
             android:id="@+id/tvTotalText2"
             android:layout_width="52dp"
             android:layout_height="25dp"
-            android:layout_above="@+id/tvTotalText3"
             android:layout_alignEnd="@+id/tvTitulo"
             android:layout_alignLeft="@+id/tvTotalText1"
             android:layout_alignRight="@+id/tvTitulo"
@@ -178,25 +178,24 @@
             android:text="0 de 15 Puntos"
             android:textColor="#ffffff"
             android:textIsSelectable="false"
-            android:textSize="17sp"
-            android:translationY="13dp" />
+            android:textSize="16sp"
+            android:translationY="13dp"
+            android:layout_alignBottom="@+id/sp2" />
 
         <TextView
             android:id="@+id/tvTotalText3"
             android:layout_width="wrap_content"
             android:layout_height="52dp"
-            android:layout_alignEnd="@+id/tvTitulo"
-            android:layout_alignLeft="@+id/tvTotalText2"
-            android:layout_alignRight="@+id/tvTitulo"
-            android:layout_alignStart="@+id/tvTotalText2"
-            android:layout_below="@+id/sp2"
-            android:layout_marginTop="19dp"
             android:text="0 de 10 Puntos"
             android:textAlignment="textStart"
             android:textColor="@android:color/background_light"
             android:textIsSelectable="false"
-            android:textSize="17sp"
-            android:translationY="13dp" />
+            android:textSize="16sp"
+            android:translationY="13dp"
+            android:layout_alignTop="@+id/sp3"
+            android:layout_toRightOf="@+id/sp3"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 
@@ -204,7 +203,7 @@
         android:id="@+id/tvFeli"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="23dp"
+        android:layout_marginBottom="34dp"
         android:textAlignment="center"
         android:textColor="@android:color/holo_orange_dark"
         android:textSize="36sp"
