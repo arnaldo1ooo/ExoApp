@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -69,6 +70,107 @@ public class PrincipalActivity extends AppCompatActivity {
         sp3.setAdapter(adaptadorsp);
 
 
+
+        /*//Al cambiar valor de spinner1
+        sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView adapter, View v, int i, long lng) {
+                PorcAPuntos1();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView arg0) {
+                Toast.makeText(getApplicationContext(), "Ninguno seleccionado", Toast.LENGTH_SHORT).show();
+
+            }
+        });*/
+
+
+
+        PorcAPuntos1();
+        PorcAPuntos2();
+        PorcAPuntos3();
+
+
+        btnCalculo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OcultarTeclado(v);
+                SiEsVacio();
+
+
+                    if(MensajeErrorPorcentajeOPuntos(Double.parseDouble(et1parcial.getText().toString()), total1p) == false &&
+                            MensajeErrorPorcentajeOPuntos(Double.parseDouble(et2parcial.getText().toString()), total2p) == false &&
+                            MensajeErrorPorcentajeOPuntos(Double.parseDouble(etTp.getText().toString()), totaltp) == false){
+                        resultado = PuntosObtenidos + PuntosObtenidos2 + PuntosObtenidos3;
+                        tvResultado.setText(df.format(resultado) + " Puntos de 40 Puntos");
+                        Felicitar();
+                    }
+            }
+        });
+
+    }
+
+
+    private void PorcAPuntos3() {
+        //Al cambiar texto3
+        etTp.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {  //Antes de escritir
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {  //Cuando se esta modificando un texto
+
+            }
+
+
+            @Override
+            public void afterTextChanged(Editable s) { //Despues de escribir
+                if(s.length() >= 1 && MensajeErrorPorcentajeOPuntos(Double.parseDouble(etTp.getText().toString()), totaltp)== false) {//Si es vacio
+                    PuntosObtenidos3 = (Double.parseDouble(etTp.getText().toString()) * totaltp) / 100;
+                    tvTotalText3.setText(df.format(PuntosObtenidos3) + " de " +totaltp+ " Puntos");
+                }
+                else{
+                    PuntosObtenidos3 = 0;
+                    tvTotalText3.setText("0 de " +totaltp+ " Puntos");
+                }
+            }
+        });
+    }
+
+    private void PorcAPuntos2() {
+        //Al cambiar texto2
+        et2parcial.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {  //Antes de escritir
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {  //Cuando se esta modificando un texto
+
+            }
+
+
+            @Override
+            public void afterTextChanged(Editable s) { //Despues de escribir
+                if(s.length() >= 1 && MensajeErrorPorcentajeOPuntos(Double.parseDouble(et2parcial.getText().toString()), total2p)== false) {//Si es vacio
+                    PuntosObtenidos2 = (Double.parseDouble(et2parcial.getText().toString()) * total2p) / 100;
+                    tvTotalText2.setText(df.format(PuntosObtenidos2) + " de " +total2p+ " Puntos");
+                }
+                else{
+                    PuntosObtenidos2 = 0;
+                    tvTotalText2.setText("0 de " +total2p+ " Puntos");
+                }
+            }
+        });
+    }
+
+    private void PorcAPuntos1() {
         //Al cambiar texto1
         et1parcial.addTextChangedListener(new TextWatcher() {
 
@@ -106,91 +208,7 @@ public class PrincipalActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
-        //Al cambiar texto2
-        et2parcial.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {  //Antes de escritir
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {  //Cuando se esta modificando un texto
-
-            }
-
-
-            @Override
-            public void afterTextChanged(Editable s) { //Despues de escribir
-                if(s.length() >= 1 && MensajeErrorPorcentajeOPuntos(Double.parseDouble(et2parcial.getText().toString()), total2p)== false) {//Si es vacio
-                    PuntosObtenidos2 = (Double.parseDouble(et2parcial.getText().toString()) * total2p) / 100;
-                    tvTotalText2.setText(df.format(PuntosObtenidos2) + " de " +total2p+ " Puntos");
-                }
-                else{
-                    PuntosObtenidos2 = 0;
-                    tvTotalText2.setText("0 de " +total2p+ " Puntos");
-                }
-            }
-        });
-
-
-
-        //Al cambiar texto3
-        etTp.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {  //Antes de escritir
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {  //Cuando se esta modificando un texto
-
-            }
-
-
-            @Override
-            public void afterTextChanged(Editable s) { //Despues de escribir
-                if(s.length() >= 1 && MensajeErrorPorcentajeOPuntos(Double.parseDouble(etTp.getText().toString()), totaltp)== false) {//Si es vacio
-                    PuntosObtenidos3 = (Double.parseDouble(etTp.getText().toString()) * totaltp) / 100;
-                    tvTotalText3.setText(df.format(PuntosObtenidos3) + " de " +totaltp+ " Puntos");
-                }
-                else{
-                    PuntosObtenidos3 = 0;
-                    tvTotalText3.setText("0 de " +totaltp+ " Puntos");
-                }
-            }
-        });
-
-
-
-
-
-
-
-        btnCalculo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                OcultarTeclado(v);
-                SiEsVacio();
-
-
-                    if(MensajeErrorPorcentajeOPuntos(Double.parseDouble(et1parcial.getText().toString()), total1p) == false &&
-                            MensajeErrorPorcentajeOPuntos(Double.parseDouble(et2parcial.getText().toString()), total2p) == false &&
-                            MensajeErrorPorcentajeOPuntos(Double.parseDouble(etTp.getText().toString()), totaltp) == false){
-                        resultado = PuntosObtenidos + PuntosObtenidos2 + PuntosObtenidos3;
-                        tvResultado.setText(df.format(resultado) + " Puntos de 40 Puntos");
-                        Felicitar();
-                    }
-            }
-        });
-
     }
-
 
 
     //Metodo Mensaje de error
