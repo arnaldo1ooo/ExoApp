@@ -40,7 +40,7 @@ public class PrincipalActivity extends AppCompatActivity {
     double PuntosObtenidos = 0;
     double PuntosObtenidos2 = 0;
     double PuntosObtenidos3 = 0;
-    DecimalFormat df = new DecimalFormat("#.##");
+    DecimalFormat df = new DecimalFormat("#.###");
 
 
     @Override
@@ -85,13 +85,24 @@ public class PrincipalActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) { //Despues de escribir
-                if(s.length() >= 1 && MensajeErrorPorcentajeOPuntos(Double.parseDouble(et1parcial.getText().toString()), total1p)== false) {//Si es vacio
-                    PuntosObtenidos = (Double.parseDouble(et1parcial.getText().toString()) * total1p) / 100;
-                    tvTotalText1.setText(df.format(PuntosObtenidos) + " de " +total1p+ " Puntos");
+                if (sp1.getSelectedItemId() == 0) {
+                    if (s.length() >= 1 && MensajeErrorPorcentajeOPuntos(Double.parseDouble(et1parcial.getText().toString()), total1p) == false) {//Si es vacio
+                        PuntosObtenidos = (Double.parseDouble(et1parcial.getText().toString()) * total1p) / 100;
+                        tvTotalText1.setText(df.format(PuntosObtenidos) + " de " + total1p + " Puntos");
+                    } else {
+                        PuntosObtenidos = 0;
+                        tvTotalText1.setText("0 de " + total1p + " Puntos");
+                    }
                 }
                 else{
-                    PuntosObtenidos = 0;
-                    tvTotalText1.setText("0 de " +total1p+ " Puntos");
+                    if (s.length() >= 1 && MensajeErrorPorcentajeOPuntos(Double.parseDouble(et1parcial.getText().toString()), total1p) == false) {
+                        PuntosObtenidos = Double.parseDouble(et1parcial.getText().toString());
+                        tvTotalText1.setText(df.format(PuntosObtenidos) + " de " + total1p + " Puntos");
+                    }
+                    else {
+                        PuntosObtenidos = 0;
+                        tvTotalText1.setText("0 de " + total1p + " Puntos");
+                    }
                 }
             }
         });
@@ -165,15 +176,16 @@ public class PrincipalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 OcultarTeclado(v);
+                SiEsVacio();
 
-                if(MensajeErrorPorcentajeOPuntos(Double.parseDouble(et1parcial.getText().toString()), total1p) == false &&
-                        MensajeErrorPorcentajeOPuntos(Double.parseDouble(et2parcial.getText().toString()), total2p) == false &&
-                        MensajeErrorPorcentajeOPuntos(Double.parseDouble(etTp.getText().toString()), totaltp) == false){
-                    SiEsVacio();
-                    resultado = PuntosObtenidos + PuntosObtenidos2 + PuntosObtenidos3;
-                    tvResultado.setText(df.format(resultado) + " Puntos de 40 Puntos");
-                    Felicitar();
-                }
+
+                    if(MensajeErrorPorcentajeOPuntos(Double.parseDouble(et1parcial.getText().toString()), total1p) == false &&
+                            MensajeErrorPorcentajeOPuntos(Double.parseDouble(et2parcial.getText().toString()), total2p) == false &&
+                            MensajeErrorPorcentajeOPuntos(Double.parseDouble(etTp.getText().toString()), totaltp) == false){
+                        resultado = PuntosObtenidos + PuntosObtenidos2 + PuntosObtenidos3;
+                        tvResultado.setText(df.format(resultado) + " Puntos de 40 Puntos");
+                        Felicitar();
+                    }
             }
         });
 
