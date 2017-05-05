@@ -6,7 +6,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +15,7 @@ import android.widget.Toast;
 
 import java.text.DecimalFormat;
 
-public class PrincipalActivity extends AppCompatActivity {
+public class activity_evalu1 extends AppCompatActivity {
 
     Button btnCalculo;
     EditText et1parcial;
@@ -47,7 +46,7 @@ public class PrincipalActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_principal);
+        setContentView(R.layout.activity_evalu1);
 
         btnCalculo = (Button) findViewById(R.id.btnCalculo);
         et1parcial = (EditText) findViewById(R.id.et1parcial);
