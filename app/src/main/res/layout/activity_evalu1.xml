@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,206 +11,291 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.arnal.exofpune.activity_evalu1">
 
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="1"
+        android:fontFamily="sans-serif-smallcaps"
+        android:imeOptions="actionNext"
+        android:text="Ingrese los Puntajes Obtenidos"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:textSize="22sp"
+        android:typeface="serif"
+        tools:layout_editor_absoluteX="12dp"
+        tools:layout_editor_absoluteY="16dp" />
+
     <RelativeLayout
+        android:id="@+id/relativeLayout1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentEnd="true"
+        android:layout_height="51dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
-
-        <TextView
-            android:id="@+id/tvTitulo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="sans-serif-smallcaps"
-            android:text="Ingrese los Puntajes Obtenidos"
-            android:textAlignment="center"
-            android:textColor="#ffffff"
-            android:textSize="22sp"
-            android:typeface="serif"
-            android:imeOptions="actionNext"/>
-
-        <Button
-            android:id="@+id/btnCalculo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:background="@drawable/boton_borde_redondo"
-            android:text="="
-            android:textColor="@android:color/background_light"
-            android:textSize="35dp"
-            android:layout_below="@+id/sp3"
-            android:layout_centerHorizontal="true" />
-
-        <TextView
-            android:id="@+id/tvResultado"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/btnCalculo"
-            android:layout_marginTop="47dp"
-            android:textAlignment="center"
-            android:textColor="#ffffff"
-            android:textIsSelectable="false"
-            android:textSize="26sp" />
-
-        <EditText
-            android:id="@+id/et1parcial"
-            android:layout_width="wrap_content"
-            android:layout_height="52dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/tvTitulo"
-            android:layout_marginTop="24dp"
-            android:hint="1ª Parcial"
-            android:inputType="numberDecimal"
-            android:maxLength="6"
-            android:textAlignment="textEnd"
-            android:textColor="#ffffff"
-            android:textColorHint="#b8b8b8"
-            android:textSize="20sp"
-            android:translationX="0dp"
-            android:translationY="1dp"
-            android:translationZ="0dp" />
-
-        <EditText
-            android:id="@+id/et2parcial"
-            android:layout_width="wrap_content"
-            android:layout_height="52dp"
-            android:layout_alignLeft="@+id/et1parcial"
-            android:layout_alignStart="@+id/et1parcial"
-            android:layout_below="@+id/et1parcial"
-            android:layout_marginTop="19dp"
-            android:hint="2ª Parcial"
-            android:imeOptions="actionNext"
-            android:inputType="numberDecimal"
-            android:maxLength="6"
-            android:textAlignment="textEnd"
-            android:textColor="#ffffff"
-            android:textColorHint="#b8b8b8"
-            android:textSize="20sp"
-            android:translationY="1dp" />
-
-        <EditText
-            android:id="@+id/etTp"
-            android:layout_width="wrap_content"
-            android:layout_height="52dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/et2parcial"
-            android:layout_marginTop="24dp"
-            android:hint="Trabajo P."
-            android:imeOptions="actionDone"
-            android:inputType="numberDecimal"
-            android:maxLength="6"
-            android:textAlignment="textEnd"
-            android:textColor="#ffffff"
-            android:textColorHint="#b8b8b8"
-            android:textSize="20sp"
-            android:translationY="1dp" />
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="43dp">
 
         <Spinner
             android:id="@+id/sp1"
             android:layout_width="80dp"
             android:layout_height="52dp"
+            android:layout_alignBottom="@+id/textInputLayout6"
+            android:layout_toEndOf="@+id/textInputLayout6"
+            android:layout_toRightOf="@+id/textInputLayout6"
+            android:layout_weight="1"
             android:nestedScrollingEnabled="false"
             android:spinnerMode="dialog"
             android:textAlignment="textStart"
             android:translationY="1dp"
-            android:layout_alignTop="@+id/et1parcial"
-            android:layout_alignLeft="@+id/sp2"
-            android:layout_alignStart="@+id/sp2" />
+            tools:layout_editor_absoluteX="171dp"
+            tools:layout_editor_absoluteY="142dp" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInputLayout6"
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:textColorHint="#ffffff">
+
+            <EditText
+                android:id="@+id/et1parcial"
+                android:layout_width="102dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tvTitulo"
+                android:layout_marginTop="32dp"
+                android:hint="1ª Parcial"
+                android:inputType="numberDecimal"
+                android:maxLength="6"
+                android:textAlignment="textEnd"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
+                android:textSize="20sp"
+                android:translationX="0dp"
+                android:translationY="1dp"
+                android:translationZ="0dp"
+                tools:layout_editor_absoluteX="34dp"
+                tools:layout_editor_absoluteY="257dp" />
+        </android.support.design.widget.TextInputLayout>
 
         <TextView
             android:id="@+id/tvTotalText1"
-            android:layout_width="52dp"
-            android:layout_height="25dp"
+            android:layout_width="174dp"
+            android:layout_height="51dp"
             android:layout_alignBottom="@+id/sp1"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignTop="@+id/sp1"
             android:layout_toEndOf="@+id/sp1"
             android:layout_toRightOf="@+id/sp1"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
             android:text="0 de 15 Puntos"
             android:textAlignment="textStart"
             android:textColor="@android:color/background_light"
             android:textIsSelectable="false"
             android:textSize="16sp"
-            android:translationY="13dp" />
-
-        <Spinner
-            android:id="@+id/sp2"
-            android:layout_width="80dp"
-            android:layout_height="52dp"
-            android:nestedScrollingEnabled="false"
-            android:spinnerMode="dialog"
-            android:textAlignment="textStart"
-            android:translationY="1dp"
-            android:layout_alignTop="@+id/et2parcial"
-            android:layout_toRightOf="@+id/etTp"
-            android:layout_toEndOf="@+id/etTp" />
-
-        <Spinner
-            android:id="@+id/sp3"
-            android:layout_width="80dp"
-            android:layout_height="52dp"
-            android:nestedScrollingEnabled="false"
-            android:spinnerMode="dialog"
-            android:textAlignment="textStart"
-            android:translationY="1dp"
-            android:layout_alignTop="@+id/etTp"
-            android:layout_toRightOf="@+id/etTp"
-            android:layout_toEndOf="@+id/etTp" />
-
-        <TextView
-            android:id="@+id/tvTotalText2"
-            android:layout_width="52dp"
-            android:layout_height="25dp"
-            android:layout_alignEnd="@+id/tvTitulo"
-            android:layout_alignLeft="@+id/tvTotalText1"
-            android:layout_alignRight="@+id/tvTitulo"
-            android:layout_alignStart="@+id/tvTotalText1"
-            android:layout_alignTop="@+id/sp2"
-            android:text="0 de 15 Puntos"
-            android:textColor="#ffffff"
-            android:textIsSelectable="false"
-            android:textSize="16sp"
-            android:translationY="13dp"
-            android:layout_alignBottom="@+id/sp2" />
-
-        <TextView
-            android:id="@+id/tvTotalText3"
-            android:layout_width="wrap_content"
-            android:layout_height="52dp"
-            android:text="0 de 10 Puntos"
-            android:textAlignment="textStart"
-            android:textColor="@android:color/background_light"
-            android:textIsSelectable="false"
-            android:textSize="16sp"
-            android:translationY="13dp"
-            android:layout_alignTop="@+id/sp3"
-            android:layout_toRightOf="@+id/sp3"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
+            tools:layout_editor_absoluteX="209dp"
+            tools:layout_editor_absoluteY="257dp" />
     </RelativeLayout>
 
     <TextView
         android:id="@+id/tvFeli"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="34dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="45dp"
+        android:layout_weight="1"
         android:textAlignment="center"
         android:textColor="@android:color/holo_orange_dark"
         android:textSize="36sp"
         android:typeface="sans"
-        android:layout_alignParentBottom="true"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="97dp" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/relativeLayout1"
+        android:layout_marginTop="62dp">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInputLayout7"
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="1"
+            android:textColorHint="#ffffff">
+
+            <EditText
+                android:id="@+id/et2parcial"
+                android:layout_width="102dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/et1parcial"
+                android:layout_marginTop="25dp"
+                android:hint="2ª Parcial"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
+                android:maxLength="6"
+                android:textAlignment="textEnd"
+                android:textColor="#ffffff"
+                android:textColorHint="#b8b8b8"
+                android:textSize="20sp"
+                android:translationY="1dp"
+                tools:layout_editor_absoluteX="34dp"
+                tools:layout_editor_absoluteY="338dp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/sp2"
+            android:layout_width="80dp"
+            android:layout_height="54dp"
+            android:layout_alignBottom="@+id/textInputLayout7"
+            android:layout_toEndOf="@+id/textInputLayout7"
+            android:layout_toRightOf="@+id/textInputLayout7"
+            android:layout_weight="1"
+            android:nestedScrollingEnabled="false"
+            android:spinnerMode="dialog"
+            android:textAlignment="textStart"
+            android:translationY="1dp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="97dp" />
+
+        <TextView
+            android:id="@+id/tvTotalText2"
+            android:layout_width="178dp"
+            android:layout_height="54dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/sp2"
+            android:layout_toRightOf="@+id/sp2"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="0 de 15 Puntos"
+            android:textColor="#ffffff"
+            android:textIsSelectable="false"
+            android:textSize="16sp"
+            tools:layout_editor_absoluteX="205dp"
+            tools:layout_editor_absoluteY="354dp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnCalculo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tvResultado"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="28dp"
+        android:layout_weight="1"
+        android:background="@drawable/boton_borde_redondo"
+        android:text="="
+        android:textColor="@android:color/background_light"
+        android:textSize="35dp"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="194dp" />
+
+    <TextView
+        android:id="@+id/tvResultado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tvFeli"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="38dp"
+        android:layout_weight="1"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:textIsSelectable="false"
+        android:textSize="26sp"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="194dp" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/relativeLayout1"
+        android:layout_marginTop="73dp">
+
+        <TextView
+            android:id="@+id/tvTotalText3"
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/sp3"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="0 de 10 Puntos"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/background_light"
+            android:textIsSelectable="false"
+            android:textSize="16sp"
+            tools:layout_editor_absoluteX="209dp"
+            tools:layout_editor_absoluteY="407dp" />
+
+        <Spinner
+            android:id="@+id/sp3"
+            android:layout_width="80dp"
+            android:layout_height="54dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="98dp"
+            android:layout_marginStart="102dp"
+            android:layout_weight="1"
+            android:nestedScrollingEnabled="false"
+            android:spinnerMode="dialog"
+            android:textAlignment="textStart"
+            android:translationY="1dp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="97dp" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInputLayout8"
+            android:layout_width="102dp"
+            android:layout_height="54dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColorHint="#ffffff">
+
+            <EditText
+                android:id="@+id/etTp"
+                android:layout_width="102dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/sp2"
+                android:layout_marginTop="21dp"
+                android:layout_toLeftOf="@+id/sp3"
+                android:layout_toStartOf="@+id/sp3"
+                android:hint="Trabajo Práctico"
+                android:imeOptions="actionDone"
+                android:inputType="numberDecimal"
+                android:maxLength="6"
+                android:textAlignment="textEnd"
+                android:textColor="#ffffff"
+                android:textColorHint="#b8b8b8"
+                android:textSize="20sp"
+                android:translationY="1dp"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+        </android.support.design.widget.TextInputLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

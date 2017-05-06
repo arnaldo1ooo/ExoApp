@@ -80,6 +80,9 @@
             android:id="@+id/et2parcial"
             android:layout_width="wrap_content"
             android:layout_height="52dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/et1parcial"
             android:layout_marginTop="31dp"
             android:hint="2ª Parcial"
             android:imeOptions="actionNext"
@@ -89,65 +92,64 @@
             android:textColor="#ffffff"
             android:textColorHint="#b8b8b8"
             android:textSize="20sp"
-            android:translationY="1dp"
-            android:layout_below="@+id/et1parcial"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:translationY="1dp" />
 
         <Spinner
             android:id="@+id/sp1"
             android:layout_width="80dp"
             android:layout_height="52dp"
+            android:layout_alignTop="@+id/et1parcial"
+            android:layout_toEndOf="@+id/et1parcial"
+            android:layout_toRightOf="@+id/et1parcial"
+            android:gravity="center_vertical"
             android:nestedScrollingEnabled="false"
             android:spinnerMode="dialog"
             android:textAlignment="textStart"
-            android:translationY="1dp"
-            android:layout_alignTop="@+id/et1parcial"
-            android:layout_toRightOf="@+id/et1parcial"
-            android:layout_toEndOf="@+id/et1parcial" />
+            android:translationY="1dp" />
 
         <TextView
             android:id="@+id/tvTotalText1"
             android:layout_width="52dp"
             android:layout_height="25dp"
+            android:layout_alignBottom="@+id/sp1"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/sp1"
+            android:layout_toRightOf="@+id/sp1"
+            android:gravity="left|center_vertical"
             android:text="0 de 15 Puntos"
             android:textAlignment="textStart"
             android:textColor="@android:color/background_light"
             android:textIsSelectable="false"
-            android:textSize="16sp"
-            android:translationY="13dp"
-            android:layout_alignTop="@+id/sp1"
-            android:layout_toRightOf="@+id/sp1"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignBottom="@+id/sp1" />
+            android:textSize="16sp" />
 
         <Spinner
             android:id="@+id/sp2"
             android:layout_width="80dp"
             android:layout_height="52dp"
+            android:layout_alignTop="@+id/et2parcial"
+            android:layout_toEndOf="@+id/et2parcial"
+            android:layout_toRightOf="@+id/et2parcial"
+            android:gravity="center_vertical"
             android:nestedScrollingEnabled="false"
             android:spinnerMode="dialog"
             android:textAlignment="textStart"
-            android:translationY="1dp"
-            android:layout_alignTop="@+id/et2parcial"
-            android:layout_toRightOf="@+id/et2parcial"
-            android:layout_toEndOf="@+id/et2parcial" />
+            android:translationY="1dp" />
 
         <TextView
             android:id="@+id/tvTotalText2"
             android:layout_width="52dp"
             android:layout_height="25dp"
+            android:layout_alignBottom="@+id/sp2"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/sp2"
+            android:layout_toRightOf="@+id/sp2"
+            android:gravity="left|center_vertical"
             android:text="0 de 15 Puntos"
             android:textColor="#ffffff"
             android:textIsSelectable="false"
-            android:textSize="16sp"
-            android:translationY="13dp"
-            android:layout_alignTop="@+id/sp2"
-            android:layout_toRightOf="@+id/sp2"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignBottom="@+id/sp2" />
+            android:textSize="16sp" />
 
     </RelativeLayout>
 
