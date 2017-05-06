@@ -76,7 +76,7 @@
                 android:textAlignment="textEnd"
                 android:textColor="#ffffff"
                 android:textColorHint="#ffffff"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:translationX="0dp"
                 android:translationY="1dp"
                 android:translationZ="0dp"
@@ -152,7 +152,7 @@
                 android:textAlignment="textEnd"
                 android:textColor="#ffffff"
                 android:textColorHint="#b8b8b8"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:translationY="1dp"
                 tools:layout_editor_absoluteX="34dp"
                 tools:layout_editor_absoluteY="338dp" />
@@ -290,7 +290,7 @@
                 android:textAlignment="textEnd"
                 android:textColor="#ffffff"
                 android:textColorHint="#b8b8b8"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:translationY="1dp"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="8dp" />
