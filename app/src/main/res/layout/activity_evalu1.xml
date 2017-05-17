@@ -42,6 +42,7 @@
             android:layout_width="80dp"
             android:layout_height="52dp"
             android:layout_alignBottom="@+id/textInputLayout6"
+            android:layout_marginTop="5dp"
             android:layout_toEndOf="@+id/textInputLayout6"
             android:layout_toRightOf="@+id/textInputLayout6"
             android:layout_weight="1"
@@ -89,6 +90,7 @@
             android:layout_width="174dp"
             android:layout_height="51dp"
             android:layout_alignBottom="@+id/sp1"
+            android:layout_marginTop="5dp"
             android:layout_toEndOf="@+id/sp1"
             android:layout_toRightOf="@+id/sp1"
             android:layout_weight="1"
@@ -111,6 +113,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginBottom="45dp"
         android:layout_weight="1"
+        android:fontFamily="sans-serif-condensed"
         android:textAlignment="center"
         android:textColor="@android:color/holo_orange_dark"
         android:textSize="36sp"
@@ -135,12 +138,13 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_weight="1"
-            android:textColorHint="#ffffff">
+            android:textColorHint="#ffffff"
+            android:layout_alignParentTop="true">
 
             <EditText
                 android:id="@+id/et2parcial"
                 android:layout_width="102dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/et1parcial"
@@ -162,7 +166,8 @@
             android:id="@+id/sp2"
             android:layout_width="80dp"
             android:layout_height="54dp"
-            android:layout_alignBottom="@+id/textInputLayout7"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
             android:layout_toEndOf="@+id/textInputLayout7"
             android:layout_toRightOf="@+id/textInputLayout7"
             android:layout_weight="1"
@@ -178,6 +183,7 @@
             android:layout_width="178dp"
             android:layout_height="54dp"
             android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
             android:layout_toEndOf="@+id/sp2"
             android:layout_toRightOf="@+id/sp2"
             android:layout_weight="1"
@@ -194,32 +200,33 @@
         android:id="@+id/btnCalculo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/tvResultado"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="28dp"
         android:layout_weight="1"
         android:background="@drawable/boton_borde_redondo"
         android:text="="
         android:textColor="@android:color/background_light"
         android:textSize="35dp"
         tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="194dp" />
+        tools:layout_editor_absoluteY="194dp"
+        android:layout_below="@+id/relativeLayout3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp" />
 
     <TextView
         android:id="@+id/tvResultado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/tvFeli"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="38dp"
         android:layout_weight="1"
+        android:fontFamily="sans-serif-condensed"
         android:textAlignment="center"
         android:textColor="#ffffff"
         android:textIsSelectable="false"
         android:textSize="26sp"
         tools:layout_editor_absoluteX="24dp"
-        tools:layout_editor_absoluteY="194dp" />
+        tools:layout_editor_absoluteY="194dp"
+        android:layout_below="@+id/btnCalculo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="38dp" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout3"
@@ -237,6 +244,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/sp3"
             android:layout_weight="1"
             android:gravity="center_vertical"
@@ -257,6 +265,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginLeft="98dp"
             android:layout_marginStart="102dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:nestedScrollingEnabled="false"
             android:spinnerMode="dialog"
@@ -271,6 +280,7 @@
             android:layout_height="54dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_marginTop="5dp"
             android:textColorHint="#ffffff">
 
             <EditText
@@ -297,5 +307,18 @@
 
         </android.support.design.widget.TextInputLayout>
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvFaltante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Te faltó 00.000 Puntos para Exonerar"
+        android:textAlignment="center"
+        android:textColor="#d20808"
+        android:visibility="invisible"
+        android:layout_alignTop="@+id/tvResultado"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp" />
 
 </RelativeLayout>

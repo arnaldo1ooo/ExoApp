@@ -22,6 +22,7 @@ public class activity_evalu1 extends AppCompatActivity {
     EditText et2parcial;
     EditText etTp;
     TextView tvResultado;
+    TextView tvFaltante;
     int total1p = 15;
     int total2p = 15;
     int totaltp = 10;
@@ -41,6 +42,7 @@ public class activity_evalu1 extends AppCompatActivity {
     double PuntosObtenidos2 = 0;
     double PuntosObtenidos3 = 0;
     DecimalFormat df = new DecimalFormat("#.###");
+    double PuntosParaExonerar = 32.4;
 
 
     @Override
@@ -60,6 +62,7 @@ public class activity_evalu1 extends AppCompatActivity {
         tvTotalText2 = (TextView) findViewById(R.id.tvTotalText2);
         tvTotalText3 = (TextView) findViewById(R.id.tvTotalText3);
         tvFeli = (TextView) findViewById(R.id.tvFeli);
+        tvFaltante = (TextView) findViewById(R.id.tvFaltante);
 
 
         //Spinner
@@ -96,7 +99,6 @@ public class activity_evalu1 extends AppCompatActivity {
             public void onClick(View v) {
                 OcultarTeclado(v);
                 SiEsVacio();
-
 
                     if(MensajeErrorPorcentajeOPuntos(Double.parseDouble(et1parcial.getText().toString()), total1p) == false &&
                             MensajeErrorPorcentajeOPuntos(Double.parseDouble(et2parcial.getText().toString()), total2p) == false &&
@@ -253,6 +255,8 @@ public class activity_evalu1 extends AppCompatActivity {
         }
         else{
             tvFeli.setText("No exoneraste :(");
+            tvFaltante.setVisibility(TextView.VISIBLE);
+            tvFaltante.setText("Te faltaron " + df.format(PuntosParaExonerar - (PuntosObtenidos + PuntosObtenidos2 + PuntosObtenidos3)) + " Puntos para Exonerar");
         }
     }
 
