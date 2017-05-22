@@ -6,7 +6,8 @@
     android:textSize="14dp"
     android:gravity="left"
     android:textColor="#ffffff"
-    android:padding="5dp"
-    android:background="#232222"
+    android:padding="10dp"
+    android:background="#00232222"
+
 
     xmlns:android="http://schemas.android.com/apk/res/android" />
