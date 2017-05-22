@@ -313,13 +313,13 @@
         android:id="@+id/tvFaltante"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tvResultado"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
         android:fontFamily="sans-serif-condensed"
         android:text="Te faltó 00.000 Puntos para Exonerar"
         android:textAlignment="center"
-        android:textColor="#d20808"
-        android:visibility="invisible"
-        android:layout_alignTop="@+id/tvResultado"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp" />
+        android:textColor="#dbdbdb"
+        android:visibility="invisible" />
 
 </RelativeLayout>
