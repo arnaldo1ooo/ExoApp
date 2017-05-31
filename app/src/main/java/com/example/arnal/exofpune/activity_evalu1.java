@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -73,19 +74,18 @@ public class activity_evalu1 extends AppCompatActivity {
 
 
 
-        /*//Al cambiar valor de spinner1
+        //Al cambiar valor de spinner1
         sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView adapter, View v, int i, long lng) {
-                PorcAPuntos1();
+
             }
 
             @Override
             public void onNothingSelected(AdapterView arg0) {
                 Toast.makeText(getApplicationContext(), "Ninguno seleccionado", Toast.LENGTH_SHORT).show();
-
             }
-        });*/
+        });
 
 
 
@@ -198,9 +198,10 @@ public class activity_evalu1 extends AppCompatActivity {
                     }
                 }
                 else{
+
                     if (s.length() >= 1 && MensajeErrorPorcentajeOPuntos(Double.parseDouble(et1parcial.getText().toString()), total1p) == false) {
                         PuntosObtenidos = Double.parseDouble(et1parcial.getText().toString());
-                        tvTotalText1.setText(df.format(PuntosObtenidos) + " de " + total1p + " Puntos");
+                        tvTotalText1.setText(df.format(PuntosObtenidos) + " de " + total1p + " Puntoss");
                     }
                     else {
                         PuntosObtenidos = 0;
