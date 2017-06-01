@@ -253,6 +253,7 @@ public class activity_evalu1 extends AppCompatActivity {
     public void Felicitar (){
         if(resultado >= 32.4){
             tvFeli.setText("EXONERASTE!! :D");
+            tvFaltante.setVisibility(TextView.INVISIBLE);
         }
         else{
             tvFeli.setText("No exoneraste :(");
