@@ -12,7 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Tipo_evalu extends AppCompatActivity {
+public class activity_tipo_evalu extends AppCompatActivity {
     Button btnopc1;
     Button btnopc2;
 

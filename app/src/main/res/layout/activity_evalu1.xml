@@ -127,7 +127,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.96" />
+        app:layout_constraintVertical_bias="0.96"
+        tools:text="Exoneraste!! :D" />
 
     <Button
         android:id="@+id/btnCalculo"
@@ -153,7 +154,7 @@
     <TextView
         android:id="@+id/tvResultado"
         android:layout_width="wrap_content"
-        android:layout_height="49dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/btnCalculo"
@@ -171,7 +172,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.69" />
+        app:layout_constraintVertical_bias="0.69"
+        tools:text="36.55 Puntos de 40 Puntos" />
 
     <TextView
         android:id="@+id/tvFaltante"
@@ -179,20 +181,22 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/tvResultado"
         android:layout_centerHorizontal="true"
-        android:fontFamily="sans-serif-condensed"
-        android:text="Te faltó 00.000 Puntos para Exonerar"
-        android:textAlignment="center"
-        android:textColor="#dbdbdb"
-        android:visibility="invisible"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-condensed"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintVertical_bias="0.77" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.775"
+        tools:text="Te faltó 00.000 Puntos para Exonerar" />
 
     <TextView
         android:id="@+id/tvTotalText3"
