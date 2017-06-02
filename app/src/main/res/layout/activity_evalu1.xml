@@ -54,11 +54,11 @@
         android:textAlignment="textStart"
         android:translationY="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintHorizontal_bias="0.38"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.110000014" />
+        app:layout_constraintVertical_bias="0.114" />
 
     <Spinner
         android:id="@+id/sp2"
@@ -77,11 +77,11 @@
         android:textAlignment="textStart"
         android:translationY="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintHorizontal_bias="0.38"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.24000001" />
+        app:layout_constraintVertical_bias="0.238" />
 
     <Spinner
         android:id="@+id/sp3"
@@ -100,11 +100,11 @@
         android:textAlignment="textStart"
         android:translationY="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintHorizontal_bias="0.38"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.37" />
+        app:layout_constraintVertical_bias="0.371" />
 
     <TextView
         android:id="@+id/tvFeli"
@@ -206,23 +206,20 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:layout_toRightOf="@+id/sp3"
         android:layout_weight="1"
         android:gravity="center_vertical"
         android:text="0 de 10 Puntos"
-        android:textAlignment="textStart"
-        android:textColor="@android:color/background_light"
+        android:textAlignment="viewStart"
+        android:textColor="#ffffff"
         android:textIsSelectable="false"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.969"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.372" />
+        app:layout_constraintVertical_bias="0.38"
+        android:layout_marginRight="-36dp"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"
@@ -395,6 +392,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="140dp"
+        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_toEndOf="@+id/sp2"
@@ -402,16 +400,16 @@
         android:layout_weight="1"
         android:gravity="center_vertical"
         android:text="0 de 15 Puntos"
+        android:textAlignment="viewStart"
         android:textColor="#ffffff"
         android:textIsSelectable="false"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.24000001"
-        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.938" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.253" />
 
     <TextView
         android:id="@+id/tvTotalText1"
@@ -428,15 +426,15 @@
         android:layout_weight="1"
         android:gravity="center_vertical"
         android:text="0 de 15 Puntos"
-        android:textAlignment="textStart"
-        android:textColor="@android:color/background_light"
+        android:textAlignment="viewStart"
+        android:textColor="#ffffff"
         android:textIsSelectable="false"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.114" />
+        app:layout_constraintVertical_bias="0.13" />
 
 </android.support.constraint.ConstraintLayout>
