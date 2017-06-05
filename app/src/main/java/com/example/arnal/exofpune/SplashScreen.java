@@ -21,7 +21,7 @@ public class SplashScreen extends Activity {
                 Intent intent = new Intent (SplashScreen.this, activity_tipo_evalu.class);
                 startActivity(intent);
             }
-        },4000);
+        },3000);
 
     }
 

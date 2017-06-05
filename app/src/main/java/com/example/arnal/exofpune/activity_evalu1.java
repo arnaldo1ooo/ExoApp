@@ -73,7 +73,6 @@ public class activity_evalu1 extends AppCompatActivity {
         sp3.setAdapter(adaptadorsp);
 
 
-
         //Al cambiar valor de spinner1
         sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
