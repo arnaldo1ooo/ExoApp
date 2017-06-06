@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -46,6 +47,7 @@ public class activity_evalu1 extends AppCompatActivity {
     double PuntosParaExonerar = 32.4;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +73,20 @@ public class activity_evalu1 extends AppCompatActivity {
         sp1.setAdapter(adaptadorsp);
         sp2.setAdapter(adaptadorsp);
         sp3.setAdapter(adaptadorsp);
+
+
+
+//Al dar enter
+        etTp.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    btnCalculo.callOnClick();
+                    return true;
+                }
+                return false;
+            }
+        });
 
 
         //Al cambiar valor de spinner1

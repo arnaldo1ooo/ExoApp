@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -17,6 +18,17 @@ public class activity_tipo_evalu extends AppCompatActivity {
     Button btnopc2;
 
 
+//impedir retroceder a activity anterior
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            moveTaskToBack(true);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
 
 
     @Override
@@ -26,6 +38,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
 
         btnopc1 = (Button) findViewById(R.id.btnopc1);
         btnopc2 = (Button) findViewById(R.id.btnopc2);
+
 
 
         btnopc1.setOnClickListener(new View.OnClickListener() {
