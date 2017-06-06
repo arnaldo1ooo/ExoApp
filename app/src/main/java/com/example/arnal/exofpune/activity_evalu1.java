@@ -25,6 +25,7 @@ public class activity_evalu1 extends AppCompatActivity {
     EditText etTp;
     TextView tvResultado;
     TextView tvFaltante;
+    TextView tvPuntosFinal;
     int total1p = 15;
     int total2p = 15;
     int totaltp = 10;
@@ -66,7 +67,7 @@ public class activity_evalu1 extends AppCompatActivity {
         tvTotalText3 = (TextView) findViewById(R.id.tvTotalText3);
         tvFeli = (TextView) findViewById(R.id.tvFeli);
         tvFaltante = (TextView) findViewById(R.id.tvFaltante);
-
+        tvPuntosFinal = (TextView) findViewById(R.id.tvPuntosFinal);
 
         //Spinner
         ArrayAdapter<String> adaptadorsp = new ArrayAdapter<String>(this, R.layout.spinner_configuracion, array);
@@ -112,13 +113,12 @@ public class activity_evalu1 extends AppCompatActivity {
         tvFaltante.setVisibility(View.INVISIBLE);
         tvResultado.setVisibility(View.INVISIBLE);
         tvFeli.setVisibility(View.INVISIBLE);
+        tvPuntosFinal.setVisibility(TextView.INVISIBLE);
+
 
         btnCalculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tvFeli.setVisibility(View.VISIBLE);
-                tvFaltante.setVisibility(TextView.VISIBLE);
-                tvResultado.setVisibility(TextView.VISIBLE);
                 OcultarTeclado(v);
                 SiEsVacio();
 
@@ -275,17 +275,25 @@ public class activity_evalu1 extends AppCompatActivity {
     public void Felicitar (){
         if(resultado >= 32.4){
             tvFeli.setText("EXONERASTE!! :D");
+            tvFeli.setVisibility(View.VISIBLE);
+            tvFaltante.setVisibility(TextView.VISIBLE);
+            tvResultado.setVisibility(TextView.VISIBLE);
+            tvPuntosFinal.setVisibility(TextView.INVISIBLE);
             if(resultado >= 36.5){
                 tvFaltante.setText("Obtuviste nota 5");
             }
             else{
                 tvFaltante.setText("Obtuviste nota 4");
             }
-
         }
         else{
             tvFeli.setText("No exoneraste :(");
             tvFaltante.setText("Te faltaron " + df.format(PuntosParaExonerar - (PuntosObtenidos + PuntosObtenidos2 + PuntosObtenidos3)) + " Puntos para Exonerar");
+            tvFeli.setVisibility(View.VISIBLE);
+            tvFaltante.setVisibility(TextView.VISIBLE);
+            tvResultado.setVisibility(TextView.VISIBLE);
+            tvPuntosFinal.setVisibility(TextView.VISIBLE);
+            tvPuntosFinal.setText("Debes hacer " + df.format(((60 - (PuntosObtenidos + PuntosObtenidos2 + PuntosObtenidos3))*100)/60) + "% en la final (" + df.format(60 - (PuntosObtenidos + PuntosObtenidos2 + PuntosObtenidos3)) + " de 60)");
         }
     }
 
