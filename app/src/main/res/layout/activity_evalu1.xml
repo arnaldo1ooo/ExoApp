@@ -47,18 +47,18 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="2dp"
         android:layout_weight="1"
         android:nestedScrollingEnabled="false"
         android:spinnerMode="dialog"
         android:textAlignment="textStart"
         android:translationY="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.39"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintLeft_toRightOf="@+id/relativeLayout1"
+        app:layout_constraintRight_toLeftOf="@+id/tvTotalText1"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintVertical_bias="0.136" />
 
     <Spinner
         android:id="@+id/sp2"
@@ -68,7 +68,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/textInputLayout7"
         android:layout_toRightOf="@+id/textInputLayout7"
         android:layout_weight="1"
@@ -77,11 +77,11 @@
         android:textAlignment="textStart"
         android:translationY="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.393"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@+id/relativeLayout2"
+        app:layout_constraintRight_toLeftOf="@+id/tvTotalText2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.26" />
+        app:layout_constraintVertical_bias="0.25" />
 
     <Spinner
         android:id="@+id/sp3"
@@ -100,11 +100,11 @@
         android:textAlignment="textStart"
         android:translationY="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.393"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.025"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.38" />
+        app:layout_constraintVertical_bias="0.382"
+        app:layout_constraintLeft_toRightOf="@+id/relativeLayout3"
+        app:layout_constraintRight_toLeftOf="@+id/tvTotalText3" />
 
     <TextView
         android:id="@+id/tvFeli"
