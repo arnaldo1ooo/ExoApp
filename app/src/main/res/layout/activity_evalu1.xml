@@ -42,33 +42,29 @@
 
     <Spinner
         android:id="@+id/sp1"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="60dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
         android:layout_weight="1"
         android:nestedScrollingEnabled="false"
         android:spinnerMode="dialog"
         android:textAlignment="textStart"
         android:translationY="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout1"
         app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintVertical_bias="0.110000014" />
 
     <Spinner
         android:id="@+id/sp2"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="60dp"
+        android:layout_height="51dp"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
         android:layout_toEndOf="@+id/textInputLayout7"
         android:layout_toRightOf="@+id/textInputLayout7"
         android:layout_weight="1"
@@ -76,35 +72,34 @@
         android:spinnerMode="dialog"
         android:textAlignment="textStart"
         android:translationY="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.393"
+        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout2"
         app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.26" />
+        app:layout_constraintHorizontal_bias="0.39"
+        app:layout_constraintVertical_bias="0.26"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <Spinner
         android:id="@+id/sp3"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="60dp"
+        android:layout_height="51dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:nestedScrollingEnabled="false"
         android:spinnerMode="dialog"
         android:textAlignment="textStart"
         android:translationY="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.393"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/sp2"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.38" />
+        app:layout_constraintVertical_bias="0.389"
+        android:layout_marginEnd="8dp" />
 
     <TextView
         android:id="@+id/tvFeli"
@@ -114,14 +109,18 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/tvFaltante"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:fontFamily="sans-serif-condensed"
         android:textAlignment="center"
+        android:textAllCaps="true"
         android:textColor="@android:color/holo_orange_dark"
         android:textSize="36sp"
+        android:textStyle="bold"
         android:typeface="sans"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -149,7 +148,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55" />
+        app:layout_constraintVertical_bias="0.55"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <TextView
         android:id="@+id/tvResultado"
@@ -173,7 +174,9 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.69"
-        tools:text="36.55 Puntos de 40 Puntos" />
+        tools:text="36.55 Puntos de 40 Puntos"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <TextView
         android:id="@+id/tvFaltante"
@@ -196,47 +199,22 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.767"
-        tools:text="Te faltó 00.000 Puntos para Exonerar" />
-
-    <TextView
-        android:id="@+id/tvTotalText3"
-        android:layout_width="wrap_content"
-        android:layout_height="49dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="8dp"
-        android:layout_marginRight="-36dp"
-        android:layout_marginTop="8dp"
-        android:layout_toRightOf="@+id/sp3"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:text="0 de 10 Puntos"
-        android:textAlignment="viewStart"
-        android:textColor="#ffffff"
-        android:textIsSelectable="false"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.38" />
+        tools:text="Te faltó 00.000 Puntos para Exonerar"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"
         android:layout_width="wrap_content"
-        android:layout_height="51dp"
+        android:layout_height="54dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.01"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/relativeLayout2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.110000014">
 
@@ -244,13 +222,12 @@
             android:id="@+id/textInputLayout6"
             android:layout_width="wrap_content"
             android:layout_height="54dp"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:textColorHint="#ffffff"
-            tools:layout_editor_absoluteX="24dp"
-            tools:layout_editor_absoluteY="433dp">
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="51dp">
 
             <EditText
                 android:id="@+id/et1parcial"
@@ -284,17 +261,12 @@
         android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/relativeLayout1"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="3dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/relativeLayout3"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.24000001">
+        app:layout_constraintVertical_bias="0.25">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayout7"
@@ -337,7 +309,6 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/relativeLayout1"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="0dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -345,7 +316,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.37">
+        app:layout_constraintVertical_bias="0.39"
+        android:layout_marginEnd="8dp">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayout8"
@@ -386,56 +358,68 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/tvTotalText2"
+        android:id="@+id/tvTotalText1"
         android:layout_width="wrap_content"
-        android:layout_height="49dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="140dp"
+        android:layout_height="51dp"
+        android:layout_alignBottom="@+id/sp1"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:layout_toEndOf="@+id/sp1"
+        android:layout_toRightOf="@+id/sp1"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="0 de 15 Puntos"
+        android:textAlignment="viewEnd"
+        android:textColor="#ffffff"
+        android:textIsSelectable="false"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/sp1"
+        app:layout_constraintHorizontal_bias="0.873"
+        app:layout_constraintLeft_toRightOf="@+id/sp1"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.118" />
+
+    <TextView
+        android:id="@+id/tvTotalText2"
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:layout_toEndOf="@+id/sp2"
         android:layout_toRightOf="@+id/sp2"
         android:layout_weight="1"
         android:gravity="center_vertical"
         android:text="0 de 15 Puntos"
-        android:textAlignment="viewStart"
+        android:textAlignment="viewEnd"
         android:textColor="#ffffff"
         android:textIsSelectable="false"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintRight_toRightOf="@+id/tvTotalText1"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.253" />
+        app:layout_constraintVertical_bias="0.25" />
 
     <TextView
-        android:id="@+id/tvTotalText1"
+        android:id="@+id/tvTotalText3"
         android:layout_width="wrap_content"
-        android:layout_height="49dp"
-        android:layout_alignBottom="@+id/sp1"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="140dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="8dp"
-        android:layout_toEndOf="@+id/sp1"
-        android:layout_toRightOf="@+id/sp1"
+        android:layout_height="51dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/sp3"
         android:layout_weight="1"
         android:gravity="center_vertical"
-        android:text="0 de 15 Puntos"
-        android:textAlignment="viewStart"
+        android:text="0 de 10 Puntos"
+        android:textAlignment="viewEnd"
         android:textColor="#ffffff"
         android:textIsSelectable="false"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintBottom_toBottomOf="@+id/sp3"
+        app:layout_constraintRight_toRightOf="@+id/tvTotalText2"
+        app:layout_constraintVertical_bias="0.372" />
 
     <TextView
         android:id="@+id/tvPuntosFinal"
