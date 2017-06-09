@@ -115,7 +115,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
-        android:fontFamily="sans-serif-condensed"
+        android:fontFamily="serif"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="@android:color/holo_orange_dark"
