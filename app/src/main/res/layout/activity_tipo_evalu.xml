@@ -7,69 +7,94 @@
     android:background="@mipmap/fondo"
     tools:context="com.example.arnal.exofpune.activity_tipo_evalu">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="495dp"
-        android:layout_marginTop="8dp"
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Seleccione el tipo de evaluación"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:textSize="22sp"
+        android:typeface="serif"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp">
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="0.017" />
 
-        <TextView
-            android:id="@+id/tvTitulo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="13dp"
-            android:fontFamily="sans-serif-smallcaps"
-            android:text="Seleccione el tipo de evaluación"
-            android:textAlignment="center"
-            android:textColor="#ffffff"
-            android:textSize="22sp"
-            android:typeface="serif" />
+    <Button
+        android:id="@+id/btnopc1"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTitulo"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/boton_borde_redondo"
+        android:soundEffectsEnabled="false"
+        android:text="15 - 15 -10"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="0.214" />
 
-        <Button
+    <Button
 
 
-            android:id="@+id/btnopc2"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/btnopc1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="41dp"
-            android:background="@drawable/boton_borde_redondo"
-            android:soundEffectsEnabled="false"
-            android:text="20 - 20"
-            android:textColor="#ffffff"
-            android:textSize="25sp" />
+        android:id="@+id/btnopc2"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnopc1"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/boton_borde_redondo"
+        android:soundEffectsEnabled="false"
+        android:text="20 - 20"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintVertical_bias="0.38" />
 
-        <Button
-            android:id="@+id/btnopc1"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvTitulo"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="63dp"
-            android:background="@drawable/boton_borde_redondo"
-            android:soundEffectsEnabled="false"
-            android:text="15 - 15 -10"
-            android:textColor="#ffffff"
-            android:textSize="25sp" />
+    <Button
+        android:id="@+id/btnopc3"
+        android:layout_width="217dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnopc2"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/boton_borde_redondo"
+        android:text="Personalizado"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintVertical_bias="0.552" />
 
-        <Button
-            android:id="@+id/btnopc3"
-            android:layout_width="217dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/btnopc2"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/boton_borde_redondo"
-            android:text="Personalizado"
-            android:textColor="#ffffff"
-            android:textSize="25sp" />
-
-    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
 

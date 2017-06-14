@@ -3,6 +3,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/fondo"
@@ -12,7 +13,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.arnal.exofpune.activity_evalu1"
     tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="81dp">
+    tools:layout_editor_absoluteY="81dp"
+
+    >
+
 
     <TextView
         android:id="@+id/tvTitulo"
@@ -54,11 +58,13 @@
         android:textAlignment="textStart"
         android:translationY="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.025"
-        app:layout_constraintLeft_toRightOf="@+id/relativeLayout1"
-        app:layout_constraintRight_toLeftOf="@+id/tvTotalText1"
+        app:layout_constraintHorizontal_bias="0.41"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.136" />
+        app:layout_constraintVertical_bias="0.13"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <Spinner
         android:id="@+id/sp2"
@@ -66,22 +72,20 @@
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="10dp"
-        android:layout_toEndOf="@+id/textInputLayout7"
-        android:layout_toRightOf="@+id/textInputLayout7"
         android:layout_weight="1"
         android:nestedScrollingEnabled="false"
         android:spinnerMode="dialog"
         android:textAlignment="textStart"
         android:translationY="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toRightOf="@+id/relativeLayout2"
-        app:layout_constraintRight_toLeftOf="@+id/tvTotalText2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintVertical_bias="0.26"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.41" />
 
     <Spinner
         android:id="@+id/sp3"
@@ -91,8 +95,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:nestedScrollingEnabled="false"
@@ -100,11 +102,13 @@
         android:textAlignment="textStart"
         android:translationY="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.025"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.382"
-        app:layout_constraintLeft_toRightOf="@+id/relativeLayout3"
-        app:layout_constraintRight_toLeftOf="@+id/tvTotalText3" />
+        app:layout_constraintVertical_bias="0.39999998"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.41" />
 
     <TextView
         android:id="@+id/tvFeli"
@@ -128,7 +132,9 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        tools:text="Exoneraste!! :D" />
+        tools:text="Exoneraste!! :D"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <Button
         android:id="@+id/btnCalculo"
@@ -149,7 +155,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55" />
+        app:layout_constraintVertical_bias="0.55"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <TextView
         android:id="@+id/tvResultado"
@@ -173,7 +181,9 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.69"
-        tools:text="36.55 Puntos de 40 Puntos" />
+        tools:text="36.55 Puntos de 40 Puntos"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <TextView
         android:id="@+id/tvFaltante"
@@ -196,7 +206,9 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.767"
-        tools:text="Te faltó 00.000 Puntos para Exonerar" />
+        tools:text="Te faltó 00.000 Puntos para Exonerar"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <TextView
         android:id="@+id/tvTotalText3"
@@ -206,7 +218,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="8dp"
-        android:layout_marginRight="-36dp"
         android:layout_marginTop="8dp"
         android:layout_toRightOf="@+id/sp3"
         android:layout_weight="1"
@@ -215,11 +226,15 @@
         android:textAlignment="viewStart"
         android:textColor="#ffffff"
         android:textIsSelectable="false"
-        android:textSize="18sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.38" />
+        app:layout_constraintVertical_bias="0.399"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.97" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"
@@ -229,16 +244,15 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.01"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.110000014">
+        app:layout_constraintVertical_bias="0.100000024"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.01">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayout6"
@@ -294,7 +308,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.24000001">
+        app:layout_constraintVertical_bias="0.245">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayout7"
@@ -337,15 +351,15 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/relativeLayout1"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="0dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.01"
+        app:layout_constraintHorizontal_bias="0.012"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.37">
+        app:layout_constraintVertical_bias="0.39"
+        android:layout_marginEnd="8dp">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayout8"
@@ -391,9 +405,6 @@
         android:layout_height="49dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="140dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_toEndOf="@+id/sp2"
         android:layout_toRightOf="@+id/sp2"
@@ -403,13 +414,15 @@
         android:textAlignment="viewStart"
         android:textColor="#ffffff"
         android:textIsSelectable="false"
-        android:textSize="18sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.253" />
+        app:layout_constraintVertical_bias="0.25"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="6dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="1.0" />
 
     <TextView
         android:id="@+id/tvTotalText1"
@@ -417,9 +430,6 @@
         android:layout_height="49dp"
         android:layout_alignBottom="@+id/sp1"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="140dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="1dp"
         android:layout_marginTop="8dp"
         android:layout_toEndOf="@+id/sp1"
         android:layout_toRightOf="@+id/sp1"
@@ -429,13 +439,15 @@
         android:textAlignment="viewStart"
         android:textColor="#ffffff"
         android:textIsSelectable="false"
-        android:textSize="18sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintVertical_bias="0.110000014"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.97" />
 
     <TextView
         android:id="@+id/tvPuntosFinal"
@@ -454,3 +466,6 @@
         app:layout_constraintVertical_bias="0.846" />
 
 </android.support.constraint.ConstraintLayout>
+
+
+
