@@ -20,7 +20,7 @@ public class activity_acercade extends AppCompatActivity {
         setContentView(R.layout.activity_acercade);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        getSupportActionBar().setTitle("Acerca de");
 
         version = (TextView) findViewById(R.id.tvVersion);
 
