@@ -1,6 +1,7 @@
 package com.exofpune;
 
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -23,8 +24,13 @@ public class activity_acercade extends AppCompatActivity {
 
         version = (TextView) findViewById(R.id.tvVersion);
 
-
-
-        version.setText("");
+        try {
+            packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            version.setText(String.valueOf(packageInfo.versionName));
+        } catch (PackageManager.NameNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            strVersion = "No se puede cargar la version!";
+        }
     }
 }
