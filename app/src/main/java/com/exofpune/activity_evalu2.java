@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -14,8 +13,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.exofpune.R;
 
 import java.text.DecimalFormat;
 
@@ -58,7 +55,7 @@ public class activity_evalu2 extends AppCompatActivity {
 
 
         btnCalculo = (Button) findViewById(R.id.btnCalculo);
-        et1parcial = (EditText) findViewById(R.id.et1parcial);
+        et1parcial = (EditText) findViewById(R.id.editText3);
         et2parcial = (EditText) findViewById(R.id.et2parcial);
         tvResultado = (TextView) findViewById(R.id.tvResultado);
         sp1 = (Spinner) findViewById(R.id.sp1);

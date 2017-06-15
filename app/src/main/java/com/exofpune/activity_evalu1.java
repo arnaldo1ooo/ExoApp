@@ -15,8 +15,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.exofpune.R;
-
 import java.text.DecimalFormat;
 
 public class activity_evalu1 extends AppCompatActivity {
@@ -64,7 +62,7 @@ public class activity_evalu1 extends AppCompatActivity {
 
 
         btnCalculo = (Button) findViewById(R.id.btnCalculo);
-        et1parcial = (EditText) findViewById(R.id.et1parcial);
+        et1parcial = (EditText) findViewById(R.id.editText3);
         et2parcial = (EditText) findViewById(R.id.et2parcial);
         etTp = (EditText) findViewById(R.id.etTp);
         tvResultado = (TextView) findViewById(R.id.tvResultado);

@@ -217,7 +217,7 @@
             tools:layout_editor_absoluteY="433dp">
 
             <EditText
-                android:id="@+id/et1parcial"
+                android:id="@+id/editText3"
                 android:layout_width="102dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -276,7 +276,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/et1parcial"
+                android:layout_below="@+id/editText3"
                 android:layout_marginTop="25dp"
                 android:hint="2ª Parcial"
                 android:imeOptions="actionNext"

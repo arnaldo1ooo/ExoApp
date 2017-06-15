@@ -35,6 +35,7 @@ import java.util.Date;
 public class activity_tipo_evalu extends AppCompatActivity {
     Button btnopc1;
     Button btnopc2;
+    Button btnopc3;
 
     public static String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/ExoFPUNE";
     public static File Dir = new File (path);
@@ -57,7 +58,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
 
         btnopc1 = (Button) findViewById(R.id.btnopc1);
         btnopc2 = (Button) findViewById(R.id.btnopc2);
-
+        btnopc3 = (Button) findViewById(R.id.btnopc3);
 
 
 
@@ -92,10 +93,19 @@ public class activity_tipo_evalu extends AppCompatActivity {
             }
         });
 
+
         btnopc2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (v.getContext(), activity_evalu2.class);
+                startActivityForResult(intent, 0);
+            }
+        });
+
+        btnopc3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (v.getContext(), activity_perso.class);
                 startActivityForResult(intent, 0);
             }
         });
@@ -116,6 +126,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
 
         if (id == R.id.ao1) {
             Log.d("myTag", "Abriendo comprobar actualizaciones");
+
             AutoUpdate(path + "ExoFPUNE", "ExoFPUNE/ExoFPUNE.apk");
             return true;
         }
@@ -216,7 +227,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
                             getMain().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(getApplicationContext(), "File successfully downloaded.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Archivo descargado con éxito.", Toast.LENGTH_SHORT).show();
                                 }
                             });
                         } catch (Exception e) {
@@ -342,6 +353,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
     {
         DropboxDownloadPathTo = NameOfNewApplication;
         DropboxDownloadPathFrom = downloadPathFrom;
+
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
