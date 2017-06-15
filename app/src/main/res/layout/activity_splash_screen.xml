@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/f"
-    tools:context="com.example.arnal.exofpune.SplashScreen">
+    tools:context="com.exofpune.SplashScreen">
 
     <TextView
         android:id="@+id/Tv_hechopor"
