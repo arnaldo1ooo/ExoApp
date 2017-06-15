@@ -1,11 +1,15 @@
 package com.exofpune;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -69,7 +73,6 @@ public class activity_tipo_evalu extends AppCompatActivity {
 
 
 
-
         btnopc1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +80,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                 Date FechaDate = null;
                 try {
-                    FechaDate = formato.parse("15/06/2017");
+                    FechaDate = formato.parse("19/06/2017");
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -120,19 +123,27 @@ public class activity_tipo_evalu extends AppCompatActivity {
 
 
     //Al usar el action overflow
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.ao1) {
+            Intent i = new Intent(this, activity_acercade.class );
+            startActivity(i);
+            Log.d("myTag", "Abriendo acerca de");
+
+            return true;
+        }
+
+        if (id == R.id.ao2) {
             Log.d("myTag", "Abriendo comprobar actualizaciones");
 
             AutoUpdate(path + "ExoFPUNE", "ExoFPUNE/ExoFPUNE.apk");
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
+
+
 
 
 

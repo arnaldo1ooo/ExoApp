@@ -30,7 +30,8 @@
         <activity
             android:name=".activity_evalu2"
             android:parentActivityName=".activity_tipo_evalu" />
-        <activity android:name=".activity_perso"></activity>
+        <activity android:name=".activity_perso" />
+        <activity android:name=".activity_acercade"></activity>
     </application>
 
 </manifest>
