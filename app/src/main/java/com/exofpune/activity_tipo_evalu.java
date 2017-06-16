@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
@@ -35,6 +37,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -45,7 +48,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
     Button btnopc2;
     Button btnopc3;
     TextView version;
-
+    ProgressDialog progress;
     public static String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/ExoFPUNE";
     public static File Dir = new File (path);
 
@@ -148,16 +151,18 @@ public class activity_tipo_evalu extends AppCompatActivity {
         }
 
         if (id == R.id.ao2) {
-            ProgressDialog progress = new ProgressDialog(this);
-            progress.setMessage("Descargando...");
-            progress.setTitle("Progreso");
-            progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            progress.setCancelable(false);
-            new MiTarea(progress, this).execute();
+            if (EstaConectadoInternet(this)) {
+                progress = new ProgressDialog(this);
+                new MiTarea(progress, this).execute();
+                Log.d("myTag", "Abriendo comprobar actualizaciones");
+                return true;
+            } else {
+                Toast toast = Toast.makeText(this,"No se detectó ninguna conexión a internet",Toast.LENGTH_SHORT);
+                toast.show();
+                Log.d("myTag", "Sin conexion a internet");
+                return false;
+            }
 
-            Log.d("myTag", "Abriendo comprobar actualizaciones");
-
-            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -384,7 +389,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(getApplicationContext(), "Descargando actualización ...", Toast.LENGTH_LONG).show();
+                progress.show();
                 Thread th = new Thread(new Runnable() {
                     public void run() {
                         File file = new File(DropboxDownloadPathTo + DropboxDownloadPathFrom.substring(DropboxDownloadPathFrom.lastIndexOf('.')));
@@ -395,17 +400,19 @@ public class activity_tipo_evalu extends AppCompatActivity {
                             getMain().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(getApplicationContext(), "Actualización descargada con éxito.", Toast.LENGTH_SHORT).show();
+                                    progress.setMessage("Actualización descargada con éxito!");
+                                    progress.dismiss();
                                 }
                             });
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                        if(file.exists())
-                        {
-                            while (file.length() == 0)
-                            {
-                                try {Thread.sleep(100);} catch (InterruptedException e) {e.printStackTrace();}
+                        if(file.exists()) {
+                            while (file.length() == 0) {
+                                try {
+                                    Thread.sleep(100);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();}
                             }
 
                             Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -431,7 +438,12 @@ public class activity_tipo_evalu extends AppCompatActivity {
         }
 
         public void onPreExecute() {
-            progress.show();
+            progress.setMessage("Descargando actualización...");
+            progress.setTitle("Progreso");
+            //progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            progress.setCancelable(true);
+            progress.setIndeterminate(false);
+            progress.setMax(100);
 //aquí se puede colocar código a ejecutarse previo
 //a la operación
         }
@@ -445,11 +457,26 @@ public class activity_tipo_evalu extends AppCompatActivity {
         public void onPostExecute(Void unused) {
 //aquí se puede colocar código que
 //se ejecutará tras finalizar
-            progress.dismiss();
+           // progress.dismiss();
         }
+    }
 
 
 
+    public static boolean EstaConectadoInternet(Context ctx) {
+        boolean bConectado = false;
+        ConnectivityManager connec = (ConnectivityManager) ctx
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+// No solo wifi, tambien GPRS
+        NetworkInfo[] redes = connec.getAllNetworkInfo();
+// este bucle deberia no ser tan nyapa
+        for (int i = 0; i < 2; i++) {
+// Tenemos conexion? ponemos a true
+            if (redes[i].getState() == NetworkInfo.State.CONNECTED) {
+                bConectado = true;
+            }
+        }
+        return bConectado;
     }
 }
 
