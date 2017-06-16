@@ -30,12 +30,12 @@
         <activity
             android:name=".activity_evalu2"
             android:parentActivityName=".activity_tipo_evalu" />
-        <activity android:name=".activity_perso"
-            android:parentActivityName=".activity_tipo_evalu"
-            />
-        <activity android:name=".activity_acercade"
-            android:parentActivityName=".activity_tipo_evalu"
-            ></activity>
+        <activity
+            android:name=".activity_perso"
+            android:parentActivityName=".activity_tipo_evalu" />
+        <activity
+            android:name=".activity_acercade"
+            android:parentActivityName=".activity_tipo_evalu" />
     </application>
 
 </manifest>

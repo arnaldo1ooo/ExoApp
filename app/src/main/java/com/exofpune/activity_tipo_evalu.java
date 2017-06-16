@@ -1,5 +1,7 @@
 package com.exofpune;
 
+
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,6 +9,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
@@ -19,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dropbox.client2.DropboxAPI;
@@ -40,6 +44,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
     Button btnopc1;
     Button btnopc2;
     Button btnopc3;
+    TextView version;
 
     public static String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/ExoFPUNE";
     public static File Dir = new File (path);
@@ -63,14 +68,23 @@ public class activity_tipo_evalu extends AppCompatActivity {
         btnopc1 = (Button) findViewById(R.id.btnopc1);
         btnopc2 = (Button) findViewById(R.id.btnopc2);
         btnopc3 = (Button) findViewById(R.id.btnopc3);
-
-
+        version = (TextView) findViewById(R.id.tvVersionPrincipal);
+        String strVersion;
+        PackageInfo packageInfo;
 
         AndroidAuthSession session = buildSession();
         dropboxAPI = new DropboxAPI<AndroidAuthSession>(session);
-
         Dir.mkdirs();
 
+
+        try {
+            packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            version.setText("v" + String.valueOf(packageInfo.versionName));
+        } catch (PackageManager.NameNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            strVersion = "No se puede cargar la version!";
+        }
 
 
         btnopc1.setOnClickListener(new View.OnClickListener() {
@@ -127,17 +141,22 @@ public class activity_tipo_evalu extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.ao1) {
+            Log.d("myTag", "Abriendo acerca de");
             Intent i = new Intent(this, activity_acercade.class );
             startActivity(i);
-            Log.d("myTag", "Abriendo acerca de");
-
             return true;
         }
 
         if (id == R.id.ao2) {
+            ProgressDialog progress = new ProgressDialog(this);
+            progress.setMessage("Descargando...");
+            progress.setTitle("Progreso");
+            progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            progress.setCancelable(false);
+            new MiTarea(progress, this).execute();
+
             Log.d("myTag", "Abriendo comprobar actualizaciones");
 
-            AutoUpdate(path + "ExoFPUNE", "ExoFPUNE/ExoFPUNE.apk");
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -152,8 +171,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
     private static final String APP_SECRET = "\t\n" + "5m0y4jsarikfpfu";
     private static final String ACCESSTOKEN = "xTCJ_XRnfGAAAAAAAAAACQwP7h4pkOLwFArE_rEk0xHY3CJRACwf31-Iip-E5hIx";
     private DropboxAPI.UploadRequest request;
-    private AndroidAuthSession buildSession()
-    {
+    private AndroidAuthSession buildSession() {
         AppKeyPair appKeyPair = new AppKeyPair(APP_KEY, APP_SECRET);
         AndroidAuthSession session = new AndroidAuthSession(appKeyPair);
         session.setOAuth2AccessToken(ACCESSTOKEN);
@@ -166,9 +184,8 @@ public class activity_tipo_evalu extends AppCompatActivity {
     public static String DropboxDownloadPathFrom = "";
     public static String DropboxDownloadPathTo = "";
 
-    private void UploadToDropboxFromPath (String uploadPathFrom, String uploadPathTo)
-    {
-        Toast.makeText(getApplicationContext(), "Upload file ...", Toast.LENGTH_SHORT).show();
+    private void UploadToDropboxFromPath (String uploadPathFrom, String uploadPathTo) {
+        Toast.makeText(getApplicationContext(), "Subiendo archivo ...", Toast.LENGTH_SHORT).show();
         final String uploadPathF = uploadPathFrom;
         final String uploadPathT = uploadPathTo;
         Thread th = new Thread(new Runnable()
@@ -195,7 +212,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
                 getMain().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(getApplicationContext(), "File successfully uploaded.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Archivo subido con éxito.", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -360,15 +377,14 @@ public class activity_tipo_evalu extends AppCompatActivity {
 
 
 
-    private void AutoUpdate (String NameOfNewApplication, String downloadPathFrom)
-    {
+    private void AutoUpdate (String NameOfNewApplication, String downloadPathFrom) {
         DropboxDownloadPathTo = NameOfNewApplication;
         DropboxDownloadPathFrom = downloadPathFrom;
 
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(getApplicationContext(), "Descargando actualización ...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Descargando actualización ...", Toast.LENGTH_LONG).show();
                 Thread th = new Thread(new Runnable() {
                     public void run() {
                         File file = new File(DropboxDownloadPathTo + DropboxDownloadPathFrom.substring(DropboxDownloadPathFrom.lastIndexOf('.')));
@@ -402,6 +418,38 @@ public class activity_tipo_evalu extends AppCompatActivity {
                 th.start();
             }
         });
+    }
+
+
+    public class MiTarea extends AsyncTask<Void, Void, Void> {
+        ProgressDialog progress;
+        activity_tipo_evalu act;
+
+        public MiTarea(ProgressDialog progress, activity_tipo_evalu act) {
+            this.progress = progress;
+            this.act = act;
+        }
+
+        public void onPreExecute() {
+            progress.show();
+//aquí se puede colocar código a ejecutarse previo
+//a la operación
+        }
+
+        protected Void doInBackground(Void... params) {
+//realizar la operación aquí
+            AutoUpdate(path + "ExoFPUNE", "ExoFPUNE/ExoFPUNE.apk");
+            return null;
+        }
+
+        public void onPostExecute(Void unused) {
+//aquí se puede colocar código que
+//se ejecutará tras finalizar
+            progress.dismiss();
+        }
+
+
+
     }
 }
 
