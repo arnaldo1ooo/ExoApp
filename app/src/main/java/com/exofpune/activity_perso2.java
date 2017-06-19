@@ -1,6 +1,5 @@
 package com.exofpune;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,8 +14,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.exofpune.R;
 
 import java.text.DecimalFormat;
 
@@ -66,7 +63,7 @@ public class activity_perso2 extends AppCompatActivity {
 
 
         btnCalculo = (Button) findViewById(R.id.btnCalculo);
-        et1parcial = (EditText) findViewById(R.id.editText3);
+        et1parcial = (EditText) findViewById(R.id.et4);
         et2parcial = (EditText) findViewById(R.id.et2parcial);
         etTp = (EditText) findViewById(R.id.etTp);
         tvResultado = (TextView) findViewById(R.id.tvResultado);

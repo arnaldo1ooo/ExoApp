@@ -55,7 +55,7 @@ public class activity_evalu2 extends AppCompatActivity {
 
 
         btnCalculo = (Button) findViewById(R.id.btnCalculo);
-        et1parcial = (EditText) findViewById(R.id.editText3);
+        et1parcial = (EditText) findViewById(R.id.et4);
         et2parcial = (EditText) findViewById(R.id.et2parcial);
         tvResultado = (TextView) findViewById(R.id.tvResultado);
         sp1 = (Spinner) findViewById(R.id.sp1);
