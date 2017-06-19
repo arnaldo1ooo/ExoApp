@@ -39,9 +39,13 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class activity_tipo_evalu extends AppCompatActivity {
     Button btnopc1;
@@ -143,16 +147,16 @@ public class activity_tipo_evalu extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.ao1) {
+        if (id == R.id.ao1 || id == R.id.ao3) {
             Log.d("myTag", "Abriendo acerca de");
             Intent i = new Intent(this, activity_acercade.class );
             startActivity(i);
             return true;
         }
 
-        if (id == R.id.ao2) {
-            if (EstaConectadoInternet(this)) {
-                progress = new ProgressDialog(this);
+        if (id == R.id.ao2 ) {
+            if (EstaConectadoInternet() == true) {
+               progress = new ProgressDialog(this);
                 new MiTarea(progress, this).execute();
                 Log.d("myTag", "Abriendo comprobar actualizaciones");
                 return true;
@@ -160,7 +164,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
                 Toast toast = Toast.makeText(this,"No se detectó ninguna conexión a internet",Toast.LENGTH_SHORT);
                 toast.show();
                 Log.d("myTag", "Sin conexion a internet");
-                return false;
+                return true;
             }
 
         }
@@ -406,6 +410,8 @@ public class activity_tipo_evalu extends AppCompatActivity {
                             });
                         } catch (Exception e) {
                             e.printStackTrace();
+                            progress.setMessage("Descarga fallida");
+
                         }
                         if(file.exists()) {
                             while (file.length() == 0) {
@@ -415,6 +421,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
                                     e.printStackTrace();}
                             }
 
+                            progress.dismiss();
                             Intent intent = new Intent(Intent.ACTION_VIEW);
                             intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -441,7 +448,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
             progress.setMessage("Descargando actualización...");
             progress.setTitle("Progreso");
             //progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            progress.setCancelable(true);
+            progress.setCancelable(false);
             progress.setIndeterminate(false);
             progress.setMax(100);
 //aquí se puede colocar código a ejecutarse previo
@@ -463,20 +470,19 @@ public class activity_tipo_evalu extends AppCompatActivity {
 
 
 
-    public static boolean EstaConectadoInternet(Context ctx) {
-        boolean bConectado = false;
-        ConnectivityManager connec = (ConnectivityManager) ctx
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
-// No solo wifi, tambien GPRS
-        NetworkInfo[] redes = connec.getAllNetworkInfo();
-// este bucle deberia no ser tan nyapa
-        for (int i = 0; i < 2; i++) {
-// Tenemos conexion? ponemos a true
-            if (redes[i].getState() == NetworkInfo.State.CONNECTED) {
-                bConectado = true;
-            }
+    public Boolean EstaConectadoInternet() {
+
+        try {
+            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
+            int val           = p.waitFor();
+            boolean reachable = (val == 0);
+            return reachable;
+
+        } catch (Exception e) {//No se detecto internet
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
-        return bConectado;
+        return false;
     }
 }
 

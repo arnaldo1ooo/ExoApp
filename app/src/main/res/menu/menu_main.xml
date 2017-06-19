@@ -14,4 +14,9 @@
         android:icon="@android:drawable/ic_menu_preferences"
         android:orderInCategory="5"
         app:showAsAction="never"/>
+    <item android:id="@+id/ao3"
+        android:title="Acerca de ExoFPUNE"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:orderInCategory="5"
+        app:showAsAction="never"/>
 </menu>
