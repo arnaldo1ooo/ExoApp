@@ -6,9 +6,9 @@
 
     android:textSize="13dp"
     android:gravity="left"
-    android:textColor="#ffffff"
+    android:textColor="#0ca9b1"
     android:padding="10dp"
-    android:background="#00000000"
+
 
 
 
