@@ -54,6 +54,18 @@ public class activity_evalu1 extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 
+
+        try {
+            Bundle extras = getIntent().getExtras();
+            total1p = extras.getInt("puntototal1parcial");
+            total2p = extras.getInt("puntototal2parcial");
+            totaltp = extras.getInt("puntototaltp");
+            PuntosParaExonerar = extras.getDouble("Minimo Exoneracion");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
         btnCalculo = (Button) findViewById(R.id.btnCalculo);
         et1parcial = (EditText) findViewById(R.id.et1Parcial);
         et2parcial = (EditText) findViewById(R.id.et2parcial);

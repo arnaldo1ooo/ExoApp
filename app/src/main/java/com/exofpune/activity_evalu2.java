@@ -48,7 +48,7 @@ public class activity_evalu2 extends AppCompatActivity {
             Bundle extras = getIntent().getExtras();
             total1p = extras.getInt("puntototal1parcial");
             total2p = extras.getInt("puntototal2parcial");
-            PuntosParaExonerar = extras.getInt("Minimo Exoneracion");
+            PuntosParaExonerar = extras.getDouble("Minimo Exoneracion");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -254,18 +254,5 @@ public class activity_evalu2 extends AppCompatActivity {
     public void OcultarTeclado (View v){
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-    }
-
-
-
-
-
-
-
-    public void setTotal1p(int total1p) {
-        this.total1p = total1p;
-    }
-    public int getTotal1p() {
-        return total1p;
     }
 }

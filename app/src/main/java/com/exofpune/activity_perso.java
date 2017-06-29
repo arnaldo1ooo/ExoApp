@@ -65,11 +65,15 @@ public class activity_perso extends AppCompatActivity {
                     Intent intent = new Intent (activity_perso.this, activity_evalu2.class);
                     intent.putExtra("puntototal1parcial", Integer.parseInt(et1parcial.getText().toString()));
                     intent.putExtra("puntototal2parcial", Integer.parseInt(et2parcial.getText().toString()));
-                    intent.putExtra("Minimo Exoneracion", Integer.parseInt(etExoMin.getText().toString()));
+                    intent.putExtra("Minimo Exoneracion", Double.parseDouble(etExoMin.getText().toString()));
                     startActivity(intent);
                 } else {
-                    Intent intent = new Intent(v.getContext(), activity_evalu1.class);
-                    startActivityForResult(intent, 0);
+                    Intent intent = new Intent (activity_perso.this, activity_evalu1.class);
+                    intent.putExtra("puntototal1parcial", Integer.parseInt(et1parcial.getText().toString()));
+                    intent.putExtra("puntototal2parcial", Integer.parseInt(et2parcial.getText().toString()));
+                    intent.putExtra("puntototaltp", Integer.parseInt(et3.getText().toString()));
+                    intent.putExtra("Minimo Exoneracion", Double.parseDouble(etExoMin.getText().toString()));
+                    startActivity(intent);
                 }
             }
         });
