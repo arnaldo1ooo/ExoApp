@@ -27,6 +27,7 @@ public class activity_evalu2 extends AppCompatActivity {
     TextView tvPuntosFinal;
     int total1p = 20;
     int total2p = 20;
+    double MinNota5 = 38;
     double resultado;
     Spinner sp1;
     Spinner sp2;
@@ -48,6 +49,7 @@ public class activity_evalu2 extends AppCompatActivity {
             Bundle extras = getIntent().getExtras();
             total1p = extras.getInt("puntototal1parcial");
             total2p = extras.getInt("puntototal2parcial");
+            MinNota5 = extras.getDouble("puntotonota5");
             PuntosParaExonerar = extras.getDouble("Minimo Exoneracion");
         } catch (Exception e) {
             e.printStackTrace();
@@ -233,7 +235,7 @@ public class activity_evalu2 extends AppCompatActivity {
             tvFaltante.setVisibility(TextView.VISIBLE);
             tvResultado.setVisibility(TextView.VISIBLE);
             tvPuntosFinal.setVisibility(TextView.INVISIBLE);
-            if(resultado >= 38){
+            if(resultado >= MinNota5){
                 tvFaltante.setText("Obtuviste nota 5");
             }
             else{
