@@ -63,44 +63,50 @@ public class activity_perso extends AppCompatActivity {
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tbTp.getText().toString().equals("NO")) {
-                    int SumaTotal = Integer.parseInt(et1parcial.getText().toString()) + Integer.parseInt(et2parcial.getText().toString()) + Integer.parseInt(et3.getText().toString());
-                    if(Double.parseDouble(etNota5.getText().toString()) > SumaTotal){
-                        Toast.makeText(activity_perso.this,"El puntaje para obtener 5 no puede ser mayor al total de los puntajes", Toast.LENGTH_LONG).show();
-                        return;
+                try {
+                    if (tbTp.getText().toString().equals("SÍ")) {
+                        int SumaTotal = Integer.parseInt(et1parcial.getText().toString()) + Integer.parseInt(et2parcial.getText().toString()) + Integer.parseInt(et3.getText().toString());
+                        if(Double.parseDouble(etNota5.getText().toString()) > SumaTotal){
+                            Toast.makeText(activity_perso.this,"El puntaje para obtener 5 no puede ser mayor al total de los puntajes", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        if(Double.parseDouble(etNota5.getText().toString()) < Double.parseDouble(etExoMin.getText().toString())){
+                            Toast.makeText(activity_perso.this,"El puntaje para obtener 5 no puede ser menor al puntaje minimo para exonerar", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+
+                        Intent intent = new Intent (activity_perso.this, activity_evalu2.class);
+                        intent.putExtra("puntototal1parcial", Integer.parseInt(et1parcial.getText().toString()));
+                        intent.putExtra("puntototal2parcial", Integer.parseInt(et2parcial.getText().toString()));
+                        intent.putExtra("puntotonota5", Double.parseDouble(etNota5.getText().toString()));
+                        intent.putExtra("Minimo Exoneracion", Double.parseDouble(etExoMin.getText().toString()));
+                        startActivity(intent);
+                    } else {
+                        int SumaTotal = Integer.parseInt(et1parcial.getText().toString()) + Integer.parseInt(et2parcial.getText().toString());
+                        if(Double.parseDouble(etNota5.getText().toString()) > SumaTotal){
+                            Toast.makeText(activity_perso.this,"El puntaje para obtener 5 no puede ser mayor al total de los puntajes", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        if(Double.parseDouble(etNota5.getText().toString()) < Double.parseDouble(etExoMin.getText().toString())){
+                            Toast.makeText(activity_perso.this,"El puntaje para obtener 5 no puede ser menor al puntaje minimo para exonerar", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        Intent intent = new Intent (activity_perso.this, activity_evalu1.class);
+                        intent.putExtra("puntototal1parcial", Integer.parseInt(et1parcial.getText().toString()));
+                        intent.putExtra("puntototal2parcial", Integer.parseInt(et2parcial.getText().toString()));
+                        intent.putExtra("puntototaltp", Integer.parseInt(et3.getText().toString()));
+                        intent.putExtra("puntotonota5", Double.parseDouble(etNota5.getText().toString()));
+                        intent.putExtra("Minimo Exoneracion", Double.parseDouble(etExoMin.getText().toString()));
+                        startActivity(intent);
                     }
-
-                    if(Double.parseDouble(etNota5.getText().toString()) < Double.parseDouble(etExoMin.getText().toString())){
-                        Toast.makeText(activity_perso.this,"El puntaje para obtener 5 no puede ser menor al puntaje minimo para exonerar", Toast.LENGTH_LONG).show();
-                        return;
-                    }
-
-
-                    Intent intent = new Intent (activity_perso.this, activity_evalu2.class);
-                    intent.putExtra("puntototal1parcial", Integer.parseInt(et1parcial.getText().toString()));
-                    intent.putExtra("puntototal2parcial", Integer.parseInt(et2parcial.getText().toString()));
-                    intent.putExtra("puntotonota5", Double.parseDouble(etNota5.getText().toString()));
-                    intent.putExtra("Minimo Exoneracion", Double.parseDouble(etExoMin.getText().toString()));
-                    startActivity(intent);
-                } else {
-                    int SumaTotal = Integer.parseInt(et1parcial.getText().toString()) + Integer.parseInt(et2parcial.getText().toString());
-                    if(Double.parseDouble(etNota5.getText().toString()) > SumaTotal){
-                        Toast.makeText(activity_perso.this,"El puntaje para obtener 5 no puede ser mayor al total de los puntajes", Toast.LENGTH_LONG).show();
-                        return;
-                    }
-
-                    if(Double.parseDouble(etNota5.getText().toString()) < Double.parseDouble(etExoMin.getText().toString())){
-                        Toast.makeText(activity_perso.this,"El puntaje para obtener 5 no puede ser menor al puntaje minimo para exonerar", Toast.LENGTH_LONG).show();
-                        return;
-                    }
-
-                    Intent intent = new Intent (activity_perso.this, activity_evalu1.class);
-                    intent.putExtra("puntototal1parcial", Integer.parseInt(et1parcial.getText().toString()));
-                    intent.putExtra("puntototal2parcial", Integer.parseInt(et2parcial.getText().toString()));
-                    intent.putExtra("puntototaltp", Integer.parseInt(et3.getText().toString()));
-                    intent.putExtra("puntotonota5", Double.parseDouble(etNota5.getText().toString()));
-                    intent.putExtra("Minimo Exoneracion", Double.parseDouble(etExoMin.getText().toString()));
-                    startActivity(intent);
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                    Toast.makeText(activity_perso.this,"Ningun casillero puede quedar vacio", Toast.LENGTH_LONG).show();
+                    return;
                 }
             }
         });
