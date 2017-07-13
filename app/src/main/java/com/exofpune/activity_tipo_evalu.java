@@ -1,19 +1,13 @@
 package com.exofpune;
 
 
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,34 +21,24 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dropbox.client2.DropboxAPI;
-import com.dropbox.client2.ProgressListener;
-import com.dropbox.client2.android.AndroidAuthSession;
-import com.dropbox.client2.session.AppKeyPair;
-import com.exofpune.R;
-
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.net.ssl.HttpsURLConnection;
+
 
 public class activity_tipo_evalu extends AppCompatActivity {
+
+
     Button btnopc1;
     Button btnopc2;
     Button btnopc3;
     TextView version;
-    ProgressDialog progress;
     public static String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/ExoFPUNE";
     public static File Dir = new File(path);
+
 
     //impedir retroceder a activity anterior
     @Override
@@ -72,26 +56,17 @@ public class activity_tipo_evalu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tipo_evalu);
 
+
+
+       comenzarActualizar();
+
+
+
+
         btnopc1 = (Button) findViewById(R.id.btnopc1);
         btnopc2 = (Button) findViewById(R.id.btnopc2);
         btnopc3 = (Button) findViewById(R.id.btnopc3);
         version = (TextView) findViewById(R.id.tvVersionPrincipal);
-        String strVersion;
-        PackageInfo packageInfo;
-
-        AndroidAuthSession session = buildSession();
-        dropboxAPI = new DropboxAPI<AndroidAuthSession>(session);
-        Dir.mkdirs();
-
-
-        try {
-            packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            version.setText("v" + String.valueOf(packageInfo.versionName));
-        } catch (PackageManager.NameNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            strVersion = "No se puede cargar la version!";
-        }
 
 
         btnopc1.setOnClickListener(new View.OnClickListener() {
@@ -155,8 +130,8 @@ public class activity_tipo_evalu extends AppCompatActivity {
 
         if (id == R.id.ao2) {
             if (EstaConectadoInternet() == true) {
-                progress = new ProgressDialog(this);
-                new MiTarea(progress, this).execute();
+                comenzarActualizar();
+
                 Log.d("myTag", "Abriendo comprobar actualizaciones");
                 return true;
             } else {
@@ -171,288 +146,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
     }
 
 
-    static DropboxAPI<AndroidAuthSession> dropboxAPI;
-    private static final String APP_KEY = "\t\n" + "5m0y4jsarikfpfu";
-    private static final String APP_SECRET = "\t\n" + "5m0y4jsarikfpfu";
-    private static final String ACCESSTOKEN = "xTCJ_XRnfGAAAAAAAAAACQwP7h4pkOLwFArE_rEk0xHY3CJRACwf31-Iip-E5hIx";
-    private DropboxAPI.UploadRequest request;
 
-    private AndroidAuthSession buildSession() {
-        AppKeyPair appKeyPair = new AppKeyPair(APP_KEY, APP_SECRET);
-        AndroidAuthSession session = new AndroidAuthSession(appKeyPair);
-        session.setOAuth2AccessToken(ACCESSTOKEN);
-        return session;
-    }
-
-    static final int UploadFromSelectApp = 9501;
-    static final int UploadFromFilemanager = 9502;
-    public static String DropboxUploadPathFrom = "";
-    public static String DropboxUploadName = "";
-    public static String DropboxDownloadPathFrom = "";
-    public static String DropboxDownloadPathTo = "";
-
-    private void UploadToDropboxFromPath(String uploadPathFrom, String uploadPathTo) {
-        Toast.makeText(getApplicationContext(), "Subiendo archivo ...", Toast.LENGTH_SHORT).show();
-        final String uploadPathF = uploadPathFrom;
-        final String uploadPathT = uploadPathTo;
-        Thread th = new Thread(new Runnable() {
-            public void run() {
-                File tmpFile = null;
-                try {
-                    tmpFile = new File(uploadPathF);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                FileInputStream fis = null;
-                try {
-                    fis = new FileInputStream(tmpFile);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    dropboxAPI.putFileOverwrite(uploadPathT, fis, tmpFile.length(), null);
-                } catch (Exception e) {
-                }
-                getMain().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getApplicationContext(), "Archivo subido con éxito.", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
-        th.start();
-    }
-
-    private void UploadToDropboxFromSelectedApp(String uploadName) {
-        DropboxUploadName = uploadName;
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("*/*");
-        startActivityForResult(Intent.createChooser(intent, "Upload from ..."), UploadFromSelectApp);
-    }
-
-    private void UploadToDropboxFromFilemanager(String uploadName) {
-        DropboxUploadName = uploadName;
-        Intent intent = new Intent("com.sec.android.app.myfiles.PICK_DATA");
-        intent.putExtra("CONTENT_TYPE", "*/*");
-        intent.addCategory(Intent.CATEGORY_DEFAULT);
-        startActivityForResult(intent, UploadFromFilemanager);
-    }
-
-    private void DownloadFromDropboxFromPath(String downloadPathTo, String downloadPathFrom) {
-        DropboxDownloadPathTo = downloadPathTo;
-        DropboxDownloadPathFrom = downloadPathFrom;
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(getApplicationContext(), "Download file ...", Toast.LENGTH_SHORT).show();
-                Thread th = new Thread(new Runnable() {
-                    public void run() {
-                        File file = new File(DropboxDownloadPathTo + DropboxDownloadPathFrom.substring(DropboxDownloadPathFrom.lastIndexOf('.')));
-                        if (file.exists()) file.delete();
-                        try {
-                            FileOutputStream outputStream = new FileOutputStream(file);
-                            activity_tipo_evalu.dropboxAPI.getFile(DropboxDownloadPathFrom, null, outputStream, null);
-                            getMain().runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(getApplicationContext(), "Archivo descargado con éxito.", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-                th.start();
-            }
-        });
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        if (requestCode == UploadFromFilemanager) {
-            final Uri currFileURI = intent.getData();
-            final String pathFrom = currFileURI.getPath();
-            Toast.makeText(getApplicationContext(), "Upload file ...", Toast.LENGTH_SHORT).show();
-            Thread th = new Thread(new Runnable() {
-                public void run() {
-                    getMain().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            UploadToDropboxFromPath(pathFrom, "/db-test/" + DropboxUploadName + pathFrom.substring(pathFrom.lastIndexOf('.')));
-                            Toast.makeText(getApplicationContext(), "File successfully uploaded.", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-            });
-            th.start();
-        }
-        if (requestCode == UploadFromSelectApp) {
-            Toast.makeText(getApplicationContext(), "Upload file ...", Toast.LENGTH_SHORT).show();
-            final Uri uri = intent.getData();
-
-            DropboxUploadPathFrom = getPath(getApplicationContext(), uri);
-            if (DropboxUploadPathFrom == null) {
-                DropboxUploadPathFrom = uri.getPath();
-            }
-            Thread th = new Thread(new Runnable() {
-                public void run() {
-                    try {
-                        final File file = new File(DropboxUploadPathFrom);
-                        InputStream inputStream = getContentResolver().openInputStream(uri);
-
-                        dropboxAPI.putFile("/db-test/" + DropboxUploadName + file.getName().substring(file.getName().lastIndexOf("."),
-                                file.getName().length()), inputStream, file.length(), null, new ProgressListener() {
-                            @Override
-                            public long progressInterval() {
-                                return 100;
-                            }
-
-                            @Override
-                            public void onProgress(long arg0, long arg1) {
-                            }
-                        });
-                        getMain().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(getApplicationContext(), "File successfully uploaded.", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            th.start();
-        }
-        super.onActivityResult(requestCode, resultCode, intent);
-    }
-
-    public String getPath(Context context, Uri contentUri) {
-        Cursor cursor = null;
-        try {
-            String[] proj = {MediaStore.Images.Media.DATA, MediaStore.Video.Media.DATA, MediaStore.Audio.Media.DATA};
-            cursor = context.getContentResolver().query(contentUri, proj, null, null, null);
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            String s = cursor.getString(column_index);
-            if (s != null) {
-                cursor.close();
-                return s;
-            }
-        } catch (Exception e) {
-        }
-        try {
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
-            cursor.moveToFirst();
-            String s = cursor.getString(column_index);
-            if (s != null) {
-                cursor.close();
-                return s;
-            }
-        } catch (Exception e) {
-        }
-        try {
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
-            cursor.moveToFirst();
-            String s = cursor.getString(column_index);
-            cursor.close();
-            return s;
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
-    }
-
-    public activity_tipo_evalu getMain() {
-        return this;
-    }
-
-
-    private void AutoUpdate(String NameOfNewApplication, String downloadPathFrom) {
-        DropboxDownloadPathTo = NameOfNewApplication;
-        DropboxDownloadPathFrom = downloadPathFrom;
-
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                progress.show();
-                Thread th = new Thread(new Runnable() {
-                    public void run() {
-                        File file = new File(DropboxDownloadPathTo + DropboxDownloadPathFrom.substring(DropboxDownloadPathFrom.lastIndexOf('.')));
-                        if (file.exists()) file.delete();
-                        try {
-                            FileOutputStream outputStream = new FileOutputStream(file);
-                            activity_tipo_evalu.dropboxAPI.getFile(DropboxDownloadPathFrom, null, outputStream, null);
-                            getMain().runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    progress.setMessage("Actualización descargada con éxito!");
-                                    progress.dismiss();
-                                }
-                            });
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            progress.setMessage("Descarga fallida");
-
-                        }
-                        if (file.exists()) {
-                            while (file.length() == 0) {
-                                try {
-                                    Thread.sleep(100);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-
-                            progress.dismiss();
-                            Intent intent = new Intent(Intent.ACTION_VIEW);
-                            intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                        }
-                    }
-                });
-                th.start();
-            }
-        });
-    }
-
-
-    public class MiTarea extends AsyncTask<Void, Void, Void> {
-        ProgressDialog progress;
-        activity_tipo_evalu act;
-
-        public MiTarea(ProgressDialog progress, activity_tipo_evalu act) {
-            this.progress = progress;
-            this.act = act;
-        }
-
-        public void onPreExecute() {
-            progress.setMessage("Descargando actualización...");
-            progress.setTitle("Progreso");
-            //progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            progress.setCancelable(false);
-            progress.setIndeterminate(false);
-            progress.setMax(100);
-//aquí se puede colocar código a ejecutarse previo
-//a la operación
-        }
-
-        protected Void doInBackground(Void... params) {
-//realizar la operación aquí
-            AutoUpdate(path + "ExoFPUNE", "ExoFPUNE/ExoFPUNE.apk");
-            return null;
-        }
-
-        public void onPostExecute(Void unused) {
-//aquí se puede colocar código que
-//se ejecutará tras finalizar
-            // progress.dismiss();
-        }
-    }
 
 
     public Boolean EstaConectadoInternet() {
@@ -469,5 +163,61 @@ public class activity_tipo_evalu extends AppCompatActivity {
         }
         return false;
     }
+
+
+
+    private Autoupdater autoupdater;
+    private Context context;
+
+
+    private void comenzarActualizar(){
+        //Para tener el contexto mas a mano.
+        context = this;
+        //Creamos el Autoupdater.
+        autoupdater = new Autoupdater(this);
+        //Ponemos a correr el ProgressBar.
+        //Ejecutamos el primer metodo del Autoupdater.
+        autoupdater.DownloadData(finishBackgroundDownload);
+    }
+
+    /**
+     * Codigo que se va a ejecutar una vez terminado de bajar los datos.
+     */
+    private Runnable finishBackgroundDownload = new Runnable() {
+        @Override
+        public void run() {
+            //Volvemos el ProgressBar a invisible.
+
+            //Comprueba que halla nueva versión.
+            if(autoupdater.isNewVersionAvailable()){
+                //Crea mensaje con datos de versión.
+                String msj = "Se encontró una nueva actualizacion\n\n";
+                msj += "\nVersion actual: " + autoupdater.getCurrentVersionName() + "\nVersion actual del codigo: (" + autoupdater.getCurrentVersionCode() + ")\n\n";
+                msj += "\nVersion nueva: "  + autoupdater.getLatestVersionName()  + "\nVersion nueva del codigo: (" + autoupdater.getLatestVersionCode() +")";
+                msj += "\n\n\nDesea Actualizar?";
+                //Crea ventana de alerta.
+                AlertDialog.Builder dialog1 = new AlertDialog.Builder(context);
+                dialog1.setMessage(msj);
+                dialog1.setCancelable(false);
+                dialog1.setNegativeButton("Más tarde", null);
+                //Establece el boton de Aceptar y que hacer si se selecciona.
+                dialog1.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //Vuelve a poner el ProgressBar mientras se baja e instala.
+
+                        //Se ejecuta el Autoupdater con la orden de instalar. Se puede poner un listener o no
+                        autoupdater.InstallNewVersion(null);
+                    }
+                });
+
+                //Muestra la ventana esperando respuesta.
+                dialog1.show();
+            }else{
+                //No existen Actualizaciones.ees
+                Log.d("", "No Hay actualizaciones");
+            }
+        }
+    };
 }
 
