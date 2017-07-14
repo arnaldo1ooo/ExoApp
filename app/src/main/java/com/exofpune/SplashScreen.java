@@ -7,7 +7,9 @@ import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.exofpune.R;
 import com.exofpune.activity_tipo_evalu;
@@ -20,18 +22,18 @@ public class SplashScreen extends Activity {
         setContentView(R.layout.activity_splash_screen);
 
         TextView version;
-        String strVersion;
-        PackageInfo packageInfo;
+
 
         version = (TextView) findViewById(R.id.tvVersionSplash);
 
         try {
+            PackageInfo packageInfo;
             packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
             version.setText("v" + String.valueOf(packageInfo.versionName));
         } catch (PackageManager.NameNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-            strVersion = "No se puede cargar la version!";
+            Toast.makeText(getApplicationContext(), "No se puede cargar la version actual!", Toast.LENGTH_LONG).show();
         }
 
 

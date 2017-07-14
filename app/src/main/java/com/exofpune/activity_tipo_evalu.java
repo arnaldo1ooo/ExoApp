@@ -6,6 +6,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.support.v7.app.AlertDialog;
@@ -17,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +38,11 @@ public class activity_tipo_evalu extends AppCompatActivity {
     Button btnopc1;
     Button btnopc2;
     Button btnopc3;
-    TextView version;
+    TextView VersionActual;
+    TextView tvdesc;
+    ProgressBar pb1;
+
+
     public static String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/ExoFPUNE";
     public static File Dir = new File(path);
 
@@ -66,7 +73,24 @@ public class activity_tipo_evalu extends AppCompatActivity {
         btnopc1 = (Button) findViewById(R.id.btnopc1);
         btnopc2 = (Button) findViewById(R.id.btnopc2);
         btnopc3 = (Button) findViewById(R.id.btnopc3);
-        version = (TextView) findViewById(R.id.tvVersionPrincipal);
+        VersionActual = (TextView) findViewById(R.id.tvVersionPrincipal);
+        tvdesc = (TextView) findViewById(R.id.tvDesc);
+        pb1 = (ProgressBar) findViewById(R.id.pb1);
+
+
+
+
+        //Obtener version actual de la app
+        try {
+            PackageInfo packageInfo;
+            packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            VersionActual.setText("v" + String.valueOf(packageInfo.versionName));
+        } catch (PackageManager.NameNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "No se puede cargar la version actual!", Toast.LENGTH_LONG).show();
+        }
+
 
 
         btnopc1.setOnClickListener(new View.OnClickListener() {
@@ -187,6 +211,8 @@ public class activity_tipo_evalu extends AppCompatActivity {
         @Override
         public void run() {
             //Volvemos el ProgressBar a invisible.
+            tvdesc.setVisibility(View.INVISIBLE);
+            pb1.setVisibility(View.INVISIBLE);
 
             //Comprueba que halla nueva versión.
             if(autoupdater.isNewVersionAvailable()){
@@ -205,7 +231,8 @@ public class activity_tipo_evalu extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //Vuelve a poner el ProgressBar mientras se baja e instala.
-
+                        tvdesc.setVisibility(View.VISIBLE);
+                        pb1.setVisibility(View.VISIBLE);
                         //Se ejecuta el Autoupdater con la orden de instalar. Se puede poner un listener o no
                         autoupdater.InstallNewVersion(null);
                     }
