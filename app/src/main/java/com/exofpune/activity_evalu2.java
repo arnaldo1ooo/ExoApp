@@ -27,7 +27,7 @@ public class activity_evalu2 extends AppCompatActivity {
     TextView tvPuntosFinal;
     int total1p = 20;
     int total2p = 20;
-    double MinNota5 = 38;
+    double MinNota5 = 37.6;
     double resultado;
     Spinner sp1;
     Spinner sp2;

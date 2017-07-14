@@ -30,7 +30,7 @@ public class activity_evalu1 extends AppCompatActivity {
     int total1p = 15;
     int total2p = 15;
     int totaltp = 10;
-    double MinNota5 = 38;
+    double MinNota5 = 37.6;
     double resultado;
     Spinner sp1;
     Spinner sp2;
