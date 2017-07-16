@@ -20,7 +20,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +40,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
     TextView VersionActual;
     TextView tvdesc;
     ProgressBar pb1;
+
 
 
     public static String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/ExoFPUNE";
@@ -74,8 +74,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
         btnopc2 = (Button) findViewById(R.id.btnopc2);
         btnopc3 = (Button) findViewById(R.id.btnopc3);
         VersionActual = (TextView) findViewById(R.id.tvVersionPrincipal);
-        tvdesc = (TextView) findViewById(R.id.tvDesc);
-        pb1 = (ProgressBar) findViewById(R.id.pb1);
+
 
 
 
@@ -90,6 +89,8 @@ public class activity_tipo_evalu extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "No se puede cargar la version actual!", Toast.LENGTH_LONG).show();
         }
+
+
 
 
 
@@ -207,14 +208,15 @@ public class activity_tipo_evalu extends AppCompatActivity {
     /**
      * Codigo que se va a ejecutar una vez terminado de bajar los datos.
      */
+
+
     private Runnable finishBackgroundDownload = new Runnable() {
         @Override
-        public void run() {
+        public void run() {//Cuando descarguetodo
             //Volvemos el ProgressBar a invisible.
-            tvdesc.setVisibility(View.INVISIBLE);
-            pb1.setVisibility(View.INVISIBLE);
+            Log.d("Fin","Fin de descarga de actualizacion");
 
-            //Comprueba que halla nueva versión.
+            //Comprueba que haya nueva versión.
             if(autoupdater.isNewVersionAvailable()){
                 //Crea mensaje con datos de versión.
                 String msj = "Se encontró una nueva actualizacion\n\n";
@@ -230,11 +232,9 @@ public class activity_tipo_evalu extends AppCompatActivity {
                 dialog1.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        //Vuelve a poner el ProgressBar mientras se baja e instala.
-                        tvdesc.setVisibility(View.VISIBLE);
-                        pb1.setVisibility(View.VISIBLE);
-                        //Se ejecuta el Autoupdater con la orden de instalar. Se puede poner un listener o no
-                        autoupdater.InstallNewVersion(null);
+                        Log.d("Inicio","Inicio de descarga de actualizacion");
+                        autoupdater.InstallNewVersion(null); //Se ejecuta el Autoupdater con la orden de instalar. Se puede poner un listener o no
+
                     }
                 });
 
@@ -246,5 +246,11 @@ public class activity_tipo_evalu extends AppCompatActivity {
             }
         }
     };
+
+
+
+
+
+    
 }
 

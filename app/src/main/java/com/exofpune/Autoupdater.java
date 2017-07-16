@@ -41,6 +41,12 @@ public class Autoupdater{
      * instalada de la aplicación. Es el valor numérico que usa Android para
      * diferenciar las versiones.
      */
+
+
+
+
+
+
     private int currentVersionCode;
 
     /**
@@ -91,6 +97,7 @@ public class Autoupdater{
             currentVersionCode = pckginfo.versionCode;
             currentVersionName = pckginfo.versionName;
 
+
             // Datos remotos
             String data = downloadHttp(new URL(INFO_FILE));
             JSONObject json = new JSONObject(data);
@@ -106,6 +113,11 @@ public class Autoupdater{
             Log.e("AutoUpdate", "Ha habido un error con la descarga", e);
         }
     }
+
+
+
+
+
 
     /**
      * Método para comparar la versión actual con la última .
@@ -187,6 +199,8 @@ public class Autoupdater{
         }
         return stringBuilder.toString();
     }
+
+
 
     /**
      * Metodo de interface.
