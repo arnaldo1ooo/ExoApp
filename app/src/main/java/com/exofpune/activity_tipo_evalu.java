@@ -2,15 +2,12 @@ package com.exofpune;
 
 
 
-import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.os.AsyncTask;
 import android.os.Environment;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
@@ -41,8 +38,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
     Button btnopc2;
     Button btnopc3;
     TextView VersionActual;
-    TextView tvdesc;
-    ProgressBar pb1;
+
 
 
 
@@ -65,7 +61,6 @@ public class activity_tipo_evalu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tipo_evalu);
-
 
 
        comenzarActualizar();
@@ -218,13 +213,16 @@ public class activity_tipo_evalu extends AppCompatActivity {
         public void run() {//Cuando descarguetodo
             //Volvemos el ProgressBar a invisible.
             Log.d("Fin","Fin de descarga de actualizacion");
-            MostrarNotificacion().cancel(0);//Sirve para cerrar o cancelar la notificacion
+            MostrarNotificacion2().cancel(0);//Sirve para cerrar o cancelar la notificacion
 
 
             //Comprueba que haya nueva versión.
             if(autoupdater.isNewVersionAvailable()){
+
+                MostrarNotificacion1();
                 //Crea mensaje con datos de versión.
                 String msj = "Se encontró una nueva actualizacion\n\n";
+
                 msj += "\nVersion actual: " + autoupdater.getCurrentVersionName() + "\nVersion actual del codigo: (" + autoupdater.getCurrentVersionCode() + ")\n\n";
                 msj += "\nVersion nueva: "  + autoupdater.getLatestVersionName()  + "\nVersion nueva del codigo: (" + autoupdater.getLatestVersionCode() +")";
                 msj += "\n\n\nDesea Actualizar?";
@@ -238,9 +236,8 @@ public class activity_tipo_evalu extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.d("Inicio","Inicio de descarga de actualizacion");
-                        MostrarNotificacion();
                         autoupdater.InstallNewVersion(null); //Se ejecuta el Autoupdater con la orden de instalar. Se puede poner un listener o no
-
+                        MostrarNotificacion2();
                     }
                 });
 
@@ -248,13 +245,14 @@ public class activity_tipo_evalu extends AppCompatActivity {
                 dialog1.show();
             }else{
                 //No existen Actualizaciones.ees
-                Log.d("", "No Hay actualizaciones");
+                Log.d("", "No hay actualizaciones");
+                Toast.makeText(getApplicationContext(), "No hay actualizaciones", Toast.LENGTH_LONG).show();
+
             }
         }
     };
 
-    private NotificationManager MostrarNotificacion(){
-        Toast.makeText(getApplicationContext(), "Descargando actualizacion...", Toast.LENGTH_SHORT).show();
+    private NotificationManager MostrarNotificacion2(){
     NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
         mBuilder.setSmallIcon(android.R.drawable.stat_sys_download); //El icono de la notificacion
         mBuilder.setContentTitle("Descargando actualizacion...");
@@ -269,5 +267,19 @@ public class activity_tipo_evalu extends AppCompatActivity {
         mNotificationManager.notify(0, mBuilder.build()); //El 0 es el id de la notificacion
         return mNotificationManager;
     }
+
+    private NotificationManager MostrarNotificacion1(){
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+        mBuilder.setSmallIcon(android.R.drawable.ic_dialog_alert); //El icono de la notificacion
+        mBuilder.setContentTitle("Actualización disponible");
+        mBuilder.setContentText("Actualización ExoFPUNE "+ autoupdater.getLatestVersionName());
+        mBuilder.setPriority(4);
+        mBuilder.setAutoCancel(true);
+//Sirve para ejecutar la notificacion
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(1, mBuilder.build()); //El 0 es el id de la notificacion
+        return mNotificationManager;
+    }
+
 }
 
