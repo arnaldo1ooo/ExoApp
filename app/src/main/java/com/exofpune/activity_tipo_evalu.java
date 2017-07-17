@@ -2,6 +2,8 @@ package com.exofpune;
 
 
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,6 +12,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -194,7 +197,6 @@ public class activity_tipo_evalu extends AppCompatActivity {
     private Autoupdater autoupdater;
     private Context context;
 
-
     private void comenzarActualizar(){
         //Para tener el contexto mas a mano.
         context = this;
@@ -210,11 +212,14 @@ public class activity_tipo_evalu extends AppCompatActivity {
      */
 
 
+
     private Runnable finishBackgroundDownload = new Runnable() {
         @Override
         public void run() {//Cuando descarguetodo
             //Volvemos el ProgressBar a invisible.
             Log.d("Fin","Fin de descarga de actualizacion");
+            MostrarNotificacion().cancel(0);//Sirve para cerrar o cancelar la notificacion
+
 
             //Comprueba que haya nueva versión.
             if(autoupdater.isNewVersionAvailable()){
@@ -233,6 +238,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.d("Inicio","Inicio de descarga de actualizacion");
+                        MostrarNotificacion();
                         autoupdater.InstallNewVersion(null); //Se ejecuta el Autoupdater con la orden de instalar. Se puede poner un listener o no
 
                     }
@@ -247,10 +253,21 @@ public class activity_tipo_evalu extends AppCompatActivity {
         }
     };
 
-
-
-
-
-    
+    private NotificationManager MostrarNotificacion(){
+        Toast.makeText(getApplicationContext(), "Descargando actualizacion...", Toast.LENGTH_SHORT).show();
+    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+        mBuilder.setSmallIcon(android.R.drawable.stat_sys_download); //El icono de la notificacion
+        mBuilder.setContentTitle("Descargando actualizacion...");
+        mBuilder.setContentText("Descargando ExoFPUNE "+ autoupdater.getLatestVersionName());
+        mBuilder.setTicker("Descargando actualizacion ExoFPUNE "+ autoupdater.getLatestVersionName());
+        mBuilder.setPriority(4);
+        mBuilder.setOngoing(true); //Sirve para que el usuario no pueda borrar la notificacion
+        mBuilder.setProgress(100, 0, true);
+        mBuilder.setAutoCancel(true);
+//Sirve para ejecutar la notificacion
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(0, mBuilder.build()); //El 0 es el id de la notificacion
+        return mNotificationManager;
+    }
 }
 
