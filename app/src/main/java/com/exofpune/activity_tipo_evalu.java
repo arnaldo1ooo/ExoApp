@@ -211,16 +211,13 @@ public class activity_tipo_evalu extends AppCompatActivity {
         @Override
         public void run() {//Cuando descarguetodo
             //Volvemos el ProgressBar a invisible.
-            MostrarNotificacionAviso();
             Log.d("Fin","Fin de descarga de actualizacion");
-            //MostrarNotificacionDescargando().cancel(0);//Sirve para cerrar o cancelar la notificacion
-            NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            mNotificationManager.cancelAll();
+            CancelarNotificacion(0);
 
 
             //Comprueba que haya nueva versión.
             if(autoupdater.isNewVersionAvailable()){
-
+                MostrarNotificacionAviso();
                 //Crea mensaje con datos de versión.
                 String msj = "Se encontró una nueva actualizacion\n\n";
 
@@ -242,6 +239,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 Log.d("Inicio", "Inicio de descarga de actualizacion");
+                                CancelarNotificacion(1);
                                 MostrarNotificacionDescargando();
                                 autoupdater.InstallNewVersion(null); //Se ejecuta el Autoupdater con la orden de instalar. Se puede poner un listener o no
                             }
@@ -258,23 +256,22 @@ public class activity_tipo_evalu extends AppCompatActivity {
         }
     };
 
-    private NotificationManager MostrarNotificacionDescargando(){
+    private void MostrarNotificacionDescargando(){
     NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
         mBuilder.setSmallIcon(android.R.drawable.stat_sys_download); //El icono de la notificacion
         mBuilder.setContentTitle("Descargando actualizacion...");
         mBuilder.setContentText("Descargando ExoFPUNE "+ autoupdater.getLatestVersionName());
         mBuilder.setTicker("Descargando actualizacion ExoFPUNE "+ autoupdater.getLatestVersionName());
         mBuilder.setPriority(4);
+        mBuilder.setAutoCancel(true);
         mBuilder.setOngoing(true); //Sirve para que el usuario no pueda borrar la notificacion
         mBuilder.setProgress(100, 0, true);
-        mBuilder.setAutoCancel(true);
 //Sirve para ejecutar la notificacion
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(0, mBuilder.build()); //El 0 es el id de la notificacion
-        return mNotificationManager;
     }
 
-    private NotificationManager MostrarNotificacionAviso(){
+    private void MostrarNotificacionAviso(){
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
         mBuilder.setSmallIcon(android.R.drawable.alert_light_frame); //El icono de la notificacion
         mBuilder.setContentTitle("Actualización disponible");
@@ -289,7 +286,13 @@ public class activity_tipo_evalu extends AppCompatActivity {
 //Sirve para ejecutar la notificacion
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(1, mBuilder.build()); //El 0 es el id de la notificacion
-        return mNotificationManager;
+    }
+
+
+    private void CancelarNotificacion (int IdNotificacion){
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.cancel(IdNotificacion);
+        return;
     }
 
 }
