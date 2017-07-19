@@ -19,7 +19,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,8 +62,8 @@ public class activity_tipo_evalu extends AppCompatActivity {
         setContentView(R.layout.activity_tipo_evalu);
 
 
-       comenzarActualizar();
 
+       comenzarActualizar();
 
 
 
@@ -212,14 +211,16 @@ public class activity_tipo_evalu extends AppCompatActivity {
         @Override
         public void run() {//Cuando descarguetodo
             //Volvemos el ProgressBar a invisible.
+            MostrarNotificacionAviso();
             Log.d("Fin","Fin de descarga de actualizacion");
-            MostrarNotificacion2().cancel(0);//Sirve para cerrar o cancelar la notificacion
+            //MostrarNotificacionDescargando().cancel(0);//Sirve para cerrar o cancelar la notificacion
+            NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            mNotificationManager.cancelAll();
 
 
             //Comprueba que haya nueva versión.
             if(autoupdater.isNewVersionAvailable()){
 
-                MostrarNotificacion1();
                 //Crea mensaje con datos de versión.
                 String msj = "Se encontró una nueva actualizacion\n\n";
 
@@ -230,16 +231,21 @@ public class activity_tipo_evalu extends AppCompatActivity {
                 AlertDialog.Builder dialog1 = new AlertDialog.Builder(context);
                 dialog1.setMessage(msj);
                 dialog1.setCancelable(false);
-                dialog1.setNegativeButton("Más tarde", null);
-                //Establece el boton de Aceptar y que hacer si se selecciona.
-                dialog1.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Log.d("Inicio","Inicio de descarga de actualizacion");
-                        autoupdater.InstallNewVersion(null); //Se ejecuta el Autoupdater con la orden de instalar. Se puede poner un listener o no
-                        MostrarNotificacion2();
-                    }
-                });
+                dialog1.setNegativeButton("Más tarde", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                return;
+                            }
+                        });
+                        //Establece el boton de Aceptar y que hacer si se selecciona.
+                        dialog1.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Log.d("Inicio", "Inicio de descarga de actualizacion");
+                                MostrarNotificacionDescargando();
+                                autoupdater.InstallNewVersion(null); //Se ejecuta el Autoupdater con la orden de instalar. Se puede poner un listener o no
+                            }
+                        });
 
                 //Muestra la ventana esperando respuesta.
                 dialog1.show();
@@ -252,7 +258,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
         }
     };
 
-    private NotificationManager MostrarNotificacion2(){
+    private NotificationManager MostrarNotificacionDescargando(){
     NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
         mBuilder.setSmallIcon(android.R.drawable.stat_sys_download); //El icono de la notificacion
         mBuilder.setContentTitle("Descargando actualizacion...");
@@ -268,13 +274,18 @@ public class activity_tipo_evalu extends AppCompatActivity {
         return mNotificationManager;
     }
 
-    private NotificationManager MostrarNotificacion1(){
+    private NotificationManager MostrarNotificacionAviso(){
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
-        mBuilder.setSmallIcon(android.R.drawable.ic_dialog_alert); //El icono de la notificacion
+        mBuilder.setSmallIcon(android.R.drawable.alert_light_frame); //El icono de la notificacion
         mBuilder.setContentTitle("Actualización disponible");
-        mBuilder.setContentText("Actualización ExoFPUNE "+ autoupdater.getLatestVersionName());
+        mBuilder.setContentText("Toque para actualizar a ExoFPUNE "+ autoupdater.getLatestVersionName());
+        mBuilder.setTicker("Nueva versión disponible ExoFPUNE "+ autoupdater.getLatestVersionName());
         mBuilder.setPriority(4);
         mBuilder.setAutoCancel(true);
+
+        long[] pattern = new long[]{1000,500,1000};
+        mBuilder.setVibrate(pattern); //Para que vibre
+
 //Sirve para ejecutar la notificacion
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(1, mBuilder.build()); //El 0 es el id de la notificacion
