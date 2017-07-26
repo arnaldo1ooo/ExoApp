@@ -241,7 +241,13 @@ public class activity_tipo_evalu extends AppCompatActivity {
                                 Log.d("Inicio", "Inicio de descarga de actualizacion");
                                 CancelarNotificacion(1);
                                 MostrarNotificacionDescargando();
-                                autoupdater.InstallNewVersion(null); //Se ejecuta el Autoupdater con la orden de instalar. Se puede poner un listener o no
+
+                                try {
+                                    autoupdater.InstallNewVersion(null); //Se ejecuta el Autoupdater con la orden de instalar. Se puede poner un listener o no
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                    CancelarNotificacion(0);
+                                }
                             }
                         });
 
