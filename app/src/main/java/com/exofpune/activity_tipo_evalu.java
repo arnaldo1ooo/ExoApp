@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -206,11 +207,11 @@ public class activity_tipo_evalu extends AppCompatActivity {
      */
 
 
-
     private Runnable finishBackgroundDownload = new Runnable() {
         @Override
         public void run() {//Cuando descarguetodo
             //Volvemos el ProgressBar a invisible.
+            // Cuando acabe la descarga actualiza la interfaz
             Log.d("Fin","Fin de descarga de actualizacion");
             CancelarNotificacion(0);
 
@@ -244,9 +245,9 @@ public class activity_tipo_evalu extends AppCompatActivity {
 
                                 try {
                                     autoupdater.InstallNewVersion(null); //Se ejecuta el Autoupdater con la orden de instalar. Se puede poner un listener o no
+                                    CancelarNotificacion(1);
                                 } catch (Exception e) {
                                     e.printStackTrace();
-                                    CancelarNotificacion(0);
                                 }
                             }
                         });
@@ -256,7 +257,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
             }else{
                 //No existen Actualizaciones.ees
                 Log.d("", "No hay actualizaciones");
-                Toast.makeText(getApplicationContext(), "No hay actualizaciones", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "No hay actualizaciones", Toast.LENGTH_SHORT).show();
 
             }
         }

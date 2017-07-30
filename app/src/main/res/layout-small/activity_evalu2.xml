@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,7 +10,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.exofpune.activity_evalu1"
+    tools:context="com.exofpune.activity_evalu2"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="81dp"
 
@@ -58,9 +57,9 @@
         android:textAlignment="textStart"
         android:translationY="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13"
+        app:layout_constraintVertical_bias="0.131"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -80,35 +79,12 @@
         android:translationY="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25"
+        app:layout_constraintVertical_bias="0.319"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.44" />
-
-    <Spinner
-        android:id="@+id/sp3"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:nestedScrollingEnabled="false"
-        android:spinnerMode="dialog"
-        android:textAlignment="textStart"
-        android:translationY="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.39"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.44" />
+        app:layout_constraintHorizontal_bias="0.453" />
 
     <TextView
         android:id="@+id/tvFeli"
@@ -118,23 +94,23 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/tvFaltante"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:fontFamily="sans-serif-condensed"
         android:textAlignment="center"
         android:textColor="@android:color/holo_orange_dark"
-        android:textSize="36sp"
+        android:textSize="25sp"
         android:typeface="sans"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        tools:text="Exoneraste!! :D"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        tools:text="Exoneraste!! :D" />
 
     <Button
         android:id="@+id/btnCalculo"
@@ -155,7 +131,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55"
+        app:layout_constraintVertical_bias="0.528"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
 
@@ -167,23 +143,23 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/btnCalculo"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:fontFamily="sans-serif-condensed"
         android:textAlignment="center"
         android:textColor="#ffffff"
         android:textIsSelectable="false"
-        android:textSize="26sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.69"
-        tools:text="36.55 Puntos de 40 Puntos"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        tools:text="36.55 Puntos de 40 Puntos" />
 
     <TextView
         android:id="@+id/tvFaltante"
@@ -192,13 +168,15 @@
         android:layout_alignTop="@+id/tvResultado"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-condensed"
         android:textAlignment="center"
         android:textColor="#ffffff"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
@@ -206,35 +184,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.767"
-        tools:text="Te faltó 00.000 Puntos para Exonerar"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
-
-    <TextView
-        android:id="@+id/tvTotalText3"
-        android:layout_width="wrap_content"
-        android:layout_height="49dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_toRightOf="@+id/sp3"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:text="0 de 10 Puntos"
-        android:textAlignment="viewStart"
-        android:textColor="#ffffff"
-        android:textIsSelectable="false"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.399"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="0dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.97" />
+        tools:text="Te faltó 00.000 Puntos para Exonerar" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"
@@ -308,7 +258,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.245">
+        app:layout_constraintVertical_bias="0.316">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayout7"
@@ -343,86 +293,30 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout3"
-        android:layout_width="102dp"
-        android:layout_height="51dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/relativeLayout1"
-        android:layout_marginBottom="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.012"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.39"
-        android:layout_marginEnd="8dp">
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/textInputLayout8"
-            android:layout_width="50dp"
-            android:layout_height="54dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:textColorHint="#ffffff"
-            tools:layout_editor_absoluteX="209dp"
-            tools:layout_editor_absoluteY="196dp">
-
-            <EditText
-                android:id="@+id/etTp"
-                android:layout_width="102dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/textInputLayout8"
-                android:layout_weight="1"
-                android:hint="Trabajo Práctico"
-                android:imeOptions="actionDone"
-                android:inputType="numberDecimal"
-                android:maxLength="6"
-                android:textAlignment="textEnd"
-                android:textColor="#ffffff"
-                android:textColorHint="#b8b8b8"
-                android:textSize="18sp"
-                android:translationY="1dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.457"
-                tools:layout_editor_absoluteX="85dp" />
-        </android.support.design.widget.TextInputLayout>
-
-    </RelativeLayout>
-
     <TextView
         android:id="@+id/tvTotalText2"
         android:layout_width="wrap_content"
         android:layout_height="49dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="6dp"
         android:layout_marginTop="8dp"
         android:layout_toEndOf="@+id/sp2"
         android:layout_toRightOf="@+id/sp2"
         android:layout_weight="1"
         android:gravity="center_vertical"
-        android:text="0 de 15 Puntos"
+        android:text="0 de 20 Puntos"
         android:textAlignment="viewStart"
         android:textColor="#ffffff"
         android:textIsSelectable="false"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="6dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="1.0" />
+        app:layout_constraintVertical_bias="0.323" />
 
     <TextView
         android:id="@+id/tvTotalText1"
@@ -430,24 +324,24 @@
         android:layout_height="49dp"
         android:layout_alignBottom="@+id/sp1"
         android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="0dp"
         android:layout_marginTop="8dp"
         android:layout_toEndOf="@+id/sp1"
         android:layout_toRightOf="@+id/sp1"
         android:layout_weight="1"
         android:gravity="center_vertical"
-        android:text="0 de 15 Puntos"
+        android:text="0 de 20 Puntos"
         android:textAlignment="viewStart"
         android:textColor="#ffffff"
         android:textIsSelectable="false"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.110000014"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="0dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.97" />
+        app:layout_constraintVertical_bias="0.110000014" />
 
     <TextView
         android:id="@+id/tvPuntosFinal"
@@ -458,14 +352,10 @@
         android:text="Debes hacer 75% en la final (45 de 60)"
         android:textAlignment="center"
         android:textColor="#ffffff"
-        android:textSize="15sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.846" />
-
 </android.support.constraint.ConstraintLayout>
-
-
-
