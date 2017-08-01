@@ -10,11 +10,12 @@
 
     <supports-screens
         android:smallScreens="true"
-        android:normalScreens="true"
-        android:largeScreens="true"
-        android:xlargeScreens="true"
+        android:normalScreens="false"
+        android:largeScreens="false"
+        android:xlargeScreens="false"
         android:anyDensity="true"
-        android:resizeable="true"/>
+        android:resizeable="true"
+    />
 
 
     <application

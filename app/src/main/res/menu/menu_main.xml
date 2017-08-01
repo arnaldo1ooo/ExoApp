@@ -4,17 +4,14 @@
     xmlns:tools="http://schemas.android.com/ tools"
     tools:context=".MainActivity">
 
-    <item android:title="Acerca de..."
-        android:id="@+id/ao1"
-        android:icon="@android:drawable/ic_menu_info_details"
-        android:orderInCategory="10"
-        app:showAsAction="ifRoom|withText"/>
-    <item android:id="@+id/ao2"
+
+    <item android:id="@+id/ao1"
         android:title="Comprobar actualizaciones"
         android:icon="@android:drawable/ic_menu_preferences"
         android:orderInCategory="5"
         app:showAsAction="never"/>
-    <item android:id="@+id/ao3"
+
+    <item android:id="@+id/ao2"
         android:title="Acerca de ExoFPUNE"
         android:icon="@android:drawable/ic_menu_preferences"
         android:orderInCategory="5"

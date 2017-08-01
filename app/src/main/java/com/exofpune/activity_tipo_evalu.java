@@ -123,23 +123,13 @@ public class activity_tipo_evalu extends AppCompatActivity {
         return true;
     }
 
-
     //Al usar el action overflow
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
-        if (id == R.id.ao1 || id == R.id.ao3) {
-            Log.d("Opciones", "Abriendo acerca de");
-            Intent i = new Intent(this, activity_acercade.class);
-            startActivity(i);
-            return true;
-        }
-
-        if (id == R.id.ao2) {
+        if (id == R.id.ao1) {
             if (EstaConectadoInternet() == true) {
+                Log.d("Opciones", "Abriendo comprobar actualizaciones");
                 comenzarActualizar();
-
-                Log.d("Opcionest", "Abriendo comprobar actualizaciones");
                 return true;
             } else {
                 Toast toast = Toast.makeText(this, "No se detectó ninguna conexión a internet", Toast.LENGTH_SHORT);
@@ -147,7 +137,13 @@ public class activity_tipo_evalu extends AppCompatActivity {
                 Log.d("Opciones", "Sin conexion a internet");
                 return true;
             }
+        }
 
+        if (id == R.id.ao2) {
+            Log.d("Opciones", "Abriendo acerca de");
+            Intent i = new Intent(this, activity_acercade.class);
+            startActivity(i);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
