@@ -39,10 +39,6 @@ public class activity_tipo_evalu extends AppCompatActivity {
     TextView VersionActual;
 
 
-    public static String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/ExoFPUNE";
-    public static File Dir = new File(path);
-
-
     //impedir retroceder a activity anterior
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -60,7 +56,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
         setContentView(R.layout.activity_tipo_evalu);
 
 
-        comenzarActualizar();
+       comenzarActualizar();
 
 
         btnopc1 = (Button) findViewById(R.id.btnopc1);
@@ -103,7 +99,6 @@ public class activity_tipo_evalu extends AppCompatActivity {
             }
         });
 
-
         btnopc2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,7 +129,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.ao1 || id == R.id.ao3) {
-            Log.d("myTag", "Abriendo acerca de");
+            Log.d("Opciones", "Abriendo acerca de");
             Intent i = new Intent(this, activity_acercade.class);
             startActivity(i);
             return true;
@@ -144,12 +139,12 @@ public class activity_tipo_evalu extends AppCompatActivity {
             if (EstaConectadoInternet() == true) {
                 comenzarActualizar();
 
-                Log.d("myTag", "Abriendo comprobar actualizaciones");
+                Log.d("Opcionest", "Abriendo comprobar actualizaciones");
                 return true;
             } else {
                 Toast toast = Toast.makeText(this, "No se detectó ninguna conexión a internet", Toast.LENGTH_SHORT);
                 toast.show();
-                Log.d("myTag", "Sin conexion a internet");
+                Log.d("Opciones", "Sin conexion a internet");
                 return true;
             }
 
@@ -159,7 +154,6 @@ public class activity_tipo_evalu extends AppCompatActivity {
 
 
     public Boolean EstaConectadoInternet() {
-
         try {
             Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
             int val = p.waitFor();
@@ -177,7 +171,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
     private Autoupdater autoupdater;
     private Context context;
 
-    private void comenzarActualizar() {
+    public void comenzarActualizar() {
         //Para tener el contexto mas a mano.
         context = this;
         //Creamos el Autoupdater.

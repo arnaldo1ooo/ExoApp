@@ -26,6 +26,8 @@ public class SplashScreen extends Activity {
 
         version = (TextView) findViewById(R.id.tvVersionSplash);
 
+
+
         try {
             PackageInfo packageInfo;
             packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
