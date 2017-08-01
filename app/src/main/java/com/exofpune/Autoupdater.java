@@ -1,5 +1,6 @@
 package com.exofpune;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.*;
@@ -13,11 +14,12 @@ import org.json.*;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DecimalFormat;
 
 /**
  * Created by Guillermo Marcel on 24/10/2014.
  */
-public class Autoupdater{
+public class Autoupdater {
 
     /**
      * Objeto contexto para ejecutar el instalador.
@@ -41,10 +43,6 @@ public class Autoupdater{
      * instalada de la aplicación. Es el valor numérico que usa Android para
      * diferenciar las versiones.
      */
-
-
-
-
 
 
     private int currentVersionCode;
@@ -75,6 +73,7 @@ public class Autoupdater{
 
     /**
      * Constructor unico.
+     *
      * @param context Contexto sobre el cual se ejecutara el Instalador.
      */
     public Autoupdater(Context context) {
@@ -85,12 +84,12 @@ public class Autoupdater{
      * Método para inicializar el objeto. Se debe llamar antes que a cualquie
      * otro, y en un hilo propio (o un AsyncTask) para no bloquear al interfaz
      * ya que hace uso de Internet.
-     *
-     *            El contexto de la aplicación, para obtener la información de
-     *            la versión actual.
+     * <p>
+     * El contexto de la aplicación, para obtener la información de
+     * la versión actual.
      */
     private void getData() {
-        try{
+        try {
             // Datos locales
             Log.d("AutoUpdater", "GetData");
             PackageInfo pckginfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
@@ -105,18 +104,14 @@ public class Autoupdater{
             latestVersionName = json.getString("versionName");
             downloadURL = json.getString("downloadURL");
             Log.d("AutoUpdate", "Datos obtenidos con éxito");
-        }catch(JSONException e){
+        } catch (JSONException e) {
             Log.e("AutoUpdate", "Ha habido un error con el JSON", e);
-        }catch(PackageManager.NameNotFoundException e){
+        } catch (PackageManager.NameNotFoundException e) {
             Log.e("AutoUpdate", "Ha habido un error con el packete :S", e);
-        }catch(IOException e){
+        } catch (IOException e) {
             Log.e("AutoUpdate", "Ha habido un error con la descarga", e);
         }
     }
-
-
-
-
 
 
     /**
@@ -178,15 +173,13 @@ public class Autoupdater{
      * Encargado de conectarse a la red, descargar el archivo y convertirlo a
      * String.
      *
-     * @param url
-     *            La URL del archivo que se quiere descargar.
+     * @param url La URL del archivo que se quiere descargar.
      * @return Cadena de texto con el contenido del archivo
-     * @throws IOException
-     *             Si hay algún problema en la conexión
+     * @throws IOException Si hay algún problema en la conexión
      */
     private static String downloadHttp(URL url) throws IOException {
         // Codigo de coneccion, Irrelevante al tema.
-        HttpURLConnection c = (HttpURLConnection)url.openConnection();
+        HttpURLConnection c = (HttpURLConnection) url.openConnection();
         c.setRequestMethod("GET");
         c.setReadTimeout(15 * 1000);
         c.setUseCaches(false);
@@ -194,22 +187,22 @@ public class Autoupdater{
         BufferedReader reader = new BufferedReader(new InputStreamReader(c.getInputStream()));
         StringBuilder stringBuilder = new StringBuilder();
         String line;
-        while((line = reader.readLine()) != null){
+        while ((line = reader.readLine()) != null) {
             stringBuilder.append(line + "\n");
         }
         return stringBuilder.toString();
     }
 
 
-
     /**
      * Metodo de interface.
      * Primer metodo a usar. Se encarga de, en un hilo separado,
      * conectarse al servidor y obtener la informacion de la ultima version de la aplicacion.
+     *
      * @param OnFinishRunnable Listener ejecutable al finalizar.
      *                         Codigo que se ejecutara una vez terminado el proceso.
      */
-    public void DownloadData(Runnable OnFinishRunnable){
+    public void DownloadData(Runnable OnFinishRunnable) {
         //Guarda el listener.
         this.listener = OnFinishRunnable;
         //Ejecuta el AsyncTask para bajar los datos.
@@ -222,12 +215,13 @@ public class Autoupdater{
      * Se encargara, una vez obtenidos los datos de la version mas reciente, y en un hilo separado,
      * de comprobar que haya efectivamente una version mas reciente, descargarla e instalarla.
      * Preparar la aplicacion para ser cerrada y desinstalada despues de este metodo.
+     *
      * @param OnFinishRunnable Codigo que se ejecutara tras llamar al instalador.
      *                         Ultimo en ejecutar.
      */
-    public void InstallNewVersion(Runnable OnFinishRunnable){
-        if(isNewVersionAvailable()){
-           if(getDownloadURL() == "") return;
+    public void InstallNewVersion(Runnable OnFinishRunnable) {
+        if (isNewVersionAvailable()) {
+            if (getDownloadURL() == "") return;
             listener = OnFinishRunnable;
             String params[] = {getDownloadURL()};
             downloadInstaller.execute(params);
@@ -252,15 +246,19 @@ public class Autoupdater{
             super.onPostExecute(o);
             //Despues de ejecutar el codigo principal, se ejecuta el listener
             //para hacer saber al hilo principal.
-            if(listener != null)listener.run();
+            if (listener != null) listener.run();
             listener = null;
         }
     };
+
 
     /**
      * Objeto de AsyncTask encargado de descargar e instalar la ultima version de la aplicacion.
      * No es cancelable.
      */
+
+    double TamañoDescargado = 0;
+    double TamañoTotal = 0;
     private AsyncTask<String, Integer, Intent> downloadInstaller = new AsyncTask<String, Integer, Intent>() {
         @Override
         protected Intent doInBackground(String... strings) {
@@ -274,16 +272,21 @@ public class Autoupdater{
                 String PATH = Environment.getExternalStorageDirectory() + "/download/";
                 File file = new File(PATH);
                 file.mkdirs();
-                File outputFile = new File(file, "app.apk");
-                FileOutputStream fos = new FileOutputStream(outputFile);
-
+                File fichero = new File(file, "app.apk");
+                FileOutputStream fos = new FileOutputStream(fichero);
                 InputStream is = c.getInputStream();
-
                 byte[] buffer = new byte[1024];
                 int len1 = 0;
+
+                DecimalFormat df = new DecimalFormat("#.##");
+                TamañoTotal = c.getContentLength();
+                Log.d("TamañoTotal", String.valueOf(df.format(TamañoTotal/1048576)+ " MB")); //De Kilobytes a Megabyte
                 while ((len1 = is.read(buffer)) != -1) {
                     fos.write(buffer, 0, len1);
+                    TamañoDescargado += len1;
+                    Log.d("TamañoDescargado", String.valueOf(df.format(TamañoDescargado/1048576)+ " MB")); //De Kilobytes a Megabyte
                 }
+
                 fos.close();
                 is.close();//till here, it works fine - .apk is download to my sdcard in download file
 
@@ -294,7 +297,6 @@ public class Autoupdater{
                 context.startActivity(intent);
                 //return intent;
             } catch (IOException e) {
-
                 Log.e("Error al bajar apk!", e.getMessage());
             }
 
@@ -304,9 +306,14 @@ public class Autoupdater{
         @Override
         protected void onPostExecute(Intent intent) {
             super.onPostExecute(intent);
-            if(listener != null)listener.run();
+            if (listener != null) listener.run();
             listener = null;
         }
     };
-
+    public double getTamañoDescargado() {
+        return TamañoDescargado;
+    }
+    public double getTamañoTotal() {
+        return TamañoTotal;
+    }
 }

@@ -1,15 +1,14 @@
 package com.exofpune;
 
 
-
 import android.app.NotificationManager;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Environment;
-import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -25,10 +24,10 @@ import android.widget.Toast;
 
 import java.io.File;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 
 
 public class activity_tipo_evalu extends AppCompatActivity {
@@ -38,8 +37,6 @@ public class activity_tipo_evalu extends AppCompatActivity {
     Button btnopc2;
     Button btnopc3;
     TextView VersionActual;
-
-
 
 
     public static String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/ExoFPUNE";
@@ -63,18 +60,13 @@ public class activity_tipo_evalu extends AppCompatActivity {
         setContentView(R.layout.activity_tipo_evalu);
 
 
-
-       comenzarActualizar();
-
+        comenzarActualizar();
 
 
         btnopc1 = (Button) findViewById(R.id.btnopc1);
         btnopc2 = (Button) findViewById(R.id.btnopc2);
         btnopc3 = (Button) findViewById(R.id.btnopc3);
         VersionActual = (TextView) findViewById(R.id.tvVersionPrincipal);
-
-
-
 
 
         //Obtener version actual de la app
@@ -87,9 +79,6 @@ public class activity_tipo_evalu extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "No se puede cargar la version actual!", Toast.LENGTH_LONG).show();
         }
-
-
-
 
 
         btnopc1.setOnClickListener(new View.OnClickListener() {
@@ -169,9 +158,6 @@ public class activity_tipo_evalu extends AppCompatActivity {
     }
 
 
-
-
-
     public Boolean EstaConectadoInternet() {
 
         try {
@@ -188,11 +174,10 @@ public class activity_tipo_evalu extends AppCompatActivity {
     }
 
 
-
     private Autoupdater autoupdater;
     private Context context;
 
-    private void comenzarActualizar(){
+    private void comenzarActualizar() {
         //Para tener el contexto mas a mano.
         context = this;
         //Creamos el Autoupdater.
@@ -210,97 +195,131 @@ public class activity_tipo_evalu extends AppCompatActivity {
     private Runnable finishBackgroundDownload = new Runnable() {
         @Override
         public void run() {//Cuando descarguetodo
-            //Volvemos el ProgressBar a invisible.
-            // Cuando acabe la descarga actualiza la interfaz
-            Log.d("Fin","Fin de descarga de actualizacion");
             CancelarNotificacion(0);
 
-
             //Comprueba que haya nueva versión.
-            if(autoupdater.isNewVersionAvailable()){
+            if (autoupdater.isNewVersionAvailable()) {
                 MostrarNotificacionAviso();
-                //Crea mensaje con datos de versión.
-                String msj = "Se encontró una nueva actualizacion\n\n";
-
-                msj += "\nVersion actual: " + autoupdater.getCurrentVersionName() + "\nVersion actual del codigo: (" + autoupdater.getCurrentVersionCode() + ")\n\n";
-                msj += "\nVersion nueva: "  + autoupdater.getLatestVersionName()  + "\nVersion nueva del codigo: (" + autoupdater.getLatestVersionCode() +")";
-                msj += "\n\n\nDesea Actualizar?";
-                //Crea ventana de alerta.
-                AlertDialog.Builder dialog1 = new AlertDialog.Builder(context);
-                dialog1.setMessage(msj);
-                dialog1.setCancelable(false);
-                dialog1.setNegativeButton("Más tarde", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                return;
-                            }
-                        });
-                        //Establece el boton de Aceptar y que hacer si se selecciona.
-                        dialog1.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Log.d("Inicio", "Inicio de descarga de actualizacion");
-                                CancelarNotificacion(1);
-                                MostrarNotificacionDescargando();
-
-                                try {
-                                    autoupdater.InstallNewVersion(null); //Se ejecuta el Autoupdater con la orden de instalar. Se puede poner un listener o no
-                                    CancelarNotificacion(1);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        });
-
-                //Muestra la ventana esperando respuesta.
-                dialog1.show();
-            }else{
+                MensajeActualizacion();
+            } else {
                 //No existen Actualizaciones.ees
                 Log.d("", "No hay actualizaciones");
                 Toast.makeText(getApplicationContext(), "No hay actualizaciones", Toast.LENGTH_SHORT).show();
-
             }
         }
     };
 
-    private void MostrarNotificacionDescargando(){
-    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+    private void MostrarNotificacionDescargando() {
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
         mBuilder.setSmallIcon(android.R.drawable.stat_sys_download); //El icono de la notificacion
         mBuilder.setContentTitle("Descargando actualizacion...");
-        mBuilder.setContentText("Descargando ExoFPUNE "+ autoupdater.getLatestVersionName());
-        mBuilder.setTicker("Descargando actualizacion ExoFPUNE "+ autoupdater.getLatestVersionName());
-        mBuilder.setPriority(4);
+        mBuilder.setContentText("Descargando ExoFPUNE " + autoupdater.getLatestVersionName());
+        mBuilder.setTicker("Descargando actualizacion ExoFPUNE " + autoupdater.getLatestVersionName());
+        mBuilder.setPriority(3);
         mBuilder.setAutoCancel(true);
         mBuilder.setOngoing(true); //Sirve para que el usuario no pueda borrar la notificacion
-        mBuilder.setProgress(100, 0, true);
+        //mBuilder.setProgress(100, 0, true);
 //Sirve para ejecutar la notificacion
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(0, mBuilder.build()); //El 0 es el id de la notificacion
     }
 
-    private void MostrarNotificacionAviso(){
+    private void MostrarNotificacionAviso() {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
         mBuilder.setSmallIcon(android.R.drawable.alert_light_frame); //El icono de la notificacion
         mBuilder.setContentTitle("Actualización disponible");
-        mBuilder.setContentText("Toque para actualizar a ExoFPUNE "+ autoupdater.getLatestVersionName());
-        mBuilder.setTicker("Nueva versión disponible ExoFPUNE "+ autoupdater.getLatestVersionName());
-        mBuilder.setPriority(4);
+        mBuilder.setContentText(" nbToque para actualizar a ExoFPUNE " + autoupdater.getLatestVersionName());
+        mBuilder.setTicker("Nueva versión disponible ExoFPUNE " + autoupdater.getLatestVersionName());
+        mBuilder.setPriority(3);
         mBuilder.setAutoCancel(true);
 
-        long[] pattern = new long[]{1000,500,1000};
+        long[] pattern = new long[]{1000, 500, 1000};
         mBuilder.setVibrate(pattern); //Para que vibre
-
 //Sirve para ejecutar la notificacion
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(1, mBuilder.build()); //El 0 es el id de la notificacion
     }
 
 
-    private void CancelarNotificacion (int IdNotificacion){
+    private void CancelarNotificacion(int IdNotificacion) {
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.cancel(IdNotificacion);
         return;
     }
 
+
+    private ProgressDialog ProgresoDescarga;
+    private void MensajeActualizacion() {
+        //Crea mensaje con datos de versión.
+        String msj = "Se encontró una nueva actualizacion\n\n";
+
+        msj += "\nVersion actual: " + autoupdater.getCurrentVersionName() + "\nVersion actual del codigo: (" + autoupdater.getCurrentVersionCode() + ")\n\n";
+        msj += "\nVersion nueva: " + autoupdater.getLatestVersionName() + "\nVersion nueva del codigo: (" + autoupdater.getLatestVersionCode() + ")";
+        msj += "\n\n\nDesea Actualizar?";
+        //Crea ventana de alerta.
+        AlertDialog.Builder dialog1 = new AlertDialog.Builder(context);
+        dialog1.setMessage(msj);
+        dialog1.setCancelable(false);
+        dialog1.setNegativeButton("Más tarde", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                CancelarNotificacion(1);
+                return;
+            }
+        });
+
+        //Establece el boton de Aceptar y que hacer si se selecciona.
+        dialog1.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                CancelarNotificacion(1);
+                Log.d("Inicio", "Inicio de descarga de actualizacion");
+                try {
+                    autoupdater.InstallNewVersion(null); //Se ejecuta el Autoupdater con la orden de instalar. Se puede poner un listener o no
+
+                    ProgresoDescarga = new ProgressDialog(activity_tipo_evalu.this);
+                    ProgresoDescarga.setMessage("Descargando actualización ExoFPUNE " + autoupdater.getLatestVersionName());
+                    ProgresoDescarga.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                    ProgresoDescarga.setCancelable(false);
+                    ProgresoDescarga.setIndeterminate(false);
+                    ProgresoDescarga.setProgress(0);
+                    ProgresoDescarga.show();
+
+                    final DecimalFormat df = new DecimalFormat("#.##");
+                    final double totalProgressTime = 100;
+                    final Thread t = new Thread() {
+                        @Override
+                        public void run() {
+                            int jumpTime = 0;
+
+                            while (jumpTime < totalProgressTime) {
+                                if((int)autoupdater.getTamañoTotal() != 0){
+                                    Log.d("TamañoTotal2", String.valueOf(df.format(autoupdater.getTamañoTotal())));
+                                }
+                                Log.d("TamañoDescargado2", String.valueOf(df.format(autoupdater.getTamañoDescargado())));
+                                try {
+                                    sleep(200);
+                                    jumpTime = (int)((autoupdater.getTamañoDescargado()*100)/autoupdater.getTamañoTotal());
+                                    ProgresoDescarga.setProgress(jumpTime);
+                                } catch (InterruptedException e) {
+                                    // TODO Auto-generated catch block
+                                    e.printStackTrace();
+                                }
+                            }
+                            ProgresoDescarga.dismiss();//Oculta el ProgressDialog
+                        }
+                    };
+                    t.start();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        //Muestra la ventana esperando respuesta.
+        dialog1.show();
+    }
+
 }
+
+
 
