@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Environment;
+import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -56,7 +57,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
         setContentView(R.layout.activity_tipo_evalu);
 
 
-       comenzarActualizar();
+        comenzarActualizar();
 
 
         btnopc1 = (Button) findViewById(R.id.btnopc1);
@@ -154,6 +155,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
             Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
             int val = p.waitFor();
             boolean reachable = (val == 0);
+            Log.d("Internet", String.valueOf(reachable));
             return reachable;
 
         } catch (Exception e) {//No se detecto internet
@@ -185,11 +187,9 @@ public class activity_tipo_evalu extends AppCompatActivity {
     private Runnable finishBackgroundDownload = new Runnable() {
         @Override
         public void run() {//Cuando descarguetodo
-            CancelarNotificacion(0);
 
             //Comprueba que haya nueva versión.
             if (autoupdater.isNewVersionAvailable()) {
-                MostrarNotificacionAviso();
                 MensajeActualizacion();
             } else {
                 //No existen Actualizaciones.ees
@@ -199,46 +199,9 @@ public class activity_tipo_evalu extends AppCompatActivity {
         }
     };
 
-    private void MostrarNotificacionDescargando() {
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
-        mBuilder.setSmallIcon(android.R.drawable.stat_sys_download); //El icono de la notificacion
-        mBuilder.setContentTitle("Descargando actualizacion...");
-        mBuilder.setContentText("Descargando ExoFPUNE " + autoupdater.getLatestVersionName());
-        mBuilder.setTicker("Descargando actualizacion ExoFPUNE " + autoupdater.getLatestVersionName());
-        mBuilder.setPriority(3);
-        mBuilder.setAutoCancel(true);
-        mBuilder.setOngoing(true); //Sirve para que el usuario no pueda borrar la notificacion
-        //mBuilder.setProgress(100, 0, true);
-//Sirve para ejecutar la notificacion
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(0, mBuilder.build()); //El 0 es el id de la notificacion
-    }
-
-    private void MostrarNotificacionAviso() {
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
-        mBuilder.setSmallIcon(android.R.drawable.alert_light_frame); //El icono de la notificacion
-        mBuilder.setContentTitle("Actualización disponible");
-        mBuilder.setContentText(" nbToque para actualizar a ExoFPUNE " + autoupdater.getLatestVersionName());
-        mBuilder.setTicker("Nueva versión disponible ExoFPUNE " + autoupdater.getLatestVersionName());
-        mBuilder.setPriority(3);
-        mBuilder.setAutoCancel(true);
-
-        long[] pattern = new long[]{1000, 500, 1000};
-        mBuilder.setVibrate(pattern); //Para que vibre
-//Sirve para ejecutar la notificacion
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(1, mBuilder.build()); //El 0 es el id de la notificacion
-    }
-
-
-    private void CancelarNotificacion(int IdNotificacion) {
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.cancel(IdNotificacion);
-        return;
-    }
-
 
     private ProgressDialog ProgresoDescarga;
+
     private void MensajeActualizacion() {
         //Crea mensaje con datos de versión.
         String msj = "Se encontró una nueva actualizacion\n\n";
@@ -253,7 +216,6 @@ public class activity_tipo_evalu extends AppCompatActivity {
         dialog1.setNegativeButton("Más tarde", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                CancelarNotificacion(1);
                 return;
             }
         });
@@ -262,7 +224,6 @@ public class activity_tipo_evalu extends AppCompatActivity {
         dialog1.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                CancelarNotificacion(1);
                 Log.d("Inicio", "Inicio de descarga de actualizacion");
                 try {
                     autoupdater.InstallNewVersion(null); //Se ejecuta el Autoupdater con la orden de instalar. Se puede poner un listener o no
@@ -274,23 +235,26 @@ public class activity_tipo_evalu extends AppCompatActivity {
                     ProgresoDescarga.setIndeterminate(false);
                     ProgresoDescarga.setProgress(0);
                     ProgresoDescarga.show();
-
                     final DecimalFormat df = new DecimalFormat("#.##");
                     final double totalProgressTime = 100;
                     final Thread t = new Thread() {
                         @Override
                         public void run() {
                             int jumpTime = 0;
-
+                            String TamañoTotal = "";
+                            String TamañoDescargado = "";
                             while (jumpTime < totalProgressTime) {
-                                if((int)autoupdater.getTamañoTotal() != 0){
-                                    Log.d("TamañoTotal2", String.valueOf(df.format(autoupdater.getTamañoTotal())));
+                                if ((int) autoupdater.getTamañoTotal() != 0) {
+                                    Log.d("TamañoTotal2", String.valueOf(TamañoTotal));
                                 }
-                                Log.d("TamañoDescargado2", String.valueOf(df.format(autoupdater.getTamañoDescargado())));
+                                Log.d("TamañoDescargado2", String.valueOf(TamañoDescargado));
                                 try {
-                                    sleep(200);
-                                    jumpTime = (int)((autoupdater.getTamañoDescargado()*100)/autoupdater.getTamañoTotal());
+                                    jumpTime = (int) ((autoupdater.getTamañoDescargado() * 100) / autoupdater.getTamañoTotal());
+                                    TamañoTotal = df.format(autoupdater.getTamañoTotal() / 1048576);
+                                    TamañoDescargado = df.format(autoupdater.getTamañoDescargado() / 1048576);
+                                    ProgresoDescarga.setProgressNumberFormat(TamañoDescargado + " mb / " + TamañoTotal + " mb");
                                     ProgresoDescarga.setProgress(jumpTime);
+                                    sleep(200);
                                 } catch (InterruptedException e) {
                                     // TODO Auto-generated catch block
                                     e.printStackTrace();
@@ -305,8 +269,11 @@ public class activity_tipo_evalu extends AppCompatActivity {
                 }
             }
         });
+        Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);  //Vibrar
+        v.vibrate(1000);
         //Muestra la ventana esperando respuesta.
         dialog1.show();
+
     }
 
 }
