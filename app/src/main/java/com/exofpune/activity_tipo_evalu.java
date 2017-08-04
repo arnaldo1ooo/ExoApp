@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import java.io.File;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -59,6 +60,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
 
         comenzarActualizar();
 
+        EliminarFichero("/download/app.apk");
 
         btnopc1 = (Button) findViewById(R.id.btnopc1);
         btnopc2 = (Button) findViewById(R.id.btnopc2);
@@ -252,7 +254,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
                                     jumpTime = (int) ((autoupdater.getTamañoDescargado() * 100) / autoupdater.getTamañoTotal());
                                     TamañoTotal = df.format(autoupdater.getTamañoTotal() / 1048576);
                                     TamañoDescargado = df.format(autoupdater.getTamañoDescargado() / 1048576);
-                                    ProgresoDescarga.setProgressNumberFormat(TamañoDescargado + " mb / " + TamañoTotal + " mb");
+                                    ProgresoDescarga.setProgressNumberFormat(TamañoDescargado + " MB / " + TamañoTotal + " MB");
                                     ProgresoDescarga.setProgress(jumpTime);
                                     sleep(200);
                                 } catch (InterruptedException e) {
@@ -276,6 +278,21 @@ public class activity_tipo_evalu extends AppCompatActivity {
 
     }
 
+
+    public void EliminarFichero(String Directorio) {
+        File file = new File(Directorio);
+
+        if (file.exists()) {
+            String deleteCmd = "rm -r " + Environment.getExternalStorageDirectory() + Directorio; //SD --> mas directorio ejemplo /download/apk.app
+            Runtime runtime = Runtime.getRuntime();
+            try {
+                runtime.exec(deleteCmd);
+                Log.d("EliminarFichero", "Fichero eliminado con éxito ");
+            } catch (IOException e) {
+                Log.d("EliminarFichero", "" + e);
+            }
+        }
+    }
 }
 
 
