@@ -280,11 +280,11 @@ public class Autoupdater {
 
                 DecimalFormat df = new DecimalFormat("#.##");
                 TamañoTotal = c.getContentLength();
-                Log.d("TamañoTotal", String.valueOf(df.format(TamañoTotal/1048576)+ " MB")); //De Kilobytes a Megabyte
+                Log.d("TamañoTotal", String.valueOf(df.format(TamañoTotal / 1048576) + " MB")); //De Kilobytes a Megabyte
                 while ((len1 = is.read(buffer)) != -1) {
                     fos.write(buffer, 0, len1);
                     TamañoDescargado += len1;
-                    Log.d("TamañoDescargado", String.valueOf(df.format(TamañoDescargado/1048576)+ " MB")); //De Kilobytes a Megabyte
+                    Log.d("TamañoDescargado", String.valueOf(df.format(TamañoDescargado / 1048576) + " MB")); //De Kilobytes a Megabyte
                 }
 
                 fos.close();
@@ -310,10 +310,15 @@ public class Autoupdater {
             listener = null;
         }
     };
+
     public double getTamañoDescargado() {
         return TamañoDescargado;
     }
+
     public double getTamañoTotal() {
         return TamañoTotal;
     }
+
+
+
 }

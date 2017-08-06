@@ -1,6 +1,8 @@
 package com.exofpune;
 
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -10,6 +12,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.os.Vibrator;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -227,7 +230,10 @@ public class activity_tipo_evalu extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Log.d("Inicio", "Inicio de descarga de actualizacion");
+
                 try {
+                    VerificarPermisos(activity_tipo_evalu.this);  //Verifica si tiene permisos para escribir en memoria
+
                     autoupdater.InstallNewVersion(null); //Se ejecuta el Autoupdater con la orden de instalar. Se puede poner un listener o no
 
                     ProgresoDescarga = new ProgressDialog(activity_tipo_evalu.this);
@@ -236,27 +242,38 @@ public class activity_tipo_evalu extends AppCompatActivity {
                     ProgresoDescarga.setCancelable(false);
                     ProgresoDescarga.setIndeterminate(false);
                     ProgresoDescarga.setProgress(0);
+                    ProgresoDescarga.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancelar Actualización", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+
                     ProgresoDescarga.show();
                     final DecimalFormat df = new DecimalFormat("#.##");
-                    final double totalProgressTime = 100;
+                    final double TiempoTotalProgreso = 100;
                     final Thread t = new Thread() {
                         @Override
                         public void run() {
                             int jumpTime = 0;
                             String TamañoTotal = "";
                             String TamañoDescargado = "";
-                            while (jumpTime < totalProgressTime) {
-                                if ((int) autoupdater.getTamañoTotal() != 0) {
-                                    Log.d("TamañoTotal2", String.valueOf(TamañoTotal));
-                                }
+                            double ProgresoDescarga1 = 0;
+                            String VelDescarga = "";
+                            while (jumpTime < TiempoTotalProgreso) {
+                                ProgresoDescarga1 = autoupdater.getTamañoDescargado(); //El valor anterior
+
                                 Log.d("TamañoDescargado2", String.valueOf(TamañoDescargado));
                                 try {
                                     jumpTime = (int) ((autoupdater.getTamañoDescargado() * 100) / autoupdater.getTamañoTotal());
                                     TamañoTotal = df.format(autoupdater.getTamañoTotal() / 1048576);
                                     TamañoDescargado = df.format(autoupdater.getTamañoDescargado() / 1048576);
-                                    ProgresoDescarga.setProgressNumberFormat(TamañoDescargado + " MB / " + TamañoTotal + " MB");
+                                    ProgresoDescarga.setProgressNumberFormat(TamañoDescargado + " MB / " + TamañoTotal + " MB       " + VelDescarga);
+                                    //ProgresoDescarga.setProgressPercentFormat(null); //Oculta el porcentaje
                                     ProgresoDescarga.setProgress(jumpTime);
-                                    sleep(200);
+                                    sleep(1000); //Actualiza cada 1 segundo;
+                                    VelDescarga = df.format((autoupdater.getTamañoDescargado() - ProgresoDescarga1) / 1024) + " KB/Seg";
+                                    Log.d("VelocidadDescarga", VelDescarga);
                                 } catch (InterruptedException e) {
                                     // TODO Auto-generated catch block
                                     e.printStackTrace();
@@ -291,6 +308,36 @@ public class activity_tipo_evalu extends AppCompatActivity {
             } catch (IOException e) {
                 Log.d("EliminarFichero", "" + e);
             }
+        }
+    }
+
+
+    // Storage Permissions
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
+    /**
+     * Checks if the app has permission to write to device storage
+     *
+     * If the app does not has permission then the user will be prompted to grant permissions
+     *
+     * @param ElActivity
+     */
+    public static void VerificarPermisos(Activity ElActivity) {
+        Log.d("Verificando permisos..", "");
+        // Check if we have write Permiso
+        int Permiso = ActivityCompat.checkSelfPermission(ElActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (Permiso != PackageManager.PERMISSION_GRANTED) {
+            // We don't have Permiso so prompt the user
+            ActivityCompat.requestPermissions(
+                    ElActivity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
         }
     }
 }
