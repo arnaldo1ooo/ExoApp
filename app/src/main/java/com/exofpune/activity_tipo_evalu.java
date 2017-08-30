@@ -90,7 +90,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                 Date FechaDate = null;
                 try {
-                    FechaDate = formato.parse("18/08/2017");
+                    FechaDate = formato.parse("18/08/2050");
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
