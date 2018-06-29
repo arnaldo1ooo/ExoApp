@@ -199,11 +199,12 @@ public class activity_evalu1 extends AppCompatActivity {
         });
     }
 
-    public double CalculoPorcentajeOPunto(Spinner ELSpinner, EditText ElEditText, TextView tvTotal, int Totalpuntos, double PuntosObtenidos) {
+    public double CalculoPorcentajeOPunto(Spinner ElSpinner, EditText ElEditText, TextView tvTotal, int Totalpuntos, double PuntosObtenidos) {
         DecimalFormat df = new DecimalFormat("#.###");
-        if (ELSpinner.getSelectedItemId() == 0) {
+        if (ElSpinner.getSelectedItemId() == 0) {
             Log.d("Tipo de Spinner", "Eligió %");
-            if (ElEditText.getText().toString().equals("") == false && MensajeErrorPorcentajeOPuntos(ELSpinner, Double.parseDouble(ElEditText.getText().toString()), Totalpuntos) == false) {//Si es vacio
+            if (ElEditText.getText().toString().equals("") == false &&
+                    MensajeErrorPorcentajeOPuntos(ElSpinner, Double.parseDouble(ElEditText.getText().toString()), Totalpuntos) == false) {//Si es vacio
                 PuntosObtenidos = (Double.parseDouble(ElEditText.getText().toString()) * Totalpuntos) / 100;
                 tvTotal.setText(df.format(PuntosObtenidos) + " de " + Totalpuntos + " Puntos");
             } else {
@@ -212,7 +213,7 @@ public class activity_evalu1 extends AppCompatActivity {
             }
         } else {
             Log.d("Tipo de Spinner", "Eligió Puntos");
-            if (ElEditText.getText().toString().equals("") == false && MensajeErrorPorcentajeOPuntos(ELSpinner, Double.parseDouble(ElEditText.getText().toString()), Totalpuntos) == false) {
+            if (ElEditText.getText().toString().equals("") == false && MensajeErrorPorcentajeOPuntos(ElSpinner, Double.parseDouble(ElEditText.getText().toString()), Totalpuntos) == false) {
                 PuntosObtenidos = Double.parseDouble(ElEditText.getText().toString());
                 tvTotal.setText(df.format(PuntosObtenidos) + " de " + Totalpuntos + " Puntoss");
             } else {
@@ -244,13 +245,18 @@ public class activity_evalu1 extends AppCompatActivity {
         }
     }
 
-    private void AlCambiarValorSpinner(final Spinner ElSpinner, final EditText ElEditText, final TextView tvTotal, final int Totalpuntos, final Double PuntosObtenidos) {
-        //Al cambiar valor de spinner1
+
+    private void AlCambiarValorSpinner(final Spinner ElSpinner, final EditText ElEditText, final TextView tvTotal, final int TotalPuntos,
+    final Double PuntosObtenidos){
+        //Al cambiar valor de spinner
         ElSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView adapter, View v, int i, long lng) {
                 Log.d("sd", "Cambio valor de sp");
-                CalculoPorcentajeOPunto(ElSpinner, ElEditText, tvTotal, Totalpuntos, PuntosObtenidos);
+                CalculoPorcentajeOPunto(ElSpinner, ElEditText, tvTotal, TotalPuntos, PuntosObtenidos);
+                if(ElSpinner.getSelectedItemId() == 1){
+                    ElEditText.setText(String.valueOf(PuntosObtenidos));
+                }
             }
 
             @Override
