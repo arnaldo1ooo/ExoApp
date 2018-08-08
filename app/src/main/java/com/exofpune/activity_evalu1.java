@@ -199,26 +199,27 @@ public class activity_evalu1 extends AppCompatActivity {
         });
     }
 
+
     public double CalculoPorcentajeOPunto(Spinner ElSpinner, EditText ElEditText, TextView tvTotal, int Totalpuntos, double PuntosObtenidos) {
         DecimalFormat df = new DecimalFormat("#.###");
-        if (ElSpinner.getSelectedItemId() == 0) {
-            Log.d("Tipo de Spinner", "Eligió %");
-            if (ElEditText.getText().toString().equals("") == false &&
-                    MensajeErrorPorcentajeOPuntos(ElSpinner, Double.parseDouble(ElEditText.getText().toString()), Totalpuntos) == false) {//Si es vacio
+        if (ElEditText.getText().toString().equals("") == false) {
+            if (ElSpinner.getSelectedItemId() == 0) {
+                Log.d("Tipo de Spinner", "Eligió %");
+
+                if (MensajeErrorPorcentajeOPuntos(ElSpinner, Double.parseDouble(ElEditText.getText().toString()), Totalpuntos) == false) {//Si es vacio
+                    PuntosObtenidos = (Double.parseDouble(ElEditText.getText().toString()) * Totalpuntos) / 100;
+                    tvTotal.setText(df.format(PuntosObtenidos) + " de " + Totalpuntos + " Puntos");
+                } else {
+                    PuntosObtenidos = 0.0;
+                    tvTotal.setText("0 de " + Totalpuntos + " Puntos");
+                }
+
+            }
+
+            if (ElSpinner.getSelectedItemId() == 1) {
+                Log.d("Tipo de Spinner", "Eligió Puntos");
                 PuntosObtenidos = (Double.parseDouble(ElEditText.getText().toString()) * Totalpuntos) / 100;
                 tvTotal.setText(df.format(PuntosObtenidos) + " de " + Totalpuntos + " Puntos");
-            } else {
-                PuntosObtenidos = 0.0;
-                tvTotal.setText("0 de " + Totalpuntos + " Puntos");
-            }
-        } else {
-            Log.d("Tipo de Spinner", "Eligió Puntos");
-            if (ElEditText.getText().toString().equals("") == false && MensajeErrorPorcentajeOPuntos(ElSpinner, Double.parseDouble(ElEditText.getText().toString()), Totalpuntos) == false) {
-                PuntosObtenidos = Double.parseDouble(ElEditText.getText().toString());
-                tvTotal.setText(df.format(PuntosObtenidos) + " de " + Totalpuntos + " Puntoss");
-            } else {
-                PuntosObtenidos = 0.0;
-                tvTotal.setText("0 de " + Totalpuntos + " Puntos");
             }
         }
         return PuntosObtenidos;
@@ -252,16 +253,31 @@ public class activity_evalu1 extends AppCompatActivity {
         ElSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView adapter, View v, int i, long lng) {
-                Log.d("sd", "Cambio valor de sp");
+                if(ElSpinner == sp1) {
+                    Log.d("Mensaje", "Se cambió de valor el 1° spinner");
+
+                    if(ElSpinner.getSelectedItemId() == 0){
+                        Log.d("Mensaje", "Se seleccionó el item 0 en el sp1");
+                        CalculoPorcentajeOPunto(ElSpinner, ElEditText, tvTotal, TotalPuntos, PuntosObtenidos);
+                    }
+
+                    if(ElSpinner.getSelectedItemId() == 1){
+                        Log.d("Mensaje", "Se seleccionó el item 1 en el sp1");
+                        CalculoPorcentajeOPunto(ElSpinner, ElEditText, tvTotal, TotalPuntos, PuntosObtenidos);
+                    }
+                }
+
+
+                /* Log.d("sd", "Cambio valor de sp");
                 CalculoPorcentajeOPunto(ElSpinner, ElEditText, tvTotal, TotalPuntos, PuntosObtenidos);
                 if(ElSpinner.getSelectedItemId() == 1){
                     ElEditText.setText(String.valueOf(PuntosObtenidos));
-                }
+                }*/
             }
 
             @Override
             public void onNothingSelected(AdapterView arg0) {
-                Toast.makeText(getApplicationContext(), "Ninguno seleccionado", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Ninguno seleccionado", Toast.LENGTH_SHORT).show();
             }
         });
     }

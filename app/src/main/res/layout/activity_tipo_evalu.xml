@@ -77,7 +77,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/boton_borde_redondo"
         android:soundEffectsEnabled="false"
-        android:text="20 - 20"
+        android:text="20 - 20 - 0"
         android:textColor="#ffffff"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"

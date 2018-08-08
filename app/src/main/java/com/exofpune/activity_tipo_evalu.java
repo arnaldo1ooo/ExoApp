@@ -86,22 +86,8 @@ public class activity_tipo_evalu extends AppCompatActivity {
         btnopc1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Date FechaActual = new Date();
-                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-                Date FechaDate = null;
-                try {
-                    FechaDate = formato.parse("18/08/2050");
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-                if (FechaActual.before(FechaDate)) {
-                    Intent intent = new Intent(v.getContext(), activity_evalu1.class);
-                    startActivityForResult(intent, 0);
-                } else {
-                    Toast.makeText(activity_tipo_evalu.this, "La versión de prueba de ExoFPUNE caducó", Toast.LENGTH_SHORT).show();
-                }
-
+                Intent intent = new Intent(v.getContext(), activity_evalu1.class);
+                startActivityForResult(intent, 0);
             }
         });
 
