@@ -1,5 +1,8 @@
 package com.exofpune;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,11 +15,17 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.text.DecimalFormat;
+
+import capturapantalla.ScreenshotType;
+import capturapantalla.ScreenshotUtils;
 
 public class activity_evalu1 extends AppCompatActivity {
 
@@ -27,6 +36,7 @@ public class activity_evalu1 extends AppCompatActivity {
     TextView tvResultado;
     TextView tvFaltante;
     TextView tvPuntosFinal;
+    TextView tvNota;
     int total1p = 15;
     int total2p = 15;
     int totaltp = 10;
@@ -44,6 +54,9 @@ public class activity_evalu1 extends AppCompatActivity {
     double PuntosObtenidos2 = 0;
     double PuntosObtenidos3 = 0;
     double PuntosParaExonerar = 32.4;
+    private ImageView ivCaptura;
+    private Button btnCaptura;
+    private LinearLayout lytCaptura;
 
 
     @Override
@@ -82,6 +95,10 @@ public class activity_evalu1 extends AppCompatActivity {
         tvFeli = (TextView) findViewById(R.id.tvFeli);
         tvFaltante = (TextView) findViewById(R.id.tvFaltante);
         tvPuntosFinal = (TextView) findViewById(R.id.tvPuntosFinal);
+        tvNota = (TextView) findViewById(R.id.tvNota);
+        btnCaptura = (Button) findViewById(R.id.btnCaptura);
+        ivCaptura = (ImageView) findViewById(R.id.ivCaptura);
+        lytCaptura = (LinearLayout) findViewById(R.id.lytCaptura);
 
         //Spinner
         ArrayAdapter<String> adaptadorsp = new ArrayAdapter<String>(this, R.layout.spinner_configuracion, array);
@@ -89,12 +106,12 @@ public class activity_evalu1 extends AppCompatActivity {
         sp2.setAdapter(adaptadorsp);
         sp3.setAdapter(adaptadorsp);
 
-
+//Se pone invisible los text view
         tvFaltante.setVisibility(View.INVISIBLE);
         tvResultado.setVisibility(View.INVISIBLE);
         tvFeli.setVisibility(View.INVISIBLE);
         tvPuntosFinal.setVisibility(TextView.INVISIBLE);
-
+        tvNota.setVisibility(TextView.INVISIBLE);
 
 //Al dar enter
         etTp.setOnKeyListener(new View.OnKeyListener() {
@@ -133,6 +150,14 @@ public class activity_evalu1 extends AppCompatActivity {
             }
         });
 
+
+        btnCaptura.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                takeScreenshot(ScreenshotType.FULL);
+                return;
+            }
+        });
     }
 
 
@@ -268,16 +293,11 @@ public class activity_evalu1 extends AppCompatActivity {
                 }
 
 
-                /* Log.d("sd", "Cambio valor de sp");
-                CalculoPorcentajeOPunto(ElSpinner, ElEditText, tvTotal, TotalPuntos, PuntosObtenidos);
-                if(ElSpinner.getSelectedItemId() == 1){
-                    ElEditText.setText(String.valueOf(PuntosObtenidos));
-                }*/
             }
 
             @Override
             public void onNothingSelected(AdapterView arg0) {
-                //Toast.makeText(getApplicationContext(), "Ninguno seleccionado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Ninguno seleccionado", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -314,6 +334,7 @@ public class activity_evalu1 extends AppCompatActivity {
             tvFaltante.setVisibility(TextView.VISIBLE);
             tvResultado.setVisibility(TextView.VISIBLE);
             tvPuntosFinal.setVisibility(TextView.VISIBLE);
+            tvNota.setVisibility(TextView.VISIBLE);
             tvPuntosFinal.setText("Debes hacer " + df.format(((60 - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) * 100) / 60) + "% en la final (" + df.format(60 - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " de 60)");
         }
     }
@@ -321,5 +342,63 @@ public class activity_evalu1 extends AppCompatActivity {
     public void OcultarTeclado(View v) {
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+    }
+
+
+
+    /*  Share Screenshot  */
+    private void shareScreenshot(File file) {
+        Uri uri = Uri.fromFile(file);//Convert file path into Uri for sharing
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.setType("image/*");
+        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
+        intent.putExtra(android.content.Intent.EXTRA_TEXT, getString(R.string.sharing_text));
+        intent.putExtra(Intent.EXTRA_STREAM, uri);//pass uri here
+        startActivity(Intent.createChooser(intent, getString(R.string.share_title)));
+    }
+
+
+
+    /*  Method which will take screenshot on Basis of Screenshot Type ENUM  */
+    private void takeScreenshot(ScreenshotType screenshotType) {
+        Bitmap b = null;
+        switch (screenshotType) {
+            case FULL:
+                //If Screenshot type is FULL take full page screenshot i.e our root content.
+                b = ScreenshotUtils.getScreenShot(lytCaptura);
+                break;
+            case CUSTOM:
+                //If Screenshot type is CUSTOM
+
+                btnCaptura.setVisibility(View.INVISIBLE);//set the visibility to INVISIBLE of first button
+                //hiddenText.setVisibility(View.VISIBLE);//set the visibility to VISIBLE of hidden text
+
+                b = ScreenshotUtils.getScreenShot(lytCaptura);
+
+                //After taking screenshot reset the button and view again
+                btnCaptura.setVisibility(View.VISIBLE);//set the visibility to VISIBLE of first button again
+                //hiddenText.setVisibility(View.INVISIBLE);//set the visibility to INVISIBLE of hidden text
+
+                //NOTE:  You need to use visibility INVISIBLE instead of GONE to remove the view from frame else it wont consider the view in frame and you will not get screenshot as you required.
+                break;
+        }
+
+        //If bitmap is not null
+        if (b != null) {
+            showScreenShotImage(b);//show bitmap over imageview
+
+            File saveFile = ScreenshotUtils.getMainDirectoryName(this);//get the path to save screenshot
+            File file = ScreenshotUtils.store(b, "screenshot" + screenshotType + ".jpg", saveFile);//save the screenshot to selected path
+            shareScreenshot(file);//finally share screenshot
+        } else
+            //If bitmap is null show toast message
+            Toast.makeText(this, R.string.screenshot_take_failed, Toast.LENGTH_SHORT).show();
+
+    }
+
+    /*  Show screenshot Bitmap */
+    private void showScreenShotImage(Bitmap b) {
+        ivCaptura.setImageBitmap(b);
     }
 }
