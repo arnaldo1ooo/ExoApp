@@ -2,6 +2,7 @@ package com.exofpune;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -22,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.lang.annotation.ElementType;
 import java.text.DecimalFormat;
 
 import capturapantalla.ScreenshotType;
@@ -29,6 +33,14 @@ import capturapantalla.ScreenshotUtils;
 
 public class activity_evalu1 extends AppCompatActivity {
 
+    int TotalPuntos1 = 15;
+    int TotalPuntos2 = 15;
+    int TotalPuntos3 = 10;
+    double MinNota5 = 37.6;
+    double PuntosParaExonerar = 32.4;
+    double PuntosObtenidos1 = 0;
+    double PuntosObtenidos2 = 0;
+    double PuntosObtenidos3 = 0;
     Button btnCalculo;
     EditText et1parcial;
     EditText et2parcial;
@@ -37,10 +49,6 @@ public class activity_evalu1 extends AppCompatActivity {
     TextView tvFaltante;
     TextView tvPuntosFinal;
     TextView tvNota;
-    int total1p = 15;
-    int total2p = 15;
-    int totaltp = 10;
-    double MinNota5 = 37.6;
     double resultado;
     Spinner sp1;
     Spinner sp2;
@@ -50,14 +58,26 @@ public class activity_evalu1 extends AppCompatActivity {
     TextView tvTotalText2;
     TextView tvTotalText3;
     TextView tvFeli;
-    double PuntosObtenidos1 = 0;
-    double PuntosObtenidos2 = 0;
-    double PuntosObtenidos3 = 0;
-    double PuntosParaExonerar = 32.4;
-    private ImageView ivCaptura;
-    private Button btnCaptura;
-    private LinearLayout lytCaptura;
+    private ImageView ivCompartir;
+    private Button btnCompartir;
+    private LinearLayout layoutCompartir;
 
+    //Crear boton compartir en action bar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_compartir, menu);
+        return true;
+    }
+
+    //Al hacer click en boton compartir
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.btnCompartir) {
+            TomarCaptura(ScreenshotType.FULL);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,15 +91,14 @@ public class activity_evalu1 extends AppCompatActivity {
 
         try {
             Bundle extras = getIntent().getExtras();
-            total1p = extras.getInt("puntototal1parcial");
-            total2p = extras.getInt("puntototal2parcial");
-            totaltp = extras.getInt("puntototaltp");
+            TotalPuntos1 = extras.getInt("puntototal1parcial");
+            TotalPuntos2 = extras.getInt("puntototal2parcial");
+            TotalPuntos3 = extras.getInt("puntototaltp");
             MinNota5 = extras.getDouble("puntotonota5");
             PuntosParaExonerar = extras.getDouble("Minimo Exoneracion");
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
         btnCalculo = (Button) findViewById(R.id.btnCalculo);
         et1parcial = (EditText) findViewById(R.id.et1Parcial);
@@ -96,9 +115,9 @@ public class activity_evalu1 extends AppCompatActivity {
         tvFaltante = (TextView) findViewById(R.id.tvFaltante);
         tvPuntosFinal = (TextView) findViewById(R.id.tvPuntosFinal);
         tvNota = (TextView) findViewById(R.id.tvNota);
-        btnCaptura = (Button) findViewById(R.id.btnCaptura);
-        ivCaptura = (ImageView) findViewById(R.id.ivCaptura);
-        lytCaptura = (LinearLayout) findViewById(R.id.lytCaptura);
+        btnCompartir = (Button) findViewById(R.id.btnCompartir);
+        ivCompartir = (ImageView) findViewById(R.id.ivCompartir);
+        layoutCompartir = (LinearLayout) findViewById(R.id.layoutCompartir);
 
         //Spinner
         ArrayAdapter<String> adaptadorsp = new ArrayAdapter<String>(this, R.layout.spinner_configuracion, array);
@@ -106,14 +125,18 @@ public class activity_evalu1 extends AppCompatActivity {
         sp2.setAdapter(adaptadorsp);
         sp3.setAdapter(adaptadorsp);
 
-//Se pone invisible los text view
-        tvFaltante.setVisibility(View.INVISIBLE);
-        tvResultado.setVisibility(View.INVISIBLE);
-        tvFeli.setVisibility(View.INVISIBLE);
-        tvPuntosFinal.setVisibility(TextView.INVISIBLE);
-        tvNota.setVisibility(TextView.INVISIBLE);
+        //Se pone invisible los text view
+        PonerTexViewInvisibles();
 
-//Al dar enter
+        //Llamada de metodos
+        AlCambiarValorSpinner(sp1, et1parcial, tvTotalText1, TotalPuntos1, PuntosObtenidos1);
+        AlCambiarValorSpinner(sp2, et2parcial, tvTotalText2, TotalPuntos2, PuntosObtenidos2);
+        AlCambiarValorSpinner(sp3, etTp, tvTotalText3, TotalPuntos3, PuntosObtenidos3);
+        AlEscribirEnEditText(et1parcial, PuntosObtenidos1, TotalPuntos1);
+        AlEscribirEnEditText(et2parcial, PuntosObtenidos2, TotalPuntos2);
+        AlEscribirEnEditText(etTp, PuntosObtenidos3, TotalPuntos3);
+
+        //Al dar enter
         etTp.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 // If the event is a key-down event on the "enter" button
@@ -125,14 +148,6 @@ public class activity_evalu1 extends AppCompatActivity {
             }
         });
 
-
-        AlCambiarValorSpinner(sp1, et1parcial, tvTotalText1, total1p, PuntosObtenidos1);
-        AlCambiarValorSpinner(sp2, et2parcial, tvTotalText2, total2p, PuntosObtenidos2);
-        AlCambiarValorSpinner(sp3, etTp, tvTotalText3, totaltp, PuntosObtenidos3);
-        AlModificarEditText1();
-        AlModificarEditText2();
-        AlModificarEditText3();
-
         btnCalculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,31 +155,20 @@ public class activity_evalu1 extends AppCompatActivity {
                 OcultarTeclado(v);
                 SiEsVacio();
 
-                if (MensajeErrorPorcentajeOPuntos(sp1, Double.parseDouble(et1parcial.getText().toString()), total1p) == false &&
-                        MensajeErrorPorcentajeOPuntos(sp2, Double.parseDouble(et2parcial.getText().toString()), total2p) == false &&
-                        MensajeErrorPorcentajeOPuntos(sp3, Double.parseDouble(etTp.getText().toString()), totaltp) == false) {
+                if (MensajesError(et1parcial, sp1, PuntosObtenidos1, TotalPuntos1) == false &&
+                        MensajesError(et2parcial, sp2, PuntosObtenidos2, TotalPuntos2) == false &&
+                        MensajesError(etTp, sp3, PuntosObtenidos3, TotalPuntos3) == false) {
                     resultado = PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3;
                     tvResultado.setText(df.format(resultado) + " Puntos de 40 Puntos");
                     Felicitar();
                 }
             }
         });
-
-
-        btnCaptura.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                takeScreenshot(ScreenshotType.FULL);
-                return;
-            }
-        });
     }
 
-
-    private void AlModificarEditText1() {
+    private void AlEscribirEnEditText(final EditText ElEditText, final Double PuntosObtenidos, final int TotalPuntos) {
         //Al cambiar texto1
-        et1parcial.addTextChangedListener(new TextWatcher() {
-
+        ElEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {  //Antes de escritir
 
@@ -177,118 +181,103 @@ public class activity_evalu1 extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) { //Despues de escribir
-                PuntosObtenidos1 = CalculoPorcentajeOPunto(sp1, et1parcial, tvTotalText1, total1p, PuntosObtenidos1);
+                if (ElEditText == et1parcial) {
+                    PuntosObtenidos1 = ConversionPorcyPunto(sp1, et1parcial, tvTotalText1, TotalPuntos1, PuntosObtenidos1);
+                } else {
+                    if (ElEditText == et2parcial) {
+                        PuntosObtenidos2 = ConversionPorcyPunto(sp2, et2parcial, tvTotalText2, TotalPuntos2, PuntosObtenidos2);
+                    } else {
+                        if (ElEditText == etTp) {
+                            PuntosObtenidos3 = ConversionPorcyPunto(sp3, etTp, tvTotalText3, TotalPuntos3, PuntosObtenidos3);
+                        }
+                    }
+                }
             }
         });
     }
 
-    private void AlModificarEditText2() {
-        //Al cambiar texto1
-        et2parcial.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {  //Antes de escritir
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {  //Cuando se esta modificando un texto
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) { //Despues de escribir
-                PuntosObtenidos2 = CalculoPorcentajeOPunto(sp2, et2parcial, tvTotalText2, total2p, PuntosObtenidos2);
-            }
-        });
-    }
-
-    private void AlModificarEditText3() {
-        //Al cambiar texto1
-        etTp.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {  //Antes de escritir
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {  //Cuando se esta modificando un texto
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) { //Despues de escribir
-                PuntosObtenidos3 = CalculoPorcentajeOPunto(sp3, etTp, tvTotalText3, totaltp, PuntosObtenidos3);
-            }
-        });
-    }
-
-
-    public double CalculoPorcentajeOPunto(Spinner ElSpinner, EditText ElEditText, TextView tvTotal, int Totalpuntos, double PuntosObtenidos) {
+    public double ConversionPorcyPunto(Spinner ElSpinner, EditText ElEditText, TextView tvTotal, int Totalpuntos, double PuntosObtenidos) {
         DecimalFormat df = new DecimalFormat("#.###");
         if (ElEditText.getText().toString().equals("") == false) {
             if (ElSpinner.getSelectedItemId() == 0) {
-                Log.d("Tipo de Spinner", "Eligió %");
-
-                if (MensajeErrorPorcentajeOPuntos(ElSpinner, Double.parseDouble(ElEditText.getText().toString()), Totalpuntos) == false) {//Si es vacio
+                Log.d("Metodo Conversion", "Seleccion de Spinner % %");
+                if (MensajesError(ElEditText, ElSpinner, PuntosObtenidos, Totalpuntos) == false) { //Revisa si cumple ELEditText
                     PuntosObtenidos = (Double.parseDouble(ElEditText.getText().toString()) * Totalpuntos) / 100;
                     tvTotal.setText(df.format(PuntosObtenidos) + " de " + Totalpuntos + " Puntos");
                 } else {
                     PuntosObtenidos = 0.0;
                     tvTotal.setText("0 de " + Totalpuntos + " Puntos");
                 }
-
             }
 
             if (ElSpinner.getSelectedItemId() == 1) {
-                Log.d("Tipo de Spinner", "Eligió Puntos");
-                PuntosObtenidos = (Double.parseDouble(ElEditText.getText().toString()) * Totalpuntos) / 100;
-                tvTotal.setText(df.format(PuntosObtenidos) + " de " + Totalpuntos + " Puntos");
+                Log.d("Metodo Conversion", "Seleccion de Spinner Puntos");
+                if (MensajesError(ElEditText, ElSpinner, Double.parseDouble(ElEditText.getText().toString()), Totalpuntos) == false) { //Revisa si cumple ELEditText
+                    PuntosObtenidos = (Double.parseDouble(ElEditText.getText().toString()) * 100) / Totalpuntos;
+                    tvTotal.setText(df.format(PuntosObtenidos) + "% de 100%");
+                } else {
+                    PuntosObtenidos = 0.0;
+                    tvTotal.setText("0 de " + Totalpuntos + " Puntos");
+                }
             }
+
+        } else{
+            Log.d("Metodo Conversion", "Esta en blanco");
+            tvTotal.setText("0 de " + Totalpuntos + " Puntos");
         }
         return PuntosObtenidos;
     }
 
-    //Metodo Mensaje de error
-    public boolean MensajeErrorPorcentajeOPuntos(Spinner ElSpinner, double PorcOPuntos, int TotalPuntos) {
-        if (ElSpinner.getSelectedItemId() == 0) { //Si es en Porcentaje
-            if (PorcOPuntos > 100) {
+
+    //Metodo Mensajes de error
+    public boolean MensajesError(EditText ElEditText, Spinner ElSpinner, Double PuntosObtenidos, int TotalPuntos) {
+        if (ElEditText.getText().toString().equals("") == true) { //Si el EditText esta en blanco mandar true
+            Log.d("Metodo MensajesError", "Esta en blanco");
+            return true;
+        }
+
+        if (ElSpinner.getSelectedItemId() == 0) {
+            if (Double.parseDouble(ElEditText.getText().toString()) > 100) {
+                ElEditText.setTextColor(Color.RED);
                 Toast toast = Toast.makeText(this, "El porcentaje obtenido no puede ser mayor al 100%", Toast.LENGTH_SHORT);
                 toast.show();
                 return true;
-            } else {
-                return false;
             }
-        } else { //Si es en Puntos
-            if (PorcOPuntos > TotalPuntos) {
-                Toast toast = Toast.makeText(this, "El punto obtenido no puede ser mayor a " + TotalPuntos + " Puntos", Toast.LENGTH_SHORT);
-                toast.show();
-                return true;
-            } else {
-                return false;
+            else{
+                ElEditText.setTextColor(Color.WHITE);
+            }
+        } else {
+            if (ElSpinner.getSelectedItemId() == 1) {
+                if (PuntosObtenidos > TotalPuntos) {
+                    ElEditText.setTextColor(Color.RED);
+                    Toast toast = Toast.makeText(this, "El punto obtenido no puede ser mayor a " + TotalPuntos + " Puntos", Toast.LENGTH_SHORT);
+                    toast.show();
+                    return true;
+                }
+                else{
+                    ElEditText.setTextColor(Color.WHITE);
+                }
             }
         }
+        return false;
     }
 
-
-    private void AlCambiarValorSpinner(final Spinner ElSpinner, final EditText ElEditText, final TextView tvTotal, final int TotalPuntos,
-    final Double PuntosObtenidos){
+    private void AlCambiarValorSpinner(final Spinner ElSpinner, final EditText ElEditText, final TextView tvTotal, final int TotalPuntos, final Double PuntosObtenidos) {
         //Al cambiar valor de spinner
         ElSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView adapter, View v, int i, long lng) {
-                if(ElSpinner == sp1) {
+                if (ElSpinner == sp1) {
                     Log.d("Mensaje", "Se cambió de valor el 1° spinner");
 
-                    if(ElSpinner.getSelectedItemId() == 0){
+                    if (ElSpinner.getSelectedItemId() == 0) {
                         Log.d("Mensaje", "Se seleccionó el item 0 en el sp1");
-                        CalculoPorcentajeOPunto(ElSpinner, ElEditText, tvTotal, TotalPuntos, PuntosObtenidos);
+                        ConversionPorcyPunto(ElSpinner, ElEditText, tvTotal, TotalPuntos, PuntosObtenidos);
                     }
 
-                    if(ElSpinner.getSelectedItemId() == 1){
+                    if (ElSpinner.getSelectedItemId() == 1) {
                         Log.d("Mensaje", "Se seleccionó el item 1 en el sp1");
-                        CalculoPorcentajeOPunto(ElSpinner, ElEditText, tvTotal, TotalPuntos, PuntosObtenidos);
+                        ConversionPorcyPunto(ElSpinner, ElEditText, tvTotal, TotalPuntos, PuntosObtenidos);
                     }
                 }
 
@@ -344,10 +333,8 @@ public class activity_evalu1 extends AppCompatActivity {
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 
-
-
-    /*  Share Screenshot  */
-    private void shareScreenshot(File file) {
+    /*  Compartir la captura de pantalla  */
+    private void CompartirCaptura(File file) {
         Uri uri = Uri.fromFile(file);//Convert file path into Uri for sharing
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_SEND);
@@ -358,26 +345,32 @@ public class activity_evalu1 extends AppCompatActivity {
         startActivity(Intent.createChooser(intent, getString(R.string.share_title)));
     }
 
+    private void PonerTexViewInvisibles() {
+        tvFaltante.setVisibility(View.INVISIBLE);
+        tvResultado.setVisibility(View.INVISIBLE);
+        tvFeli.setVisibility(View.INVISIBLE);
+        tvPuntosFinal.setVisibility(TextView.INVISIBLE);
+        tvNota.setVisibility(TextView.INVISIBLE);
+    }
 
-
-    /*  Method which will take screenshot on Basis of Screenshot Type ENUM  */
-    private void takeScreenshot(ScreenshotType screenshotType) {
+    /*  Método que tomará una captura de pantalla en Bases de captura de pantalla Tipo ENUM  */
+    private void TomarCaptura(ScreenshotType screenshotType) {
         Bitmap b = null;
         switch (screenshotType) {
             case FULL:
                 //If Screenshot type is FULL take full page screenshot i.e our root content.
-                b = ScreenshotUtils.getScreenShot(lytCaptura);
+                b = ScreenshotUtils.getScreenShot(layoutCompartir);
                 break;
             case CUSTOM:
                 //If Screenshot type is CUSTOM
 
-                btnCaptura.setVisibility(View.INVISIBLE);//set the visibility to INVISIBLE of first button
+                btnCompartir.setVisibility(View.INVISIBLE);//set the visibility to INVISIBLE of first button
                 //hiddenText.setVisibility(View.VISIBLE);//set the visibility to VISIBLE of hidden text
 
-                b = ScreenshotUtils.getScreenShot(lytCaptura);
+                b = ScreenshotUtils.getScreenShot(layoutCompartir);
 
                 //After taking screenshot reset the button and view again
-                btnCaptura.setVisibility(View.VISIBLE);//set the visibility to VISIBLE of first button again
+                btnCompartir.setVisibility(View.VISIBLE);//set the visibility to VISIBLE of first button again
                 //hiddenText.setVisibility(View.INVISIBLE);//set the visibility to INVISIBLE of hidden text
 
                 //NOTE:  You need to use visibility INVISIBLE instead of GONE to remove the view from frame else it wont consider the view in frame and you will not get screenshot as you required.
@@ -386,19 +379,19 @@ public class activity_evalu1 extends AppCompatActivity {
 
         //If bitmap is not null
         if (b != null) {
-            showScreenShotImage(b);//show bitmap over imageview
+            MostrarCapturaEnImage(b);//show bitmap over imageview
 
             File saveFile = ScreenshotUtils.getMainDirectoryName(this);//get the path to save screenshot
             File file = ScreenshotUtils.store(b, "screenshot" + screenshotType + ".jpg", saveFile);//save the screenshot to selected path
-            shareScreenshot(file);//finally share screenshot
+            CompartirCaptura(file);//finally share screenshot
         } else
             //If bitmap is null show toast message
             Toast.makeText(this, R.string.screenshot_take_failed, Toast.LENGTH_SHORT).show();
 
     }
 
-    /*  Show screenshot Bitmap */
-    private void showScreenShotImage(Bitmap b) {
-        ivCaptura.setImageBitmap(b);
+    /*  Mostrar captura de pantalla Bitmap */
+    private void MostrarCapturaEnImage(Bitmap b) {
+        ivCompartir.setImageBitmap(b);
     }
 }
