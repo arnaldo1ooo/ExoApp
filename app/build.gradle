@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'arnaldo1ooo'
             keyPassword '5127713-3'
-            storeFile file('C:/Users/arnal/Google Drive/Programas/ExoFPUNE/firmadigitalExoFPUNE.jks')
+            storeFile file('C:/Users/Arnaldo Cantero/Google Drive/Programas/ExoFPUNE/firmadigitalExoFPUNE.jks')
             storePassword '5127713-3'
         }
     }

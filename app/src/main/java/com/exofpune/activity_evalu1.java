@@ -221,7 +221,7 @@ public class activity_evalu1 extends AppCompatActivity {
                 }
             }
 
-        } else{
+        } else {
             Log.d("Metodo Conversion", "Esta en blanco");
             tvTotal.setText("0 de " + Totalpuntos + " Puntos");
         }
@@ -242,8 +242,7 @@ public class activity_evalu1 extends AppCompatActivity {
                 Toast toast = Toast.makeText(this, "El porcentaje obtenido no puede ser mayor al 100%", Toast.LENGTH_SHORT);
                 toast.show();
                 return true;
-            }
-            else{
+            } else {
                 ElEditText.setTextColor(Color.WHITE);
             }
         } else {
@@ -253,8 +252,7 @@ public class activity_evalu1 extends AppCompatActivity {
                     Toast toast = Toast.makeText(this, "El punto obtenido no puede ser mayor a " + TotalPuntos + " Puntos", Toast.LENGTH_SHORT);
                     toast.show();
                     return true;
-                }
-                else{
+                } else {
                     ElEditText.setTextColor(Color.WHITE);
                 }
             }
@@ -280,8 +278,6 @@ public class activity_evalu1 extends AppCompatActivity {
                         ConversionPorcyPunto(ElSpinner, ElEditText, tvTotal, TotalPuntos, PuntosObtenidos);
                     }
                 }
-
-
             }
 
             @Override
@@ -306,6 +302,7 @@ public class activity_evalu1 extends AppCompatActivity {
     public void Felicitar() {
         DecimalFormat df = new DecimalFormat("#.###");
         if (resultado >= PuntosParaExonerar) {
+            tvFeli.setTextColor(Color.GREEN);
             tvFeli.setText("EXONERASTE!! :D");
             tvFeli.setVisibility(View.VISIBLE);
             tvFaltante.setVisibility(TextView.VISIBLE);
@@ -317,14 +314,29 @@ public class activity_evalu1 extends AppCompatActivity {
                 tvFaltante.setText("Obtuviste nota 4");
             }
         } else {
-            tvFeli.setText("No exoneraste :(");
-            tvFaltante.setText("Te faltaron " + df.format(PuntosParaExonerar - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " Puntos para Exonerar");
-            tvFeli.setVisibility(View.VISIBLE);
-            tvFaltante.setVisibility(TextView.VISIBLE);
-            tvResultado.setVisibility(TextView.VISIBLE);
-            tvPuntosFinal.setVisibility(TextView.VISIBLE);
-            tvNota.setVisibility(TextView.VISIBLE);
-            tvPuntosFinal.setText("Debes hacer " + df.format(((60 - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) * 100) / 60) + "% en la final (" + df.format(60 - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " de 60)");
+            if (resultado < PuntosParaExonerar && resultado >= 32) {
+                tvFeli.setTextColor(Color.YELLOW);
+                tvFeli.setText("Casi exoneraste :/");
+                tvFaltante.setText("Te faltaron " + df.format(PuntosParaExonerar - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " Puntos para Exonerar");
+                tvFeli.setVisibility(View.VISIBLE);
+                tvFaltante.setVisibility(TextView.VISIBLE);
+                tvResultado.setVisibility(TextView.VISIBLE);
+                tvPuntosFinal.setVisibility(TextView.VISIBLE);
+                tvNota.setVisibility(TextView.VISIBLE);
+                tvPuntosFinal.setText("Debes hacer " + df.format(((60 - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) * 100) / 60) + "% en la final (" + df.format(60 - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " de 60)");
+            } else{
+                if (resultado < PuntosParaExonerar) {
+                    tvFeli.setTextColor(Color.RED);
+                    tvFeli.setText("No exoneraste :(");
+                    tvFaltante.setText("Te faltaron " + df.format(PuntosParaExonerar - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " Puntos para Exonerar");
+                    tvFeli.setVisibility(View.VISIBLE);
+                    tvFaltante.setVisibility(TextView.VISIBLE);
+                    tvResultado.setVisibility(TextView.VISIBLE);
+                    tvPuntosFinal.setVisibility(TextView.VISIBLE);
+                    tvNota.setVisibility(TextView.VISIBLE);
+                    tvPuntosFinal.setText("Debes hacer " + df.format(((60 - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) * 100) / 60) + "% en la final (" + df.format(60 - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " de 60)");
+                }
+            }
         }
     }
 
