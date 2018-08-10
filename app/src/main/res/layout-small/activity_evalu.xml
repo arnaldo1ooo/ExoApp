@@ -358,7 +358,7 @@
         android:layout_marginEnd="8dp">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/textInputLayout8"
+            android:id="@+id/tilTp"
             android:layout_width="50dp"
             android:layout_height="54dp"
             android:layout_alignParentEnd="true"
@@ -376,7 +376,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/textInputLayout8"
+                android:layout_below="@+id/tilTp"
                 android:layout_weight="1"
                 android:hint="Trabajo Práctico"
                 android:imeOptions="actionDone"

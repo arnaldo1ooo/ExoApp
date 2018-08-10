@@ -360,7 +360,7 @@
         app:layout_constraintVertical_bias="0.39">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/textInputLayout8"
+            android:id="@+id/tilTp"
             android:layout_width="50dp"
             android:layout_height="54dp"
             android:layout_alignParentEnd="true"
@@ -368,6 +368,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:orientation="vertical"
             android:textColorHint="#ffffff"
             tools:layout_editor_absoluteX="209dp"
             tools:layout_editor_absoluteY="196dp">
@@ -378,8 +379,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/textInputLayout8"
+                android:layout_below="@+id/tilTp"
                 android:layout_weight="1"
+
                 android:hint="Trabajo Práctico"
                 android:imeOptions="actionDone"
                 android:inputType="numberDecimal"
