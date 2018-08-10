@@ -31,11 +31,10 @@ import java.text.DecimalFormat;
 
 
 public class activity_tipo_evalu extends AppCompatActivity {
-
-
     Button btnopc1;
     Button btnopc2;
     Button btnopc3;
+    Button btnopc4;
     TextView VersionActual;
 
 
@@ -62,6 +61,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
         btnopc1 = (Button) findViewById(R.id.btnopc1);
         btnopc2 = (Button) findViewById(R.id.btnopc2);
         btnopc3 = (Button) findViewById(R.id.btnopc3);
+        btnopc4 = (Button) findViewById(R.id.btnopc4);
         VersionActual = (TextView) findViewById(R.id.tvVersionPrincipal);
 
 
@@ -80,7 +80,10 @@ public class activity_tipo_evalu extends AppCompatActivity {
         btnopc1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), activity_evalu1.class);
+                Intent intent = new Intent(v.getContext(), activity_evalu.class);
+                intent.putExtra("TotalPuntos1", "15");
+                intent.putExtra("TotalPuntos2", "15");
+                intent.putExtra("TotalPuntos3", "10");
                 startActivityForResult(intent, 0);
             }
         });
@@ -88,7 +91,10 @@ public class activity_tipo_evalu extends AppCompatActivity {
         btnopc2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), activity_evalu2.class);
+                Intent intent = new Intent(v.getContext(), activity_evalu.class);
+                intent.putExtra("TotalPuntos1", "20");
+                intent.putExtra("TotalPuntos2", "20");
+                intent.putExtra("TotalPuntos3", "0");
                 startActivityForResult(intent, 0);
             }
         });
@@ -96,8 +102,19 @@ public class activity_tipo_evalu extends AppCompatActivity {
         btnopc3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), activity_perso.class);
+                Intent intent = new Intent(v.getContext(), activity_evalu.class);
+                intent.putExtra("TotalPuntos1", "10");
+                intent.putExtra("TotalPuntos2", "10");
+                intent.putExtra("TotalPuntos3", "20");
                 startActivityForResult(intent, 0);
+            }
+        });
+
+        btnopc4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent intent = new Intent(v.getContext(), activity_perso.class);
+               startActivityForResult(intent, 0);
             }
         });
     }

@@ -77,10 +77,10 @@ public class activity_perso extends AppCompatActivity {
                         }
 
 
-                        Intent intent = new Intent (activity_perso.this, activity_evalu2.class);
-                        intent.putExtra("puntototal1parcial", Integer.parseInt(et1parcial.getText().toString()));
-                        intent.putExtra("puntototal2parcial", Integer.parseInt(et2parcial.getText().toString()));
-                        intent.putExtra("puntotonota5", Double.parseDouble(etNota5.getText().toString()));
+                        Intent intent = new Intent (activity_perso.this, activity_evalu.class);
+                        intent.putExtra("TotalPuntos1", Integer.parseInt(et1parcial.getText().toString()));
+                        intent.putExtra("TotalPuntos2", Integer.parseInt(et2parcial.getText().toString()));
+                        intent.putExtra("TotalPuntos3", Double.parseDouble(etNota5.getText().toString()));
                         intent.putExtra("Minimo Exoneracion", Double.parseDouble(etExoMin.getText().toString()));
                         startActivity(intent);
                     } else {
@@ -95,7 +95,7 @@ public class activity_perso extends AppCompatActivity {
                             return;
                         }
 
-                        Intent intent = new Intent (activity_perso.this, activity_evalu1.class);
+                        Intent intent = new Intent (activity_perso.this, activity_evalu.class);
                         intent.putExtra("puntototal1parcial", Integer.parseInt(et1parcial.getText().toString()));
                         intent.putExtra("puntototal2parcial", Integer.parseInt(et2parcial.getText().toString()));
                         intent.putExtra("puntototaltp", Integer.parseInt(et3.getText().toString()));

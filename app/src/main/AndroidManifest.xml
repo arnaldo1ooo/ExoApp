@@ -27,7 +27,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activity_tipo_evalu" />
         <activity
-            android:name=".activity_evalu1"
+            android:name=".activity_evalu"
             android:parentActivityName=".activity_tipo_evalu"
             android:windowSoftInputMode="adjustPan" />
         <activity
@@ -39,9 +39,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity_evalu2"
-            android:parentActivityName=".activity_tipo_evalu" />
         <activity
             android:name=".activity_perso"
             android:parentActivityName=".activity_tipo_evalu" />

@@ -25,17 +25,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.lang.annotation.ElementType;
 import java.text.DecimalFormat;
 
 import capturapantalla.ScreenshotType;
 import capturapantalla.ScreenshotUtils;
 
-public class activity_evalu1 extends AppCompatActivity {
-
-    int TotalPuntos1 = 15;
-    int TotalPuntos2 = 15;
-    int TotalPuntos3 = 10;
+public class activity_evalu extends AppCompatActivity {
+    int TotalPuntos1 = 0;
+    int TotalPuntos2 = 0;
+    int TotalPuntos3 = 0;
     double MinNota5 = 37.6;
     double PuntosParaExonerar = 32.4;
     double PuntosObtenidos1 = 0;
@@ -68,7 +66,6 @@ public class activity_evalu1 extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_compartir, menu);
         return true;
     }
-
     //Al hacer click en boton compartir
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -82,23 +79,11 @@ public class activity_evalu1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_evalu1);
+        setContentView(R.layout.activity_evalu);
 
         //Action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 
-
-        try {
-            Bundle extras = getIntent().getExtras();
-            TotalPuntos1 = extras.getInt("puntototal1parcial");
-            TotalPuntos2 = extras.getInt("puntototal2parcial");
-            TotalPuntos3 = extras.getInt("puntototaltp");
-            MinNota5 = extras.getDouble("puntotonota5");
-            PuntosParaExonerar = extras.getDouble("Minimo Exoneracion");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         btnCalculo = (Button) findViewById(R.id.btnCalculo);
         et1parcial = (EditText) findViewById(R.id.et1Parcial);
@@ -119,6 +104,17 @@ public class activity_evalu1 extends AppCompatActivity {
         ivCompartir = (ImageView) findViewById(R.id.ivCompartir);
         layoutCompartir = (LinearLayout) findViewById(R.id.layoutCompartir);
 
+        //Llamamos a los datos que el intent anterior envió
+        TotalPuntos1 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos1"));
+        TotalPuntos2 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos2"));
+        TotalPuntos3 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos3"));
+
+        //Asignamos lo anterior
+        DecimalFormat df = new DecimalFormat("#.###");
+        tvTotalText1.setText(df.format(PuntosObtenidos1) + " de " + TotalPuntos1 + " Puntos");
+        tvTotalText2.setText(df.format(PuntosObtenidos2) + " de " + TotalPuntos2 + " Puntos");
+        tvTotalText3.setText(df.format(PuntosObtenidos3) + " de " + TotalPuntos3 + " Puntos");
+
         //Spinner
         ArrayAdapter<String> adaptadorsp = new ArrayAdapter<String>(this, R.layout.spinner_configuracion, array);
         sp1.setAdapter(adaptadorsp);
@@ -132,9 +128,9 @@ public class activity_evalu1 extends AppCompatActivity {
         AlCambiarValorSpinner(sp1, et1parcial, tvTotalText1, TotalPuntos1, PuntosObtenidos1);
         AlCambiarValorSpinner(sp2, et2parcial, tvTotalText2, TotalPuntos2, PuntosObtenidos2);
         AlCambiarValorSpinner(sp3, etTp, tvTotalText3, TotalPuntos3, PuntosObtenidos3);
-        AlEscribirEnEditText(et1parcial, PuntosObtenidos1, TotalPuntos1);
-        AlEscribirEnEditText(et2parcial, PuntosObtenidos2, TotalPuntos2);
-        AlEscribirEnEditText(etTp, PuntosObtenidos3, TotalPuntos3);
+        AlEscribirEnEditText(et1parcial, sp1, tvTotalText1, TotalPuntos1,PuntosObtenidos1);
+        AlEscribirEnEditText(et2parcial, sp2, tvTotalText2, TotalPuntos2,PuntosObtenidos2);
+        AlEscribirEnEditText(etTp, sp3, tvTotalText3, TotalPuntos3,PuntosObtenidos3);
 
         //Al dar enter
         etTp.setOnKeyListener(new View.OnKeyListener() {
@@ -166,7 +162,7 @@ public class activity_evalu1 extends AppCompatActivity {
         });
     }
 
-    private void AlEscribirEnEditText(final EditText ElEditText, final Double PuntosObtenidos, final int TotalPuntos) {
+    private void AlEscribirEnEditText(final EditText ElEditText, final Spinner ElSpinner, final TextView tvTotalText, final int TotalPuntos, final Double PuntosObtenidos) {
         //Al cambiar texto1
         ElEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -181,22 +177,13 @@ public class activity_evalu1 extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) { //Despues de escribir
-                if (ElEditText == et1parcial) {
-                    PuntosObtenidos1 = ConversionPorcyPunto(sp1, et1parcial, tvTotalText1, TotalPuntos1, PuntosObtenidos1);
-                } else {
-                    if (ElEditText == et2parcial) {
-                        PuntosObtenidos2 = ConversionPorcyPunto(sp2, et2parcial, tvTotalText2, TotalPuntos2, PuntosObtenidos2);
-                    } else {
-                        if (ElEditText == etTp) {
-                            PuntosObtenidos3 = ConversionPorcyPunto(sp3, etTp, tvTotalText3, TotalPuntos3, PuntosObtenidos3);
-                        }
-                    }
-                }
+                    PuntosObtenidos1 = ConversionPorcyPunto(ElEditText, ElSpinner, tvTotalText, TotalPuntos, PuntosObtenidos);
+                    Log.d("AlEscribirEnEditText","1");
             }
         });
     }
 
-    public double ConversionPorcyPunto(Spinner ElSpinner, EditText ElEditText, TextView tvTotal, int Totalpuntos, double PuntosObtenidos) {
+    public double ConversionPorcyPunto(EditText ElEditText, Spinner ElSpinner,  TextView tvTotal, int Totalpuntos, double PuntosObtenidos) {
         DecimalFormat df = new DecimalFormat("#.###");
         if (ElEditText.getText().toString().equals("") == false) {
             if (ElSpinner.getSelectedItemId() == 0) {
@@ -217,13 +204,20 @@ public class activity_evalu1 extends AppCompatActivity {
                     tvTotal.setText(df.format(PuntosObtenidos) + "% de 100%");
                 } else {
                     PuntosObtenidos = 0.0;
-                    tvTotal.setText("0 de " + Totalpuntos + " Puntos");
+                    tvTotal.setText("0% de 100%");
                 }
             }
 
         } else {
             Log.d("Metodo Conversion", "Esta en blanco");
-            tvTotal.setText("0 de " + Totalpuntos + " Puntos");
+
+            if(ElSpinner.getSelectedItemId() == 0){
+                tvTotal.setText("0 de " + Totalpuntos + " Puntos");
+            }
+            if(ElSpinner.getSelectedItemId() == 1){
+                tvTotal.setText("0 % de 100%");
+            }
+
         }
         return PuntosObtenidos;
     }
@@ -270,12 +264,12 @@ public class activity_evalu1 extends AppCompatActivity {
 
                     if (ElSpinner.getSelectedItemId() == 0) {
                         Log.d("Mensaje", "Se seleccionó el item 0 en el sp1");
-                        ConversionPorcyPunto(ElSpinner, ElEditText, tvTotal, TotalPuntos, PuntosObtenidos);
+                        ConversionPorcyPunto(ElEditText, ElSpinner, tvTotal, TotalPuntos, PuntosObtenidos);
                     }
 
                     if (ElSpinner.getSelectedItemId() == 1) {
                         Log.d("Mensaje", "Se seleccionó el item 1 en el sp1");
-                        ConversionPorcyPunto(ElSpinner, ElEditText, tvTotal, TotalPuntos, PuntosObtenidos);
+                        ConversionPorcyPunto(ElEditText, ElSpinner, tvTotal, TotalPuntos, PuntosObtenidos);
                     }
                 }
             }
@@ -317,7 +311,7 @@ public class activity_evalu1 extends AppCompatActivity {
             if (resultado < PuntosParaExonerar && resultado >= 32) {
                 tvFeli.setTextColor(Color.YELLOW);
                 tvFeli.setText("Casi exoneraste :/");
-                tvFaltante.setText("Te faltaron " + df.format(PuntosParaExonerar - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " Puntos para Exonerar");
+                tvFaltante.setText("Te faltó " + df.format(PuntosParaExonerar - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " Puntos para Exonerar");
                 tvFeli.setVisibility(View.VISIBLE);
                 tvFaltante.setVisibility(TextView.VISIBLE);
                 tvResultado.setVisibility(TextView.VISIBLE);
@@ -328,7 +322,7 @@ public class activity_evalu1 extends AppCompatActivity {
                 if (resultado < PuntosParaExonerar) {
                     tvFeli.setTextColor(Color.RED);
                     tvFeli.setText("No exoneraste :(");
-                    tvFaltante.setText("Te faltaron " + df.format(PuntosParaExonerar - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " Puntos para Exonerar");
+                    tvFaltante.setText("Te faltó " + df.format(PuntosParaExonerar - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " Puntos para Exonerar");
                     tvFeli.setVisibility(View.VISIBLE);
                     tvFaltante.setVisibility(TextView.VISIBLE);
                     tvResultado.setVisibility(TextView.VISIBLE);
