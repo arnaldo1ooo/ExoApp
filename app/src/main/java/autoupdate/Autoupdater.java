@@ -1,4 +1,4 @@
-package com.exofpune;
+package autoupdate;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -36,7 +36,7 @@ public class Autoupdater {
      * El enlace al archivo público de información de la versión. Puede ser de
      * Dropbox, un hosting propio o cualquier otro servicio similar.
      */
-    private static final String INFO_FILE = "https://www.dropbox.com/s/4g3udwvtrlsjk35/version.txt?dl=1"; //El archivo donde esta la version y el link del apk //obs dl=1 para descarga directa de dropbox
+    private static final String INFO_FILE = "https://drive.google.com/uc?id=0B_tD8XwELWmaZy0tZTNKelZ2OFE&export=download&authuser=0"; //El archivo donde esta la version y el link del apk //obs dl=1 para descarga directa de google drive
 
     /**
      * El código de versión establecido en el AndroidManifest.xml de la versión

@@ -29,6 +29,8 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
+import autoupdate.Autoupdater;
+
 
 public class activity_tipo_evalu extends AppCompatActivity {
     Button btnopc1;
@@ -234,7 +236,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
                     autoupdater.InstallNewVersion(null); //Se ejecuta el Autoupdater con la orden de instalar. Se puede poner un listener o no
 
                     ProgresoDescarga = new ProgressDialog(activity_tipo_evalu.this);
-                    ProgresoDescarga.setMessage("Descargando actualización ExoFPUNE " + autoupdater.getLatestVersionName());
+                    ProgresoDescarga.setMessage("Descargando actualización ExoApp " + autoupdater.getLatestVersionName());
                     ProgresoDescarga.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
                     ProgresoDescarga.setCancelable(false);
                     ProgresoDescarga.setIndeterminate(false);

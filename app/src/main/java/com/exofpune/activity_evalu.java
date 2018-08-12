@@ -108,10 +108,22 @@ public class activity_evalu extends AppCompatActivity {
         layoutCompartir = (LinearLayout) findViewById(R.id.layoutCompartir);
         tilTp = (TextInputLayout) findViewById(R.id.tilTp);
 
+
         //Llamamos a los datos que el intent o activity anterior envió, son los puntos totales segun el boton presionado en el activity principal
-        TotalPuntos1 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos1"));
-        TotalPuntos2 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos2"));
-        TotalPuntos3 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos3"));
+
+        try {
+            TotalPuntos1 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos1"));
+            Log.d("Total de puntos 1",""+TotalPuntos1);
+            TotalPuntos2 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos2"));
+            TotalPuntos3 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos3"));
+            //PuntosParaExonerar = Double.parseDouble(getIntent().getExtras().getString("Minimo Exoneracion"));
+            //MinNota5 = Double.parseDouble(getIntent().getExtras().getString("Minimo nota 5"));
+        } catch (NumberFormatException e) {
+            Log.d("Error al obtener datos", ""+e);
+            e.printStackTrace();
+        }
+
+
         //Asignamos lo anterior
         DecimalFormat df = new DecimalFormat("#.###");
         tvTotalText1.setText(df.format(PuntosObtenidos1) + " de " + TotalPuntos1 + " Puntos");
@@ -128,7 +140,6 @@ public class activity_evalu extends AppCompatActivity {
         //Llamada de metodos
         PonerTexViewInvisibles();
         OcultarTrabajoPractico();
-
         AlCambiarValorSpinner(sp1, et1parcial, tvTotalText1, TotalPuntos1, PuntosObtenidos1);
         AlCambiarValorSpinner(sp2, et2parcial, tvTotalText2, TotalPuntos2, PuntosObtenidos2);
         AlCambiarValorSpinner(sp3, etTp, tvTotalText3, TotalPuntos3, PuntosObtenidos3);
@@ -313,6 +324,7 @@ public class activity_evalu extends AppCompatActivity {
             tvFaltante.setVisibility(TextView.VISIBLE);
             tvResultado.setVisibility(TextView.VISIBLE);
             tvPuntosFinal.setVisibility(TextView.INVISIBLE);
+            tvNota.setVisibility(TextView.INVISIBLE);
             if (Resultado >= MinNota5) {
                 tvFaltante.setText("Obtuviste nota 5");
             } else {
@@ -322,7 +334,7 @@ public class activity_evalu extends AppCompatActivity {
             if (Resultado < PuntosParaExonerar && Resultado >= 32) {
                 tvFeli.setTextColor(Color.YELLOW);
                 tvFeli.setText("Casi exoneraste :/");
-                tvFaltante.setText("Te faltó " + df.format(PuntosParaExonerar - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " Puntos para Exonerar");
+                tvFaltante.setText("Te faltaron " + df.format(PuntosParaExonerar - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " Puntos para Exonerar");
                 tvFeli.setVisibility(View.VISIBLE);
                 tvFaltante.setVisibility(TextView.VISIBLE);
                 tvResultado.setVisibility(TextView.VISIBLE);
@@ -333,7 +345,7 @@ public class activity_evalu extends AppCompatActivity {
                 if (Resultado < PuntosParaExonerar) {
                     tvFeli.setTextColor(Color.RED);
                     tvFeli.setText("No exoneraste :(");
-                    tvFaltante.setText("Te faltó " + df.format(PuntosParaExonerar - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " Puntos para Exonerar");
+                    tvFaltante.setText("Te faltaron " + df.format(PuntosParaExonerar - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " Puntos para Exonerar");
                     tvFeli.setVisibility(View.VISIBLE);
                     tvFaltante.setVisibility(TextView.VISIBLE);
                     tvResultado.setVisibility(TextView.VISIBLE);
