@@ -61,6 +61,7 @@ public class activity_evalu extends AppCompatActivity {
     private Button btnCompartir;
     private LinearLayout layoutCompartir;
     private TextInputLayout tilTp;
+    private ImageView ivEmoji;
 
     //Crear boton compartir en action bar
     @Override
@@ -107,6 +108,7 @@ public class activity_evalu extends AppCompatActivity {
         ivCompartir = (ImageView) findViewById(R.id.ivCompartir);
         layoutCompartir = (LinearLayout) findViewById(R.id.layoutCompartir);
         tilTp = (TextInputLayout) findViewById(R.id.tilTp);
+        ivEmoji = (ImageView) findViewById(R.id.ivEmoji);
 
 
         //Llamamos a los datos que el intent o activity anterior envió, son los puntos totales segun el boton presionado en el activity principal
@@ -116,8 +118,8 @@ public class activity_evalu extends AppCompatActivity {
             Log.d("Total de puntos 1",""+TotalPuntos1);
             TotalPuntos2 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos2"));
             TotalPuntos3 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos3"));
-            //PuntosParaExonerar = Double.parseDouble(getIntent().getExtras().getString("Minimo Exoneracion"));
-            //MinNota5 = Double.parseDouble(getIntent().getExtras().getString("Minimo nota 5"));
+            PuntosParaExonerar = Double.parseDouble(getIntent().getExtras().getString("Minimo Exoneracion"));
+            MinNota5 = Double.parseDouble(getIntent().getExtras().getString("Minimo nota 5"));
         } catch (NumberFormatException e) {
             Log.d("Error al obtener datos", ""+e);
             e.printStackTrace();
@@ -138,7 +140,7 @@ public class activity_evalu extends AppCompatActivity {
 
 
         //Llamada de metodos
-        PonerTexViewInvisibles();
+        PonerObjetosInvisibles();
         OcultarTrabajoPractico();
         AlCambiarValorSpinner(sp1, et1parcial, tvTotalText1, TotalPuntos1, PuntosObtenidos1);
         AlCambiarValorSpinner(sp2, et2parcial, tvTotalText2, TotalPuntos2, PuntosObtenidos2);
@@ -264,7 +266,7 @@ public class activity_evalu extends AppCompatActivity {
 
         if (ElSpinner.getSelectedItemId() == 0) {
             if (Double.parseDouble(ElEditText.getText().toString()) > 100) {
-                PonerTexViewInvisibles();
+                PonerObjetosInvisibles();
                 ElEditText.setTextColor(Color.RED);
                 Toast toast = Toast.makeText(this, "El porcentaje obtenido no puede ser mayor al 100%", Toast.LENGTH_SHORT);
                 toast.show();
@@ -275,7 +277,7 @@ public class activity_evalu extends AppCompatActivity {
         } else {
             if (ElSpinner.getSelectedItemId() == 1) {
                 if (Double.parseDouble(ElEditText.getText().toString()) > TotalPuntos) {
-                    PonerTexViewInvisibles();
+                    PonerObjetosInvisibles();
                     ElEditText.setTextColor(Color.RED);
                     Toast toast = Toast.makeText(this, "El punto obtenido no puede ser mayor a " + TotalPuntos + " Puntos", Toast.LENGTH_SHORT);
                     toast.show();
@@ -319,8 +321,10 @@ public class activity_evalu extends AppCompatActivity {
         DecimalFormat df = new DecimalFormat("#.###");
         if (Resultado >= PuntosParaExonerar) {
             tvFeli.setTextColor(Color.GREEN);
-            tvFeli.setText("EXONERASTE!! :D");
+            tvFeli.setText("EXONERASTE!");
             tvFeli.setVisibility(View.VISIBLE);
+            ivEmoji.setVisibility(ImageView.VISIBLE);
+            ivEmoji.setImageResource(R.drawable.feliz);
             tvFaltante.setVisibility(TextView.VISIBLE);
             tvResultado.setVisibility(TextView.VISIBLE);
             tvPuntosFinal.setVisibility(TextView.INVISIBLE);
@@ -333,7 +337,9 @@ public class activity_evalu extends AppCompatActivity {
         } else {
             if (Resultado < PuntosParaExonerar && Resultado >= 32) {
                 tvFeli.setTextColor(Color.YELLOW);
-                tvFeli.setText("Casi exoneraste :/");
+                tvFeli.setText("Casi exoneraste");
+                ivEmoji.setVisibility(ImageView.VISIBLE);
+                ivEmoji.setImageResource(R.drawable.serio);
                 tvFaltante.setText("Te faltaron " + df.format(PuntosParaExonerar - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " Puntos para Exonerar");
                 tvFeli.setVisibility(View.VISIBLE);
                 tvFaltante.setVisibility(TextView.VISIBLE);
@@ -344,7 +350,9 @@ public class activity_evalu extends AppCompatActivity {
             } else {
                 if (Resultado < PuntosParaExonerar) {
                     tvFeli.setTextColor(Color.RED);
-                    tvFeli.setText("No exoneraste :(");
+                    tvFeli.setText("No exoneraste");
+                    ivEmoji.setVisibility(ImageView.VISIBLE);
+                    ivEmoji.setImageResource(R.drawable.triste);
                     tvFaltante.setText("Te faltaron " + df.format(PuntosParaExonerar - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " Puntos para Exonerar");
                     tvFeli.setVisibility(View.VISIBLE);
                     tvFaltante.setVisibility(TextView.VISIBLE);
@@ -384,12 +392,13 @@ public class activity_evalu extends AppCompatActivity {
         startActivity(Intent.createChooser(intent, getString(R.string.share_title)));
     }
 
-    private void PonerTexViewInvisibles() {
+    private void PonerObjetosInvisibles() {
         tvFaltante.setVisibility(View.INVISIBLE);
         tvResultado.setVisibility(View.INVISIBLE);
         tvFeli.setVisibility(View.INVISIBLE);
         tvPuntosFinal.setVisibility(TextView.INVISIBLE);
         tvNota.setVisibility(TextView.INVISIBLE);
+        ivEmoji.setVisibility(ImageView.INVISIBLE);
     }
 
     /*  Método que tomará una captura de pantalla en Bases de captura de pantalla Tipo ENUM  */

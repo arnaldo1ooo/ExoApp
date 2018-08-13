@@ -69,12 +69,12 @@ public class activity_perso extends AppCompatActivity {
                         return;
                     }
 
-                    Intent intent = new Intent(activity_perso.this, activity_evalu.class);
-                    intent.putExtra("puntototal1parcial", Integer.parseInt(et1parcial.getText().toString()));
-                    intent.putExtra("puntototal2parcial", Integer.parseInt(et2parcial.getText().toString()));
-                    intent.putExtra("puntototaltp", Integer.parseInt(et3.getText().toString()));
-                    intent.putExtra("puntotonota5", Double.parseDouble(etNota5.getText().toString()));
-                    intent.putExtra("Minimo Exoneracion", Double.parseDouble(etExoMin.getText().toString()));
+                    Intent intent = new Intent(v.getContext(), activity_evalu.class);
+                    intent.putExtra("TotalPuntos1", et1parcial.getText().toString());
+                    intent.putExtra("TotalPuntos2", et2parcial.getText().toString());
+                    intent.putExtra("TotalPuntos3", et3.getText().toString());
+                    intent.putExtra("Minimo Exoneracion", etExoMin.getText().toString());
+                    intent.putExtra("Minimo nota 5", etNota5.getText().toString());
                     startActivity(intent);
                 } catch (NumberFormatException e) {
                     e.printStackTrace();

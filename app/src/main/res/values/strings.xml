@@ -8,7 +8,7 @@
     <string name="puntaje_minimo_para_exonerar">Puntaje minimo para exonerar</string>
 
 
-    <string name="sharing_text">Mira mi nota!</string>
+    <string name="sharing_text">#ExoApp</string>
     <string name="share_title">Share Screenshot</string>
     <string name="screenshot_take_failed">Failed to take screenshot!!</string>
     <string name="wait">Please wait…</string>

@@ -56,9 +56,9 @@ public class activity_tipo_evalu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tipo_evalu);
 
-        comenzarActualizar();
+        //comenzarActualizar();
 
-        EliminarFichero("/download/app.apk");
+        //EliminarFichero("/download/app.apk");
 
         btnopc1 = (Button) findViewById(R.id.btnopc1);
         btnopc2 = (Button) findViewById(R.id.btnopc2);
