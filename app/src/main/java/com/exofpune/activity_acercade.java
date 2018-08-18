@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -46,10 +47,16 @@ public class activity_acercade extends AppCompatActivity {
         ibFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String link = "https://www.facebook.com/arnaldoRCM";
-                Intent intent = null;
-                intent = new Intent(intent.ACTION_VIEW, Uri.parse(link));
-                startActivity(intent);
+                String facebookId = "fb://page/2152438201747665";
+                String urlPage = "http://www.facebook.com/exoapp1";
+
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(facebookId )));
+                } catch (Exception e) {
+                    Log.e("Click en fb", "Aplicación no instalada.");
+                    //Abre url de pagina.
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(urlPage)));
+                }
             }
         });
     }

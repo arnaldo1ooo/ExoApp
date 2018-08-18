@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ExoFPUNE</string>
+    <string name="app_name">ExoApp</string>
     <string name="title_activity_principal">activity_principal</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
@@ -9,10 +9,10 @@
 
 
     <string name="sharing_text">#ExoApp</string>
-    <string name="share_title">Share Screenshot</string>
-    <string name="screenshot_take_failed">Failed to take screenshot!!</string>
-    <string name="wait">Please wait…</string>
-    <string name="full_page_screenshot">Full Page Screenshot</string>
+    <string name="share_title">Compartir captura de pantalla</string>
+    <string name="screenshot_take_failed">Error al tomar la captura de pantalla!!</string>
+    <string name="wait">Espere un momento…</string>
+    <string name="full_page_screenshot">Captura de pantalla completa</string>
     <string name="hidden_text">Hidden Text</string>
-    <string name="custom_page_screenshot">Custom Page Screenshot</string>
+    <string name="custom_page_screenshot">Captura de pantalla personalizada</string>
 </resources>

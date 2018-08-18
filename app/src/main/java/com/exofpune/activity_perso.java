@@ -75,6 +75,7 @@ public class activity_perso extends AppCompatActivity {
                     intent.putExtra("TotalPuntos3", et3.getText().toString());
                     intent.putExtra("Minimo Exoneracion", etExoMin.getText().toString());
                     intent.putExtra("Minimo nota 5", etNota5.getText().toString());
+                    intent.putExtra("EsPersonalizado", "Si");
                     startActivity(intent);
                 } catch (NumberFormatException e) {
                     e.printStackTrace();

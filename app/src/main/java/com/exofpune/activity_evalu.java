@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -112,14 +114,16 @@ public class activity_evalu extends AppCompatActivity {
 
 
         //Llamamos a los datos que el intent o activity anterior envió, son los puntos totales segun el boton presionado en el activity principal
-
         try {
             TotalPuntos1 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos1"));
             Log.d("Total de puntos 1",""+TotalPuntos1);
             TotalPuntos2 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos2"));
             TotalPuntos3 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos3"));
-            PuntosParaExonerar = Double.parseDouble(getIntent().getExtras().getString("Minimo Exoneracion"));
-            MinNota5 = Double.parseDouble(getIntent().getExtras().getString("Minimo nota 5"));
+            String Personalizado = getIntent().getExtras().getString("EsPersonalizado");
+            if(Personalizado.equals("Si")){
+                PuntosParaExonerar = Double.parseDouble(getIntent().getExtras().getString("Minimo Exoneracion"));
+                MinNota5 = Double.parseDouble(getIntent().getExtras().getString("Minimo nota 5"));
+            }
         } catch (NumberFormatException e) {
             Log.d("Error al obtener datos", ""+e);
             e.printStackTrace();
@@ -382,7 +386,13 @@ public class activity_evalu extends AppCompatActivity {
 
     /*  Compartir la captura de pantalla  */
     private void CompartirCaptura(File file) {
-        Uri uri = Uri.fromFile(file);//Convert file path into Uri for sharing
+        Uri uri;
+        if(Build.VERSION.SDK_INT>=26){ //Api 26 es Android 8.0
+            uri = FileProvider.getUriForFile(this,BuildConfig.APPLICATION_ID + ".provider", file);//Convierte la ruta del archivo en Uri para compartir
+        }else{
+            uri = Uri.fromFile(file);//Convierte la ruta del archivo en Uri para compartir
+        }
+
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_SEND);
         intent.setType("image/*");
