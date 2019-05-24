@@ -23,7 +23,6 @@ public class SplashScreen extends Activity {
 
         TextView version;
 
-
         version = (TextView) findViewById(R.id.tvVersionSplash);
 
 
@@ -38,14 +37,13 @@ public class SplashScreen extends Activity {
             Toast.makeText(getApplicationContext(), "No se puede cargar la version actual!", Toast.LENGTH_LONG).show();
         }
 
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 Intent intent = new Intent (SplashScreen.this, activity_tipo_evalu.class);
                 startActivity(intent);
             }
-        },3000);
+        },1500);
 
     }
 

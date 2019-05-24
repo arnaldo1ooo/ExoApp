@@ -19,6 +19,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 
 
 public class activity_tipo_evalu extends AppCompatActivity {
@@ -27,6 +31,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
     Button btnopc3;
     Button btnopc4;
     TextView VersionActual;
+    private InterstitialAd mInterstitialAd;
 
     //impedir retroceder a activity anterior
     @Override
@@ -44,6 +49,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tipo_evalu);
 
+        PublicidadInterstitial();
 
 
         btnopc1 = (Button) findViewById(R.id.btnopc1);
@@ -51,8 +57,6 @@ public class activity_tipo_evalu extends AppCompatActivity {
         btnopc3 = (Button) findViewById(R.id.btnopc3);
         btnopc4 = (Button) findViewById(R.id.btnopc4);
         VersionActual = (TextView) findViewById(R.id.tvVersionPrincipal);
-
-
 
 
         //Obtener version actual de la app
@@ -70,6 +74,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
         btnopc1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(v.getContext(), activity_evalu.class);
                 intent.putExtra("TotalPuntos1", "15");
                 intent.putExtra("TotalPuntos2", "15");
@@ -112,6 +117,42 @@ public class activity_tipo_evalu extends AppCompatActivity {
         });
     }
 
+    private void PublicidadInterstitial() {
+        MobileAds.initialize(this,"ca-app-pub-8474453660271942/1150495372");
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-8474453660271942/1150495372");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                if ( mInterstitialAd.isLoaded()) {// Código que se ejecutará cuando un anuncio termine de cargarse.
+                    mInterstitialAd.show(); //Mostrar el Interstittial luego de crearlo
+                }
+            }
+
+            @Override
+            public void onAdOpened() {// Código que se ejecutará cuando se muestre el anuncio.
+
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {// Código que se ejecutará cuando una solicitud de anuncio falle.
+
+            }
+
+            @Override
+            public void onAdLeftApplication() {// Código que se ejecutará cuando el usuario haya abandonado la aplicación.
+            }
+
+            @Override
+            public void onAdClosed() {// Código que se ejecutará cuando el anuncio intersticial esté cerrado.
+
+            }
+        });
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -123,20 +164,9 @@ public class activity_tipo_evalu extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.ao1) {
-            String facebookId = "fb://page/2152438201747665";
-            String urlPage = "http://www.facebook.com/exoapp1";
-
-            try {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(facebookId )));
-            } catch (Exception e) {
-                Log.e("Click en fb", "Aplicación no instalada.");
-                //Abre url de pagina.
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(urlPage)));
-            }
-        }
-        if (id == R.id.ao2) {
-            Intent i = new Intent(this, activity_acercade.class );
+            Intent i = new Intent(this, activity_politicas_privacidad.class);
             startActivity(i);
+            return true;
         }
 
         if (id == R.id.ao2) {
@@ -149,7 +179,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
     }
 
 
-    public Boolean EstaConectadoInternet() {
+    /*public Boolean EstaConectadoInternet() {
         try {
             Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
             int val = p.waitFor();
@@ -162,8 +192,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
             e.printStackTrace();
         }
         return false;
-    }
-
+    }*/
 
 
     // Storage Permissions

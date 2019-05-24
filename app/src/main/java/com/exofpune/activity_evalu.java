@@ -135,7 +135,6 @@ public class activity_evalu extends AppCompatActivity {
         tvTotalText1.setText(df.format(PuntosObtenidos1) + " de " + TotalPuntos1 + " Puntos");
         tvTotalText2.setText(df.format(PuntosObtenidos2) + " de " + TotalPuntos2 + " Puntos");
         tvTotalText3.setText(df.format(PuntosObtenidos3) + " de " + TotalPuntos3 + " Puntos");
-
         //Spinner
         ArrayAdapter<String> adaptadorsp = new ArrayAdapter<String>(this, R.layout.spinner_configuracion, array);
         sp1.setAdapter(adaptadorsp);
@@ -143,15 +142,21 @@ public class activity_evalu extends AppCompatActivity {
         sp3.setAdapter(adaptadorsp);
 
 
-        //Llamada de metodos
-        PonerObjetosInvisibles();
-        OcultarTrabajoPractico();
-        AlCambiarValorSpinner(sp1, et1parcial, tvTotalText1, TotalPuntos1, PuntosObtenidos1);
-        AlCambiarValorSpinner(sp2, et2parcial, tvTotalText2, TotalPuntos2, PuntosObtenidos2);
-        AlCambiarValorSpinner(sp3, etTp, tvTotalText3, TotalPuntos3, PuntosObtenidos3);
-        AlEscribirEnEditText(et1parcial, sp1, tvTotalText1, TotalPuntos1, PuntosObtenidos1);
-        AlEscribirEnEditText(et2parcial, sp2, tvTotalText2, TotalPuntos2, PuntosObtenidos2);
-        AlEscribirEnEditText(etTp, sp3, tvTotalText3, TotalPuntos3, PuntosObtenidos3);
+
+        try {
+            //Llamada de metodos
+            PonerObjetosInvisibles();
+            OcultarTrabajoPractico();
+            AlCambiarValorSpinner(sp1, et1parcial, tvTotalText1, TotalPuntos1, PuntosObtenidos1);
+            AlCambiarValorSpinner(sp2, et2parcial, tvTotalText2, TotalPuntos2, PuntosObtenidos2);
+            AlCambiarValorSpinner(sp3, etTp, tvTotalText3, TotalPuntos3, PuntosObtenidos3);
+            AlEscribirEnEditText(et1parcial, sp1, tvTotalText1, TotalPuntos1, PuntosObtenidos1);
+            AlEscribirEnEditText(et2parcial, sp2, tvTotalText2, TotalPuntos2, PuntosObtenidos2);
+            AlEscribirEnEditText(etTp, sp3, tvTotalText3, TotalPuntos3, PuntosObtenidos3);
+        }catch (NullPointerException e){
+            System.out.println(" Error en la llamada de metodos: " + e);
+        }
+
 
         //Al dar enter
         etTp.setOnKeyListener(new View.OnKeyListener() {

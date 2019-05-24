@@ -6,7 +6,7 @@
 
     <item
         android:id="@+id/ao1"
-        android:icon="@drawable/fb2"
+        android:icon="@drawable/politicasprivacidad"
         android:orderInCategory="5"
         android:title="Compartir"
         app:showAsAction="always" />
