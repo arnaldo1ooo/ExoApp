@@ -9,7 +9,7 @@ android {
             storePassword '5127713-3'
         }
     }
-    compileSdkVersion 26
+    compileSdkVersion 28
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId 'com.exofpune'
