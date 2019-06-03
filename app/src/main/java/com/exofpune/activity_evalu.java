@@ -205,20 +205,25 @@ public class activity_evalu extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) { //Despues de escribir
-                if (ElEditText == et1parcial) {
-                    PuntosObtenidos1 = ConversionPorcyPunto(ElEditText, ElSpinner, tvTotalText, TotalPuntos, PuntosObtenidos);
-                    Log.d("AlEscribirEnEditText", "" + PuntosObtenidos1);
-                } else {
-                    if (ElEditText == et2parcial) {
-                        PuntosObtenidos2 = ConversionPorcyPunto(ElEditText, ElSpinner, tvTotalText, TotalPuntos, PuntosObtenidos);
-                        Log.d("AlEscribirEnEditText", "" + PuntosObtenidos2);
+                try {
+                    if (ElEditText == et1parcial) {
+                        PuntosObtenidos1 = ConversionPorcyPunto(ElEditText, ElSpinner, tvTotalText, TotalPuntos, PuntosObtenidos);
+                        Log.d("AlEscribirEnEditText", "" + PuntosObtenidos1);
                     } else {
-                        if (ElEditText == etTp) {
-                            PuntosObtenidos3 = ConversionPorcyPunto(ElEditText, ElSpinner, tvTotalText, TotalPuntos, PuntosObtenidos);
-                            Log.d("AlEscribirEnEditText", "" + PuntosObtenidos3);
+                        if (ElEditText == et2parcial) {
+                            PuntosObtenidos2 = ConversionPorcyPunto(ElEditText, ElSpinner, tvTotalText, TotalPuntos, PuntosObtenidos);
+                            Log.d("AlEscribirEnEditText", "" + PuntosObtenidos2);
+                        } else {
+                            if (ElEditText == etTp) {
+                                PuntosObtenidos3 = ConversionPorcyPunto(ElEditText, ElSpinner, tvTotalText, TotalPuntos, PuntosObtenidos);
+                                Log.d("AlEscribirEnEditText", "" + PuntosObtenidos3);
+                            }
                         }
                     }
+                }catch (Exception n){
+                    Log.d("Despues de cambiar text","Error al escribir en editext");
                 }
+
             }
         });
     }

@@ -126,8 +126,8 @@ public class activity_tipo_evalu extends AppCompatActivity {
 
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
-            public void onAdLoaded() {
-                if ( mInterstitialAd.isLoaded()) {// Código que se ejecutará cuando un anuncio termine de cargarse.
+            public void onAdLoaded() { // Código que se ejecutará cuando un anuncio termine de cargarse.
+                if ( mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show(); //Mostrar el Interstittial luego de crearlo
                 }
             }
