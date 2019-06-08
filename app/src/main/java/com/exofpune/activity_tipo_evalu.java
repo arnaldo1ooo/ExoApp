@@ -118,39 +118,43 @@ public class activity_tipo_evalu extends AppCompatActivity {
     }
 
     private void PublicidadInterstitial() {
-        MobileAds.initialize(this,"ca-app-pub-8474453660271942/1150495372");
+        try {
+            MobileAds.initialize(this,"ca-app-pub-8474453660271942/1150495372");
 
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-8474453660271942/1150495372");
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            mInterstitialAd = new InterstitialAd(this);
+            mInterstitialAd.setAdUnitId("ca-app-pub-8474453660271942/1150495372");
+            mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
-        mInterstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() { // Código que se ejecutará cuando un anuncio termine de cargarse.
-                if ( mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show(); //Mostrar el Interstittial luego de crearlo
+            mInterstitialAd.setAdListener(new AdListener() {
+                @Override
+                public void onAdLoaded() { // Código que se ejecutará cuando un anuncio termine de cargarse.
+                    if ( mInterstitialAd.isLoaded()) {
+                        mInterstitialAd.show(); //Mostrar el Interstittial luego de crearlo
+                    }
                 }
-            }
 
-            @Override
-            public void onAdOpened() {// Código que se ejecutará cuando se muestre el anuncio.
+                @Override
+                public void onAdOpened() {// Código que se ejecutará cuando se muestre el anuncio.
 
-            }
+                }
 
-            @Override
-            public void onAdFailedToLoad(int errorCode) {// Código que se ejecutará cuando una solicitud de anuncio falle.
+                @Override
+                public void onAdFailedToLoad(int errorCode) {// Código que se ejecutará cuando una solicitud de anuncio falle.
 
-            }
+                }
 
-            @Override
-            public void onAdLeftApplication() {// Código que se ejecutará cuando el usuario haya abandonado la aplicación.
-            }
+                @Override
+                public void onAdLeftApplication() {// Código que se ejecutará cuando el usuario haya abandonado la aplicación.
+                }
 
-            @Override
-            public void onAdClosed() {// Código que se ejecutará cuando el anuncio intersticial esté cerrado.
+                @Override
+                public void onAdClosed() {// Código que se ejecutará cuando el anuncio intersticial esté cerrado.
 
-            }
-        });
+                }
+            });
+        }catch(Exception e){
+            Log.d("Error", "Error metodo PublicidadInterstitial() "+e);
+        }
     }
 
 
