@@ -134,11 +134,11 @@
         android:typeface="sans"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.077"
+        app:layout_constraintHorizontal_bias="0.072"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.855"
+        app:layout_constraintVertical_bias="0.875"
         tools:text="No exoneraste" />
 
     <Button
@@ -311,7 +311,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:layout_weight="1"
-        android:hint="Trabajo Práctico"
+        android:hint="Trabajo P."
         android:imeOptions="actionDone"
         android:inputType="numberDecimal"
         android:maxLength="6"
@@ -467,10 +467,10 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.057"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/tvFeli"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.858"
+        app:layout_constraintVertical_bias="0.879"
         app:srcCompat="@drawable/triste" />
 
 </android.support.constraint.ConstraintLayout>
