@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -62,8 +61,12 @@ public class activity_evalu extends AppCompatActivity {
     private ImageView ivCompartir;
     private Button btnCompartir;
     private LinearLayout layoutCompartir;
-    private TextInputLayout tilTp;
     private ImageView ivEmoji;
+    private Spinner elSpinner;
+    private EditText elEditText;
+    private TextView tvTotal;
+    private int totalPuntos;
+    private Double puntosObtenidos;
 
     //Crear boton compartir en action bar
     @Override
@@ -126,7 +129,7 @@ public class activity_evalu extends AppCompatActivity {
 
         btnCalculo = (Button) findViewById(R.id.btnCalculo);
         et1parcial = (EditText) findViewById(R.id.et1Parcial);
-        et2parcial = (EditText) findViewById(R.id.et2parcial);
+        et2parcial = (EditText) findViewById(R.id.et2Parcial);
         etTp = (EditText) findViewById(R.id.etTp);
         tvResultado = (TextView) findViewById(R.id.tvResultado);
         sp1 = (Spinner) findViewById(R.id.sp1);
@@ -142,37 +145,14 @@ public class activity_evalu extends AppCompatActivity {
         btnCompartir = (Button) findViewById(R.id.btnCompartir);
         ivCompartir = (ImageView) findViewById(R.id.ivCompartir);
         layoutCompartir = (LinearLayout) findViewById(R.id.layoutCompartir);
-        tilTp = (TextInputLayout) findViewById(R.id.tilTp);
         ivEmoji = (ImageView) findViewById(R.id.ivEmoji);
 
 
         //Llamamos a los datos que el intent o activity anterior envió, son los puntos totales segun el boton presionado en el activity principal
-        try {
-            TotalPuntos1 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos1"));
-            Log.d("Total de puntos 1",""+TotalPuntos1);
-            TotalPuntos2 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos2"));
-            TotalPuntos3 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos3"));
-            String Personalizado = getIntent().getExtras().getString("EsPersonalizado");
-            if(Personalizado.equals("Si")){
-                PuntosParaExonerar = Double.parseDouble(getIntent().getExtras().getString("Minimo Exoneracion"));
-                MinNota5 = Double.parseDouble(getIntent().getExtras().getString("Minimo nota 5"));
-            }
-        } catch (NumberFormatException e) {
-            Log.d("Error al obtener datos", ""+e);
-            e.printStackTrace();
-        }
+        RecibeDatosPuntos();
 
 
-        //Asignamos lo anterior
-        DecimalFormat df = new DecimalFormat("#.###");
-        tvTotalText1.setText(df.format(PuntosObtenidos1) + " de " + TotalPuntos1 + " Puntos");
-        tvTotalText2.setText(df.format(PuntosObtenidos2) + " de " + TotalPuntos2 + " Puntos");
-        tvTotalText3.setText(df.format(PuntosObtenidos3) + " de " + TotalPuntos3 + " Puntos");
-        //Spinner
-        ArrayAdapter<String> adaptadorsp = new ArrayAdapter<String>(this, R.layout.spinner_configuracion, array);
-        sp1.setAdapter(adaptadorsp);
-        sp2.setAdapter(adaptadorsp);
-        sp3.setAdapter(adaptadorsp);
+
 
 
 
@@ -222,6 +202,34 @@ public class activity_evalu extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void RecibeDatosPuntos() {
+        try {
+            TotalPuntos1 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos1"));
+            Log.d("Total de puntos 1",""+TotalPuntos1);
+            TotalPuntos2 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos2"));
+            TotalPuntos3 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos3"));
+            String Personalizado = getIntent().getExtras().getString("EsPersonalizado");
+            if(Personalizado.equals("Si")){
+                PuntosParaExonerar = Double.parseDouble(getIntent().getExtras().getString("Minimo Exoneracion"));
+                MinNota5 = Double.parseDouble(getIntent().getExtras().getString("Minimo nota 5"));
+            }
+        } catch (NumberFormatException e) {
+            Log.d("Error al obtener datos", ""+e);
+            e.printStackTrace();
+        }
+
+        //Asignamos lo anterior
+        DecimalFormat df = new DecimalFormat("#.###");
+        tvTotalText1.setText(df.format(PuntosObtenidos1) + " de " + TotalPuntos1 + " Puntos");
+        tvTotalText2.setText(df.format(PuntosObtenidos2) + " de " + TotalPuntos2 + " Puntos");
+        tvTotalText3.setText(df.format(PuntosObtenidos3) + " de " + TotalPuntos3 + " Puntos");
+        //Spinner
+        ArrayAdapter<String> adaptadorsp = new ArrayAdapter<String>(this, R.layout.spinner_configuracion, array);
+        sp1.setAdapter(adaptadorsp);
+        sp2.setAdapter(adaptadorsp);
+        sp3.setAdapter(adaptadorsp);
     }
 
     private void AlEscribirEnEditText(final EditText ElEditText, final Spinner ElSpinner, final TextView tvTotalText, final int TotalPuntos, final Double PuntosObtenidos) {
@@ -338,11 +346,20 @@ public class activity_evalu extends AppCompatActivity {
     }
 
     private void AlCambiarValorSpinner(final Spinner ElSpinner, final EditText ElEditText, final TextView tvTotal, final int TotalPuntos, final Double PuntosObtenidos) {
+        elSpinner = ElSpinner;
+        elEditText = ElEditText;
+        this.tvTotal = tvTotal;
+        totalPuntos = TotalPuntos;
+        puntosObtenidos = PuntosObtenidos;
         //Al cambiar valor de spinner
         ElSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView adapter, View v, int i, long lng) {
-                ConversionPorcyPunto(ElEditText, ElSpinner, tvTotal, TotalPuntos, PuntosObtenidos);
+                try {
+                    ConversionPorcyPunto(ElEditText, ElSpinner, tvTotal, TotalPuntos, PuntosObtenidos);
+                }catch (Exception e){
+                   Log.d(null,"Error al realizar Metodo ConversionPoryPunto" + e);
+                }
             }
 
             @Override
@@ -416,7 +433,6 @@ public class activity_evalu extends AppCompatActivity {
     public void OcultarTrabajoPractico() {
         if (TotalPuntos3 == 0) {
             etTp.setVisibility(View.INVISIBLE);
-            tilTp.setHint(""); //Oculta el hint del TextInputLayout de Trbajao Practico, la etiqueta flotante
             sp3.setVisibility(View.INVISIBLE);
             tvTotalText3.setVisibility(View.INVISIBLE);
         }

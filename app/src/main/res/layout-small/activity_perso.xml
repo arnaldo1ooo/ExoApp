@@ -248,7 +248,7 @@
         tools:gravity="left|center_vertical" />
 
     <EditText
-        android:id="@+id/et1Parcial"
+        android:id="@+id/et2Parcial"
         android:layout_width="50dp"
         android:layout_height="40dp"
         android:layout_alignParentLeft="true"

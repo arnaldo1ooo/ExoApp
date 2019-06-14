@@ -33,7 +33,7 @@ public class activity_perso extends AppCompatActivity {
 
         tbTp = (Button) findViewById(R.id.tbTp);
         btnSiguiente = (Button) findViewById(R.id.btnSiguiente);
-        et1parcial = (TextView) findViewById(R.id.et1Parcial);
+        et1parcial = (TextView) findViewById(R.id.et2Parcial);
         et2parcial = (TextView) findViewById(R.id.et2parcial);
         et3 = (EditText) findViewById(R.id.et3);
         etExoMin = (EditText) findViewById(R.id.etExoMin);
