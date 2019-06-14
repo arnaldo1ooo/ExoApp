@@ -153,9 +153,6 @@ public class activity_evalu extends AppCompatActivity {
 
 
 
-
-
-
         try {
             //Llamada de metodos
             PonerObjetosInvisibles();
