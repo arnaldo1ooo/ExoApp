@@ -26,6 +26,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.io.File;
 import java.text.DecimalFormat;
 
@@ -62,11 +66,7 @@ public class activity_evalu extends AppCompatActivity {
     private Button btnCompartir;
     private LinearLayout layoutCompartir;
     private ImageView ivEmoji;
-    private Spinner elSpinner;
-    private EditText elEditText;
-    private TextView tvTotal;
-    private int totalPuntos;
-    private Double puntosObtenidos;
+    private AdView AdView1;
 
     //Crear boton compartir en action bar
     @Override
@@ -147,11 +147,13 @@ public class activity_evalu extends AppCompatActivity {
         layoutCompartir = (LinearLayout) findViewById(R.id.layoutCompartir);
         ivEmoji = (ImageView) findViewById(R.id.ivEmoji);
 
+        AdView1 = findViewById(R.id.AdView1);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        AdView1.loadAd(adRequest);
+
 
         //Llamamos a los datos que el intent o activity anterior envió, son los puntos totales segun el boton presionado en el activity principal
         RecibeDatosPuntos();
-
-
 
         try {
             //Llamada de metodos
@@ -197,6 +199,47 @@ public class activity_evalu extends AppCompatActivity {
                     tvResultado.setText(df.format(Resultado) + " Puntos de 40 Puntos");
                     Felicitar();
                 }
+            }
+        });
+
+
+        MetodoBanner();
+    }
+
+    private void MetodoBanner() {
+        AdView1.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                // Código a ejecutar cuando un anuncio termina de cargarse.
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                // Código a ejecutar cuando falla una solicitud de anuncio.
+            }
+
+            @Override
+            public void onAdOpened() {
+                // Código que se ejecutará cuando un anuncio abra una
+                // superposición que cubre la pantalla.
+            }
+
+            @Override
+            public void onAdClicked() {
+                // Código que se ejecutará cuando el usuario
+                // haga clic en un anuncio.
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                // Código a ejecutar cuando el usuario
+                // ha abandonado la aplicación.
+            }
+
+            @Override
+            public void onAdClosed() {
+                // Código a ejecutar cuando el usuario está a punto de regresar
+                // a la aplicación después de pulsar en un anuncio.
             }
         });
     }
@@ -343,11 +386,7 @@ public class activity_evalu extends AppCompatActivity {
     }
 
     private void AlCambiarValorSpinner(final Spinner ElSpinner, final EditText ElEditText, final TextView tvTotal, final int TotalPuntos, final Double PuntosObtenidos) {
-        elSpinner = ElSpinner;
-        elEditText = ElEditText;
-        this.tvTotal = tvTotal;
-        totalPuntos = TotalPuntos;
-        puntosObtenidos = PuntosObtenidos;
+
         //Al cambiar valor de spinner
         ElSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

@@ -7,25 +7,44 @@
     android:background="@drawable/fondo"
     tools:context="com.exofpune.activity_tipo_evalu">
 
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/loadingPanel"
+        android:layout_width="61dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.274">
+
+    </android.support.constraint.ConstraintLayout>
+
     <Button
         android:id="@+id/btnopc3"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_width="206dp"
+        android:layout_height="62dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/boton_borde_redondo"
         android:text="10 - 10 - 20"
         android:textColor="#ffffff"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.653" />
+        app:layout_constraintVertical_bias="0.53" />
 
     <TextView
         android:id="@+id/tvVersionPrincipal"
@@ -65,76 +84,68 @@
 
     <Button
         android:id="@+id/btnopc1"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_width="206dp"
+        android:layout_height="62dp"
         android:layout_below="@+id/tvTitulo"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/boton_borde_redondo"
         android:soundEffectsEnabled="false"
         android:text="15 - 15 -10"
         android:textColor="#ffffff"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.194" />
+        app:layout_constraintVertical_bias="0.147" />
 
     <Button
-
-
         android:id="@+id/btnopc2"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
+        android:layout_width="206dp"
+        android:layout_height="62dp"
         android:layout_below="@+id/btnopc1"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/boton_borde_redondo"
         android:soundEffectsEnabled="false"
         android:text="20 - 20 - 0"
         android:textColor="#ffffff"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.426" />
+        app:layout_constraintVertical_bias="0.338" />
 
     <Button
         android:id="@+id/btnopc4"
-        android:layout_width="217dp"
-        android:layout_height="wrap_content"
+        android:layout_width="206dp"
+        android:layout_height="62dp"
         android:layout_below="@+id/btnopc3"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/boton_borde_redondo"
         android:text="Personalizado"
         android:textColor="#ffffff"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.871" />
+        app:layout_constraintVertical_bias="0.724" />
 
-    <RelativeLayout
-        android:id="@+id/loadingPanel"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center" >
-
-    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
 
