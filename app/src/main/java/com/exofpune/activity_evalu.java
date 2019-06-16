@@ -147,10 +147,8 @@ public class activity_evalu extends AppCompatActivity {
         layoutCompartir = (LinearLayout) findViewById(R.id.layoutCompartir);
         ivEmoji = (ImageView) findViewById(R.id.ivEmoji);
 
-        AdView1 = findViewById(R.id.AdView1);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        AdView1.loadAd(adRequest);
 
+        MetodoBanner();
 
         //Llamamos a los datos que el intent o activity anterior envió, son los puntos totales segun el boton presionado en el activity principal
         RecibeDatosPuntos();
@@ -181,32 +179,29 @@ public class activity_evalu extends AppCompatActivity {
                 return false;
             }
         });
+    }
 
-        btnCalculo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DecimalFormat df = new DecimalFormat("#.###");
-                OcultarTeclado(v);
-                SiEsVacio();
+    public void Calcular(View v) {
+        OcultarTeclado(v);
+        SiEsVacio();
 
-                if (MensajesError(et1parcial, sp1, PuntosObtenidos1, TotalPuntos1) == false &&
-                        MensajesError(et2parcial, sp2, PuntosObtenidos2, TotalPuntos2) == false &&
-                        MensajesError(etTp, sp3, PuntosObtenidos3, TotalPuntos3) == false) {
-                    Resultado = PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3;
-                    Log.d("Click Boton Calculo", "Puntos Obtenidos1: " + PuntosObtenidos1);
-                    Log.d("Click Boton Calculo", "Puntos Obtenidos2: " + PuntosObtenidos2);
-                    Log.d("Click Boton Calculo", "Puntos Obtenidos3: " + PuntosObtenidos3);
-                    tvResultado.setText(df.format(Resultado) + " Puntos de 40 Puntos");
-                    Felicitar();
-                }
-            }
-        });
-
-
-        MetodoBanner();
+        DecimalFormat df = new DecimalFormat("#.###");
+        if (MensajesError(et1parcial, sp1, PuntosObtenidos1, TotalPuntos1) == false &&
+                MensajesError(et2parcial, sp2, PuntosObtenidos2, TotalPuntos2) == false &&
+                MensajesError(etTp, sp3, PuntosObtenidos3, TotalPuntos3) == false) {
+            Resultado = PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3;
+            Log.d("Click Boton Calculo", "Puntos Obtenidos1: " + PuntosObtenidos1);
+            Log.d("Click Boton Calculo", "Puntos Obtenidos2: " + PuntosObtenidos2);
+            Log.d("Click Boton Calculo", "Puntos Obtenidos3: " + PuntosObtenidos3);
+            tvResultado.setText(df.format(Resultado) + " Puntos de 40 Puntos");
+            Felicitar(v);
+        }
     }
 
     private void MetodoBanner() {
+        AdView1 = findViewById(R.id.adView1);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        AdView1.loadAd(adRequest);
         AdView1.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
@@ -417,7 +412,7 @@ public class activity_evalu extends AppCompatActivity {
         }
     }
 
-    public void Felicitar() {
+    public void Felicitar(View view) {
         DecimalFormat df = new DecimalFormat("#.###");
         if (Resultado >= PuntosParaExonerar) {
             tvFeli.setTextColor(Color.GREEN);

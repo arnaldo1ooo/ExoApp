@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 
@@ -32,6 +32,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
     Button btnopc4;
     TextView VersionActual;
     private InterstitialAd mInterstitialAd;
+    private AdView AdView1;
 
     //impedir retroceder a activity anterior
     @Override
@@ -49,15 +50,14 @@ public class activity_tipo_evalu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tipo_evalu);
 
-        PublicidadInterstitial();
-
-
         btnopc1 = (Button) findViewById(R.id.btnopc1);
         btnopc2 = (Button) findViewById(R.id.btnopc2);
         btnopc3 = (Button) findViewById(R.id.btnopc3);
         btnopc4 = (Button) findViewById(R.id.btnopc4);
         VersionActual = (TextView) findViewById(R.id.tvVersionPrincipal);
 
+        PublicidadInterstitial();
+        MetodoBanner();
 
         //Obtener version actual de la app
         try {
@@ -69,6 +69,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "No se puede cargar la version actual!", Toast.LENGTH_LONG).show();
         }
+
 
 
         btnopc1.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +114,48 @@ public class activity_tipo_evalu extends AppCompatActivity {
             public void onClick(View v) {
                Intent intent = new Intent(v.getContext(), activity_perso.class);
                startActivityForResult(intent, 0);
+            }
+        });
+    }
+
+
+    private void MetodoBanner() {
+        AdView1 = findViewById(R.id.adView1);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        AdView1.loadAd(adRequest);
+        AdView1.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                // Código a ejecutar cuando un anuncio termina de cargarse.
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                // Código a ejecutar cuando falla una solicitud de anuncio.
+            }
+
+            @Override
+            public void onAdOpened() {
+                // Código que se ejecutará cuando un anuncio abra una
+                // superposición que cubre la pantalla.
+            }
+
+            @Override
+            public void onAdClicked() {
+                // Código que se ejecutará cuando el usuario
+                // haga clic en un anuncio.
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                // Código a ejecutar cuando el usuario
+                // ha abandonado la aplicación.
+            }
+
+            @Override
+            public void onAdClosed() {
+                // Código a ejecutar cuando el usuario está a punto de regresar
+                // a la aplicación después de pulsar en un anuncio.
             }
         });
     }
