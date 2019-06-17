@@ -30,6 +30,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
     Button btnopc2;
     Button btnopc3;
     Button btnopc4;
+    Button btnopc5;
     TextView VersionActual;
     private InterstitialAd mInterstitialAd;
     private AdView AdView1;
@@ -54,6 +55,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
         btnopc2 = (Button) findViewById(R.id.btnopc2);
         btnopc3 = (Button) findViewById(R.id.btnopc3);
         btnopc4 = (Button) findViewById(R.id.btnopc4);
+        btnopc5 = (Button) findViewById(R.id.btnopc5);
         VersionActual = (TextView) findViewById(R.id.tvVersionPrincipal);
 
         PublicidadInterstitial();
@@ -69,6 +71,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "No se puede cargar la version actual!", Toast.LENGTH_LONG).show();
         }
+
 
 
 
@@ -114,6 +117,14 @@ public class activity_tipo_evalu extends AppCompatActivity {
             public void onClick(View v) {
                Intent intent = new Intent(v.getContext(), activity_perso.class);
                startActivityForResult(intent, 0);
+            }
+        });
+
+        btnopc5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), activity_bonificacion.class);
+                startActivity(i);
             }
         });
     }

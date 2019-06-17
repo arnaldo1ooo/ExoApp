@@ -52,7 +52,7 @@
     <Button
         android:id="@+id/btnopc1"
         android:layout_width="210dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/tvTitulo"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="8dp"
@@ -73,7 +73,7 @@
     <Button
         android:id="@+id/btnopc2"
         android:layout_width="210dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/btnopc1"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="8dp"
@@ -86,7 +86,7 @@
         android:textColor="#ffffff"
         android:textSize="28sp"
         ads:layout_constraintHorizontal_bias="0.497"
-        ads:layout_constraintVertical_bias="0.308"
+        ads:layout_constraintVertical_bias="0.282"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -95,7 +95,7 @@
     <Button
         android:id="@+id/btnopc3"
         android:layout_width="210dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/btnopc2"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -108,7 +108,7 @@
         android:textColor="#ffffff"
         android:textSize="28sp"
         ads:layout_constraintHorizontal_bias="0.497"
-        ads:layout_constraintVertical_bias="0.499"
+        ads:layout_constraintVertical_bias="0.439"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +117,7 @@
     <Button
         android:id="@+id/btnopc4"
         android:layout_width="210dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/btnopc3"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="8dp"
@@ -129,8 +129,8 @@
         android:textColor="#ffffff"
         android:textSize="23sp"
         android:visibility="visible"
-        ads:layout_constraintHorizontal_bias="0.502"
-        ads:layout_constraintVertical_bias="0.683"
+        ads:layout_constraintHorizontal_bias="0.497"
+        ads:layout_constraintVertical_bias="0.601"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -147,10 +147,10 @@
         android:layout_marginBottom="8dp"
         ads:layout_constraintBottom_toBottomOf="parent"
         ads:layout_constraintEnd_toEndOf="parent"
-        ads:layout_constraintHorizontal_bias="0.563"
+        ads:layout_constraintHorizontal_bias="0.941"
         ads:layout_constraintStart_toStartOf="parent"
         ads:layout_constraintTop_toTopOf="parent"
-        ads:layout_constraintVertical_bias="0.837">
+        ads:layout_constraintVertical_bias="0.579">
 
 
     </android.support.constraint.ConstraintLayout>
@@ -173,6 +173,27 @@
         ads:layout_constraintStart_toStartOf="parent"
         ads:layout_constraintTop_toTopOf="parent"
         ads:layout_constraintVertical_bias="0.988" />
+
+    <Button
+        android:id="@+id/btnopc5"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/boton_borde_redondo"
+        android:text="Bonificación total"
+        android:textColor="#ffffff"
+        android:textSize="23sp"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintHorizontal_bias="0.497"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintTop_toTopOf="@+id/tvTitulo"
+        ads:layout_constraintVertical_bias="0.768" />
 
 
 </android.support.constraint.ConstraintLayout>
