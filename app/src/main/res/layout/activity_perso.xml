@@ -219,7 +219,7 @@
         tools:gravity="left|center_vertical" />
 
     <TextView
-        android:id="@+id/tvNota2"
+        android:id="@+id/tvNota5"
         android:layout_width="80dp"
         android:layout_height="40dp"
         android:layout_marginBottom="8dp"
