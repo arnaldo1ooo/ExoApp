@@ -51,8 +51,6 @@ public class activity_evalu extends AppCompatActivity {
     EditText etTp;
     TextView tvResultado;
     TextView tvFaltante;
-    TextView tvPuntosFinal;
-    TextView tvNota;
     double Resultado;
     Spinner sp1;
     Spinner sp2;
@@ -67,6 +65,7 @@ public class activity_evalu extends AppCompatActivity {
     private LinearLayout layoutCompartir;
     private ImageView ivEmoji;
     private AdView AdView1;
+    private Button btnBonificacion;
 
     //Crear boton compartir en action bar
     @Override
@@ -81,31 +80,34 @@ public class activity_evalu extends AppCompatActivity {
         //Toast.makeText(this, "OnStart", Toast.LENGTH_SHORT).show();
         // La actividad está a punto de hacerse visible.
     }
+
     @Override
     protected void onResume() {
         super.onResume();
         //Toast.makeText(this, "OnResume", Toast.LENGTH_SHORT).show();
         // La actividad se ha vuelto visible (ahora se "reanuda").
     }
+
     @Override
     protected void onPause() {
         super.onPause();
         //Toast.makeText(this, "OnPause", Toast.LENGTH_SHORT).show();
         // Enfocarse en otra actividad  (esta actividad está a punto de ser "detenida").
     }
+
     @Override
     protected void onStop() {
         super.onStop();
         //Toast.makeText(this, "OnStop", Toast.LENGTH_SHORT).show();
         // La actividad ya no es visible (ahora está "detenida")
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         //Toast.makeText(this, "OnDestroy", Toast.LENGTH_SHORT).show();
         // La actividad está a punto de ser destruida.
     }
-
 
 
     //Al hacer click en boton compartir
@@ -140,12 +142,11 @@ public class activity_evalu extends AppCompatActivity {
         tvTotalText3 = (TextView) findViewById(R.id.tvTotalText3);
         tvFeli = (TextView) findViewById(R.id.tvFeli);
         tvFaltante = (TextView) findViewById(R.id.tvFaltante);
-        tvPuntosFinal = (TextView) findViewById(R.id.tvPuntosFinal);
-        tvNota = (TextView) findViewById(R.id.tvNota);
         btnCompartir = (Button) findViewById(R.id.btnCompartir);
         ivCompartir = (ImageView) findViewById(R.id.ivCompartir);
         layoutCompartir = (LinearLayout) findViewById(R.id.layoutCompartir);
         ivEmoji = (ImageView) findViewById(R.id.ivEmoji);
+        btnBonificacion = (Button) findViewById(R.id.btnBonificacion);
 
 
         MetodoBanner();
@@ -155,7 +156,7 @@ public class activity_evalu extends AppCompatActivity {
 
         try {
             //Llamada de metodos
-            PonerObjetosInvisibles();
+            VisibilidadObjetos();
             OcultarTrabajoPractico();
             AlCambiarValorSpinner(sp1, et1parcial, tvTotalText1, TotalPuntos1, PuntosObtenidos1);
             AlCambiarValorSpinner(sp2, et2parcial, tvTotalText2, TotalPuntos2, PuntosObtenidos2);
@@ -163,7 +164,7 @@ public class activity_evalu extends AppCompatActivity {
             AlEscribirEnEditText(et1parcial, sp1, tvTotalText1, TotalPuntos1, PuntosObtenidos1);
             AlEscribirEnEditText(et2parcial, sp2, tvTotalText2, TotalPuntos2, PuntosObtenidos2);
             AlEscribirEnEditText(etTp, sp3, tvTotalText3, TotalPuntos3, PuntosObtenidos3);
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             System.out.println(" Error en la llamada de metodos: " + e);
         }
 
@@ -179,7 +180,20 @@ public class activity_evalu extends AppCompatActivity {
                 return false;
             }
         });
+
+        btnBonificacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentBonificacion = new Intent(v.getContext(), activity_bonificacion.class);
+                String[] Stringcortado = tvResultado.getText().toString().split(" ");
+
+                intentBonificacion.putExtra("bonificacion", Stringcortado[0]);
+                Log.d("Resultado", "Bonificacion a enviar a otro intent: "+Stringcortado[0]);
+                startActivityForResult(intentBonificacion, 0);
+            }
+        });
     }
+
 
     public void Calcular(View v) {
         OcultarTeclado(v);
@@ -197,6 +211,7 @@ public class activity_evalu extends AppCompatActivity {
             Felicitar(v);
         }
     }
+
 
     private void MetodoBanner() {
         AdView1 = findViewById(R.id.adView1);
@@ -242,16 +257,16 @@ public class activity_evalu extends AppCompatActivity {
     private void RecibeDatosPuntos() {
         try {
             TotalPuntos1 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos1"));
-            Log.d("Total de puntos 1",""+TotalPuntos1);
+            Log.d("Total de puntos 1", "" + TotalPuntos1);
             TotalPuntos2 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos2"));
             TotalPuntos3 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos3"));
             String Personalizado = getIntent().getExtras().getString("EsPersonalizado");
-            if(Personalizado.equals("Si")){
+            if (Personalizado.equals("Si")) {
                 PuntosParaExonerar = Double.parseDouble(getIntent().getExtras().getString("Minimo Exoneracion"));
                 MinNota5 = Double.parseDouble(getIntent().getExtras().getString("Minimo nota 5"));
             }
         } catch (NumberFormatException e) {
-            Log.d("Error al obtener datos", ""+e);
+            Log.d("Error al obtener datos", "" + e);
             e.printStackTrace();
         }
 
@@ -296,8 +311,8 @@ public class activity_evalu extends AppCompatActivity {
                             }
                         }
                     }
-                }catch (Exception n){
-                    Log.d("Despues de cambiar text","Error al escribir en editext");
+                } catch (Exception n) {
+                    Log.d("Despues de cambiar text", "Error al escribir en editext");
                 }
 
             }
@@ -356,7 +371,7 @@ public class activity_evalu extends AppCompatActivity {
 
         if (ElSpinner.getSelectedItemId() == 0) {
             if (Double.parseDouble(ElEditText.getText().toString()) > 100) {
-                PonerObjetosInvisibles();
+                VisibilidadObjetos();
                 ElEditText.setTextColor(Color.RED);
                 Toast toast = Toast.makeText(this, "El porcentaje obtenido no puede ser mayor al 100%", Toast.LENGTH_SHORT);
                 toast.show();
@@ -367,7 +382,7 @@ public class activity_evalu extends AppCompatActivity {
         } else {
             if (ElSpinner.getSelectedItemId() == 1) {
                 if (Double.parseDouble(ElEditText.getText().toString()) > TotalPuntos) {
-                    PonerObjetosInvisibles();
+                    VisibilidadObjetos();
                     ElEditText.setTextColor(Color.RED);
                     Toast toast = Toast.makeText(this, "El punto obtenido no puede ser mayor a " + TotalPuntos + " Puntos", Toast.LENGTH_SHORT);
                     toast.show();
@@ -388,8 +403,8 @@ public class activity_evalu extends AppCompatActivity {
             public void onItemSelected(AdapterView adapter, View v, int i, long lng) {
                 try {
                     ConversionPorcyPunto(ElEditText, ElSpinner, tvTotal, TotalPuntos, PuntosObtenidos);
-                }catch (Exception e){
-                   Log.d(null,"Error al realizar Metodo ConversionPoryPunto" + e);
+                } catch (Exception e) {
+                    Log.d(null, "Error al realizar Metodo ConversionPoryPunto" + e);
                 }
             }
 
@@ -422,8 +437,6 @@ public class activity_evalu extends AppCompatActivity {
             ivEmoji.setImageResource(R.drawable.feliz);
             tvFaltante.setVisibility(TextView.VISIBLE);
             tvResultado.setVisibility(TextView.VISIBLE);
-            tvPuntosFinal.setVisibility(TextView.INVISIBLE);
-            tvNota.setVisibility(TextView.INVISIBLE);
             if (Resultado >= MinNota5) {
                 tvFaltante.setText("Obtuviste nota 5");
             } else {
@@ -439,9 +452,7 @@ public class activity_evalu extends AppCompatActivity {
                 tvFeli.setVisibility(View.VISIBLE);
                 tvFaltante.setVisibility(TextView.VISIBLE);
                 tvResultado.setVisibility(TextView.VISIBLE);
-                tvPuntosFinal.setVisibility(TextView.VISIBLE);
-                tvNota.setVisibility(TextView.VISIBLE);
-                tvPuntosFinal.setText("Debes hacer " + df.format(((60 - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) * 100) / 60) + "% en la final (" + df.format(60 - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " de 60)");
+                btnBonificacion.setVisibility(TextView.INVISIBLE);
             } else {
                 if (Resultado < PuntosParaExonerar) {
                     tvFeli.setTextColor(Color.RED);
@@ -452,9 +463,7 @@ public class activity_evalu extends AppCompatActivity {
                     tvFeli.setVisibility(View.VISIBLE);
                     tvFaltante.setVisibility(TextView.VISIBLE);
                     tvResultado.setVisibility(TextView.VISIBLE);
-                    tvPuntosFinal.setVisibility(TextView.VISIBLE);
-                    tvNota.setVisibility(TextView.VISIBLE);
-                    tvPuntosFinal.setText("Debes hacer " + df.format(((60 - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) * 100) / 60) + "% en la final (" + df.format(60 - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " de 60)");
+                    btnBonificacion.setVisibility(TextView.VISIBLE);
                 }
             }
         }
@@ -477,9 +486,9 @@ public class activity_evalu extends AppCompatActivity {
     /*  Compartir la captura de pantalla  */
     private void CompartirCaptura(File file) {
         Uri uri;
-        if(Build.VERSION.SDK_INT>=26){ //Api 26 es Android 8.0
-            uri = FileProvider.getUriForFile(this,BuildConfig.APPLICATION_ID + ".provider", file);//Convierte la ruta del archivo en Uri para compartir
-        }else{
+        if (Build.VERSION.SDK_INT >= 26) { //Api 26 es Android 8.0
+            uri = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".provider", file);//Convierte la ruta del archivo en Uri para compartir
+        } else {
             uri = Uri.fromFile(file);//Convierte la ruta del archivo en Uri para compartir
         }
 
@@ -492,13 +501,12 @@ public class activity_evalu extends AppCompatActivity {
         startActivity(Intent.createChooser(intent, getString(R.string.share_title)));
     }
 
-    private void PonerObjetosInvisibles() {
+    private void VisibilidadObjetos() {
         tvFaltante.setVisibility(View.INVISIBLE);
         tvResultado.setVisibility(View.INVISIBLE);
         tvFeli.setVisibility(View.INVISIBLE);
-        tvPuntosFinal.setVisibility(TextView.INVISIBLE);
-        tvNota.setVisibility(TextView.INVISIBLE);
         ivEmoji.setVisibility(ImageView.INVISIBLE);
+        btnBonificacion.setVisibility(View.INVISIBLE);
     }
 
     /*  Método que tomará una captura de pantalla en Bases de captura de pantalla Tipo ENUM  */

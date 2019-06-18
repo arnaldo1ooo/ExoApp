@@ -78,7 +78,6 @@ public class activity_tipo_evalu extends AppCompatActivity {
         btnopc1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(v.getContext(), activity_evalu.class);
                 intent.putExtra("TotalPuntos1", "15");
                 intent.putExtra("TotalPuntos2", "15");

@@ -11,50 +11,47 @@
         android:id="@+id/tvTituloNota2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:foregroundGravity="left"
-        android:text="Para nota 2 necesitas:"
-        android:textColor="#83E2CC"
+        android:text="Para nota 2 debes hacer:"
+        android:textColor="#FF5722"
         android:textSize="21sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.128"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.467" />
+        app:layout_constraintVertical_bias="0.466" />
 
     <TextView
         android:id="@+id/tvNota2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="13dp"
         android:layout_marginBottom="8dp"
         android:foregroundGravity="left"
         android:text="60.999 puntos de 60 (99.999% de 100%)"
         android:textColor="#FDFFFFFF"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.518" />
+        app:layout_constraintVertical_bias="0.501" />
 
     <TextView
         android:id="@+id/tvTituloNota3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:foregroundGravity="left"
-        android:text="Para nota 3 necesitas:"
-        android:textColor="#83E2CC"
+        android:text="Para nota 3 debes hacer:"
+        android:textColor="#E7CC1D"
         android:textSize="21sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.128"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.578" />
 
@@ -62,33 +59,31 @@
         android:id="@+id/tvNota3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="7dp"
         android:layout_marginBottom="8dp"
         android:foregroundGravity="left"
         android:text="60.999 puntos de 60 (99.999% de 100%)"
         android:textColor="#FDFFFFFF"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.629" />
+        app:layout_constraintVertical_bias="0.618" />
 
     <TextView
         android:id="@+id/tvTituloNota5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:foregroundGravity="left"
-        android:text="Para nota 5 necesitas:"
-        android:textColor="#83E2CC"
+        android:text="Para nota 5 debes hacer:"
+        android:textColor="#2EB831"
         android:textSize="21sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.128"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.804" />
 
@@ -96,33 +91,31 @@
         android:id="@+id/tvNota5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:foregroundGravity="left"
         android:text="60.999 puntos de 60 (99.999% de 100%)"
         android:textColor="#FDFFFFFF"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.472"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.854" />
+        app:layout_constraintVertical_bias="0.84000003" />
 
     <TextView
         android:id="@+id/tvTituloNota4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:foregroundGravity="left"
-        android:text="Para nota 4 necesitas:"
-        android:textColor="#83E2CC"
+        android:text="Para nota 4 debes hacer:"
+        android:textColor="#00BCD4"
         android:textSize="21sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.133"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.692" />
 
@@ -130,18 +123,17 @@
         android:id="@+id/tvNota4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:foregroundGravity="left"
         android:text="60.999 puntos de 60 (99.999% de 100%)"
         android:textColor="#FDFFFFFF"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.742" />
+        app:layout_constraintVertical_bias="0.73" />
 
     <TextView
         android:id="@+id/textView6"
@@ -161,7 +153,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.083" />
+        app:layout_constraintVertical_bias="0.072" />
 
     <EditText
         android:id="@+id/etBonificacion"
@@ -174,6 +166,8 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
+        android:foregroundGravity="right"
+        android:gravity="right"
         android:hint="Ingrese Bonificación"
         android:inputType="numberDecimal"
         android:shadowColor="#00EBDADA"
@@ -182,9 +176,10 @@
         android:textSize="23sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.403"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.152" />
+        app:layout_constraintVertical_bias="0.135" />
 
     <Button
         android:id="@+id/btnCalcular"
@@ -211,23 +206,22 @@
         android:id="@+id/tvTitulo2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif"
         android:foregroundGravity="left"
         android:gravity="left"
-        android:text="Puntos necesarios"
+        android:text="Puntos que debes hacer en la final:"
         android:textAllCaps="false"
         android:textColor="#ffffff"
-        android:textSize="25sp"
+        android:textSize="23sp"
         android:textStyle="bold|italic"
         app:fontFamily="sans-serif-light"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.076"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.406" />
+        app:layout_constraintVertical_bias="0.408" />
 
     <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"
@@ -240,7 +234,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        ads:adUnitId="ca-app-pub-8474453660271942/9184800934"
         ads:layout_constraintBottom_toBottomOf="parent"
         ads:layout_constraintEnd_toEndOf="parent"
         ads:layout_constraintHorizontal_bias="0.493"
