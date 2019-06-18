@@ -187,7 +187,7 @@ public class activity_evalu extends AppCompatActivity {
                 Intent intentBonificacion = new Intent(v.getContext(), activity_bonificacion.class);
                 String[] Stringcortado = tvResultado.getText().toString().split(" ");
 
-                intentBonificacion.putExtra("bonificacion", Stringcortado[0]);
+                intentBonificacion.putExtra("bonificacion", Stringcortado[0].replace(",","."));
                 Log.d("Resultado", "Bonificacion a enviar a otro intent: "+Stringcortado[0]);
                 startActivityForResult(intentBonificacion, 0);
             }
@@ -207,7 +207,7 @@ public class activity_evalu extends AppCompatActivity {
             Log.d("Click Boton Calculo", "Puntos Obtenidos1: " + PuntosObtenidos1);
             Log.d("Click Boton Calculo", "Puntos Obtenidos2: " + PuntosObtenidos2);
             Log.d("Click Boton Calculo", "Puntos Obtenidos3: " + PuntosObtenidos3);
-            tvResultado.setText(df.format(Resultado).replace(",",".") + " Puntos de 40 Puntos");
+            tvResultado.setText(df.format(Resultado) + " Puntos de 40 Puntos");
             Felicitar(v);
         }
     }
