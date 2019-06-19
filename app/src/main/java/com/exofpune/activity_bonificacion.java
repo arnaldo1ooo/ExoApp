@@ -99,9 +99,9 @@ public class activity_bonificacion extends AppCompatActivity {
 
 
     public void Calcular() {
-        if (etBonificacion.getText().toString().isEmpty() == true) { //Si bonificacion es vacia
-            Toast.makeText(this, "La bonificación es inválida, no puede ser vacío", Toast.LENGTH_LONG).show();
-        } else {
+        if (etBonificacion.getText().toString().equals("")) {//Si es vacio
+            etBonificacion.setText("0");
+        }
             DecimalFormat df = new DecimalFormat("#.###");
             DecimalFormat soloentero = new DecimalFormat("#");
             double bonmax = 40;
@@ -148,6 +148,6 @@ public class activity_bonificacion extends AppCompatActivity {
                 double Nota5Porc = (Nota5 * 100) / TotalFinal;
                 tvNota5.setText(df.format(Nota5) + " puntos de " + soloentero.format(TotalFinal) + " (" + df.format(Nota5Porc) + "% de 100%)");
             }
-        }
+
     }
 }

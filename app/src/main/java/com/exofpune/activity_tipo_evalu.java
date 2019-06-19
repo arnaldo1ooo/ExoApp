@@ -34,6 +34,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
     TextView VersionActual;
     private InterstitialAd mInterstitialAd;
     private AdView AdView1;
+    boolean SeActivoPublicidad = false;
 
     //impedir retroceder a activity anterior
     @Override
@@ -45,6 +46,20 @@ public class activity_tipo_evalu extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        // El bundle sera guardado y enviado al onCreate() de la Activity.
+        savedInstanceState.putBoolean("SeActivoPublicidad", SeActivoPublicidad);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // Al volver a restaurar el intent volvemos al ultimo estado de esta variable savedInstanceState.
+        SeActivoPublicidad = savedInstanceState.getBoolean("SeActivoPublicidad");
+        Log.d("Estado guardado",SeActivoPublicidad+"");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +86,6 @@ public class activity_tipo_evalu extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "No se puede cargar la version actual!", Toast.LENGTH_LONG).show();
         }
-
-
 
 
         btnopc1.setOnClickListener(new View.OnClickListener() {
@@ -114,8 +127,8 @@ public class activity_tipo_evalu extends AppCompatActivity {
         btnopc4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent intent = new Intent(v.getContext(), activity_perso.class);
-               startActivityForResult(intent, 0);
+                Intent intent = new Intent(v.getContext(), activity_perso.class);
+                startActivityForResult(intent, 0);
             }
         });
 
@@ -170,43 +183,48 @@ public class activity_tipo_evalu extends AppCompatActivity {
         });
     }
 
+
     private void PublicidadInterstitial() {
-        try {
-            MobileAds.initialize(this,"ca-app-pub-8474453660271942/1150495372");
+        if (SeActivoPublicidad == false) {
+            try {
+                MobileAds.initialize(this, "ca-app-pub-8474453660271942/1150495372");
 
-            mInterstitialAd = new InterstitialAd(this);
-            mInterstitialAd.setAdUnitId("ca-app-pub-8474453660271942/1150495372");
-            mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                mInterstitialAd = new InterstitialAd(this);
+                mInterstitialAd.setAdUnitId("ca-app-pub-8474453660271942/1150495372");
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
-            mInterstitialAd.setAdListener(new AdListener() {
-                @Override
-                public void onAdLoaded() { // Código que se ejecutará cuando un anuncio termine de cargarse.
-                    if ( mInterstitialAd.isLoaded()) {
-                        mInterstitialAd.show(); //Mostrar el Interstittial luego de crearlo
+                mInterstitialAd.setAdListener(new AdListener() {
+                    @Override
+                    public void onAdLoaded() { // Código que se ejecutará cuando un anuncio termine de cargarse.
+                        if (mInterstitialAd.isLoaded()) {
+                            mInterstitialAd.show(); //Mostrar el Interstittial luego de crearlo
+                            onSaveInstanceState(null);
+                        }
                     }
-                }
 
-                @Override
-                public void onAdOpened() {// Código que se ejecutará cuando se muestre el anuncio.
+                    @Override
+                    public void onAdOpened() {// Código que se ejecutará cuando se muestre el anuncio.
 
-                }
+                    }
 
-                @Override
-                public void onAdFailedToLoad(int errorCode) {// Código que se ejecutará cuando una solicitud de anuncio falle.
+                    @Override
+                    public void onAdFailedToLoad(int errorCode) {// Código que se ejecutará cuando una solicitud de anuncio falle.
 
-                }
+                    }
 
-                @Override
-                public void onAdLeftApplication() {// Código que se ejecutará cuando el usuario haya abandonado la aplicación.
-                }
+                    @Override
+                    public void onAdLeftApplication() {// Código que se ejecutará cuando el usuario haya abandonado la aplicación.
+                    }
 
-                @Override
-                public void onAdClosed() {// Código que se ejecutará cuando el anuncio intersticial esté cerrado.
+                    @Override
+                    public void onAdClosed() {// Código que se ejecutará cuando el anuncio intersticial esté cerrado.
 
-                }
-            });
-        }catch(Exception e){
-            Log.d("Error", "Error metodo PublicidadInterstitial() "+e);
+                    }
+                });
+            } catch (Exception e) {
+                Log.d("Error", "Error metodo PublicidadInterstitial() " + e);
+            }
+            SeActivoPublicidad = true;
         }
     }
 
@@ -236,22 +254,6 @@ public class activity_tipo_evalu extends AppCompatActivity {
     }
 
 
-    /*public Boolean EstaConectadoInternet() {
-        try {
-            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
-            int val = p.waitFor();
-            boolean reachable = (val == 0);
-            Log.d("Internet", String.valueOf(reachable));
-            return reachable;
-
-        } catch (Exception e) {//No se detecto internet
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return false;
-    }*/
-
-
     // Storage Permissions
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
@@ -261,7 +263,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
 
     /**
      * Checks if the app has permission to write to device storage
-     *
+     * <p>
      * If the app does not has permission then the user will be prompted to grant permissions
      *
      * @param ElActivity

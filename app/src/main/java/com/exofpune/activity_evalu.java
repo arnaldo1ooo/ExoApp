@@ -148,7 +148,6 @@ public class activity_evalu extends AppCompatActivity {
         ivEmoji = (ImageView) findViewById(R.id.ivEmoji);
         btnBonificacion = (Button) findViewById(R.id.btnBonificacion);
 
-
         MetodoBanner();
 
         //Llamamos a los datos que el intent o activity anterior envió, son los puntos totales segun el boton presionado en el activity principal
@@ -158,9 +157,7 @@ public class activity_evalu extends AppCompatActivity {
             //Llamada de metodos
             VisibilidadObjetos();
             OcultarTrabajoPractico();
-            AlCambiarValorSpinner(sp1, et1parcial, tvTotalText1, TotalPuntos1, PuntosObtenidos1);
-            AlCambiarValorSpinner(sp2, et2parcial, tvTotalText2, TotalPuntos2, PuntosObtenidos2);
-            AlCambiarValorSpinner(sp3, etTp, tvTotalText3, TotalPuntos3, PuntosObtenidos3);
+
             AlEscribirEnEditText(et1parcial, sp1, tvTotalText1, TotalPuntos1, PuntosObtenidos1);
             AlEscribirEnEditText(et2parcial, sp2, tvTotalText2, TotalPuntos2, PuntosObtenidos2);
             AlEscribirEnEditText(etTp, sp3, tvTotalText3, TotalPuntos3, PuntosObtenidos3);
@@ -187,9 +184,58 @@ public class activity_evalu extends AppCompatActivity {
                 Intent intentBonificacion = new Intent(v.getContext(), activity_bonificacion.class);
                 String[] Stringcortado = tvResultado.getText().toString().split(" ");
 
-                intentBonificacion.putExtra("bonificacion", Stringcortado[0].replace(",","."));
-                Log.d("Resultado", "Bonificacion a enviar a otro intent: "+Stringcortado[0]);
+                intentBonificacion.putExtra("bonificacion", Stringcortado[0].replace(",", "."));
+                Log.d("Resultado", "Bonificacion a enviar a otro intent: " + Stringcortado[0]);
                 startActivityForResult(intentBonificacion, 0);
+            }
+        });
+
+        MetodosSpinner();
+    }
+
+    private void MetodosSpinner() {
+        sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                //Elemento seleccionado ->
+                PuntosObtenidos1 = ConversionPorcyPunto(et1parcial, sp1, tvTotalText1, TotalPuntos1, PuntosObtenidos1);
+                Log.d("MetodoSpinner sp1: ", PuntosObtenidos1+"");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                //No se ha seleccionado nada.
+                Toast.makeText(getApplicationContext(), "Ninguno seleccionado", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        sp2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                //Elemento seleccionado ->
+                PuntosObtenidos2 = ConversionPorcyPunto(et2parcial, sp2, tvTotalText2, TotalPuntos2, PuntosObtenidos2);
+                Log.d("MetodoSpinner sp2: ", PuntosObtenidos2+"");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                //No se ha seleccionado nada.
+                Toast.makeText(getApplicationContext(), "Ninguno seleccionado", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        sp3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                //Elemento seleccionado ->
+                PuntosObtenidos3 = ConversionPorcyPunto(etTp, sp3, tvTotalText3, TotalPuntos3, PuntosObtenidos3);
+                Log.d("MetodoSpinner sp3: ", PuntosObtenidos3+"");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                //No se ha seleccionado nada.
+                Toast.makeText(getApplicationContext(), "Ninguno seleccionado", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -324,8 +370,8 @@ public class activity_evalu extends AppCompatActivity {
     public double ConversionPorcyPunto(EditText ElEditText, Spinner ElSpinner, TextView tvTotal, int Totalpuntos, double PuntosObtenidos) {
         DecimalFormat df = new DecimalFormat("#.###");
         if (ElEditText.getText().toString().equals("") == false) {
-            if (ElSpinner.getSelectedItemId() == 0) {
-                Log.d("Metodo Conversion", "Seleccion de Spinner % %");
+            if (ElSpinner.getSelectedItemId() == 0) { //Si en el spinner esta %
+                Log.d("Metodo Conversion", "Seleccion de Spinner %");
                 if (MensajesError(ElEditText, ElSpinner, PuntosObtenidos, Totalpuntos) == false) { //Revisa si cumple ELEditText
                     PuntosObtenidos = (Double.parseDouble(ElEditText.getText().toString()) * Totalpuntos) / 100;
                     tvTotal.setText(df.format(PuntosObtenidos) + " de " + Totalpuntos + " Puntos");
@@ -335,7 +381,7 @@ public class activity_evalu extends AppCompatActivity {
                 }
             }
 
-            if (ElSpinner.getSelectedItemId() == 1) {
+            if (ElSpinner.getSelectedItemId() == 1) { //Si en el spinner esta Puntos
                 Log.d("Metodo Conversion", "Seleccion de Spinner Puntos");
                 if (MensajesError(ElEditText, ElSpinner, Double.parseDouble(ElEditText.getText().toString()), Totalpuntos) == false) { //Revisa si cumple ELEditText
                     PuntosObtenidosporciento = (Double.parseDouble(ElEditText.getText().toString()) * 100) / Totalpuntos;
@@ -352,9 +398,10 @@ public class activity_evalu extends AppCompatActivity {
 
             if (ElSpinner.getSelectedItemId() == 0) {
                 tvTotal.setText("0 de " + Totalpuntos + " Puntos");
-            }
-            if (ElSpinner.getSelectedItemId() == 1) {
-                tvTotal.setText("0 % de 100%");
+            } else {
+                if (ElSpinner.getSelectedItemId() == 1) {
+                    tvTotal.setText("0 % de 100%");
+                }
             }
         }
         Log.d("PuntosObtenidosConve", "" + PuntosObtenidos);
@@ -395,25 +442,6 @@ public class activity_evalu extends AppCompatActivity {
         return false;
     }
 
-    private void AlCambiarValorSpinner(final Spinner ElSpinner, final EditText ElEditText, final TextView tvTotal, final int TotalPuntos, final Double PuntosObtenidos) {
-
-        //Al cambiar valor de spinner
-        ElSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView adapter, View v, int i, long lng) {
-                try {
-                    ConversionPorcyPunto(ElEditText, ElSpinner, tvTotal, TotalPuntos, PuntosObtenidos);
-                } catch (Exception e) {
-                    Log.d(null, "Error al realizar Metodo ConversionPoryPunto" + e);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView arg0) {
-                Toast.makeText(getApplicationContext(), "Ninguno seleccionado", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
     public void SiEsVacio() {
         if (et1parcial.getText().toString().equals("")) {//Si es vacio
