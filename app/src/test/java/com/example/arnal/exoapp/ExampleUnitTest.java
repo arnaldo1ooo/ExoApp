@@ -1,4 +1,4 @@
-package com.example.arnal.exofpune;
+package com.example.arnal.exoapp;
 
 import org.junit.Test;
 
