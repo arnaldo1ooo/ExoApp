@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo"
-    tools:context="com.exoapp.activity_tipo_evalu">
+    tools:context="com.exoapp.activity_principal">
 
     <TextView
         android:id="@+id/tvVersionPrincipal"
@@ -37,7 +37,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:text="Seleccione el tipo de evaluación"
+        android:text="Menú principal"
         android:textAlignment="center"
         android:textColor="#ffffff"
         android:textSize="19sp"
@@ -50,7 +50,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/btnopc1"
+        android:id="@+id/btnevaluaciones"
         android:layout_width="0dp"
         android:layout_height="80dp"
         android:layout_below="@+id/tvTitulo"
@@ -61,59 +61,57 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/boton_borde_redondo"
         android:soundEffectsEnabled="false"
-        android:text="15 - 15 -10"
+        android:text="Evaluaciones"
         android:textColor="#ffffff"
-        android:textSize="30sp"
-        ads:layout_constraintHorizontal_bias="0.497"
+        android:textSize="25sp"
+        ads:layout_constraintHorizontal_bias="0.0"
+        ads:layout_constraintVertical_bias="0.168"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.128" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnopc2"
+        android:id="@+id/btncorrelatividad"
         android:layout_width="0dp"
         android:layout_height="80dp"
-        android:layout_below="@+id/btnevaluaciones"
+        android:layout_below="@+id/btnopc3"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/boton_borde_redondo"
-        android:soundEffectsEnabled="false"
-        android:text="20 - 20 - 0"
+        android:enabled="true"
+        android:text="Correlatividad"
         android:textColor="#ffffff"
-        android:textSize="30sp"
-        ads:layout_constraintHorizontal_bias="0.502"
-        ads:layout_constraintVertical_bias="0.352"
+        android:textSize="25sp"
+        android:visibility="visible"
+        ads:layout_constraintHorizontal_bias="0.0"
+        ads:layout_constraintVertical_bias="0.395"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnopc3"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:layout_below="@+id/btnopc2"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loadingPanel"
+        android:layout_width="51dp"
+        android:layout_height="41dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/boton_borde_redondo"
-        android:text="10 - 10 - 20"
-        android:textColor="#ffffff"
-        android:textSize="30sp"
-        ads:layout_constraintHorizontal_bias="0.497"
-        ads:layout_constraintVertical_bias="0.577"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintHorizontal_bias="0.799"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintTop_toTopOf="parent"
+        ads:layout_constraintVertical_bias="0.854">
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView1"
@@ -133,6 +131,27 @@
         ads:layout_constraintStart_toStartOf="parent"
         ads:layout_constraintTop_toTopOf="parent"
         ads:layout_constraintVertical_bias="0.988" />
+
+    <Button
+        android:id="@+id/btnBonificacionTotal"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/boton_borde_redondo"
+        android:text="Bonificación total"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintHorizontal_bias="1.0"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintTop_toTopOf="@+id/tvTitulo"
+        ads:layout_constraintVertical_bias="0.622" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

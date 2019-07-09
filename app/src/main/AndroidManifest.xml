@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.exofpune">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.exoapp">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -21,30 +22,42 @@
         android:label="ExoApp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity_tipo_evalu" />
-        <activity
-            android:name=".activity_evalu"
-            android:parentActivityName=".activity_tipo_evalu"
-            android:windowSoftInputMode="adjustPan" />
+
+
         <activity
             android:name=".SplashScreen"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".activity_principal"
+            android:parentActivityName=".SplashScreen"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name=".activity_tipo_evalu"
+            android:parentActivityName=".activity_principal"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name=".activity_evalu"
+            android:parentActivityName=".activity_tipo_evalu"
+            android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name=".activity_acercade"
-            android:parentActivityName=".activity_tipo_evalu" />
+            android:parentActivityName=".activity_principal" />
 
         <activity
             android:name=".activity_bonificacion"
-            android:parentActivityName=".activity_tipo_evalu" />
+            android:parentActivityName=".activity_principal" />
 
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
@@ -56,31 +69,31 @@
         <activity android:name=".activity_politicas_privacidad"></activity>
 
         <activity
-            android:name=".activity_correuniversidad"
-            android:parentActivityName=".activity_tipo_evalu" />
+            android:name=".correlatividad.correuniversidad.activity_correuniversidad"
+            android:parentActivityName=".activity_principal" />
 
         <activity
-            android:name=".activity_correfacultad"
-            android:parentActivityName=".activity_correuniversidad" />
+            android:name=".correlatividad.activity_correfacultad"
+            android:parentActivityName=".correlatividad.correuniversidad.activity_correuniversidad" />
 
         <activity
-            android:name=".activity_correcarrera"
-            android:parentActivityName=".activity_correfacultad" />
+            android:name=".correlatividad.activity_correcarrera"
+            android:parentActivityName=".correlatividad.activity_correfacultad" />
 
         <activity
-            android:name=".activity_corremalla"
-            android:parentActivityName=".activity_correcarrera" />
+            android:name=".correlatividad.activity_corremalla"
+            android:parentActivityName=".correlatividad.activity_correcarrera" />
 
         <activity
-            android:name=".activity_correlatividad"
-            android:parentActivityName=".activity_corremalla" />
+            android:name=".correlatividad.activity_correlatividad"
+            android:parentActivityName=".correlatividad.activity_corremalla" />
 
 
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
             android:value="true"/>
+
+
     </application>
-
-
 
 </manifest>

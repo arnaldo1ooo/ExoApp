@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,7 +8,7 @@
     tools:context="com.exofpune.activity_tipo_evalu">
 
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/loadingPanel"
         android:layout_width="61dp"
         android:layout_height="42dp"
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.274">
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/btnopc3"
@@ -83,7 +83,7 @@
         app:layout_constraintHorizontal_bias="1.0" />
 
     <Button
-        android:id="@+id/btnopc1"
+        android:id="@+id/btnevaluaciones"
         android:layout_width="206dp"
         android:layout_height="62dp"
         android:layout_below="@+id/tvTitulo"
@@ -108,7 +108,7 @@
         android:id="@+id/btnopc2"
         android:layout_width="206dp"
         android:layout_height="62dp"
-        android:layout_below="@+id/btnopc1"
+        android:layout_below="@+id/btnevaluaciones"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -127,7 +127,7 @@
         app:layout_constraintVertical_bias="0.338" />
 
     <Button
-        android:id="@+id/btnopc4"
+        android:id="@+id/btncorrelatividad"
         android:layout_width="206dp"
         android:layout_height="62dp"
         android:layout_below="@+id/btnopc3"
@@ -147,5 +147,5 @@
         app:layout_constraintVertical_bias="0.724" />
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -6,9 +6,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -18,17 +18,22 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.exoapp.correlatividad.correuniversidad.activity_correuniversidad;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 
 
-public class activity_tipo_evalu extends AppCompatActivity {
-    Button btnopc1;
-    Button btnopc2;
-    Button btnopc3;
+public class activity_principal extends AppCompatActivity {
+    Button btnevaluaciones;
+    Button btncorrelatividad;
+    Button btnBonificacionTotal;
     TextView VersionActual;
+    private InterstitialAd mInterstitialAd;
     private AdView AdView1;
+    boolean SeActivoPublicidad = false;
 
     //impedir retroceder a activity anterior
     @Override
@@ -40,18 +45,32 @@ public class activity_tipo_evalu extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        // El bundle sera guardado y enviado al onCreate() de la Activity.
+        savedInstanceState.putBoolean("SeActivoPublicidad", SeActivoPublicidad);
+    }
 
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // Al volver a restaurar el intent volvemos al ultimo estado de esta variable savedInstanceState.
+        SeActivoPublicidad = savedInstanceState.getBoolean("SeActivoPublicidad");
+        Log.d("Estado guardado",SeActivoPublicidad+"");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tipo_evalu);
+        setContentView(R.layout.activity_principal);
 
-        btnopc1 = (Button) findViewById(R.id.btnopc1);
-        btnopc2 = (Button) findViewById(R.id.btnopc2);
-        btnopc3 = (Button) findViewById(R.id.btnopc3);
+        btnevaluaciones = (Button) findViewById(R.id.btnevaluaciones);
+        btncorrelatividad = (Button) findViewById(R.id.btncorrelatividad);
+        btnBonificacionTotal = (Button) findViewById(R.id.btnBonificacionTotal);
         VersionActual = (TextView) findViewById(R.id.tvVersionPrincipal);
 
+        PublicidadInterstitial();
         MetodoBanner();
 
         //Obtener version actual de la app
@@ -66,39 +85,28 @@ public class activity_tipo_evalu extends AppCompatActivity {
         }
 
 
-        btnopc1.setOnClickListener(new View.OnClickListener() {
+        btnevaluaciones.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), com.exoapp.activity_evalu.class);
-                intent.putExtra("TotalPuntos1", "15");
-                intent.putExtra("TotalPuntos2", "15");
-                intent.putExtra("TotalPuntos3", "10");
-                intent.putExtra("EsPersonalizado", "No");
+                Intent intent = new Intent(v.getContext(), activity_tipo_evalu.class);
                 startActivityForResult(intent, 0);
             }
         });
 
-        btnopc2.setOnClickListener(new View.OnClickListener() {
+
+        btncorrelatividad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), activity_evalu.class);
-                intent.putExtra("TotalPuntos1", "20");
-                intent.putExtra("TotalPuntos2", "20");
-                intent.putExtra("TotalPuntos3", "0");
-                intent.putExtra("EsPersonalizado", "No");
+                Intent intent = new Intent(v.getContext(), activity_correuniversidad.class);
                 startActivityForResult(intent, 0);
             }
         });
 
-        btnopc3.setOnClickListener(new View.OnClickListener() {
+        btnBonificacionTotal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), activity_evalu.class);
-                intent.putExtra("TotalPuntos1", "10");
-                intent.putExtra("TotalPuntos2", "10");
-                intent.putExtra("TotalPuntos3", "20");
-                intent.putExtra("EsPersonalizado", "No");
-                startActivityForResult(intent, 0);
+                Intent i = new Intent(v.getContext(), activity_bonificacion.class);
+                startActivity(i);
             }
         });
     }
@@ -144,6 +152,52 @@ public class activity_tipo_evalu extends AppCompatActivity {
             }
         });
     }
+
+
+    private void PublicidadInterstitial() {
+        if (SeActivoPublicidad == false) {
+            try {
+                MobileAds.initialize(this, "ca-app-pub-8474453660271942/1150495372");
+
+                mInterstitialAd = new InterstitialAd(this);
+                mInterstitialAd.setAdUnitId("ca-app-pub-8474453660271942/1150495372");
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+                mInterstitialAd.setAdListener(new AdListener() {
+                    @Override
+                    public void onAdLoaded() { // Código que se ejecutará cuando un anuncio termine de cargarse.
+                        if (mInterstitialAd.isLoaded()) {
+                            mInterstitialAd.show(); //Mostrar el Interstittial luego de crearlo
+                            onSaveInstanceState(null);
+                        }
+                    }
+
+                    @Override
+                    public void onAdOpened() {// Código que se ejecutará cuando se muestre el anuncio.
+
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(int errorCode) {// Código que se ejecutará cuando una solicitud de anuncio falle.
+
+                    }
+
+                    @Override
+                    public void onAdLeftApplication() {// Código que se ejecutará cuando el usuario haya abandonado la aplicación.
+                    }
+
+                    @Override
+                    public void onAdClosed() {// Código que se ejecutará cuando el anuncio intersticial esté cerrado.
+
+                    }
+                });
+            } catch (Exception e) {
+                Log.d("Error", "Error metodo PublicidadInterstitial() " + e);
+            }
+            SeActivoPublicidad = true;
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

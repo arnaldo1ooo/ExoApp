@@ -1,8 +1,7 @@
-package com.exofpune;
+package com.exoapp;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.TextView;
 
 public class activity_politicas_privacidad extends AppCompatActivity {

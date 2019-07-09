@@ -1,18 +1,16 @@
-package com.exofpune;
+package com.exoapp;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.exofpune.R;
-import com.exofpune.activity_tipo_evalu;
+import com.exoapp.R;
 
 public class SplashScreen extends Activity {
 
@@ -40,7 +38,7 @@ public class SplashScreen extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent (SplashScreen.this, activity_tipo_evalu.class);
+                Intent intent = new Intent (SplashScreen.this, activity_principal.class);
                 startActivity(intent);
             }
         },1500);
