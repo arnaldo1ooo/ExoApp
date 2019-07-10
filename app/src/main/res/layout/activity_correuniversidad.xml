@@ -30,7 +30,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPrincipal"
         android:layout_width="match_parent"
-        android:layout_height="613dp" />
+        android:layout_height="493dp" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
