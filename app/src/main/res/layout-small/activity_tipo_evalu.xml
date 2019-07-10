@@ -83,7 +83,7 @@
         app:layout_constraintHorizontal_bias="1.0" />
 
     <Button
-        android:id="@+id/btnevaluaciones"
+        android:id="@+id/btnEvaluaciones"
         android:layout_width="206dp"
         android:layout_height="62dp"
         android:layout_below="@+id/tvTitulo"
@@ -108,7 +108,7 @@
         android:id="@+id/btnopc2"
         android:layout_width="206dp"
         android:layout_height="62dp"
-        android:layout_below="@+id/btnevaluaciones"
+        android:layout_below="@+id/btnEvaluaciones"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -127,7 +127,7 @@
         app:layout_constraintVertical_bias="0.338" />
 
     <Button
-        android:id="@+id/btncorrelatividad"
+        android:id="@+id/btnCorrelatividad"
         android:layout_width="206dp"
         android:layout_height="62dp"
         android:layout_below="@+id/btnopc3"

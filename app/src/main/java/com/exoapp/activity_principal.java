@@ -29,7 +29,7 @@ import com.google.android.gms.ads.MobileAds;
 public class activity_principal extends AppCompatActivity {
     Button btnevaluaciones;
     Button btncorrelatividad;
-    Button btnBonificacionTotal;
+    Button btnBonificacion;
     TextView VersionActual;
     private InterstitialAd mInterstitialAd;
     private AdView AdView1;
@@ -65,9 +65,9 @@ public class activity_principal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
-        btnevaluaciones = (Button) findViewById(R.id.btnevaluaciones);
-        btncorrelatividad = (Button) findViewById(R.id.btncorrelatividad);
-        btnBonificacionTotal = (Button) findViewById(R.id.btnBonificacionTotal);
+        btnevaluaciones = (Button) findViewById(R.id.btnEvaluaciones);
+        btncorrelatividad = (Button) findViewById(R.id.btnCorrelatividad);
+        btnBonificacion = (Button) findViewById(R.id.btnBonificacion);
         VersionActual = (TextView) findViewById(R.id.tvVersionPrincipal);
 
         PublicidadInterstitial();
@@ -102,7 +102,7 @@ public class activity_principal extends AppCompatActivity {
             }
         });
 
-        btnBonificacionTotal.setOnClickListener(new View.OnClickListener() {
+        btnBonificacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(v.getContext(), activity_bonificacion.class);
