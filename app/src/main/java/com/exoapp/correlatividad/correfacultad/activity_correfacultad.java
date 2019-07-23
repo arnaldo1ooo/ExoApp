@@ -1,26 +1,21 @@
-package com.exoapp.correlatividad.correuniversidad;
+package com.exoapp.correlatividad.correfacultad;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.Toast;
-
 import com.exoapp.R;
-import com.exoapp.correlatividad.correfacultad.activity_correfacultad;
 import com.exoapp.recyclerview.Item;
 import com.exoapp.recyclerview.RecyclerViewAdaptador;
 
 import java.util.ArrayList;
 
-public class activity_correuniversidad extends AppCompatActivity {
+public class activity_correfacultad extends AppCompatActivity {
 
     private RecyclerView recyclerview;
     private RecyclerView.Adapter adaptador;
@@ -29,10 +24,9 @@ public class activity_correuniversidad extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_correuniversidad);
+        setContentView(R.layout.activity_correfacultad);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Universidades");
-
+        getSupportActionBar().setTitle("Facultades");
 
         //Se crea el recyclerview y adaptador
         recyclerview = (RecyclerView) findViewById(R.id.rvPrincipal);
@@ -50,26 +44,19 @@ public class activity_correuniversidad extends AppCompatActivity {
                 String tituloitem = MetodoListItem().get(
                         recyclerview.getChildAdapterPosition(view)).getTitulo();
 
-                Intent intent;
-                String universidad;
                 switch (tituloitem) {
-                    case "UNIVERSIDAD NACIONAL DEL ESTE":
-                        universidad = "UNIVERSIDAD NACIONAL DEL ESTE";
-                        intent = new Intent(activity_correuniversidad.this, activity_correfacultad.class);
-                        intent.putExtra("universidad", universidad);
-                        startActivity(intent);
+                    case "FACULTAD POLITÉCNICA":
+                        //Intent i = new Intent(this, ac.class);
+                        //startActivity(i);
                         break;
 
-                    case "UNIVERSIDAD PRIVADA DEL ESTE":
-                        universidad = "UNIVERSIDAD PRIVADA DEL ESTE";
-                        intent = new Intent(activity_correuniversidad.this, activity_correfacultad.class);
-                        intent.putExtra("universidad", universidad);
-                        startActivity(intent);
+                    case "FACULTAD DE INGENIERÍA AGRONÓMICA":
+                        //Intent i = new Intent(this, ac.class);
+                        //startActivity(i);
                         break;
-
 
                     default:
-                        Toast.makeText(activity_correuniversidad.this,"No se seleccionó ningún item", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity_correfacultad.this,"No se seleccionó ningún item", Toast.LENGTH_SHORT).show();
                         break;
                 }
 
@@ -90,14 +77,23 @@ public class activity_correuniversidad extends AppCompatActivity {
 
     private ArrayList<Item> MetodoListItem(){
         ArrayList<Item> listItems = new ArrayList<>();
-        listItems.add(new Item(R.drawable.logouniune,"UNIVERSIDAD NACIONAL DEL ESTE","Tipo de institución: Nacional" +
-                "\n Dirección: Ciudad del Este - km 7 Acaray" +
-                "\n Tel.: (+595) 61575478" +
-                "\n Correo: rectorado@une.edu.py"));
-        listItems.add(new Item(R.drawable.logouniupe,"UNIVERSIDAD PRIVADA DEL ESTE","Tipo de institución: Privada" +
-                "\n Dirección: Ciudad del Este - km 6 Monday" +
-                "\n Tel.: (+595) 61579441" +
-                "\n Correo: info@upecde.edu.py"));
+
+        String univesidadseleccionada = getIntent().getExtras().getString("universidad");
+        switch (univesidadseleccionada) {
+            case "UNIVERSIDAD NACIONAL DEL ESTE":
+                listItems.add(new Item(R.drawable.logofacuunepolitecnica,"FACULTAD POLITÉCNICA","Ciudad: Ciudad del Este"));
+                listItems.add(new Item(R.drawable.logofacuuneagronomia,"FACULTAD DE INGENIERÍA AGRONÓMICA","Ciudad: Ciudad del Este"));
+                listItems.add(new Item(R.drawable.logofacuunecienciassalud,"FACULTAD DE CIENCIAS DE LA SALUD","Ciudad: Ciudad del Este"));
+                break;
+
+            case "UNIVERSIDAD PRIVADA DEL ESTE":
+                listItems.add(new Item(R.drawable.logofacuupecienciasagrarias,"FACULTAD DE CIENCIAS AGRARIAS","Ciudad: Ciudad del Este"));
+                break;
+
+            default:
+                Toast.makeText(activity_correfacultad.this,"La universidad recibida no coincide con ninguno", Toast.LENGTH_SHORT).show();
+                break;
+        }
 
         return listItems;
     }
