@@ -77,16 +77,16 @@
             android:parentActivityName=".correlatividad.correuniversidad.activity_correuniversidad" />
 
         <activity
-            android:name=".correlatividad.activity_correcarrera"
+            android:name=".correlatividad.correcarrera.activity_correcarrera"
             android:parentActivityName=".correlatividad.correfacultad.activity_correfacultad" />
 
         <activity
-            android:name=".correlatividad.activity_corremalla"
-            android:parentActivityName=".correlatividad.activity_correcarrera" />
+        android:name=".correlatividad.corremalla.activity_corremalla"
+        android:parentActivityName=".correlatividad.correcarrera.activity_correcarrera" />
 
         <activity
             android:name=".correlatividad.activity_correlatividad"
-            android:parentActivityName=".correlatividad.activity_corremalla" />
+            android:parentActivityName=".correlatividad.corremalla.activity_corremalla" />
 
 
         <meta-data

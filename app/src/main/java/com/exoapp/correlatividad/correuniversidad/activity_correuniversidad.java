@@ -7,10 +7,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.exoapp.R;
@@ -51,20 +48,14 @@ public class activity_correuniversidad extends AppCompatActivity {
                         recyclerview.getChildAdapterPosition(view)).getTitulo();
 
                 Intent intent;
-                String universidad;
+                String universidad = "";
                 switch (tituloitem) {
                     case "UNIVERSIDAD NACIONAL DEL ESTE":
-                        universidad = "UNIVERSIDAD NACIONAL DEL ESTE";
-                        intent = new Intent(activity_correuniversidad.this, activity_correfacultad.class);
-                        intent.putExtra("universidad", universidad);
-                        startActivity(intent);
+                        universidad = tituloitem;
                         break;
 
                     case "UNIVERSIDAD PRIVADA DEL ESTE":
-                        universidad = "UNIVERSIDAD PRIVADA DEL ESTE";
-                        intent = new Intent(activity_correuniversidad.this, activity_correfacultad.class);
-                        intent.putExtra("universidad", universidad);
-                        startActivity(intent);
+                        universidad = tituloitem;
                         break;
 
 
@@ -73,10 +64,14 @@ public class activity_correuniversidad extends AppCompatActivity {
                         break;
                 }
 
+                intent = new Intent(activity_correuniversidad.this, activity_correfacultad.class);
+                intent.putExtra("universidad", universidad);
+                startActivity(intent);
+
 
                 //Imprime el titulo del item seleccionado
-                Toast.makeText(getApplicationContext(), "Selección: " + MetodoListItem().get(
-                        recyclerview.getChildAdapterPosition(view)).getTitulo(), Toast.LENGTH_SHORT).show();
+                /*Toast.makeText(getApplicationContext(), "Selección: " + MetodoListItem().get(
+                        recyclerview.getChildAdapterPosition(view)).getTitulo(), Toast.LENGTH_SHORT).show();*/
             }
         });
 
@@ -90,11 +85,11 @@ public class activity_correuniversidad extends AppCompatActivity {
 
     private ArrayList<Item> MetodoListItem(){
         ArrayList<Item> listItems = new ArrayList<>();
-        listItems.add(new Item(R.drawable.logouniune,"UNIVERSIDAD NACIONAL DEL ESTE","Tipo de institución: Nacional" +
+        listItems.add(new Item(R.drawable.uniune,"UNIVERSIDAD NACIONAL DEL ESTE","Tipo de institución: Nacional" +
                 "\n Dirección: Ciudad del Este - km 7 Acaray" +
                 "\n Tel.: (+595) 61575478" +
                 "\n Correo: rectorado@une.edu.py"));
-        listItems.add(new Item(R.drawable.logouniupe,"UNIVERSIDAD PRIVADA DEL ESTE","Tipo de institución: Privada" +
+        listItems.add(new Item(R.drawable.uniupe,"UNIVERSIDAD PRIVADA DEL ESTE","Tipo de institución: Privada" +
                 "\n Dirección: Ciudad del Este - km 6 Monday" +
                 "\n Tel.: (+595) 61579441" +
                 "\n Correo: info@upecde.edu.py"));

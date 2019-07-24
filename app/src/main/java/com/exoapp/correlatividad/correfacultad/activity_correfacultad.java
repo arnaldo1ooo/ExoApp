@@ -1,7 +1,9 @@
 package com.exoapp.correlatividad.correfacultad;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.exoapp.R;
+import com.exoapp.correlatividad.correcarrera.activity_correcarrera;
 import com.exoapp.recyclerview.Item;
 import com.exoapp.recyclerview.RecyclerViewAdaptador;
 
@@ -20,13 +23,21 @@ public class activity_correfacultad extends AppCompatActivity {
     private RecyclerView recyclerview;
     private RecyclerView.Adapter adaptador;
     private LinearLayoutManager layoutManager;
+    private TextView txtTitulo;
+    private String universidadseleccionada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_correfacultad);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Facultades");
+        getSupportActionBar().setTitle("Seleccione la facultad");
+
+        //Ponemos el titulo
+        universidadseleccionada = getIntent().getExtras().getString("universidad");
+        txtTitulo = (TextView) findViewById(R.id.txtTitulo);
+        txtTitulo.setText("Facultades de la\n" + universidadseleccionada);
+
 
         //Se crea el recyclerview y adaptador
         recyclerview = (RecyclerView) findViewById(R.id.rvPrincipal);
@@ -43,27 +54,32 @@ public class activity_correfacultad extends AppCompatActivity {
                 //Guardo el titulo del item seleccionado
                 String tituloitem = MetodoListItem().get(
                         recyclerview.getChildAdapterPosition(view)).getTitulo();
+                String facultad = "";
+                Intent intent;
 
                 switch (tituloitem) {
+                    //UNIVERSIDAD UNE
                     case "FACULTAD POLITÉCNICA":
-                        //Intent i = new Intent(this, ac.class);
-                        //startActivity(i);
+                        facultad = tituloitem;
                         break;
 
                     case "FACULTAD DE INGENIERÍA AGRONÓMICA":
-                        //Intent i = new Intent(this, ac.class);
-                        //startActivity(i);
+                        facultad = tituloitem;
                         break;
+
 
                     default:
                         Toast.makeText(activity_correfacultad.this,"No se seleccionó ningún item", Toast.LENGTH_SHORT).show();
                         break;
                 }
 
+                intent = new Intent(activity_correfacultad.this, activity_correcarrera.class);
+                intent.putExtra("facultad", facultad);
+                startActivity(intent);
 
                 //Imprime el titulo del item seleccionado
-                Toast.makeText(getApplicationContext(), "Selección: " + MetodoListItem().get(
-                        recyclerview.getChildAdapterPosition(view)).getTitulo(), Toast.LENGTH_SHORT).show();
+                /*Toast.makeText(getApplicationContext(), "Selección: " + MetodoListItem().get(
+                        recyclerview.getChildAdapterPosition(view)).getTitulo(), Toast.LENGTH_SHORT).show();*/
             }
         });
 
@@ -78,16 +94,15 @@ public class activity_correfacultad extends AppCompatActivity {
     private ArrayList<Item> MetodoListItem(){
         ArrayList<Item> listItems = new ArrayList<>();
 
-        String univesidadseleccionada = getIntent().getExtras().getString("universidad");
-        switch (univesidadseleccionada) {
+        switch (universidadseleccionada) {
             case "UNIVERSIDAD NACIONAL DEL ESTE":
-                listItems.add(new Item(R.drawable.logofacuunepolitecnica,"FACULTAD POLITÉCNICA","Ciudad: Ciudad del Este"));
-                listItems.add(new Item(R.drawable.logofacuuneagronomia,"FACULTAD DE INGENIERÍA AGRONÓMICA","Ciudad: Ciudad del Este"));
-                listItems.add(new Item(R.drawable.logofacuunecienciassalud,"FACULTAD DE CIENCIAS DE LA SALUD","Ciudad: Ciudad del Este"));
+                listItems.add(new Item(R.drawable.facuunepolitecnica,"FACULTAD POLITÉCNICA","Ciudad: Ciudad del Este"));
+                listItems.add(new Item(R.drawable.facuuneagronomia,"FACULTAD DE INGENIERÍA AGRONÓMICA","Ciudad: Ciudad del Este"));
+                listItems.add(new Item(R.drawable.facuunecienciassalud,"FACULTAD DE CIENCIAS DE LA SALUD","Ciudad: Ciudad del Este"));
                 break;
 
             case "UNIVERSIDAD PRIVADA DEL ESTE":
-                listItems.add(new Item(R.drawable.logofacuupecienciasagrarias,"FACULTAD DE CIENCIAS AGRARIAS","Ciudad: Ciudad del Este"));
+                listItems.add(new Item(R.drawable.facuupecienciasagrarias,"FACULTAD DE CIENCIAS AGRARIAS","Ciudad: Ciudad del Este"));
                 break;
 
             default:

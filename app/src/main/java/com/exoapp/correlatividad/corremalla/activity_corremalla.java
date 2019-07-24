@@ -1,4 +1,4 @@
-package com.exoapp.correlatividad;
+package com.exoapp.correlatividad.corremalla;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,14 +17,13 @@ import com.exoapp.recyclerview.RecyclerViewAdaptador;
 
 import java.util.ArrayList;
 
-public class activity_correlatividad extends AppCompatActivity {
+public class activity_corremalla extends AppCompatActivity {
 
     private RecyclerView recyclerview;
     private RecyclerView.Adapter adaptador;
     private LinearLayoutManager layoutManager;
     private TextView txtTitulo;
     private String carreraseleccionada;
-    private String mallaseleccionada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +35,8 @@ public class activity_correlatividad extends AppCompatActivity {
 
         //Ponemos el titulo
         carreraseleccionada = getIntent().getExtras().getString("carrera");
-        mallaseleccionada = getIntent().getExtras().getString("malla");
         txtTitulo = (TextView) findViewById(R.id.txtTitulo);
-
-        txtTitulo.setText(mallaseleccionada + " - " + carreraseleccionada);
+        txtTitulo.setText("Mallas de la carrera de\n" + carreraseleccionada);
 
         //Se crea el recyclerview y adaptador
         recyclerview = (RecyclerView) findViewById(R.id.rvPrincipal);
@@ -71,13 +68,14 @@ public class activity_correlatividad extends AppCompatActivity {
 
 
                     default:
-                        Toast.makeText(activity_correlatividad.this,"No se seleccionó ningún item", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity_corremalla.this,"No se seleccionó ningún item", Toast.LENGTH_SHORT).show();
                         break;
                 }
 
-                //intent = new Intent(activity_corremalla.this, com.exoapp.correlatividad.activity_corremalla.class);
-                //intent.putExtra("malla", malla);
-                //startActivity(intent);
+                intent = new Intent(activity_corremalla.this, com.exoapp.correlatividad.activity_correlatividad.class);
+                intent.putExtra("carrera", carreraseleccionada);
+                intent.putExtra("malla", malla);
+                startActivity(intent);
 
                 //Imprime el titulo del item seleccionado
                 /*Toast.makeText(getApplicationContext(), "Selección: " + MetodoListItem().get(
@@ -99,13 +97,13 @@ public class activity_correlatividad extends AppCompatActivity {
         String carreraseleccionada = getIntent().getExtras().getString("carrera");
         switch (carreraseleccionada) {
             case "ANÁLISIS DE SISTEMAS":
-                listItems.add(new Item(R.drawable.malla,"kyukuykPLAN 2017","Ciudad: Ciudad del Este"));
+                listItems.add(new Item(R.drawable.malla,"PLAN 2017","Ciudad: Ciudad del Este"));
                 listItems.add(new Item(R.drawable.malla,"PLAN VIGENTE","Ciudad: Ciudad del Este"));
                 break;
 
             case "TURISMO":
-                listItems.add(new Item(R.drawable.malla,"IDIOMAS I","Ciudad: Minga Guazú"));
-                listItems.add(new Item(R.drawable.malla,"LENGUA GUARANI I","Ciudad: Minga Guazú"));
+                listItems.add(new Item(R.drawable.malla,"PLAN 2017","Ciudad: Minga Guazú"));
+                listItems.add(new Item(R.drawable.malla,"PLAN VIGENTE","Ciudad: Minga Guazú"));
                 break;
 
             case "INGENIERÍA ELÉCTRICA":
@@ -114,7 +112,7 @@ public class activity_correlatividad extends AppCompatActivity {
                 break;
 
             default:
-                Toast.makeText(activity_correlatividad.this,"La universidad recibida no coincide con ninguno", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity_corremalla.this,"La universidad recibida no coincide con ninguno", Toast.LENGTH_SHORT).show();
                 break;
         }
 
