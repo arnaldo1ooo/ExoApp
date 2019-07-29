@@ -12,8 +12,8 @@ import android.widget.Toast;
 
 import com.exoapp.R;
 import com.exoapp.correlatividad.correfacultad.activity_correfacultad;
-import com.exoapp.recyclerview.Item;
-import com.exoapp.recyclerview.RecyclerViewAdaptador;
+import com.exoapp.recyclerview.lista.item_lista;
+import com.exoapp.recyclerview.lista.rv_lista;
 
 import java.util.ArrayList;
 
@@ -37,10 +37,10 @@ public class activity_correuniversidad extends AppCompatActivity {
         recyclerview.setLayoutManager(layoutManager);
 
         //Adaptador
-        adaptador = new RecyclerViewAdaptador(this, MetodoListItem());
+        adaptador = new rv_lista(this, MetodoListItem());
 
         //OnClick
-        ((RecyclerViewAdaptador) adaptador).setOnClickListener(new View.OnClickListener() {
+        ((rv_lista) adaptador).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Guardo el titulo del item seleccionado
@@ -83,13 +83,13 @@ public class activity_correuniversidad extends AppCompatActivity {
 
     }
 
-    private ArrayList<Item> MetodoListItem(){
-        ArrayList<Item> listItems = new ArrayList<>();
-        listItems.add(new Item(R.drawable.uniune,"UNIVERSIDAD NACIONAL DEL ESTE","Tipo de institución: Nacional" +
+    private ArrayList<item_lista> MetodoListItem(){
+        ArrayList<item_lista> listItems = new ArrayList<>();
+        listItems.add(new item_lista(R.drawable.uniune,"UNIVERSIDAD NACIONAL DEL ESTE","Tipo de institución: Nacional" +
                 "\n Dirección: Ciudad del Este - km 7 Acaray" +
                 "\n Tel.: (+595) 61575478" +
                 "\n Correo: rectorado@une.edu.py"));
-        listItems.add(new Item(R.drawable.uniupe,"UNIVERSIDAD PRIVADA DEL ESTE","Tipo de institución: Privada" +
+        listItems.add(new item_lista(R.drawable.uniupe,"UNIVERSIDAD PRIVADA DEL ESTE","Tipo de institución: Privada" +
                 "\n Dirección: Ciudad del Este - km 6 Monday" +
                 "\n Tel.: (+595) 61579441" +
                 "\n Correo: info@upecde.edu.py"));

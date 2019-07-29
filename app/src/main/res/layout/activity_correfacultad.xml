@@ -10,7 +10,7 @@
     tools:context=".activity_principal">
 
     <TextView
-        android:id="@+id/txtTitulo"
+        android:id="@+id/tvTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -24,6 +24,7 @@
         android:textAlignment="center"
         android:textColor="#ffffff"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

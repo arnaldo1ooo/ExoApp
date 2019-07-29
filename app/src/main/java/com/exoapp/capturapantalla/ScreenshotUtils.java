@@ -1,4 +1,4 @@
-package capturapantalla;
+package com.exoapp.capturapantalla;
 
 import android.content.Context;
 import android.graphics.Bitmap;

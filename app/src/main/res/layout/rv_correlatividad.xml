@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00FFFFFF"
+    android:orientation="vertical"
+    android:verticalScrollbarPosition="defaultPosition">
+
+    <RelativeLayout
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="#3F51B5">
+
+        <TextView
+            android:id="@+id/tvCorrelatividad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="9dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginTop="49dp"
+            android:layout_toEndOf="@+id/ivImagen"
+            android:layout_toRightOf="@+id/ivImagen"
+            android:foregroundGravity="left"
+            android:gravity="left"
+            android:text="Correlativo con:"
+            android:textColor="#E4E4E4"
+            android:textSize="13sp" />
+
+        <CheckBox
+            android:id="@+id/cbMateria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="93dp"
+            android:checked="false"
+            android:text="MATERIA 1"
+            android:textColor="#FFFFFF"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+</LinearLayout>

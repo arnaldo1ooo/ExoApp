@@ -1,4 +1,4 @@
-package capturapantalla;
+package com.exoapp.capturapantalla;
 
 /**
  * Created by sonu on 23/03/17.

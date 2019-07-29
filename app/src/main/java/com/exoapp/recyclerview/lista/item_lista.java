@@ -1,11 +1,11 @@
-package com.exoapp.recyclerview;
+package com.exoapp.recyclerview.lista;
 
-public class Item {
+public class item_lista {
     private int imagen;
     private String titulo;
     private String descripcion;
 
-    public Item(int imagen, String titulo, String descripcion){
+    public item_lista(int imagen, String titulo, String descripcion){
         this.imagen = imagen;
         this.titulo =titulo;
         this.descripcion = descripcion;

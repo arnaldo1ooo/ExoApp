@@ -1,4 +1,4 @@
-package com.exoapp.recyclerview;
+package com.exoapp.recyclerview.lista;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,22 +11,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.exoapp.R;
+import com.exoapp.recyclerview.lista.item_lista;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdaptador extends RecyclerView.Adapter implements View.OnClickListener{
+public class rv_lista extends RecyclerView.Adapter implements View.OnClickListener{
    private Context context;
-   private ArrayList<Item> listItems; //Aca se cargaran los datos
+   private ArrayList<item_lista> listItems; //Aca se cargaran los datos
     private View.OnClickListener listener;
 
 
-    public  RecyclerViewAdaptador(Context context, ArrayList<Item> listItems){
+    public rv_lista(Context context, ArrayList<item_lista> listItems){
         this.context = context;
         this.listItems = listItems;
     }
 
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View contentView = LayoutInflater.from(context).inflate(R.layout.activity_lista_recycler,null,false);
+        View contentView = LayoutInflater.from(context).inflate(R.layout.rv_lista,null,false);
 
         //OnClick
         contentView.setOnClickListener(this);
@@ -38,7 +39,7 @@ public class RecyclerViewAdaptador extends RecyclerView.Adapter implements View.
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Item item = listItems.get(position);
+        item_lista item = listItems.get(position);
         Holder Holder = (Holder) holder;
         Holder.ivImagen.setImageResource(item.getImagen());
         Holder.tvTitulo.setText(item.getTitulo());
@@ -74,7 +75,7 @@ public class RecyclerViewAdaptador extends RecyclerView.Adapter implements View.
             super(itemView);
             ivImagen = itemView.findViewById(R.id.ivImagen);
             tvTitulo = itemView.findViewById(R.id.tvTitulo);
-            tvDescripcion = itemView.findViewById(R.id.tvDescripcion);
+            tvDescripcion = itemView.findViewById(R.id.tvCorrelatividad);
         }
     }
 }

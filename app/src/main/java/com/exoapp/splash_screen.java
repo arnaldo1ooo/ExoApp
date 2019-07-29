@@ -5,14 +5,11 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Handler;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.exoapp.R;
-
-public class SplashScreen extends Activity {
+public class splash_screen extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +35,7 @@ public class SplashScreen extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent (SplashScreen.this, activity_principal.class);
+                Intent intent = new Intent (splash_screen.this, activity_principal.class);
                 startActivity(intent);
             }
         },1500);

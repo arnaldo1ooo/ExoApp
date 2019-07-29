@@ -33,8 +33,8 @@ import com.google.android.gms.ads.AdView;
 import java.io.File;
 import java.text.DecimalFormat;
 
-import capturapantalla.ScreenshotType;
-import capturapantalla.ScreenshotUtils;
+import com.exoapp.capturapantalla.ScreenshotType;
+import com.exoapp.capturapantalla.ScreenshotUtils;
 
 public class activity_evalu extends AppCompatActivity {
     int TotalPuntos1 = 0;

@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.exoapp.R;
-import com.exoapp.recyclerview.Item;
-import com.exoapp.recyclerview.RecyclerViewAdaptador;
+import com.exoapp.recyclerview.lista.item_lista;
+import com.exoapp.recyclerview.lista.rv_lista;
 
 import java.util.ArrayList;
 
@@ -35,7 +35,7 @@ public class activity_corremalla extends AppCompatActivity {
 
         //Ponemos el titulo
         carreraseleccionada = getIntent().getExtras().getString("carrera");
-        txtTitulo = (TextView) findViewById(R.id.txtTitulo);
+        txtTitulo = (TextView) findViewById(R.id.tvTitulo);
         txtTitulo.setText("Mallas de la carrera de\n" + carreraseleccionada);
 
         //Se crea el recyclerview y adaptador
@@ -44,10 +44,10 @@ public class activity_corremalla extends AppCompatActivity {
         recyclerview.setLayoutManager(layoutManager);
 
         //Adaptador
-        adaptador = new RecyclerViewAdaptador(this, MetodoListItem());
+        adaptador = new rv_lista(this, MetodoListItem());
 
         //OnClick
-        ((RecyclerViewAdaptador) adaptador).setOnClickListener(new View.OnClickListener() {
+        ((rv_lista) adaptador).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Guardo el titulo del item seleccionado
@@ -91,24 +91,24 @@ public class activity_corremalla extends AppCompatActivity {
 
     }
 
-    private ArrayList<Item> MetodoListItem(){
-        ArrayList<Item> listItems = new ArrayList<>();
+    private ArrayList<item_lista> MetodoListItem(){
+        ArrayList<item_lista> listItems = new ArrayList<>();
 
         String carreraseleccionada = getIntent().getExtras().getString("carrera");
         switch (carreraseleccionada) {
             case "ANÁLISIS DE SISTEMAS":
-                listItems.add(new Item(R.drawable.malla,"PLAN 2017","Ciudad: Ciudad del Este"));
-                listItems.add(new Item(R.drawable.malla,"PLAN VIGENTE","Ciudad: Ciudad del Este"));
+                listItems.add(new item_lista(R.drawable.malla,"PLAN 2017","Ciudad: Ciudad del Este"));
+                listItems.add(new item_lista(R.drawable.malla,"PLAN VIGENTE","Ciudad: Ciudad del Este"));
                 break;
 
             case "TURISMO":
-                listItems.add(new Item(R.drawable.malla,"PLAN 2017","Ciudad: Minga Guazú"));
-                listItems.add(new Item(R.drawable.malla,"PLAN VIGENTE","Ciudad: Minga Guazú"));
+                listItems.add(new item_lista(R.drawable.malla,"PLAN 2017","Ciudad: Minga Guazú"));
+                listItems.add(new item_lista(R.drawable.malla,"PLAN VIGENTE","Ciudad: Minga Guazú"));
                 break;
 
             case "INGENIERÍA ELÉCTRICA":
-                listItems.add(new Item(R.drawable.malla,"PLAN 2017","Ciudad: Minga Guazú"));
-                listItems.add(new Item(R.drawable.malla,"PLAN VIGENTE","Ciudad: Minga Guazú"));
+                listItems.add(new item_lista(R.drawable.malla,"PLAN 2017","Ciudad: Minga Guazú"));
+                listItems.add(new item_lista(R.drawable.malla,"PLAN VIGENTE","Ciudad: Minga Guazú"));
                 break;
 
             default:
