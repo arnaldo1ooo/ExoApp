@@ -1,10 +1,10 @@
-package com.exoapp.recyclerview.correlatividad;
+package com.exoapp.recyclerview.mallafavoritos;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,19 +14,19 @@ import com.exoapp.R;
 
 import java.util.ArrayList;
 
-public class rv_correlatividad extends RecyclerView.Adapter implements View.OnClickListener{
+public class rvMallafav extends RecyclerView.Adapter implements View.OnClickListener{
    private Context context;
-   private ArrayList<item_correlatividad> listItems; //Aca se cargaran los datos
+   private ArrayList<itemMallafav> listItems; //Aca se cargaran los datos
     private View.OnClickListener listener;
 
 
-    public rv_correlatividad(Context context, ArrayList<item_correlatividad> listItems){
+    public rvMallafav(Context context, ArrayList<itemMallafav> listItems){
         this.context = context;
         this.listItems = listItems;
     }
 
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View contentView = LayoutInflater.from(context).inflate(R.layout.rv_correlatividad,null,false);
+        View contentView = LayoutInflater.from(context).inflate(R.layout.rv_mallafav,null,false);
 
         //OnClick
         contentView.setOnClickListener(this);
@@ -38,10 +38,11 @@ public class rv_correlatividad extends RecyclerView.Adapter implements View.OnCl
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        item_correlatividad item = listItems.get(position);
+        itemMallafav item = listItems.get(position);
         Holder Holder = (Holder) holder;
-        Holder.cbMateria.setText(item.getcbMateria());
-        Holder.tvCorrelatividad.setText(item.gettvCorrelatividad());
+        Holder.ivImagen.setImageResource(item.getImagen());
+        Holder.tvTitulo.setText(item.getTitulo());
+        Holder.tvDescripcion.setText(item.getDescripcion());
 
         System.out.println("Se muestra el item   BING VIEW HODLER: " + position);
     }
@@ -50,6 +51,7 @@ public class rv_correlatividad extends RecyclerView.Adapter implements View.OnCl
     public int getItemCount() {
         return listItems.size();
     }
+
 
 
     //Onclick
@@ -64,13 +66,15 @@ public class rv_correlatividad extends RecyclerView.Adapter implements View.OnCl
     }
 
     public  static  class  Holder extends RecyclerView.ViewHolder{
-        CheckBox cbMateria;
-        TextView tvCorrelatividad;
+        ImageView ivImagen;
+        TextView tvTitulo;
+        TextView tvDescripcion;
 
         public Holder(@NonNull View itemView) {
             super(itemView);
-            cbMateria = itemView.findViewById(R.id.cbMateria);
-            tvCorrelatividad = itemView.findViewById(R.id.tvCorrelatividad);
+            ivImagen = itemView.findViewById(R.id.ivImagen);
+            tvTitulo = itemView.findViewById(R.id.tvTitulo);
+            tvDescripcion = itemView.findViewById(R.id.tvDescripcion);
         }
     }
 }

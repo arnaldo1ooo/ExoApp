@@ -1,9 +1,7 @@
 package com.exoapp.correlatividad;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,10 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.exoapp.R;
-import com.exoapp.recyclerview.correlatividad.item_correlatividad;
-import com.exoapp.recyclerview.correlatividad.rv_correlatividad;
-import com.exoapp.recyclerview.lista.item_lista;
-import com.exoapp.recyclerview.lista.rv_lista;
+import com.exoapp.recyclerview.correlatividad.itemCorrelatividad;
+import com.exoapp.recyclerview.correlatividad.rvCorrelatividad;
 
 import java.util.ArrayList;
 
@@ -56,10 +52,10 @@ public class activity_correlatividad extends AppCompatActivity {
         recyclerview.setLayoutManager(layoutManager);
 
         //Adaptador
-        adaptador = new rv_correlatividad(this, MetodoListItem());
+        adaptador = new rvCorrelatividad(this, MetodoListItem());
 
         //OnClick
-        /*((rv_lista) adaptador).setOnClickListener(new View.OnClickListener() {
+        /*((rvLista) adaptador).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Guardo el titulo del item seleccionado
@@ -102,8 +98,8 @@ public class activity_correlatividad extends AppCompatActivity {
 
     }
 
-    private ArrayList<item_correlatividad> MetodoListItem() {
-        ArrayList<item_correlatividad> listItems = new ArrayList<>();
+    private ArrayList<itemCorrelatividad> MetodoListItem() {
+        ArrayList<itemCorrelatividad> listItems = new ArrayList<>();
 
         String carreraseleccionada = getIntent().getExtras().getString("carrera");
         String mallaseleccionada = getIntent().getExtras().getString("malla");
@@ -114,17 +110,17 @@ public class activity_correlatividad extends AppCompatActivity {
             case "ANÁLISIS DE SISTEMAS":
                 switch (mallaseleccionada) {
                     case "PLAN 2017":
-                        listItems.add(new item_correlatividad("MATERIA 1", "Descripcion 1"));
-                        listItems.add(new item_correlatividad("MATERIA 2", "Descripcion 2"));
-                        listItems.add(new item_correlatividad("MATERIA 3", "Descripcion 3"));
-                        listItems.add(new item_correlatividad("MATERIA 4", "Descripcion 4"));
+                        listItems.add(new itemCorrelatividad("MATERIA 1", "Descripcion 1"));
+                        listItems.add(new itemCorrelatividad("MATERIA 2", "Descripcion 2"));
+                        listItems.add(new itemCorrelatividad("MATERIA 3", "Descripcion 3"));
+                        listItems.add(new itemCorrelatividad("MATERIA 4", "Descripcion 4"));
                         break;
 
                     case "PLAN VIGENTE":
-                        listItems.add(new item_correlatividad("MATERIA 1", "Descripcion 1"));
-                        listItems.add(new item_correlatividad("MATERIA 2", "Descripcion 2"));
-                        listItems.add(new item_correlatividad("MATERIA 3", "Descripcion 3"));
-                        listItems.add(new item_correlatividad("MATERIA 4", "Descripcion 4"));
+                        listItems.add(new itemCorrelatividad("MATERIA 1", "Descripcion 1"));
+                        listItems.add(new itemCorrelatividad("MATERIA 2", "Descripcion 2"));
+                        listItems.add(new itemCorrelatividad("MATERIA 3", "Descripcion 3"));
+                        listItems.add(new itemCorrelatividad("MATERIA 4", "Descripcion 4"));
                         break;
 
                     default:
@@ -141,21 +137,21 @@ public class activity_correlatividad extends AppCompatActivity {
                 switch (mallaseleccionada) {
                     case "PLAN 2017":
                         tvSemestre.setText("1º Semestre");
-                        listItems.add(new item_correlatividad("INGLÉS TÉCNICO I", "Descripcion 1"));
-                        listItems.add(new item_correlatividad("COMUNICACIÓN ORAL Y ESCRITA EN CASTELLANO I", "Descripcion 2"));
-                        listItems.add(new item_correlatividad("LENGUA Y CULTURA GUARANÍ I", "Descripcion 3"));
-                        listItems.add(new item_correlatividad("GEOGRAFÍA TURÍSTICA DEL PARAGUAY Y LATINOAMERICANA", "Descripcion 4"));
-                        listItems.add(new item_correlatividad("INTRODUCCIÓN AL TURISMO Y A LA ESTRUCTURA DE MERCADO", "Descripcion 4"));
-                        listItems.add(new item_correlatividad("TEORÍA SOCIOLÓGICA DEL TURISMO", "Descripcion 6"));
+                        listItems.add(new itemCorrelatividad("INGLÉS TÉCNICO I", "Descripcion 1"));
+                        listItems.add(new itemCorrelatividad("COMUNICACIÓN ORAL Y ESCRITA EN CASTELLANO I", "Descripcion 2"));
+                        listItems.add(new itemCorrelatividad("LENGUA Y CULTURA GUARANÍ I", "Descripcion 3"));
+                        listItems.add(new itemCorrelatividad("GEOGRAFÍA TURÍSTICA DEL PARAGUAY Y LATINOAMERICANA", "Descripcion 4"));
+                        listItems.add(new itemCorrelatividad("INTRODUCCIÓN AL TURISMO Y A LA ESTRUCTURA DE MERCADO", "Descripcion 4"));
+                        listItems.add(new itemCorrelatividad("TEORÍA SOCIOLÓGICA DEL TURISMO", "Descripcion 6"));
                         break;
 
                     case "PLAN VIGENTE":
-                        listItems.add(new item_correlatividad("IDIOMAS I", "Descripcion 1"));
-                        listItems.add(new item_correlatividad("LENGUA GUARANÍ I", "Descripcion 2"));
-                        listItems.add(new item_correlatividad("LENGUA CASTELLANA I", "Descripcion 3"));
-                        listItems.add(new item_correlatividad("SOCIOLOGÍA TURÍSTICA", "Descripcion 4"));
-                        listItems.add(new item_correlatividad("HISTORIA DE LA CULTURA PARAGUAYA", "Descripcion 5"));
-                        listItems.add(new item_correlatividad("GEOGRAFÍA TURÍSTICA DEL PARAGUAY", "Descripcion 6"));
+                        listItems.add(new itemCorrelatividad("IDIOMAS I", "Descripcion 1"));
+                        listItems.add(new itemCorrelatividad("LENGUA GUARANÍ I", "Descripcion 2"));
+                        listItems.add(new itemCorrelatividad("LENGUA CASTELLANA I", "Descripcion 3"));
+                        listItems.add(new itemCorrelatividad("SOCIOLOGÍA TURÍSTICA", "Descripcion 4"));
+                        listItems.add(new itemCorrelatividad("HISTORIA DE LA CULTURA PARAGUAYA", "Descripcion 5"));
+                        listItems.add(new itemCorrelatividad("GEOGRAFÍA TURÍSTICA DEL PARAGUAY", "Descripcion 6"));
                         break;
 
                     default:

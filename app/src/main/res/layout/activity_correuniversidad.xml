@@ -31,12 +31,29 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPrincipal"
         android:layout_width="match_parent"
-        android:layout_height="493dp" />
+        android:layout_height="309dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/tvFavoritos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Favoritos"
+        android:textColor="#F0DB34"
+        android:textSize="26sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_mallafav"
+        android:layout_width="match_parent"
+        android:layout_height="126dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="79dp"
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-8474453660271942/9184800934" />
 

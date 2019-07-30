@@ -1,11 +1,11 @@
-package com.exoapp.recyclerview.lista;
+package com.exoapp.recyclerview.mallafavoritos;
 
-public class item_lista {
+public class itemMallafav {
     private int imagen;
     private String titulo;
     private String descripcion;
 
-    public item_lista(int imagen, String titulo, String descripcion){
+    public itemMallafav(int imagen, String titulo, String descripcion){
         this.imagen = imagen;
         this.titulo =titulo;
         this.descripcion = descripcion;

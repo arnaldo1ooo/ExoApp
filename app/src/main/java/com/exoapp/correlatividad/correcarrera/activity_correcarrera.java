@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.exoapp.R;
 import com.exoapp.correlatividad.corremalla.activity_corremalla;
-import com.exoapp.recyclerview.lista.item_lista;
-import com.exoapp.recyclerview.lista.rv_lista;
+import com.exoapp.recyclerview.lista.itemLista;
+import com.exoapp.recyclerview.lista.rvLista;
 
 import java.util.ArrayList;
 
@@ -24,6 +24,7 @@ public class activity_correcarrera extends AppCompatActivity {
     private RecyclerView.Adapter adaptador;
     private LinearLayoutManager layoutManager;
     private TextView txtTitulo;
+    private String universidadseleccionada;
     private String facultadseleccionada;
 
     @Override
@@ -35,6 +36,7 @@ public class activity_correcarrera extends AppCompatActivity {
 
 
         //Ponemos el titulo
+        universidadseleccionada = getIntent().getExtras().getString("universidad");
         facultadseleccionada = getIntent().getExtras().getString("facultad");
         txtTitulo = (TextView) findViewById(R.id.tvTitulo);
         txtTitulo.setText("Carreras de la\n" + facultadseleccionada);
@@ -45,10 +47,10 @@ public class activity_correcarrera extends AppCompatActivity {
         recyclerview.setLayoutManager(layoutManager);
 
         //Adaptador
-        adaptador = new rv_lista(this, MetodoListItem());
+        adaptador = new rvLista(this, MetodoListItem());
 
         //OnClick
-        ((rv_lista) adaptador).setOnClickListener(new View.OnClickListener() {
+        ((rvLista) adaptador).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Guardo el titulo del item seleccionado
@@ -78,6 +80,8 @@ public class activity_correcarrera extends AppCompatActivity {
                 }
 
                 intent = new Intent(activity_correcarrera.this, activity_corremalla.class);
+                intent.putExtra("universidad", universidadseleccionada);
+                intent.putExtra("facultad", facultadseleccionada);
                 intent.putExtra("carrera", carrera);
                 startActivity(intent);
 
@@ -95,20 +99,20 @@ public class activity_correcarrera extends AppCompatActivity {
 
     }
 
-    private ArrayList<item_lista> MetodoListItem(){
-        ArrayList<item_lista> listItems = new ArrayList<>();
+    private ArrayList<itemLista> MetodoListItem(){
+        ArrayList<itemLista> listItems = new ArrayList<>();
 
         String facultadseleccionada = getIntent().getExtras().getString("facultad");
         switch (facultadseleccionada) {
             case "FACULTAD POLITÉCNICA":
-                listItems.add(new item_lista(R.drawable.carrerapolianalisis,"ANÁLISIS DE SISTEMAS","Ciudad: Ciudad del Este"));
-                listItems.add(new item_lista(R.drawable.carrerapoliturismo,"TURISMO","Ciudad: Ciudad del Este"));
-                listItems.add(new item_lista(R.drawable.carrerapolielectrica,"INGENIERÍA ELÉCTRICA","Ciudad: Ciudad del Este"));
+                listItems.add(new itemLista(R.drawable.carrerapolianalisis,"ANÁLISIS DE SISTEMAS","Ciudad: Ciudad del Este"));
+                listItems.add(new itemLista(R.drawable.carrerapoliturismo,"TURISMO","Ciudad: Ciudad del Este"));
+                listItems.add(new itemLista(R.drawable.carrerapolielectrica,"INGENIERÍA ELÉCTRICA","Ciudad: Ciudad del Este"));
                 break;
 
             case "FACULTAD DE INGENIERÍA AGRONÓMICA":
-                listItems.add(new item_lista(R.drawable.facuupecienciasagrarias,"INGENIERÍA AGRONÓMICA","Ciudad: Minga Guazú"));
-                listItems.add(new item_lista(R.drawable.facuupecienciasagrarias,"INGENIERÍA AMBIENTAL","Ciudad: Minga Guazú"));
+                listItems.add(new itemLista(R.drawable.facuupecienciasagrarias,"INGENIERÍA AGRONÓMICA","Ciudad: Minga Guazú"));
+                listItems.add(new itemLista(R.drawable.facuupecienciasagrarias,"INGENIERÍA AMBIENTAL","Ciudad: Minga Guazú"));
                 break;
 
             default:

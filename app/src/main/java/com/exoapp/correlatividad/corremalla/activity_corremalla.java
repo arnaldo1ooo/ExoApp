@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.exoapp.R;
-import com.exoapp.recyclerview.lista.item_lista;
-import com.exoapp.recyclerview.lista.rv_lista;
+import com.exoapp.recyclerview.mallafavoritos.itemMallafav;
+import com.exoapp.recyclerview.mallafavoritos.rvMallafav;
 
 import java.util.ArrayList;
 
@@ -23,17 +23,21 @@ public class activity_corremalla extends AppCompatActivity {
     private RecyclerView.Adapter adaptador;
     private LinearLayoutManager layoutManager;
     private TextView txtTitulo;
+    private String universidadseleccionada;
+    private String facultadseleccionada;
     private String carreraseleccionada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_correcarrera);
+        setContentView(R.layout.activity_corremalla);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Seleccione la malla");
 
 
         //Ponemos el titulo
+        universidadseleccionada = getIntent().getExtras().getString("universidad");
+        facultadseleccionada = getIntent().getExtras().getString("facultad");
         carreraseleccionada = getIntent().getExtras().getString("carrera");
         txtTitulo = (TextView) findViewById(R.id.tvTitulo);
         txtTitulo.setText("Mallas de la carrera de\n" + carreraseleccionada);
@@ -44,10 +48,10 @@ public class activity_corremalla extends AppCompatActivity {
         recyclerview.setLayoutManager(layoutManager);
 
         //Adaptador
-        adaptador = new rv_lista(this, MetodoListItem());
+        adaptador = new rvMallafav(this, MetodoListItem());
 
         //OnClick
-        ((rv_lista) adaptador).setOnClickListener(new View.OnClickListener() {
+        ((rvMallafav) adaptador).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Guardo el titulo del item seleccionado
@@ -73,6 +77,8 @@ public class activity_corremalla extends AppCompatActivity {
                 }
 
                 intent = new Intent(activity_corremalla.this, com.exoapp.correlatividad.activity_correlatividad.class);
+                intent.putExtra("universidad", universidadseleccionada);
+                intent.putExtra("facultad", facultadseleccionada);
                 intent.putExtra("carrera", carreraseleccionada);
                 intent.putExtra("malla", malla);
                 startActivity(intent);
@@ -91,24 +97,24 @@ public class activity_corremalla extends AppCompatActivity {
 
     }
 
-    private ArrayList<item_lista> MetodoListItem(){
-        ArrayList<item_lista> listItems = new ArrayList<>();
+    private ArrayList<itemMallafav> MetodoListItem(){
+        ArrayList<itemMallafav> listItems = new ArrayList<>();
 
         String carreraseleccionada = getIntent().getExtras().getString("carrera");
         switch (carreraseleccionada) {
             case "ANÁLISIS DE SISTEMAS":
-                listItems.add(new item_lista(R.drawable.malla,"PLAN 2017","Ciudad: Ciudad del Este"));
-                listItems.add(new item_lista(R.drawable.malla,"PLAN VIGENTE","Ciudad: Ciudad del Este"));
+                listItems.add(new itemMallafav(R.drawable.star_off,"PLAN 2017","Ciudad: Ciudad del Este"));
+                listItems.add(new itemMallafav(R.drawable.star_off,"PLAN VIGENTE","Ciudad: Ciudad del Este"));
                 break;
 
             case "TURISMO":
-                listItems.add(new item_lista(R.drawable.malla,"PLAN 2017","Ciudad: Minga Guazú"));
-                listItems.add(new item_lista(R.drawable.malla,"PLAN VIGENTE","Ciudad: Minga Guazú"));
+                listItems.add(new itemMallafav(R.drawable.star_off,"PLAN 2017","Ciudad: Minga Guazú"));
+                listItems.add(new itemMallafav(R.drawable.star_off,"PLAN VIGENTE","Ciudad: Minga Guazú"));
                 break;
 
             case "INGENIERÍA ELÉCTRICA":
-                listItems.add(new item_lista(R.drawable.malla,"PLAN 2017","Ciudad: Minga Guazú"));
-                listItems.add(new item_lista(R.drawable.malla,"PLAN VIGENTE","Ciudad: Minga Guazú"));
+                listItems.add(new itemMallafav(R.drawable.star_off,"PLAN 2017","Ciudad: Minga Guazú"));
+                listItems.add(new itemMallafav(R.drawable.star_off,"PLAN VIGENTE","Ciudad: Minga Guazú"));
                 break;
 
             default:

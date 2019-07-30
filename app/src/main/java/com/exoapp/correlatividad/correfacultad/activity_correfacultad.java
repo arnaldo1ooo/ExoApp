@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.exoapp.R;
 import com.exoapp.correlatividad.correcarrera.activity_correcarrera;
-import com.exoapp.recyclerview.lista.item_lista;
-import com.exoapp.recyclerview.lista.rv_lista;
+import com.exoapp.recyclerview.lista.itemLista;
+import com.exoapp.recyclerview.lista.rvLista;
 
 import java.util.ArrayList;
 
@@ -35,6 +35,8 @@ public class activity_correfacultad extends AppCompatActivity {
 
         //Ponemos el titulo
         universidadseleccionada = getIntent().getExtras().getString("universidad");
+
+
         txtTitulo = (TextView) findViewById(R.id.tvTitulo);
         txtTitulo.setText("Facultades de la\n" + universidadseleccionada);
 
@@ -45,10 +47,10 @@ public class activity_correfacultad extends AppCompatActivity {
         recyclerview.setLayoutManager(layoutManager);
 
         //Adaptador
-        adaptador = new rv_lista(this, MetodoListItem());
+        adaptador = new rvLista(this, MetodoListItem());
 
         //OnClick
-        ((rv_lista) adaptador).setOnClickListener(new View.OnClickListener() {
+        ((rvLista) adaptador).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Guardo el titulo del item seleccionado
@@ -74,6 +76,7 @@ public class activity_correfacultad extends AppCompatActivity {
                 }
 
                 intent = new Intent(activity_correfacultad.this, activity_correcarrera.class);
+                intent.putExtra("universidad", universidadseleccionada);
                 intent.putExtra("facultad", facultad);
                 startActivity(intent);
 
@@ -91,18 +94,18 @@ public class activity_correfacultad extends AppCompatActivity {
 
     }
 
-    private ArrayList<item_lista> MetodoListItem(){
-        ArrayList<item_lista> listItems = new ArrayList<>();
+    private ArrayList<itemLista> MetodoListItem(){
+        ArrayList<itemLista> listItems = new ArrayList<>();
 
         switch (universidadseleccionada) {
             case "UNIVERSIDAD NACIONAL DEL ESTE":
-                listItems.add(new item_lista(R.drawable.facuunepolitecnica,"FACULTAD POLITÉCNICA","Ciudad: Ciudad del Este"));
-                listItems.add(new item_lista(R.drawable.facuuneagronomia,"FACULTAD DE INGENIERÍA AGRONÓMICA","Ciudad: Ciudad del Este"));
-                listItems.add(new item_lista(R.drawable.facuunecienciassalud,"FACULTAD DE CIENCIAS DE LA SALUD","Ciudad: Ciudad del Este"));
+                listItems.add(new itemLista(R.drawable.facuunepolitecnica,"FACULTAD POLITÉCNICA","Ciudad: Ciudad del Este"));
+                listItems.add(new itemLista(R.drawable.facuuneagronomia,"FACULTAD DE INGENIERÍA AGRONÓMICA","Ciudad: Ciudad del Este"));
+                listItems.add(new itemLista(R.drawable.facuunecienciassalud,"FACULTAD DE CIENCIAS DE LA SALUD","Ciudad: Ciudad del Este"));
                 break;
 
             case "UNIVERSIDAD PRIVADA DEL ESTE":
-                listItems.add(new item_lista(R.drawable.facuupecienciasagrarias,"FACULTAD DE CIENCIAS AGRARIAS","Ciudad: Ciudad del Este"));
+                listItems.add(new itemLista(R.drawable.facuupecienciasagrarias,"FACULTAD DE CIENCIAS AGRARIAS","Ciudad: Ciudad del Este"));
                 break;
 
             default:
