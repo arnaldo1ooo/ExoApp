@@ -54,6 +54,8 @@ public class activity_corremalla extends AppCompatActivity {
         ((rvMallafav) adaptador).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 //Guardo el titulo del item seleccionado
                 String tituloitem = MetodoListItem().get(
                         recyclerview.getChildAdapterPosition(view)).getTitulo();

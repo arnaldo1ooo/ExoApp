@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,19 +15,19 @@ import com.exoapp.R;
 
 import java.util.ArrayList;
 
-public class rvCorrelatividad extends RecyclerView.Adapter implements View.OnClickListener{
-   private Context context;
-   private ArrayList<itemCorrelatividad> listItems; //Aca se cargaran los datos
+public class rvCorrelatividad extends RecyclerView.Adapter implements View.OnClickListener {
+    private Context context;
+    private ArrayList<itemCorrelatividad> listItems; //Aca se cargaran los datos
     private View.OnClickListener listener;
 
 
-    public rvCorrelatividad(Context context, ArrayList<itemCorrelatividad> listItems){
+    public rvCorrelatividad(Context context, ArrayList<itemCorrelatividad> listItems) {
         this.context = context;
         this.listItems = listItems;
     }
 
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View contentView = LayoutInflater.from(context).inflate(R.layout.rv_correlatividad,null,false);
+        View contentView = LayoutInflater.from(context).inflate(R.layout.rv_correlatividad, null, false);
 
         //OnClick
         contentView.setOnClickListener(this);
@@ -53,17 +54,18 @@ public class rvCorrelatividad extends RecyclerView.Adapter implements View.OnCli
 
 
     //Onclick
-    public void setOnClickListener(View.OnClickListener listener){
+    public void setOnClickListener(View.OnClickListener listener) {
         this.listener = listener;
     }
+
     @Override
     public void onClick(View view) {
-        if(listener != null){
+        if (listener != null) {
             listener.onClick(view);
         }
     }
 
-    public  static  class  Holder extends RecyclerView.ViewHolder{
+    public static class Holder extends RecyclerView.ViewHolder {
         CheckBox cbMateria;
         TextView tvCorrelatividad;
 

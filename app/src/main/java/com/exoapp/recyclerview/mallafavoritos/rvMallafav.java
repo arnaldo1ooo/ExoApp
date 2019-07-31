@@ -1,6 +1,7 @@
 package com.exoapp.recyclerview.mallafavoritos;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,23 +15,24 @@ import com.exoapp.R;
 
 import java.util.ArrayList;
 
-public class rvMallafav extends RecyclerView.Adapter implements View.OnClickListener{
-   private Context context;
-   private ArrayList<itemMallafav> listItems; //Aca se cargaran los datos
+public class rvMallafav extends RecyclerView.Adapter implements View.OnClickListener {
+    private Context context;
+    private ArrayList<itemMallafav> listItems; //Aca se cargaran los datos
     private View.OnClickListener listener;
+    private ImageView ivImagen;
 
 
-    public rvMallafav(Context context, ArrayList<itemMallafav> listItems){
+
+    public rvMallafav(Context context, ArrayList<itemMallafav> listItems) {
         this.context = context;
         this.listItems = listItems;
     }
 
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View contentView = LayoutInflater.from(context).inflate(R.layout.rv_mallafav,null,false);
+        View contentView = LayoutInflater.from(context).inflate(R.layout.rv_mallafav, null, false);
 
         //OnClick
         contentView.setOnClickListener(this);
-
 
         System.out.println("Se crea la vista CREATE VIEW HOLDER: " + viewType);
         return new Holder(contentView);
@@ -45,6 +47,9 @@ public class rvMallafav extends RecyclerView.Adapter implements View.OnClickList
         Holder.tvDescripcion.setText(item.getDescripcion());
 
         System.out.println("Se muestra el item   BING VIEW HODLER: " + position);
+
+        Holder.ivImagen.setOnClickListener(this);
+
     }
 
     @Override
@@ -53,19 +58,32 @@ public class rvMallafav extends RecyclerView.Adapter implements View.OnClickList
     }
 
 
-
     //Onclick
-    public void setOnClickListener(View.OnClickListener listener){
+    public void setOnClickListener(View.OnClickListener listener) {
         this.listener = listener;
     }
+
     @Override
     public void onClick(View view) {
-        if(listener != null){
-            listener.onClick(view);
+        switch (view.getId()){
+            case R.id.ivImagen:
+                Log.d("Tag", "fdgsh");
+                /*
+                1414Boolean compararImagen = ivImagen.getDrawable().equals(R.drawable.star_off);
+                if ( compararImagen == true){
+                    ivImagen.setImageResource(R.drawable.star_on);
+                }else{
+                    ivImagen.setImageResource(R.drawable.star_off);
+                }*/
+                break;
         }
+
+        /*if (listener != null) {
+            listener.onClick(view);
+        }*/
     }
 
-    public  static  class  Holder extends RecyclerView.ViewHolder{
+    public static class Holder extends RecyclerView.ViewHolder {
         ImageView ivImagen;
         TextView tvTitulo;
         TextView tvDescripcion;
