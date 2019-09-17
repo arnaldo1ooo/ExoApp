@@ -99,14 +99,14 @@
             android:id="@+id/tvVersionPrincipal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:foregroundGravity="right"
-            android:gravity="right"
+            android:layout_marginTop="110dp"
+            android:foregroundGravity="center_horizontal"
+            android:gravity="end"
             android:text="@string/v1_0"
             android:textColor="#ffffff"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
 
-            android:layout_marginTop="110dp"/>
+            app:layout_constraintRight_toRightOf="parent" />
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView1"
