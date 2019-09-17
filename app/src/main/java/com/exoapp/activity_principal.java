@@ -27,13 +27,11 @@ import com.google.android.gms.ads.MobileAds;
 
 
 public class activity_principal extends AppCompatActivity {
-    Button btnevaluaciones;
-    Button btncorrelatividad;
-    Button btnBonificacion;
     TextView VersionActual;
     private InterstitialAd mInterstitialAd;
     private AdView AdView1;
     boolean SeActivoPublicidad = false;
+
 
     //impedir retroceder a activity anterior
     @Override
@@ -65,14 +63,37 @@ public class activity_principal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
-        btnevaluaciones = (Button) findViewById(R.id.btnEvaluaciones);
-        btncorrelatividad = (Button) findViewById(R.id.btnCorrelatividad);
-        btnBonificacion = (Button) findViewById(R.id.btnBonificacion);
+
+        //Activar icono en actionbar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
         VersionActual = (TextView) findViewById(R.id.tvVersionPrincipal);
 
         PublicidadInterstitial();
         MetodoBanner();
+        ObtenerVersion();
+    }
 
+    public void Evaluaciones(View view) {
+        Intent intent = new Intent(view.getContext(), activity_tipo_evalu.class);
+        startActivityForResult(intent, 0);
+    }
+
+    public void Bonificacion(View view) {
+        Intent intent = new Intent(view.getContext(), activity_bonificacion.class);
+        startActivityForResult(intent, 0);
+    }
+
+    public void Correlatividad(View view) {
+        Intent intent = new Intent(view.getContext(), activity_correuniversidad.class);
+        startActivityForResult(intent, 0);
+    }
+
+
+    private void ObtenerVersion() {
         //Obtener version actual de la app
         try {
             PackageInfo packageInfo;
@@ -83,32 +104,6 @@ public class activity_principal extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "No se puede cargar la version actual!", Toast.LENGTH_LONG).show();
         }
-
-
-        btnevaluaciones.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), activity_tipo_evalu.class);
-                startActivityForResult(intent, 0);
-            }
-        });
-
-
-        btncorrelatividad.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), activity_correuniversidad.class);
-                startActivityForResult(intent, 0);
-            }
-        });
-
-        btnBonificacion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(v.getContext(), activity_bonificacion.class);
-                startActivity(i);
-            }
-        });
     }
 
 

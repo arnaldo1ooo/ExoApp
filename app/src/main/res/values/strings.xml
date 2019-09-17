@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">ExoApp</string>
+
     <string name="title_activity_principal">activity_principal</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
@@ -15,4 +16,9 @@
     <string name="full_page_screenshot">Captura de pantalla completa</string>
     <string name="hidden_text">Hidden Text</string>
     <string name="custom_page_screenshot">Captura de pantalla personalizada</string>
+    <string name="men_principal">Menú principal</string>
+    <string name="evaluaciones">Evaluaciones</string>
+    <string name="bonificacion">Bonificacion</string>
+    <string name="correlatividad">Correlatividad</string>
+    <string name="v1_0">v1.0</string>
 </resources>
