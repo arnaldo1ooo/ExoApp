@@ -14,7 +14,6 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,7 +73,7 @@ public class activity_principal extends AppCompatActivity {
 
         PublicidadInterstitial();
         MetodoBanner();
-        ObtenerVersion();
+        ObtenerVersionApp();
     }
 
     public void Evaluaciones(View view) {
@@ -93,7 +92,7 @@ public class activity_principal extends AppCompatActivity {
     }
 
 
-    private void ObtenerVersion() {
+    private void ObtenerVersionApp() {
         //Obtener version actual de la app
         try {
             PackageInfo packageInfo;

@@ -12,21 +12,24 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="377dp"
-        android:layout_height="0dp"
+        android:layout_width="375dp"
+        android:layout_height="574dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:orientation="vertical"
         ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintHorizontal_bias="0.0"
         ads:layout_constraintStart_toStartOf="parent"
-        ads:layout_constraintTop_toTopOf="parent">
+        ads:layout_constraintTop_toTopOf="parent"
+        ads:layout_constraintVertical_bias="0.551">
 
         <TextView
             android:id="@+id/tvTitulo"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="Menú principal"
+            android:text="@string/men_principal"
             android:textAlignment="center"
             android:textColor="#ffffff"
             android:textSize="24sp"
@@ -36,16 +39,18 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            tools:targetApi="jelly_bean" />
 
         <Button
             android:id="@+id/btnEvaluaciones"
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/boton_borde_redondo"
             android:onClick="Evaluaciones"
             android:soundEffectsEnabled="false"
-            android:text="Evaluaciones"
+            android:text="@string/evaluaciones"
             android:textColor="#ffffff"
             android:textSize="27sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -56,11 +61,12 @@
         <Button
             android:id="@+id/btnBonificacion"
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/boton_borde_redondo"
             android:enabled="true"
             android:onClick="Bonificacion"
-            android:text="Bonificacion"
+            android:text="@string/bonificacion"
             android:textColor="#ffffff"
             android:textSize="27sp"
             android:visibility="visible" />
@@ -68,11 +74,12 @@
         <Button
             android:id="@+id/btnCorrelatividad"
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/boton_borde_redondo"
             android:enabled="true"
             android:onClick="Correlatividad"
-            android:text="Correlatividad"
+            android:text="@string/correlatividad"
             android:textColor="#ffffff"
             android:textSize="27sp"
             android:visibility="visible"
@@ -82,26 +89,26 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/loadingPanel"
             android:layout_width="match_parent"
-            android:layout_height="90dp">
+            android:layout_height="101dp">
 
 
+            <TextView
+                android:id="@+id/tvVersionPrincipal"
+                android:layout_width="match_parent"
+                android:layout_height="31dp"
+                android:foregroundGravity="right"
+                android:gravity="end"
+                android:text="@string/tv_version"
+                android:textColor="#ffffff"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-            android:id="@+id/tvVersionPrincipal"
-            android:layout_width="match_parent"
-            android:layout_height="31dp"
-            android:foregroundGravity="right"
-            android:gravity="right"
-            android:text="v1.0"
-            android:textColor="#ffffff"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView1"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             ads:adSize="BANNER"
             ads:adUnitId="ca-app-pub-8474453660271942/9184800934" />
     </LinearLayout>

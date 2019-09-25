@@ -17,7 +17,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Seleccione la universidad"
+        android:text="@string/seleccione_la_universidad"
         android:textAlignment="center"
         android:textColor="#ffffff"
         android:textSize="26sp"
@@ -39,7 +39,7 @@
         android:id="@+id/tvFavoritos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Favoritos"
+        android:text="@string/favoritos"
         android:textColor="#F0DB34"
         android:textSize="26sp" />
 
