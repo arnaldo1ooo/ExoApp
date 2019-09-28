@@ -129,24 +129,24 @@ public class activity_evalu extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        btnCalculo = (Button) findViewById(R.id.btnCalculo);
-        et1parcial = (EditText) findViewById(R.id.et1Parcial);
-        et2parcial = (EditText) findViewById(R.id.et2Parcial);
-        etTp = (EditText) findViewById(R.id.etTp);
-        tvResultado = (TextView) findViewById(R.id.tvResultado);
-        sp1 = (Spinner) findViewById(R.id.sp1);
-        sp2 = (Spinner) findViewById(R.id.sp2);
-        sp3 = (Spinner) findViewById(R.id.sp3);
-        tvTotalText1 = (TextView) findViewById(R.id.tvTotalText1);
-        tvTotalText2 = (TextView) findViewById(R.id.tvTotalText2);
-        tvTotalText3 = (TextView) findViewById(R.id.tvTotalText3);
-        tvFeli = (TextView) findViewById(R.id.tvFeli);
-        tvFaltante = (TextView) findViewById(R.id.tvFaltante);
-        btnCompartir = (Button) findViewById(R.id.btnCompartir);
-        ivCompartir = (ImageView) findViewById(R.id.ivCompartir);
-        layoutCompartir = (LinearLayout) findViewById(R.id.layoutCompartir);
-        ivEmoji = (ImageView) findViewById(R.id.ivEmoji);
-        btnBonificacion = (Button) findViewById(R.id.btnBonificacion);
+        btnCalculo = findViewById(R.id.btnCalculo);
+        et1parcial = findViewById(R.id.et1Parcial);
+        et2parcial = findViewById(R.id.et2Parcial);
+        etTp = findViewById(R.id.etTp);
+        tvResultado = findViewById(R.id.tvResultado);
+        sp1 =findViewById(R.id.sp1);
+        sp2 = findViewById(R.id.sp2);
+        sp3 = findViewById(R.id.sp3);
+        tvTotalText1 = findViewById(R.id.tvTotalText1);
+        tvTotalText2 = findViewById(R.id.tvTotalText2);
+        tvTotalText3 = findViewById(R.id.tvTotalText3);
+        tvFeli = findViewById(R.id.tv_feli);
+        tvFaltante = findViewById(R.id.tvFaltante);
+        btnCompartir = findViewById(R.id.btnCompartir);
+        ivCompartir = findViewById(R.id.ivCompartir);
+        layoutCompartir = findViewById(R.id.layout_compartir);
+        ivEmoji = findViewById(R.id.ivEmoji);
+        btnBonificacion = findViewById(R.id.btnBonificacion);
 
         MetodoBanner();
 

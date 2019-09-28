@@ -11,431 +11,249 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.exofpune.activity_evalu"
+    tools:context="com.exoapp.activity_evalu"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="81dp"
 
     >
 
 
-    <TextView
-        android:id="@+id/tvTitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_weight="1"
-        android:fontFamily="sans-serif-smallcaps"
-        android:imeOptions="actionNext"
-        android:text="Ingrese los Puntajes Obtenidos"
-        android:textAlignment="center"
-        android:textColor="#ffffff"
-        android:textSize="19sp"
-        android:typeface="serif"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Spinner
-        android:id="@+id/sp1"
-
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginStart="9dp"
-        android:layout_marginLeft="9dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_weight="1"
-        android:nestedScrollingEnabled="false"
-        android:spinnerMode="dialog"
-        android:translationY="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="362dp"
+        android:layout_height="170dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.391"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.118" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Spinner
-        android:id="@+id/sp2"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="9dp"
-        android:layout_marginLeft="9dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_weight="1"
-        android:nestedScrollingEnabled="false"
-        android:spinnerMode="dialog"
-        android:translationY="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.39"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.221" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <Spinner
-        android:id="@+id/sp3"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_weight="1"
-        android:spinnerMode="dialog"
-        android:translationY="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.313" />
+            <TextView
+                android:id="@+id/tvTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="@string/tvTitulo"
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:textSize="19sp"
+                android:typeface="serif" />
+        </TableRow>
 
-    <TextView
-        android:id="@+id/tvFeli"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvFaltante"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_weight="1"
-        android:fontFamily="sans-serif-condensed"
-        android:gravity="right"
-        android:textAlignment="center"
-        android:textColor="#b90000"
-        android:textSize="36sp"
-        android:typeface="sans"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.683"
-        tools:text="No exoneraste" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btnCalculo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_weight="1"
-        android:background="@drawable/boton_borde_redondo"
-        android:onClick="Calcular"
-        android:text="="
-        android:textColor="#ffffff"
-        android:textSize="35dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.441" />
+            <EditText
+                android:id="@+id/et1Parcial"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:gravity="right|end"
+                android:hint="@string/et1Parcial"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#b8b8b8" />
 
-    <TextView
-        android:id="@+id/tvResultado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnCalculo"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_weight="1"
-        android:fontFamily="sans-serif-condensed"
-        android:gravity="center_horizontal"
-        android:textAlignment="center"
-        android:textColor="#ffffff"
-        android:textIsSelectable="false"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.548"
-        tools:text="36.55 Puntos de 40 Puntos" />
+            <Spinner
+                android:id="@+id/sp1"
 
-    <TextView
-        android:id="@+id/tvFaltante"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/tvResultado"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="sans-serif-condensed"
-        android:textAlignment="center"
-        android:textColor="#ffffff"
-        android:textSize="18sp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.597"
-        tools:text="Te faltó 00.000 Puntos para Exonerar" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:nestedScrollingEnabled="false"
+                android:spinnerMode="dialog"
+                android:translationY="1dp" tools:targetApi="lollipop" />
 
-    <TextView
-        android:id="@+id/tvTotalText3"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_toRightOf="@+id/sp3"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:text="0 de 10 Puntos"
-        android:textColor="#ffffff"
-        android:textIsSelectable="false"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32" />
+            <TextView
+                android:id="@+id/tvTotalText1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|end"
+                android:text="@string/tvTotalText1"
+                android:textColor="#ffffff"
+                android:textIsSelectable="false"
+                android:textSize="17sp" />
+        </TableRow>
 
-    <TextView
-        android:id="@+id/tvTotalText2"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_toEndOf="@+id/sp2"
-        android:layout_toRightOf="@+id/sp2"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:text="0 de 15 Puntos"
-        android:textColor="#ffffff"
-        android:textIsSelectable="false"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.22000003" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvTotalText1"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_alignBottom="@+id/sp1"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_toEndOf="@+id/sp1"
-        android:layout_toRightOf="@+id/sp1"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:text="0 de 15 Puntos"
-        android:textColor="#ffffff"
-        android:textIsSelectable="false"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.118" />
+            <EditText
+                android:id="@+id/et2Parcial"
+                android:layout_width="102dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:gravity="right|end"
+                android:hint="@string/et2Parcial"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#b8b8b8" />
 
-    <ImageView
-        android:id="@+id/ivCompartir"
-        android:layout_width="40dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.134"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.404"
-        app:srcCompat="@android:color/holo_green_dark" />
+            <Spinner
+                android:id="@+id/sp2"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:nestedScrollingEnabled="false"
+                android:spinnerMode="dialog"
+                android:translationY="1dp" tools:targetApi="lollipop" />
+
+            <TextView
+                android:id="@+id/tvTotalText2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|end"
+                android:text="@string/tvTotalText2"
+                android:textColor="#ffffff"
+                android:textIsSelectable="false"
+                android:textSize="17sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/etTp"
+                android:layout_width="102dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:gravity="right|end"
+                android:hint="@string/etTp"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#b8b8b8" />
+
+            <Spinner
+                android:id="@+id/sp3"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:spinnerMode="dialog"
+                android:translationY="1dp" />
+
+            <TextView
+                android:id="@+id/tvTotalText3"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:gravity="center_vertical|end"
+                android:text="@string/tvTotalText3"
+                android:textColor="#ffffff"
+                android:textIsSelectable="false"
+                android:textSize="17sp" />
+        </TableRow>
+
+    </TableLayout>
 
     <LinearLayout
-        android:id="@+id/layoutCompartir"
-        android:layout_width="50dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:orientation="vertical"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.84"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.408"></LinearLayout>
-
-    <ImageView
-        android:id="@+id/ivEmoji"
-        android:layout_width="63dp"
-        android:layout_height="49dp"
+        android:layout_width="362dp"
+        android:layout_height="403dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/tvFeli"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.692"
-        app:srcCompat="@drawable/triste" />
-
-
-    <EditText
-        android:id="@+id/et1Parcial"
-        android:layout_width="102dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginLeft="3dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:gravity="right"
-        android:hint="1ª Parcial"
-        android:inputType="numberDecimal"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#b8b8b8"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.118" />
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout">
 
-    <EditText
-        android:id="@+id/et2Parcial"
-        android:layout_width="102dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginLeft="3dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginRight="6dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:gravity="right"
-        android:hint="2ª Parcial"
-        android:inputType="numberDecimal"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#b8b8b8"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.03"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.22" />
+        <Button
+            android:id="@+id/btnCalculo"
+            android:layout_width="159dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/boton_borde_redondo"
+            android:onClick="Calcular"
+            android:text="@string/btnCalculo"
+            android:textColor="#ffffff"
+            android:textSize="35sp" />
 
-    <EditText
-        android:id="@+id/etTp"
-        android:layout_width="102dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:layout_marginLeft="6dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:gravity="right"
-        android:hint="Trabajo P."
-        android:inputType="numberDecimal"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#b8b8b8"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.02"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32" />
+        <TextView
+            android:id="@+id/tvResultado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:fontFamily="sans-serif-condensed"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textIsSelectable="false"
+            android:textSize="28sp"
+            tools:text="36.55 Puntos de 40 Puntos" />
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-8474453660271942/9184800934"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvTitulo"
-        app:layout_constraintVertical_bias="1.0" />
+        <TextView
+            android:id="@+id/tvFaltante"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-condensed"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:visibility="visible"
+            tools:text="Te faltó 00.000 Puntos para Exonerar" />
 
-    <Button
-        android:id="@+id/btnBonificacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/boton_borde_redondo"
-        android:text="  ¿Cuanto debo hacer en la final?  "
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.469"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.823" />
+        <TextView
+            android:id="@+id/tv_feli"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:gravity="center"
+            android:text="@string/tv_feli"
+            android:textColor="#D61709"
+            android:textSize="42sp"
+            app:fontFamily="@font/bangers" />
+
+        <ImageView
+            android:id="@+id/ivEmoji"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:contentDescription="@string/emoji"
+            app:srcCompat="@drawable/triste" />
+
+        <Button
+            android:id="@+id/btnBonificacion"
+            android:layout_width="310dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/boton_borde_redondo"
+            android:text="@string/btnBonificacion"
+            android:textColor="#000000" />
+
+        <ImageView
+            android:id="@+id/ivCompartir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/ivcompartir"
+            android:visibility="invisible"
+            app:srcCompat="@android:color/holo_green_dark" />
+
+        <LinearLayout
+            android:id="@+id/layout_compartir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"></LinearLayout>
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="8dp"
+            app:adSize="BANNER"
+            app:adUnitId="ca-app-pub-8474453660271942/9184800934" />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

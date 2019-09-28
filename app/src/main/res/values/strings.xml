@@ -24,4 +24,23 @@
     <string name="correlatividad">Correlatividad</string>
     <string name="men_principal">Menú principal</string>
     <string name="bonificacion">Bonificacion</string>
+    <string name="btnCalculo">=</string>
+    <string name="btnBonificacion">¿Cuanto debo hacer en la final?</string>
+    <string name="ivcompartir">ivCompartir</string>
+    <string name="tv_feli">NO EXONERASTE</string>
+    <string name="tvTotalText3">0 de 10 Puntos</string>
+    <string name="tvTotalText2">0 de 15 Puntos</string>
+    <string name="et1Parcial">1ª Parcial</string>
+    <string name="et2Parcial">2ª Parcial</string>
+    <string name="etTp">Trabajo P.</string>
+    <string name="emoji">Emoji</string>
+    <string name="tvTotalText1">0 de 15 Puntos</string>
+    <string name="tvTitulo">Ingrese los Puntajes Obtenidos</string>
+    <string name="version">v1.0</string>
+    <string name="tv_hechopor">Desarrollado por: Arnaldo Cantero</string>
+    <string name="logo">Logo</string>
+    <string name="_15_15_10">15 - 15 -10</string>
+    <string name="_20_20_0">20 - 20 - 0</string>
+    <string name="_10_10_20">10 - 10 - 20</string>
+    <string name="seleccione_el_tipo_de_evaluaci_n">Seleccione el tipo de evaluación</string>
 </resources>

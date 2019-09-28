@@ -21,15 +21,10 @@ import com.exoapp.correlatividad.correuniversidad.activity_correuniversidad;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
-
 
 public class activity_principal extends AppCompatActivity {
-    TextView VersionActual;
-    private InterstitialAd mInterstitialAd;
+    private TextView VersionActual;
     private AdView AdView1;
-    boolean SeActivoPublicidad = false;
 
 
     //impedir retroceder a activity anterior
@@ -46,15 +41,12 @@ public class activity_principal extends AppCompatActivity {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
         // El bundle sera guardado y enviado al onCreate() de la Activity.
-        savedInstanceState.putBoolean("SeActivoPublicidad", SeActivoPublicidad);
     }
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         // Al volver a restaurar el intent volvemos al ultimo estado de esta variable savedInstanceState.
-        SeActivoPublicidad = savedInstanceState.getBoolean("SeActivoPublicidad");
-        Log.d("Estado guardado",SeActivoPublicidad+"");
     }
 
     @Override
@@ -71,7 +63,6 @@ public class activity_principal extends AppCompatActivity {
 
         VersionActual = (TextView) findViewById(R.id.tvVersionPrincipal);
 
-        PublicidadInterstitial();
         MetodoBanner();
         ObtenerVersionApp();
     }
@@ -104,7 +95,6 @@ public class activity_principal extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "No se puede cargar la version actual!", Toast.LENGTH_LONG).show();
         }
     }
-
 
     private void MetodoBanner() {
         AdView1 = findViewById(R.id.adView1);
@@ -147,52 +137,6 @@ public class activity_principal extends AppCompatActivity {
         });
     }
 
-
-    private void PublicidadInterstitial() {
-        if (SeActivoPublicidad == false) {
-            try {
-                MobileAds.initialize(this, "ca-app-pub-8474453660271942/1150495372");
-
-                mInterstitialAd = new InterstitialAd(this);
-                mInterstitialAd.setAdUnitId("ca-app-pub-8474453660271942/1150495372");
-                mInterstitialAd.loadAd(new AdRequest.Builder().build());
-
-                mInterstitialAd.setAdListener(new AdListener() {
-                    @Override
-                    public void onAdLoaded() { // Código que se ejecutará cuando un anuncio termine de cargarse.
-                        if (mInterstitialAd.isLoaded()) {
-                            mInterstitialAd.show(); //Mostrar el Interstittial luego de crearlo
-                            onSaveInstanceState(null);
-                        }
-                    }
-
-                    @Override
-                    public void onAdOpened() {// Código que se ejecutará cuando se muestre el anuncio.
-
-                    }
-
-                    @Override
-                    public void onAdFailedToLoad(int errorCode) {// Código que se ejecutará cuando una solicitud de anuncio falle.
-
-                    }
-
-                    @Override
-                    public void onAdLeftApplication() {// Código que se ejecutará cuando el usuario haya abandonado la aplicación.
-                    }
-
-                    @Override
-                    public void onAdClosed() {// Código que se ejecutará cuando el anuncio intersticial esté cerrado.
-
-                    }
-                });
-            } catch (Exception e) {
-                Log.d("Error", "Error metodo PublicidadInterstitial() " + e);
-            }
-            SeActivoPublicidad = true;
-        }
-    }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_fb, menu);
@@ -225,13 +169,6 @@ public class activity_principal extends AppCompatActivity {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
 
-    /**
-     * Checks if the app has permission to write to device storage
-     * <p>
-     * If the app does not has permission then the user will be prompted to grant permissions
-     *
-     * @param ElActivity
-     */
     public static void VerificarPermisos(Activity ElActivity) {
         Log.d("Verificando permisos..", "");
         // Check if we have write Permiso
