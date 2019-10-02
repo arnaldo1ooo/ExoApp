@@ -12,7 +12,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 
-public class activity_acercade extends AppCompatActivity {
+public class ActivityAcercade extends AppCompatActivity {
 
     TextView version;
     TextView versioncodigo;

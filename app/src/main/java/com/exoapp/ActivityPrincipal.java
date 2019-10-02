@@ -3,57 +3,88 @@ package com.exoapp;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
+
 import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
+
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.exoapp.correlatividad.correuniversidad.activity_correuniversidad;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
-
-public class activity_tipo_evalu extends AppCompatActivity {
-    Button btnopc1;
-    Button btnopc2;
-    Button btnopc3;
-    TextView VersionActual;
+public class ActivityPrincipal extends AppCompatActivity {
+    private TextView VersionActual;
     private AdView AdView1;
 
-    //impedir retroceder a activity anterior
+
+    //Pregunta si realmente quieres salir de app
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            moveTaskToBack(true);
+            CerrarAplicacion();
+            // Si el listener devuelve true, significa que el evento esta procesado, y nadie debe hacer nada mas
             return true;
         }
+        // para las demas cosas, se reenvia el evento al listener habitual
         return super.onKeyDown(keyCode, event);
     }
 
-
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        // El bundle sera guardado y enviado al onCreate() de la Activity.
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tipo_evalu);
+        setContentView(R.layout.activity_principal);
 
-        btnopc1 = (Button) findViewById(R.id.btnopc1);
-        btnopc2 = (Button) findViewById(R.id.btnopc2);
-        btnopc3 = (Button) findViewById(R.id.btnopc3);
+
+        //Activar icono en actionbar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
         VersionActual = (TextView) findViewById(R.id.tvVersionPrincipal);
 
         MetodoBanner();
+        ObtenerVersionApp();
+    }
 
+    public void Evaluaciones(View view) {
+        Intent intent = new Intent(view.getContext(), ActivityTipoEvalu.class);
+        startActivityForResult(intent, 0);
+    }
+
+    public void Bonificacion(View view) {
+        Intent intent = new Intent(view.getContext(), ActivityBonificacion.class);
+        startActivityForResult(intent, 0);
+    }
+
+    public void Correlatividad(View view) {
+        Intent intent = new Intent(view.getContext(), activity_correuniversidad.class);
+        startActivityForResult(intent, 0);
+    }
+
+
+    private void ObtenerVersionApp() {
         //Obtener version actual de la app
         try {
             PackageInfo packageInfo;
@@ -64,45 +95,7 @@ public class activity_tipo_evalu extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "No se puede cargar la version actual!", Toast.LENGTH_LONG).show();
         }
-
-
-        btnopc1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), com.exoapp.activity_evalu.class);
-                intent.putExtra("TotalPuntos1", "15");
-                intent.putExtra("TotalPuntos2", "15");
-                intent.putExtra("TotalPuntos3", "10");
-                intent.putExtra("EsPersonalizado", "No");
-                startActivityForResult(intent, 0);
-            }
-        });
-
-        btnopc2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), activity_evalu.class);
-                intent.putExtra("TotalPuntos1", "20");
-                intent.putExtra("TotalPuntos2", "20");
-                intent.putExtra("TotalPuntos3", "0");
-                intent.putExtra("EsPersonalizado", "No");
-                startActivityForResult(intent, 0);
-            }
-        });
-
-        btnopc3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), activity_evalu.class);
-                intent.putExtra("TotalPuntos1", "10");
-                intent.putExtra("TotalPuntos2", "10");
-                intent.putExtra("TotalPuntos3", "20");
-                intent.putExtra("EsPersonalizado", "No");
-                startActivityForResult(intent, 0);
-            }
-        });
     }
-
 
     private void MetodoBanner() {
         AdView1 = findViewById(R.id.adView1);
@@ -155,14 +148,14 @@ public class activity_tipo_evalu extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.ao1) {
-            Intent i = new Intent(this, activity_politicas_privacidad.class);
+            Intent i = new Intent(this, ActivityPoliticasPrivacidad.class);
             startActivity(i);
             return true;
         }
 
         if (id == R.id.ao2) {
             Log.d("Opciones", "Abriendo acerca de");
-            Intent i = new Intent(this, activity_acercade.class);
+            Intent i = new Intent(this, ActivityAcercade.class);
             startActivity(i);
             return true;
         }
@@ -177,13 +170,6 @@ public class activity_tipo_evalu extends AppCompatActivity {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
 
-    /**
-     * Checks if the app has permission to write to device storage
-     * <p>
-     * If the app does not has permission then the user will be prompted to grant permissions
-     *
-     * @param ElActivity
-     */
     public static void VerificarPermisos(Activity ElActivity) {
         Log.d("Verificando permisos..", "");
         // Check if we have write Permiso
@@ -197,6 +183,21 @@ public class activity_tipo_evalu extends AppCompatActivity {
                     REQUEST_EXTERNAL_STORAGE
             );
         }
+    }
+
+    private void CerrarAplicacion() {
+           new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("¿Realmente desea cerrar la aplicación?")
+                .setCancelable(false)
+                .setNegativeButton(android.R.string.cancel, null)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {// un listener que al pulsar, cierre la aplicacion
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        android.os.Process.killProcess(android.os.Process.myPid()); //Su funcion es algo similar a lo que se llama cuando se presiona el botón "Forzar Detención" o "Administrar aplicaciones", lo cuál mata la aplicación
+                        //finish(); Si solo quiere mandar la aplicación a segundo plano
+                    }
+                }).show();
     }
 }
 

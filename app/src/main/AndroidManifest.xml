@@ -17,7 +17,7 @@
 
 
         <activity
-            android:name=".splash_screen"
+            android:name=".ActivitySplashScreen"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,26 +26,26 @@
         </activity>
 
         <activity
-            android:name=".activity_principal"
+            android:name=".ActivityPrincipal"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name=".activity_tipo_evalu"
-            android:parentActivityName=".activity_principal"
+            android:name=".ActivityTipoEvalu"
+            android:parentActivityName=".ActivityPrincipal"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name=".activity_evalu"
-            android:parentActivityName=".activity_tipo_evalu"
+            android:name=".ActivityEvalu"
+            android:parentActivityName=".ActivityTipoEvalu"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name=".activity_acercade"
-            android:parentActivityName=".activity_principal" />
+            android:name=".ActivityAcercade"
+            android:parentActivityName=".ActivityPrincipal" />
 
         <activity
-            android:name=".activity_bonificacion"
-            android:parentActivityName=".activity_principal" />
+            android:name=".ActivityBonificacion"
+            android:parentActivityName=".ActivityPrincipal" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -57,11 +57,11 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".activity_politicas_privacidad"></activity>
+        <activity android:name=".ActivityPoliticasPrivacidad"></activity>
 
         <activity
             android:name=".correlatividad.correuniversidad.activity_correuniversidad"
-            android:parentActivityName=".activity_principal" />
+            android:parentActivityName=".ActivityPrincipal" />
 
         <activity
             android:name=".correlatividad.correfacultad.activity_correfacultad"

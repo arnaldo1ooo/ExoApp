@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import java.text.DecimalFormat;
 
-public class activity_bonificacion extends AppCompatActivity {
+public class ActivityBonificacion extends AppCompatActivity {
 
     TextView etBonificacion;
     TextView tvTitulo2;

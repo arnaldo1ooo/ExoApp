@@ -16,18 +16,39 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 
 
-public class splash_screen extends Activity {
+public class ActivitySplashScreen extends Activity {
     private TextView versionApp;
     private InterstitialAd mInterstitialAd;
 
+    //Para evitar que se cierre al oprimir boton atras
+    @Override
+    public void onBackPressed() {
+        Log.d("BotonAtras", "Se oprimió el botón atrás");
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        PublicidadInterstitial();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
         versionApp = findViewById(R.id.tvVersionSplash);
 
+        ObtenerVersion();
+        PublicidadInterstitial();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Log.d("Splash Screen", "Se terminó el tiempo de espera");
+                if (seAbrióNextActivity == false) {
+                    Log.d("Interstitial", "No está cargando");
+                    AbrirNextActivity();
+                }
+            }
+        }, 5000);
+    }
+
+    private void ObtenerVersion() {
         try {
             PackageInfo packageInfo;
             packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
@@ -37,17 +58,6 @@ public class splash_screen extends Activity {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "No se puede cargar la version actual!", Toast.LENGTH_LONG).show();
         }
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (mInterstitialAd.isLoaded()){
-                    mInterstitialAd.show();
-                }else{
-                    AbrirNextActivity();
-                }
-            }
-        }, 6000);
     }
 
     private void PublicidadInterstitial() {
@@ -63,7 +73,6 @@ public class splash_screen extends Activity {
                 public void onAdLoaded() { // Código que se ejecutará cuando un anuncio termine de cargarse.
                     if (mInterstitialAd.isLoaded()) {
                         mInterstitialAd.show(); //Mostrar el Interstittial luego de crearlo
-                        onSaveInstanceState(null);
                     }
                 }
 
@@ -83,7 +92,10 @@ public class splash_screen extends Activity {
 
                 @Override
                 public void onAdClosed() {// Código que se ejecutará cuando el anuncio intersticial esté cerrado.
-                    AbrirNextActivity();
+                    Log.d("Interstititial", "Se cerró interstitial");
+                    if (seAbrióNextActivity == false) {
+                        AbrirNextActivity();
+                    }
                 }
             });
         } catch (Exception e) {
@@ -91,8 +103,12 @@ public class splash_screen extends Activity {
         }
     }
 
+    Boolean seAbrióNextActivity = false;
+
     private void AbrirNextActivity() {
-        Intent intent = new Intent(splash_screen.this, activity_principal.class);
+        Intent intent = new Intent(ActivitySplashScreen.this, ActivityPrincipal.class);
         startActivity(intent);
+        seAbrióNextActivity = true;
+        finish();
     }
 }

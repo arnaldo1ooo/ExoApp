@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo"
-    tools:context="com.exoapp.activity_tipo_evalu">
+    tools:context="com.exoapp.ActivityTipoEvalu">
 
     <LinearLayout
         android:layout_width="377dp"
@@ -104,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="8dp"
             ads:adSize="BANNER"
             ads:adUnitId="ca-app-pub-8474453660271942/9184800934" />

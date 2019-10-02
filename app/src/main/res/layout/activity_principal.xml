@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondo"
     android:orientation="vertical"
-    tools:context="com.exoapp.activity_principal">
+    tools:context="com.exoapp.ActivityPrincipal">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -33,14 +33,7 @@
             android:textAlignment="center"
             android:textColor="#ffffff"
             android:textSize="24sp"
-            android:typeface="serif"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            tools:targetApi="jelly_bean" />
+            android:typeface="serif" />
 
         <Button
             android:id="@+id/btnEvaluaciones"
@@ -62,7 +55,7 @@
             android:id="@+id/btnBonificacion"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:background="@drawable/boton_borde_redondo"
             android:enabled="true"
             android:onClick="Bonificacion"
@@ -77,12 +70,12 @@
             android:layout_height="70dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/boton_borde_redondo"
-            android:enabled="false"
+            android:enabled="true"
             android:onClick="Correlatividad"
             android:text="@string/correlatividad"
             android:textColor="#ffffff"
             android:textSize="27sp"
-            android:visibility="visible"
+            android:visibility="invisible"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 
@@ -98,18 +91,18 @@
             android:id="@+id/tvVersionPrincipal"
             android:layout_width="match_parent"
             android:layout_height="31dp"
+            android:layout_marginTop="30dp"
             android:foregroundGravity="right"
             android:gravity="end"
             android:text="@string/tv_version"
-            android:textColor="#ffffff"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            android:textColor="#ffffff" />
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             ads:adSize="BANNER"
             ads:adUnitId="ca-app-pub-8474453660271942/9184800934" />
     </LinearLayout>

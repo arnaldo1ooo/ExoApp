@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo"
-    tools:context=".activity_acercade">
+    tools:context=".ActivityAcercade">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -27,7 +27,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
             android:background="@drawable/boton_borde_redondo"
-            android:text="="
+            android:text="@string/btnCalcular"
             android:textColor="#ffffff"
             android:textSize="35sp" />
 
@@ -39,15 +39,17 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:autofillHints=""
             android:ems="10"
             android:foregroundGravity="right"
-            android:gravity="right"
-            android:hint="Ingrese Bonificación"
+            android:gravity="end"
+            android:hint="@string/etBonificacion"
             android:inputType="numberDecimal"
             android:shadowColor="#00EBDADA"
             android:textColor="#FFFFFF"
             android:textColorHint="#FFFFFF"
-            android:textSize="23sp" />
+            android:textSize="23sp"
+            tools:targetApi="o" />
 
         <TextView
             android:id="@+id/textView6"
@@ -56,8 +58,8 @@
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif"
-            android:gravity="left"
-            android:text="Bonificación total:"
+            android:gravity="start"
+            android:text="@string/tv6"
             android:textAllCaps="false"
             android:textColor="#ffffff"
             android:textSize="25sp"
@@ -71,8 +73,8 @@
             android:layout_marginTop="15dp"
             android:fontFamily="sans-serif"
             android:foregroundGravity="left"
-            android:gravity="left"
-            android:text="Puntos que debes hacer en la final:"
+            android:gravity="start"
+            android:text="@string/tvTitulo2"
             android:textAllCaps="false"
             android:textColor="#ffffff"
             android:textSize="23sp"
@@ -85,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:foregroundGravity="left"
-            android:text="Para nota 2 debes hacer:"
+            android:text="@string/tvTituloNota22"
             android:textColor="#8BC34A"
             android:textSize="21sp" />
 
@@ -96,7 +98,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:foregroundGravity="left"
-            android:text="60.999 puntos de 60 (99.999% de 100%)"
+            android:text="@string/tvNota2"
             android:textColor="#FDFFFFFF"
             android:textSize="18sp" />
 
@@ -106,7 +108,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:foregroundGravity="left"
-            android:text="Para nota 3 debes hacer:"
+            android:text="@string/tvTituloNota3"
             android:textColor="#8BC34A"
             android:textSize="21sp" />
 
@@ -117,7 +119,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:foregroundGravity="left"
-            android:text="60.999 puntos de 60 (99.999% de 100%)"
+            android:text="@string/tvNota3"
             android:textColor="#FDFFFFFF"
             android:textSize="18sp" />
 
@@ -127,7 +129,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:foregroundGravity="left"
-            android:text="Para nota 4 debes hacer:"
+            android:text="@string/tvTituloNota4"
             android:textColor="#8BC34A"
             android:textSize="21sp" />
 
@@ -138,7 +140,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:foregroundGravity="left"
-            android:text="60.999 puntos de 60 (99.999% de 100%)"
+            android:text="@string/tvNota4"
             android:textColor="#FDFFFFFF"
             android:textSize="18sp" />
 
@@ -148,7 +150,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:foregroundGravity="left"
-            android:text="Para nota 5 debes hacer:"
+            android:text="@string/tvTituloNota5"
             android:textColor="#8BC34A"
             android:textSize="21sp" />
 
@@ -159,7 +161,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:foregroundGravity="left"
-            android:text="60.999 puntos de 60 (99.999% de 100%)"
+            android:text="@string/tvNota5"
             android:textColor="#FDFFFFFF"
             android:textSize="18sp" />
 

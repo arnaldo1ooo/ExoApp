@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class activity_politicas_privacidad extends AppCompatActivity {
+public class ActivityPoliticasPrivacidad extends AppCompatActivity {
 
     TextView tv_Texto;
 

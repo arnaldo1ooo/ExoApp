@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondo"
     android:orientation="vertical"
-    tools:context=".activity_principal">
+    tools:context=".ActivityPrincipal">
 
     <TextView
         android:id="@+id/tvTitulo"

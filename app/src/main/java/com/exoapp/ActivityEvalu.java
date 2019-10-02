@@ -36,7 +36,7 @@ import java.text.DecimalFormat;
 import com.exoapp.capturapantalla.ScreenshotType;
 import com.exoapp.capturapantalla.ScreenshotUtils;
 
-public class activity_evalu extends AppCompatActivity {
+public class ActivityEvalu extends AppCompatActivity {
     int TotalPuntos1 = 0;
     int TotalPuntos2 = 0;
     int TotalPuntos3 = 0;
@@ -181,7 +181,7 @@ public class activity_evalu extends AppCompatActivity {
         btnBonificacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentBonificacion = new Intent(v.getContext(), activity_bonificacion.class);
+                Intent intentBonificacion = new Intent(v.getContext(), ActivityBonificacion.class);
                 String[] Stringcortado = tvResultado.getText().toString().split(" ");
 
                 intentBonificacion.putExtra("bonificacion", Stringcortado[0].replace(",", "."));
