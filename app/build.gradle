@@ -16,8 +16,8 @@ android {
         applicationId 'com.exofpune'
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 12
-        versionName "1.2.4"
+        versionCode 13
+        versionName "1.2.5"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
     }

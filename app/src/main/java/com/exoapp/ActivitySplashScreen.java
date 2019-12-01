@@ -19,6 +19,7 @@ import com.google.android.gms.ads.MobileAds;
 public class ActivitySplashScreen extends Activity {
     private TextView versionApp;
     private InterstitialAd mInterstitialAd;
+    private Boolean seAbrióNextActivity = false;
 
     //Para evitar que se cierre al oprimir boton atras
     @Override
@@ -71,6 +72,10 @@ public class ActivitySplashScreen extends Activity {
             mInterstitialAd.setAdListener(new AdListener() {
                 @Override
                 public void onAdLoaded() { // Código que se ejecutará cuando un anuncio termine de cargarse.
+                    Log.d("Interstititial", "Se carga el metodo onAdLoaded");
+                    if (seAbrióNextActivity == false) {
+                        AbrirNextActivity();
+                    }
                     if (mInterstitialAd.isLoaded()) {
                         mInterstitialAd.show(); //Mostrar el Interstittial luego de crearlo
                     }
@@ -92,7 +97,7 @@ public class ActivitySplashScreen extends Activity {
 
                 @Override
                 public void onAdClosed() {// Código que se ejecutará cuando el anuncio intersticial esté cerrado.
-                    Log.d("Interstititial", "Se cerró interstitial");
+                    Log.d("Interstititial", "Se carga el metodo onAdClosed");
                     if (seAbrióNextActivity == false) {
                         AbrirNextActivity();
                     }
@@ -102,8 +107,6 @@ public class ActivitySplashScreen extends Activity {
             Log.d("Error", "Error metodo PublicidadInterstitial() " + e);
         }
     }
-
-    Boolean seAbrióNextActivity = false;
 
     private void AbrirNextActivity() {
         Intent intent = new Intent(ActivitySplashScreen.this, ActivityPrincipal.class);

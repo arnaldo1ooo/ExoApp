@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/ tools"
     tools:context=".MainActivity">
 
-    <item android:id="@+id/btnCompartir"
-        android:title="Compartir"
-        android:icon="@android:drawable/ic_menu_share"
+    <item
+        android:id="@+id/btnEscala"
+        android:icon="@android:drawable/ic_dialog_info"
         android:orderInCategory="5"
-        app:showAsAction="always"/>
+        android:title="@string/btn_escala"
+        app:showAsAction="always" />
 
 </menu>

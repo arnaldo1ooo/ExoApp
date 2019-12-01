@@ -1,14 +1,19 @@
 package com.exoapp;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.exoapp.capturapantalla.ScreenshotType;
 
 import java.text.DecimalFormat;
 
@@ -66,6 +71,29 @@ public class ActivityBonificacion extends AppCompatActivity {
         });
 
     }
+
+
+    //Crear boton compartir en action bar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar_bonificacion, menu);
+        return true;
+    }
+
+
+    //Al hacer click en boton compartir
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.btnEscala) {
+            Log.d("Opciones", "Abriendo escala");
+            Intent i = new Intent(this, ActivityEscala.class);
+            startActivity(i);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     public void OcultarTeclado(View v) {
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);

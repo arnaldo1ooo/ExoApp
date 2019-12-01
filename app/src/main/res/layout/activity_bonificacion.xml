@@ -8,17 +8,16 @@
     tools:context=".ActivityAcercade">
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="365dp"
-        android:layout_height="507dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="16dp"
+        android:id="@+id/linearLayout"
+        android:layout_width="395dp"
+        android:layout_height="587dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
+        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1">
 
         <TextView
             android:id="@+id/textView6"
@@ -68,10 +67,12 @@
 
         <TextView
             android:id="@+id/tvTitulo2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:fontFamily="sans-serif"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="10sp"
+            android:fontFamily="@font/amaranth"
             android:foregroundGravity="left"
             android:gravity="start"
             android:text="@string/tvTitulo2"
@@ -79,106 +80,149 @@
             android:textColor="#ffffff"
             android:textSize="23sp"
             android:textStyle="bold|italic"
-            app:fontFamily="sans-serif-light" />
+            app:fontFamily="sans-serif-thin"
+            android:layout_marginStart="5dp" />
 
-        <TextView
-            android:id="@+id/tvTituloNota2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:foregroundGravity="left"
-            android:text="@string/tvTituloNota22"
-            android:textColor="#8BC34A"
-            android:textSize="21sp" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            app:cardBackgroundColor="#C92196F3"
+            app:cardCornerRadius="20dp">
 
-        <TextView
-            android:id="@+id/tvNota2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:foregroundGravity="left"
-            android:text="@string/tvNota2"
-            android:textColor="#FDFFFFFF"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/tvTituloNota2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13sp"
+                android:layout_marginLeft="13sp"
+                android:layout_marginTop="5sp"
+                android:foregroundGravity="left"
+                android:text="@string/tvTituloNota22"
+                android:textColor="#8BC34A"
+                android:textSize="21sp" />
 
-        <TextView
-            android:id="@+id/tvTituloNota3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:foregroundGravity="left"
-            android:text="@string/tvTituloNota3"
-            android:textColor="#8BC34A"
-            android:textSize="21sp" />
+            <TextView
+                android:id="@+id/tvNota2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13sp"
+                android:layout_marginLeft="13sp"
+                android:layout_marginTop="35sp"
+                android:foregroundGravity="left"
+                android:text="@string/tvNota2"
+                android:textColor="#FDFFFFFF"
+                android:textSize="18sp" />
+        </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/tvNota3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:foregroundGravity="left"
-            android:text="@string/tvNota3"
-            android:textColor="#FDFFFFFF"
-            android:textSize="18sp" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:layout_marginTop="8sp"
+            app:cardBackgroundColor="#C92196F3"
+            app:cardCornerRadius="20dp">
 
-        <TextView
-            android:id="@+id/tvTituloNota4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:foregroundGravity="left"
-            android:text="@string/tvTituloNota4"
-            android:textColor="#8BC34A"
-            android:textSize="21sp" />
+            <TextView
+                android:id="@+id/tvTituloNota3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13sp"
+                android:layout_marginLeft="13sp"
+                android:layout_marginTop="5sp"
+                android:foregroundGravity="left"
+                android:text="@string/tvTituloNota3"
+                android:textColor="#8BC34A"
+                android:textSize="21sp" />
 
-        <TextView
-            android:id="@+id/tvNota4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:foregroundGravity="left"
-            android:text="@string/tvNota4"
-            android:textColor="#FDFFFFFF"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/tvNota3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13sp"
+                android:layout_marginLeft="13sp"
+                android:layout_marginTop="35sp"
+                android:foregroundGravity="left"
+                android:text="@string/tvNota3"
+                android:textColor="#FDFFFFFF"
+                android:textSize="18sp" />
+        </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/tvTituloNota5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:foregroundGravity="left"
-            android:text="@string/tvTituloNota5"
-            android:textColor="#8BC34A"
-            android:textSize="21sp" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView3"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:layout_marginTop="8sp"
+            app:cardBackgroundColor="#C92196F3"
+            app:cardCornerRadius="20dp">
 
-        <TextView
-            android:id="@+id/tvNota5"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/tvTituloNota4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13sp"
+                android:layout_marginLeft="13sp"
+                android:layout_marginTop="5sp"
+                android:foregroundGravity="left"
+                android:text="@string/tvTituloNota4"
+                android:textColor="#8BC34A"
+                android:textSize="21sp" />
+
+            <TextView
+                android:id="@+id/tvNota4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13sp"
+                android:layout_marginLeft="13sp"
+                android:layout_marginTop="35sp"
+                android:foregroundGravity="left"
+                android:text="@string/tvNota4"
+                android:textColor="#FDFFFFFF"
+                android:textSize="18sp" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView4"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:layout_marginTop="8sp"
+            app:cardBackgroundColor="#C92196F3"
+            app:cardCornerRadius="20dp">
+
+            <TextView
+                android:id="@+id/tvTituloNota5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13sp"
+                android:layout_marginLeft="13sp"
+                android:layout_marginTop="5sp"
+                android:foregroundGravity="left"
+                android:text="@string/tvTituloNota5"
+                android:textColor="#8BC34A"
+                android:textSize="21sp" />
+
+            <TextView
+                android:id="@+id/tvNota5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13sp"
+                android:layout_marginLeft="13sp"
+                android:layout_marginTop="35sp"
+                android:foregroundGravity="left"
+                android:text="@string/tvNota5"
+                android:textColor="#FDFFFFFF"
+                android:textSize="18sp" />
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:foregroundGravity="left"
-            android:text="@string/tvNota5"
-            android:textColor="#FDFFFFFF"
-            android:textSize="18sp" />
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            app:adSize="BANNER"
+            app:adUnitId="ca-app-pub-8474453660271942/9184800934" />
 
     </LinearLayout>
-
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-8474453660271942/9184800934"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.466" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

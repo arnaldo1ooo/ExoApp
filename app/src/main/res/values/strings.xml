@@ -47,12 +47,14 @@
     <string name="tvNota2">60.999 puntos de 60 (99.999% de 100%)</string>
     <string name="tvTitulo2">Puntos que debes hacer en la final:</string>
     <string name="tv6">Bonificación total:</string>
-    <string name="tvTituloNota4">Para nota 4 debes hacer:</string>
     <string name="tvNota3">60.999 puntos de 60 (99.999% de 100%)</string>
     <string name="tvNota5">60.999 puntos de 60 (99.999% de 100%)</string>
-    <string name="tvTituloNota5">Para nota 5 debes hacer:</string>
     <string name="etBonificacion">Ingrese Bonificación</string>
-    <string name="tvTituloNota3">Para nota 3 debes hacer:</string>
+    <string name="tvTituloNota22">Para nota 2</string>
+    <string name="tvTituloNota3">Para nota 3</string>
+    <string name="tvTituloNota4">Para nota 4</string>
+    <string name="tvTituloNota5">Para nota 5</string>
     <string name="tvNota4">60.999 puntos de 60 (99.999% de 100%)</string>
-    <string name="tvTituloNota22">Para nota 2 debes hacer:</string>
+    <string name="btn_escala">Escala</string>
+    <string name="btn_compartir">Compartir</string>
 </resources>

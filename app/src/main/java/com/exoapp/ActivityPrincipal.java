@@ -140,7 +140,7 @@ public class ActivityPrincipal extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_fb, menu);
+        getMenuInflater().inflate(R.menu.actionbar_principal, menu);
         return true;
     }
 

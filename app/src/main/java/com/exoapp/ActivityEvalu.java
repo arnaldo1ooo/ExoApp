@@ -67,12 +67,7 @@ public class ActivityEvalu extends AppCompatActivity {
     private AdView AdView1;
     private Button btnBonificacion;
 
-    //Crear boton compartir en action bar
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_compartir, menu);
-        return true;
-    }
+
 
     @Override
     protected void onStart() {
@@ -110,10 +105,18 @@ public class ActivityEvalu extends AppCompatActivity {
     }
 
 
+    //Crear boton compartir en action bar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar_evalu, menu);
+        return true;
+    }
+
+
     //Al hacer click en boton compartir
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.btnCompartir) {
+        if (id == R.id.btnEscala) {
             TomarCaptura(ScreenshotType.FULL);
             return true;
         }
@@ -127,6 +130,7 @@ public class ActivityEvalu extends AppCompatActivity {
 
         //Action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Evaluaciones");
 
 
         btnCalculo = findViewById(R.id.btnCalculo);
@@ -142,7 +146,7 @@ public class ActivityEvalu extends AppCompatActivity {
         tvTotalText3 = findViewById(R.id.tvTotalText3);
         tvFeli = findViewById(R.id.tv_feli);
         tvFaltante = findViewById(R.id.tvFaltante);
-        btnCompartir = findViewById(R.id.btnCompartir);
+        btnCompartir = findViewById(R.id.btnEscala);
         ivCompartir = findViewById(R.id.ivCompartir);
         layoutCompartir = findViewById(R.id.layout_compartir);
         ivEmoji = findViewById(R.id.ivEmoji);

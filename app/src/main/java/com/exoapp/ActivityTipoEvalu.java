@@ -33,6 +33,7 @@ public class ActivityTipoEvalu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tipo_evalu);
+        getSupportActionBar().setTitle("Tipo de evaluación");
 
         btnopc1 = findViewById(R.id.btnopc1);
         btnopc2 = findViewById(R.id.btnopc2);
@@ -134,7 +135,7 @@ public class ActivityTipoEvalu extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_fb, menu);
+        getMenuInflater().inflate(R.menu.actionbar_principal, menu);
         return true;
     }
 

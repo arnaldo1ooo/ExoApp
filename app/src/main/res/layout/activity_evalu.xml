@@ -156,13 +156,15 @@
 
     <LinearLayout
         android:layout_width="362dp"
-        android:layout_height="403dp"
+        android:layout_height="402dp"
         android:layout_marginTop="4dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout">
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        app:layout_constraintVertical_bias="0.0">
 
         <Button
             android:id="@+id/btnCalculo"
@@ -204,7 +206,7 @@
             android:id="@+id/tv_feli"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:ems="10"
             android:gravity="center"
             android:text="@string/tv_feli"
@@ -248,7 +250,7 @@
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="8dp"
