@@ -9,29 +9,32 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="395dp"
-        android:layout_height="587dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif"
-            android:gravity="start"
+            android:gravity="center_horizontal"
             android:text="@string/tv6"
             android:textAllCaps="false"
             android:textColor="#ffffff"
             android:textSize="25sp"
             android:textStyle="bold|italic"
+            app:autoSizeTextType="uniform"
             app:fontFamily="sans-serif-light" />
 
         <EditText
@@ -69,22 +72,24 @@
             android:id="@+id/tvTitulo2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="10sp"
             android:fontFamily="@font/amaranth"
             android:foregroundGravity="left"
             android:gravity="start"
+            android:maxLines="1"
             android:text="@string/tvTitulo2"
             android:textAllCaps="false"
             android:textColor="#ffffff"
             android:textSize="23sp"
             android:textStyle="bold|italic"
-            app:fontFamily="sans-serif-thin"
-            android:layout_marginStart="5dp" />
+            app:autoSizeTextType="uniform"
+            app:fontFamily="sans-serif-thin" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+            android:id="@+id/cardView2"
             android:layout_width="match_parent"
             android:layout_height="74dp"
             app:cardBackgroundColor="#C92196F3"
@@ -98,9 +103,11 @@
                 android:layout_marginLeft="13sp"
                 android:layout_marginTop="5sp"
                 android:foregroundGravity="left"
+                android:maxLines="1"
                 android:text="@string/tvTituloNota22"
                 android:textColor="#8BC34A"
-                android:textSize="21sp" />
+                android:textSize="21sp"
+                app:autoSizeTextType="uniform" />
 
             <TextView
                 android:id="@+id/tvNota2"
@@ -110,13 +117,15 @@
                 android:layout_marginLeft="13sp"
                 android:layout_marginTop="35sp"
                 android:foregroundGravity="left"
+                android:maxLines="1"
                 android:text="@string/tvNota2"
                 android:textColor="#FDFFFFFF"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                app:autoSizeTextType="uniform" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView2"
+            android:id="@+id/cardView3"
             android:layout_width="match_parent"
             android:layout_height="74dp"
             android:layout_marginTop="8sp"
@@ -131,9 +140,11 @@
                 android:layout_marginLeft="13sp"
                 android:layout_marginTop="5sp"
                 android:foregroundGravity="left"
+                android:maxLines="1"
                 android:text="@string/tvTituloNota3"
                 android:textColor="#8BC34A"
-                android:textSize="21sp" />
+                android:textSize="21sp"
+                app:autoSizeTextType="uniform" />
 
             <TextView
                 android:id="@+id/tvNota3"
@@ -143,13 +154,15 @@
                 android:layout_marginLeft="13sp"
                 android:layout_marginTop="35sp"
                 android:foregroundGravity="left"
+                android:maxLines="1"
                 android:text="@string/tvNota3"
                 android:textColor="#FDFFFFFF"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                app:autoSizeTextType="uniform" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView3"
+            android:id="@+id/cardView4"
             android:layout_width="match_parent"
             android:layout_height="74dp"
             android:layout_marginTop="8sp"
@@ -164,9 +177,11 @@
                 android:layout_marginLeft="13sp"
                 android:layout_marginTop="5sp"
                 android:foregroundGravity="left"
+                android:maxLines="1"
                 android:text="@string/tvTituloNota4"
                 android:textColor="#8BC34A"
-                android:textSize="21sp" />
+                android:textSize="21sp"
+                app:autoSizeTextType="uniform" />
 
             <TextView
                 android:id="@+id/tvNota4"
@@ -176,13 +191,15 @@
                 android:layout_marginLeft="13sp"
                 android:layout_marginTop="35sp"
                 android:foregroundGravity="left"
+                android:maxLines="1"
                 android:text="@string/tvNota4"
                 android:textColor="#FDFFFFFF"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                app:autoSizeTextType="uniform" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView4"
+            android:id="@+id/cardView5"
             android:layout_width="match_parent"
             android:layout_height="74dp"
             android:layout_marginTop="8sp"
@@ -197,9 +214,11 @@
                 android:layout_marginLeft="13sp"
                 android:layout_marginTop="5sp"
                 android:foregroundGravity="left"
+                android:maxLines="1"
                 android:text="@string/tvTituloNota5"
                 android:textColor="#8BC34A"
-                android:textSize="21sp" />
+                android:textSize="21sp"
+                app:autoSizeTextType="uniform" />
 
             <TextView
                 android:id="@+id/tvNota5"
@@ -209,9 +228,11 @@
                 android:layout_marginLeft="13sp"
                 android:layout_marginTop="35sp"
                 android:foregroundGravity="left"
+                android:maxLines="1"
                 android:text="@string/tvNota5"
                 android:textColor="#FDFFFFFF"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                app:autoSizeTextType="uniform" />
         </androidx.cardview.widget.CardView>
 
         <com.google.android.gms.ads.AdView

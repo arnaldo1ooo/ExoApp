@@ -10,7 +10,7 @@
     android:verticalScrollbarPosition="defaultPosition">
 
     <RelativeLayout
-        android:id="@+id/cardView"
+        android:id="@+id/cardView4"
         android:layout_width="match_parent"
         android:layout_height="125dp"
         android:background="#AEFFFFFF">

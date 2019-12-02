@@ -57,4 +57,7 @@
     <string name="tvNota4">60.999 puntos de 60 (99.999% de 100%)</string>
     <string name="btn_escala">Escala</string>
     <string name="btn_compartir">Compartir</string>
+    <string name="tv_escala">La escala de calificaciones a ser utilizada en las evaluaciones finales es la siguiente:</string>
+    <string name="tv_nota1">NOTA 1</string>
+    <string name="tv_escalanota1">de 0% hasta 59%</string>
 </resources>

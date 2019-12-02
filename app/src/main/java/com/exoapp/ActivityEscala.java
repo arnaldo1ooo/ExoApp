@@ -9,7 +9,7 @@ public class ActivityEscala extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle("Escala");
+        getSupportActionBar().setTitle("Escala de calificaciones");
         setContentView(R.layout.activity_escala);
     }
 }
