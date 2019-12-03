@@ -59,5 +59,13 @@
     <string name="btn_compartir">Compartir</string>
     <string name="tv_escala">La escala de calificaciones a ser utilizada en las evaluaciones finales es la siguiente:</string>
     <string name="tv_nota1">NOTA 1</string>
+    <string name="tv_nota2">NOTA 2</string>
+    <string name="tv_nota3">NOTA 3</string>
+    <string name="tv_nota4">NOTA 4</string>
+    <string name="tv_nota5">NOTA 5</string>
     <string name="tv_escalanota1">de 0% hasta 59%</string>
+    <string name="tv_escalanota2">de 60% hasta 69%</string>
+    <string name="tv_escalanota3">de 70% hasta 80%</string>
+    <string name="tv_escalanota4">de 81% hasta 93%</string>
+    <string name="tv_escalanota5">de 94% hasta 100%</string>
 </resources>

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,6 +32,10 @@ public class ActivityBonificacion extends AppCompatActivity {
     TextView tvTituloNota5;
     TextView tvNota5;
     Button btnCalcular;
+    CardView cv2;
+    CardView cv3;
+    CardView cv4;
+    CardView cv5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +56,10 @@ public class ActivityBonificacion extends AppCompatActivity {
         tvTituloNota5 = (TextView) findViewById(R.id.tvTituloNota5);
         tvNota5 = (TextView) findViewById(R.id.tvNota5);
         btnCalcular = (Button) findViewById(R.id.btnCalcular);
+        cv2 = (CardView) findViewById(R.id.cardView2);
+        cv3 = (CardView) findViewById(R.id.cardView3);
+        cv4 = (CardView) findViewById(R.id.cardView4);
+        cv5 = (CardView) findViewById(R.id.cardView5);
 
         VisibilidadObjetos("INVISIBLE");
 
@@ -111,6 +121,10 @@ public class ActivityBonificacion extends AppCompatActivity {
             tvNota4.setVisibility(TextView.VISIBLE);
             tvTituloNota5.setVisibility(View.VISIBLE);
             tvNota5.setVisibility(TextView.VISIBLE);
+            cv2.setVisibility(View.VISIBLE);
+            cv3.setVisibility(View.VISIBLE);
+            cv4.setVisibility(View.VISIBLE);
+            cv5.setVisibility(View.VISIBLE);
         }
         if (valor == "INVISIBLE") {
             tvTitulo2.setVisibility(View.INVISIBLE);
@@ -122,6 +136,10 @@ public class ActivityBonificacion extends AppCompatActivity {
             tvNota4.setVisibility(TextView.INVISIBLE);
             tvTituloNota5.setVisibility(View.INVISIBLE);
             tvNota5.setVisibility(TextView.INVISIBLE);
+            cv2.setVisibility(View.INVISIBLE);
+            cv3.setVisibility(View.INVISIBLE);
+            cv4.setVisibility(View.INVISIBLE);
+            cv5.setVisibility(View.INVISIBLE);
         }
     }
 

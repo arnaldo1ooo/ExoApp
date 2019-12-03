@@ -36,23 +36,26 @@
 
         <TextView
             android:id="@+id/tv_hechopor"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="90dp"
             android:fontFamily="sans-serif-smallcaps"
+            android:maxLines="1"
             android:text="@string/tv_hechopor"
             android:textAlignment="center"
             android:textColor="#ffffff"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:autoSizeTextType="uniform" />
 
         <TextView
             android:id="@+id/tvVersionSplash"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="22dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="16dp"
             android:gravity="end"
+            android:maxLines="1"
             android:text="@string/version"
             android:textColor="#ffffff" />
     </LinearLayout>
