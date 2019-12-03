@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -111,36 +112,26 @@ public class ActivityBonificacion extends AppCompatActivity {
     }
 
     private void VisibilidadObjetos(String valor) {
+        int valoor = 0;
         if (valor == "VISIBLE") {
-            tvTitulo2.setVisibility(View.VISIBLE);
-            tvTituloNota2.setVisibility(View.VISIBLE);
-            tvNota2.setVisibility(View.VISIBLE);
-            tvTituloNota3.setVisibility(View.VISIBLE);
-            tvNota3.setVisibility(View.VISIBLE);
-            tvTituloNota4.setVisibility(View.VISIBLE);
-            tvNota4.setVisibility(TextView.VISIBLE);
-            tvTituloNota5.setVisibility(View.VISIBLE);
-            tvNota5.setVisibility(TextView.VISIBLE);
-            cv2.setVisibility(View.VISIBLE);
-            cv3.setVisibility(View.VISIBLE);
-            cv4.setVisibility(View.VISIBLE);
-            cv5.setVisibility(View.VISIBLE);
+            valoor = View.VISIBLE;
         }
-        if (valor == "INVISIBLE") {
-            tvTitulo2.setVisibility(View.INVISIBLE);
-            tvTituloNota2.setVisibility(View.INVISIBLE);
-            tvNota2.setVisibility(View.INVISIBLE);
-            tvTituloNota3.setVisibility(View.INVISIBLE);
-            tvNota3.setVisibility(View.INVISIBLE);
-            tvTituloNota4.setVisibility(View.INVISIBLE);
-            tvNota4.setVisibility(TextView.INVISIBLE);
-            tvTituloNota5.setVisibility(View.INVISIBLE);
-            tvNota5.setVisibility(TextView.INVISIBLE);
-            cv2.setVisibility(View.INVISIBLE);
-            cv3.setVisibility(View.INVISIBLE);
-            cv4.setVisibility(View.INVISIBLE);
-            cv5.setVisibility(View.INVISIBLE);
+        else if (valor == "INVISIBLE") {
+            valoor = View.INVISIBLE;
         }
+        tvTitulo2.setVisibility(valoor);
+        tvTituloNota2.setVisibility(valoor);
+        tvNota2.setVisibility(valoor);
+        tvTituloNota3.setVisibility(valoor);
+        tvNota3.setVisibility(valoor);
+        tvTituloNota4.setVisibility(valoor);
+        tvNota4.setVisibility(valoor);
+        tvTituloNota5.setVisibility(valoor);
+        tvNota5.setVisibility(valoor);
+        cv2.setVisibility(valoor);
+        cv3.setVisibility(valoor);
+        cv4.setVisibility(valoor);
+        cv5.setVisibility(valoor);
     }
 
 

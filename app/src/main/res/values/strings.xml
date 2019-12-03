@@ -45,7 +45,7 @@
     <string name="seleccione_el_tipo_de_evaluaci_n">Seleccione el tipo de evaluación</string>
     <string name="btnCalcular">=</string>
     <string name="tvNota2">60.999 puntos de 60 (99.999% de 100%)</string>
-    <string name="tvTitulo2">Puntos que debes hacer en la final:</string>
+    <string name="tvTitulo2">Puntos que debes hacer como mínimo en la final</string>
     <string name="tv6">Bonificación total:</string>
     <string name="tvNota3">60.999 puntos de 60 (99.999% de 100%)</string>
     <string name="tvNota5">60.999 puntos de 60 (99.999% de 100%)</string>
