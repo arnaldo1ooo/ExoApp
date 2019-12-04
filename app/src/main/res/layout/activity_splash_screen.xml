@@ -4,13 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo2"
+    android:background="@color/browser_actions_bg_grey"
     tools:context="com.exofpune.SplashScreen">
 
     <LinearLayout
-        android:layout_width="369dp"
-        android:layout_height="576dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,15 +27,15 @@
             android:layout_width="245dp"
             android:layout_height="243dp"
             android:layout_gravity="center"
-            android:layout_marginTop="90dp"
+            android:layout_marginTop="80dp"
             android:background="@drawable/logo"
             android:contentDescription="@string/v1_0" />
 
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyle"
-            android:layout_width="57dp"
-            android:layout_height="48dp"
+            android:layout_width="92dp"
+            android:layout_height="75dp"
             android:layout_gravity="center"
             android:layout_marginTop="30dp" />
 
@@ -39,25 +44,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="90dp"
-            android:fontFamily="sans-serif-smallcaps"
-            android:maxLines="1"
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/alfa_slab_one"
+            android:maxLines="2"
             android:text="@string/tv_hechopor"
             android:textAlignment="center"
-            android:textColor="#ffffff"
+            android:textColor="#00355C"
             android:textSize="18sp"
+            app:autoSizeTextType="uniform" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alfa_slab_one"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/tv_hechopor2"
+            android:textColor="#00355C"
+            android:textSize="23sp"
             app:autoSizeTextType="uniform" />
 
         <TextView
             android:id="@+id/tvVersionSplash"
             android:layout_width="match_parent"
             android:layout_height="22dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="80dp"
             android:layout_marginBottom="16dp"
+            android:fontFamily="@font/alfa_slab_one"
             android:gravity="end"
             android:maxLines="1"
             android:text="@string/version"
-            android:textColor="#ffffff" />
+            android:textColor="#00355C" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

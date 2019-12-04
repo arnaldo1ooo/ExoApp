@@ -159,8 +159,10 @@ public class ActivityBonificacion extends AppCompatActivity {
 
                 double Nota2 = Minpara2 - Bonif;
                 if (Nota2 > TotalFinal) {
+                    tvTituloNota2.setTextColor(Color.RED);
                     tvNota2.setTextColor(Color.RED);
                 }else{
+                    tvTituloNota2.setTextColor(Color.WHITE);
                     tvNota2.setTextColor(Color.WHITE);
                 }
                 double Nota2Porc = (Nota2 * 100) / TotalFinal;
@@ -168,8 +170,10 @@ public class ActivityBonificacion extends AppCompatActivity {
 
                 double Nota3 = Minpara3 - Bonif;
                 if (Nota3 > TotalFinal) {
+                    tvTituloNota3.setTextColor(Color.RED);
                     tvNota3.setTextColor(Color.RED);
                 }else{
+                    tvTituloNota3.setTextColor(Color.WHITE);
                     tvNota3.setTextColor(Color.WHITE);
                 }
                 double Nota3Porc = (Nota3 * 100) / TotalFinal;
@@ -177,8 +181,10 @@ public class ActivityBonificacion extends AppCompatActivity {
 
                 double Nota4 = Minpara4 - Bonif;
                 if (Nota4 > TotalFinal) {
+                    tvTituloNota4.setTextColor(Color.RED);
                     tvNota4.setTextColor(Color.RED);
                 }else{
+                    tvTituloNota4.setTextColor(Color.WHITE);
                     tvNota4.setTextColor(Color.WHITE);
                 }
                 double Nota4Porc = (Nota4 * 100) / TotalFinal;
@@ -186,8 +192,10 @@ public class ActivityBonificacion extends AppCompatActivity {
 
                 double Nota5 = Minpara5 - Bonif;
                 if (Nota5 > TotalFinal) {
+                    tvTituloNota5.setTextColor(Color.RED);
                     tvNota5.setTextColor(Color.RED);
                 }else{
+                    tvTituloNota5.setTextColor(Color.WHITE);
                     tvNota5.setTextColor(Color.WHITE);
                 }
                 double Nota5Porc = (Nota5 * 100) / TotalFinal;

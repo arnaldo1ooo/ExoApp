@@ -37,7 +37,8 @@
     <string name="tvTotalText1">0 de 15 Puntos</string>
     <string name="tvTitulo">Ingrese los Puntajes Obtenidos</string>
     <string name="version">v1.0</string>
-    <string name="tv_hechopor">Desarrollado por: Lic. Arnaldo Cantero</string>
+    <string name="tv_hechopor">Desarrollado por</string>
+    <string name="tv_hechopor2">Lic. Arnaldo Cantero</string>
     <string name="logo">Logo</string>
     <string name="_15_15_10">15 - 15 -10</string>
     <string name="_20_20_0">20 - 20 - 0</string>
