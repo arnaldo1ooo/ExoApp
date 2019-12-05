@@ -9,12 +9,15 @@
     tools:context="com.exoapp.ActivityTipoEvalu">
 
     <LinearLayout
-        android:layout_width="377dp"
-        android:layout_height="541dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:orientation="vertical"
+        ads:layout_constraintBottom_toTopOf="@+id/tvVersionPrincipal"
         ads:layout_constraintEnd_toEndOf="parent"
         ads:layout_constraintHorizontal_bias="0.111"
         ads:layout_constraintStart_toStartOf="parent"
@@ -89,27 +92,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvVersionPrincipal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:gravity="end"
-            android:text="@string/v1_0"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp" />
-
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/adView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="8dp"
-            ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-8474453660271942/9184800934" />
-
     </LinearLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-8474453660271942/9184800934"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvVersionPrincipal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="end"
+        android:text="@string/v1_0"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        ads:layout_constraintBottom_toTopOf="@+id/adView1"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

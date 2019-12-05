@@ -12,15 +12,16 @@
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tvVersionSplash"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.05">
 
         <ImageButton
             android:id="@+id/imageButton"
@@ -65,17 +66,24 @@
             android:textSize="23sp"
             app:autoSizeTextType="uniform" />
 
-        <TextView
-            android:id="@+id/tvVersionSplash"
-            android:layout_width="match_parent"
-            android:layout_height="22dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="@font/alfa_slab_one"
-            android:gravity="end"
-            android:maxLines="1"
-            android:text="@string/version"
-            android:textColor="#00355C" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvVersionSplash"
+        android:layout_width="match_parent"
+        android:layout_height="22dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/alfa_slab_one"
+        android:gravity="end"
+        android:maxLines="1"
+        android:text="@string/version"
+        android:textColor="#00355C"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
