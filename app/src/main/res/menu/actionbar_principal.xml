@@ -5,16 +5,13 @@
     tools:context=".MainActivity">
 
     <item
-        android:id="@+id/ao1"
-        android:icon="@drawable/politicasprivacidad"
-        android:orderInCategory="5"
-        android:title="Compartir"
-        app:showAsAction="always" />
+        android:id="@+id/escala"
+        android:title="Escala de calificaciones" />
     <item
-        android:id="@+id/ao2"
-        android:icon="@android:drawable/ic_dialog_info"
-        android:orderInCategory="5"
-        android:title="Compartir"
-        app:showAsAction="always" />
+        android:id="@+id/politicas"
+        android:title="Politicas de privacidad" />
+    <item
+        android:id="@+id/acercade"
+        android:title="Acerca de" />
 
 </menu>

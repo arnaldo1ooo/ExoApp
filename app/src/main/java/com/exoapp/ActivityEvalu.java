@@ -116,7 +116,7 @@ public class ActivityEvalu extends AppCompatActivity {
     //Al hacer click en boton compartir
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.btnEscala) {
+        if (id == R.id.btnCompartir) {
             TomarCaptura(ScreenshotType.FULL);
             return true;
         }
@@ -146,7 +146,7 @@ public class ActivityEvalu extends AppCompatActivity {
         tvTotalText3 = findViewById(R.id.tvTotalText3);
         tvFeli = findViewById(R.id.tv_feli);
         tvFaltante = findViewById(R.id.tvFaltante);
-        btnCompartir = findViewById(R.id.btnEscala);
+        btnCompartir = findViewById(R.id.btnCompartir);
         ivCompartir = findViewById(R.id.ivCompartir);
         layoutCompartir = findViewById(R.id.layout_compartir);
         ivEmoji = findViewById(R.id.ivEmoji);

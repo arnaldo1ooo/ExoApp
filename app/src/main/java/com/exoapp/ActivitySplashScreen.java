@@ -109,7 +109,7 @@ public class ActivitySplashScreen extends Activity {
     }
 
     private void AbrirNextActivity() {
-        Intent intent = new Intent(ActivitySplashScreen.this, ActivityPrincipal.class);
+        Intent intent = new Intent(ActivitySplashScreen.this, ActivitySelecfacultad.class);
         startActivity(intent);
         seAbrióNextActivity = true;
         finish();

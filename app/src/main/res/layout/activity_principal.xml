@@ -40,14 +40,14 @@
             ads:autoSizeTextType="uniform" />
 
         <Button
-            android:id="@+id/btnEvaluaciones"
+            android:id="@+id/btnExoneraciones"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_marginTop="50dp"
             android:background="@drawable/boton_borde_redondo"
             android:onClick="Evaluaciones"
             android:soundEffectsEnabled="false"
-            android:text="@string/evaluaciones"
+            android:text="@string/btnexoneraciones"
             android:textColor="#ffffff"
             android:textSize="27sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -67,21 +67,6 @@
             android:textColor="#ffffff"
             android:textSize="27sp"
             android:visibility="visible" />
-
-        <Button
-            android:id="@+id/btnCorrelatividad"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/boton_borde_redondo"
-            android:enabled="true"
-            android:onClick="Correlatividad"
-            android:text="@string/correlatividad"
-            android:textColor="#ffffff"
-            android:textSize="27sp"
-            android:visibility="invisible"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
 
     </LinearLayout>
 
@@ -123,7 +108,7 @@
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_gravity="center"
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-8474453660271942/9184800934"

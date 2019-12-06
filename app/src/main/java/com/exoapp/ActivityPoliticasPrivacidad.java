@@ -12,6 +12,7 @@ public class ActivityPoliticasPrivacidad extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_politicas_privacidad);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Politicas de privacidad");
 
 

@@ -8,7 +8,12 @@
         android:label="ExoApp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActivityEscala"></activity>
+
+        <activity
+            android:name=".ActivityEscala"
+            android:parentActivityName=".ActivityBonificacion">
+        </activity>
+
         <activity
             android:name=".ActivitySplashScreen"
             android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -46,7 +51,8 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".ActivityPoliticasPrivacidad" />
+        <activity android:name=".ActivityPoliticasPrivacidad"
+            android:parentActivityName=".ActivityPrincipal"/>
         <activity
             android:name=".correlatividad.correuniversidad.activity_correuniversidad"
             android:parentActivityName=".ActivityPrincipal" />
@@ -62,6 +68,9 @@
         <activity
             android:name=".correlatividad.activity_correlatividad"
             android:parentActivityName=".correlatividad.corremalla.activity_corremalla" />
+        <activity
+            android:name=".ActivitySelecfacultad"/>
+
 
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"

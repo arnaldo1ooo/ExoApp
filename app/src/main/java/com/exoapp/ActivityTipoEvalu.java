@@ -133,6 +133,7 @@ public class ActivityTipoEvalu extends AppCompatActivity {
         });
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.actionbar_principal, menu);
@@ -142,13 +143,21 @@ public class ActivityTipoEvalu extends AppCompatActivity {
     //Al usar el action overflow
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.ao1) {
+        if (id == R.id.escala) {
+            Log.d("Opciones", "Abriendo escala");
+            Intent i = new Intent(this, ActivityEscala.class);
+            startActivity(i);
+            return true;
+        }
+
+        if (id == R.id.politicas) {
+            Log.d("Opciones", "Abriendo politicas de privacidad");
             Intent i = new Intent(this, ActivityPoliticasPrivacidad.class);
             startActivity(i);
             return true;
         }
 
-        if (id == R.id.ao2) {
+        if (id == R.id.acercade) {
             Log.d("Opciones", "Abriendo acerca de");
             Intent i = new Intent(this, ActivityAcercade.class);
             startActivity(i);

@@ -17,6 +17,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.exoapp.capturapantalla.ScreenshotType;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.text.DecimalFormat;
 
@@ -37,12 +40,12 @@ public class ActivityBonificacion extends AppCompatActivity {
     CardView cv3;
     CardView cv4;
     CardView cv5;
+    private AdView AdView1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bonificacion);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Bonificación total");
 
@@ -63,6 +66,7 @@ public class ActivityBonificacion extends AppCompatActivity {
         cv5 = (CardView) findViewById(R.id.cardView5);
 
         VisibilidadObjetos("INVISIBLE");
+        MetodoBanner();
 
         try {
             String BonificacionRecibido = getIntent().getExtras().getString("bonificacion");
@@ -84,21 +88,33 @@ public class ActivityBonificacion extends AppCompatActivity {
     }
 
 
-    //Crear boton compartir en action bar
+    //Crear menu en action bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.actionbar_bonificacion, menu);
+        getMenuInflater().inflate(R.menu.actionbar_principal, menu);
         return true;
     }
 
-
-    //Al hacer click en boton compartir
+    //Al usar el action overflow
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
-        if (id == R.id.btnEscala) {
+        if (id == R.id.escala) {
             Log.d("Opciones", "Abriendo escala");
             Intent i = new Intent(this, ActivityEscala.class);
+            startActivity(i);
+            return true;
+        }
+
+        if (id == R.id.politicas) {
+            Log.d("Opciones", "Abriendo politicas de privacidad");
+            Intent i = new Intent(this, ActivityPoliticasPrivacidad.class);
+            startActivity(i);
+            return true;
+        }
+
+        if (id == R.id.acercade) {
+            Log.d("Opciones", "Abriendo acerca de");
+            Intent i = new Intent(this, ActivityAcercade.class);
             startActivity(i);
             return true;
         }
@@ -201,6 +217,48 @@ public class ActivityBonificacion extends AppCompatActivity {
                 double Nota5Porc = (Nota5 * 100) / TotalFinal;
                 tvNota5.setText(df.format(Nota5) + " puntos de " + soloentero.format(TotalFinal) + " (" + df.format(Nota5Porc) + "% de 100%)");
             }
+    }
 
+
+
+    private void MetodoBanner() {
+        AdView1 = findViewById(R.id.adView1);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        AdView1.loadAd(adRequest);
+        AdView1.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                // Código a ejecutar cuando un anuncio termina de cargarse.
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                // Código a ejecutar cuando falla una solicitud de anuncio.
+            }
+
+            @Override
+            public void onAdOpened() {
+                // Código que se ejecutará cuando un anuncio abra una
+                // superposición que cubre la pantalla.
+            }
+
+            @Override
+            public void onAdClicked() {
+                // Código que se ejecutará cuando el usuario
+                // haga clic en un anuncio.
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                // Código a ejecutar cuando el usuario
+                // ha abandonado la aplicación.
+            }
+
+            @Override
+            public void onAdClosed() {
+                // Código a ejecutar cuando el usuario está a punto de regresar
+                // a la aplicación después de pulsar en un anuncio.
+            }
+        });
     }
 }
