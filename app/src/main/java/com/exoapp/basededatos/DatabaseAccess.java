@@ -98,7 +98,7 @@ public class DatabaseAccess {
 
     public Cursor ConsultaAllFacultad(int uniselect) {
         String tabla = "facultad";
-        String columnas = "fac_codigo, fac_descripcion, fac_sigla, fac_universidad";
+        String columnas = "fac_codigo, fac_descripcion, fac_sigla, fac_universidad, fac_exoneracion";
         String sql = "SELECT " + columnas + " FROM " + tabla + " WHERE fac_universidad = " + uniselect;
         Cursor cursor = db.rawQuery(sql, new String[]{});
 

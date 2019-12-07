@@ -67,7 +67,7 @@ public class ActivitySelecfacultad extends AppCompatActivity {
                 int identiseleccionado = MetodoAllFacultad().get(recyclerview.getChildAdapterPosition(view)).getCodigo();
                 int exoneracpoon = MetodoAllFacultad().get(recyclerview.getChildAdapterPosition(view)).getExoneracion();
 
-                System.out.println("Codigo; " + identiseleccionado + "Exo: " + exoneracpoon);
+                System.out.println("Codigo; " + identiseleccionado + "    Exo: " + exoneracpoon);
 
 
                 //Guardo el identificador seleccionado
@@ -127,7 +127,6 @@ public class ActivitySelecfacultad extends AppCompatActivity {
 
         while (cursor.moveToNext() == true) {
             codigo = cursor.getInt(0); //Columna 0
-            System.out.println("Codigos: " + codigo);
             facultad = cursor.getString(1); //Columna 1
             sigla = cursor.getString(2);
             exoneracion = cursor.getInt(4);
