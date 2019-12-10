@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/browser_actions_bg_grey"
+    android:background="@drawable/fondo"
     tools:context=".ActivityAcercade">
 
     <LinearLayout
@@ -33,9 +33,10 @@
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif"
             android:gravity="center_horizontal"
+            android:maxLines="1"
             android:text="@string/tv6"
             android:textAllCaps="false"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:textSize="25sp"
             android:textStyle="bold|italic"
             app:autoSizeTextType="uniform"
@@ -50,6 +51,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:autofillHints=""
+            android:background="#FFFFFF"
             android:ems="10"
             android:foregroundGravity="right"
             android:gravity="end"
@@ -85,7 +87,7 @@
             android:maxLines="1"
             android:text="@string/tvTitulo2"
             android:textAllCaps="false"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:textSize="23sp"
             android:textStyle="bold|italic"
             app:autoSizeTextType="uniform"

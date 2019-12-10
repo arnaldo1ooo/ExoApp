@@ -16,7 +16,7 @@
     <string name="full_page_screenshot">Captura de pantalla completa</string>
     <string name="hidden_text">Hidden Text</string>
     <string name="custom_page_screenshot">Captura de pantalla personalizada</string>
-    <string name="btnexoneraciones">EXONERACIONES</string>
+    <string name="btnexoneraciones">EXONERACIÓN</string>
     <string name="v1_0">v1.0</string>
     <string name="seleccione_la_universidad">Seleccione la universidad</string>
     <string name="favoritos">Favoritos</string>
@@ -47,7 +47,7 @@
     <string name="btnCalcular">=</string>
     <string name="tvNota2">60.999 puntos de 60 (99.999% de 100%)</string>
     <string name="tvTitulo2">Puntos que debes hacer como mínimo en la final</string>
-    <string name="tv6">Bonificación total:</string>
+    <string name="tv6">Ingrese su bonificación total obtenida:</string>
     <string name="tvNota3">60.999 puntos de 60 (99.999% de 100%)</string>
     <string name="tvNota5">60.999 puntos de 60 (99.999% de 100%)</string>
     <string name="etBonificacion">Ingrese Bonificación</string>
@@ -69,4 +69,6 @@
     <string name="tv_escalanota3">de 70% hasta 80%</string>
     <string name="tv_escalanota4">de 81% hasta 93%</string>
     <string name="tv_escalanota5">de 94% hasta 100%</string>
+    <string name="btnevaluaciones">Evaluaciones</string>
+    <string name="tv_versionbd">Version BD: 0</string>
 </resources>

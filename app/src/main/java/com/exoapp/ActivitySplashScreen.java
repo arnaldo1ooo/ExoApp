@@ -32,7 +32,7 @@ public class ActivitySplashScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        versionApp = findViewById(R.id.tvVersionSplash);
+        versionApp = findViewById(R.id.tvVersionApp);
 
         ObtenerVersion();
         PublicidadInterstitial();

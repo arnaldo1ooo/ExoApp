@@ -25,6 +25,7 @@
         </activity>
         <activity
             android:name=".ActivityPrincipal"
+            android:parentActivityName=".ActivitySelecfacultad"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ActivityTipoEvalu"

@@ -57,6 +57,7 @@ public class ActivityPrincipal extends AppCompatActivity {
 
         //Activar icono en actionbar
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);

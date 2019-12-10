@@ -1,5 +1,8 @@
 package com.exoapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -64,24 +67,21 @@ public class ActivitySelecfacultad extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Guardo el identificador seleccionado
-                int identiseleccionado = MetodoAllFacultad().get(recyclerview.getChildAdapterPosition(view)).getCodigo();
-                int exoneracpoon = MetodoAllFacultad().get(recyclerview.getChildAdapterPosition(view)).getExoneracion();
+                int idfacuselect = MetodoAllFacultad().get(recyclerview.getChildAdapterPosition(view)).getCodigo();
+                int exoneracion = MetodoAllFacultad().get(recyclerview.getChildAdapterPosition(view)).getExoneracion();
+                double nota2 = MetodoAllFacultad().get(recyclerview.getChildAdapterPosition(view)).getNota2();
+                double nota3 = MetodoAllFacultad().get(recyclerview.getChildAdapterPosition(view)).getNota3();
+                double nota4 = MetodoAllFacultad().get(recyclerview.getChildAdapterPosition(view)).getNota4();
+                double nota5 = MetodoAllFacultad().get(recyclerview.getChildAdapterPosition(view)).getNota5();
 
-                System.out.println("Codigo; " + identiseleccionado + "    Exo: " + exoneracpoon);
+
+                System.out.println("Codigo; " + idfacuselect + "    Exo: " + exoneracion);
+                System.out.println("Nota2: " + nota2 + ", Nota3: " + nota3 + ", Nota4: " + nota4 + ", Nota5: " + nota5);
 
 
-                //Guardo el identificador seleccionado
-                   /* String identiseleccionado = MetodoAllFacultad().get(
-                            recyclerview.getChildAdapterPosition(view)).getIdentificador();
+                PreguntaSiElegirFacu();
 
-                    Intent intent;
-                    intent = new Intent(ActivitySelecfacultad.this, MainActivity.class);
-                    intent.putExtra("identiseleccionado", identiseleccionado);
-                    startActivity(intent);
 
-                    //Imprime el titulo del item seleccionado
-                    Toast.makeText(getApplicationContext(), "Identificador seleccionado: " + MetodoAllFacultad().get(
-                            recyclerview.getChildAdapterPosition(view)).getIdentificador(), Toast.LENGTH_SHORT).show();*/
             }
         });
 
@@ -112,8 +112,6 @@ public class ActivitySelecfacultad extends AppCompatActivity {
     }
 
 
-
-
     private ArrayList<itemListaFacu> MetodoAllFacultad() {
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
         databaseAccess.abrir();
@@ -124,19 +122,27 @@ public class ActivitySelecfacultad extends AppCompatActivity {
         String facultad;
         String sigla;
         int exoneracion;
+        double nota2;
+        double nota3;
+        double nota4;
+        double nota5;
 
         while (cursor.moveToNext() == true) {
             codigo = cursor.getInt(0); //Columna 0
             facultad = cursor.getString(1); //Columna 1
             sigla = cursor.getString(2);
             exoneracion = cursor.getInt(4);
+            nota2 = cursor.getDouble(5);
+            nota3 = cursor.getDouble(6);
+            nota4 = cursor.getDouble(7);
+            nota5 = cursor.getDouble(8);
 
 
             int idimagen = getResources().getIdentifier("facu_" + codigo, "drawable", getPackageName());
             if (idimagen == 0) { //Si imagen no existe
-                listItems.add(new itemListaFacu(codigo, R.drawable.imagen_0, facultad, sigla, exoneracion));
+                listItems.add(new itemListaFacu(codigo, R.drawable.imagen_0, facultad, sigla, exoneracion, nota2, nota3, nota4, nota5));
             } else {
-                listItems.add(new itemListaFacu(codigo, idimagen, facultad, sigla, exoneracion));
+                listItems.add(new itemListaFacu(codigo, idimagen, facultad, sigla, exoneracion, nota2, nota3, nota4, nota5));
             }
         }
         Log.d("CargarConsultaaRV", "Se cargó todos los registros de la tabla facultades al Recycler View");
@@ -183,5 +189,26 @@ public class ActivitySelecfacultad extends AppCompatActivity {
                 // a la aplicación después de pulsar en un anuncio.
             }
         });
+    }
+
+
+
+    private void PreguntaSiElegirFacu() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_dialer)
+                .setTitle("¿Deseas guardar la facultad seleccionada?")
+                .setCancelable(false)
+                .setPositiveButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        System.out.println("Apreto en no");
+                    }
+                })
+                .setNegativeButton("Si", new DialogInterface.OnClickListener() {// un listener que al pulsar, cierre la aplicacion
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        System.out.println("Apreto en si");
+                    }
+                }).show();
     }
 }

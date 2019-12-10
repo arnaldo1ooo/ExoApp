@@ -8,6 +8,7 @@
     tools:context="com.exofpune.SplashScreen">
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
@@ -15,20 +16,20 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/tvVersionSplash"
+        app:layout_constraintBottom_toTopOf="@+id/tvVersionBD"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.05">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="245dp"
             android:layout_height="243dp"
             android:layout_gravity="center"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="60dp"
             android:background="@drawable/logo"
             android:contentDescription="@string/v1_0" />
 
@@ -45,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/alfa_slab_one"
             android:maxLines="2"
             android:text="@string/tv_hechopor"
@@ -69,9 +70,9 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tvVersionSplash"
+        android:id="@+id/tvVersionApp"
         android:layout_width="match_parent"
-        android:layout_height="22dp"
+        android:layout_height="25dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
@@ -84,6 +85,25 @@
         android:textColor="#00355C"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvVersionBD"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/alfa_slab_one"
+        android:gravity="right"
+        android:text="@string/tv_versionbd"
+        android:textColor="#00355C"
+        app:layout_constraintBottom_toTopOf="@+id/tvVersionApp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
