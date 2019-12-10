@@ -21,12 +21,12 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.exoapp.basededatos.DatabaseAccess;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 public class ActivityPrincipal extends AppCompatActivity {
-    private TextView VersionActual;
     private AdView AdView1;
 
 
@@ -62,10 +62,15 @@ public class ActivityPrincipal extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-        VersionActual = (TextView) findViewById(R.id.tvVersionPrincipal);
+        TextView tvVersionApp = findViewById(R.id.tvVersionApp);
+        TextView tvVersionBD = findViewById(R.id.tvVersionBD);
+
+        tvVersionApp.setText("Versión de la App: " + ObtenerVersionApp());
+        tvVersionBD.setText("Versión de la BD: " + ObtenerVersionBD());
 
         MetodoBanner();
-        ObtenerVersionApp();
+
+
     }
 
     public void Evaluaciones(View view) {
@@ -78,19 +83,6 @@ public class ActivityPrincipal extends AppCompatActivity {
         startActivityForResult(intent, 0);
     }
 
-
-    private void ObtenerVersionApp() {
-        //Obtener version actual de la app
-        try {
-            PackageInfo packageInfo;
-            packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            VersionActual.setText("v" + String.valueOf(packageInfo.versionName));
-        } catch (PackageManager.NameNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            Toast.makeText(getApplicationContext(), "No se puede cargar la version actual!", Toast.LENGTH_LONG).show();
-        }
-    }
 
     private void MetodoBanner() {
         AdView1 = findViewById(R.id.adView1);
@@ -201,6 +193,35 @@ public class ActivityPrincipal extends AppCompatActivity {
                         //finish(); Si solo quiere mandar la aplicación a segundo plano
                     }
                 }).show();
+    }
+
+
+    private String ObtenerVersionApp() {
+        String versionApp = "";
+        try {
+            //Obtener version app
+            PackageInfo packageInfo;
+            packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            versionApp = packageInfo.versionName;
+
+        } catch (PackageManager.NameNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "No se puede cargar la version actual de la app", Toast.LENGTH_LONG).show();
+        }
+
+        return versionApp;
+    }
+
+
+    private String ObtenerVersionBD() {
+        //Revisa si hay acutalizacioens de la bd y obtiene la version de la bd
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
+        databaseAccess.abrir();
+        String versionBD = databaseAccess.VersionBD();
+        databaseAccess.cerrar();
+
+        return  versionBD;
     }
 }
 

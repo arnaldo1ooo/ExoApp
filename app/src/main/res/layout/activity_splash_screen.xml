@@ -16,9 +16,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="10dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/tvVersionBD"
+        app:layout_constraintBottom_toTopOf="@+id/tvVersionApp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +30,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="60dp"
             android:background="@drawable/logo"
-            android:contentDescription="@string/v1_0" />
+            android:contentDescription="@android:string/ok" />
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -77,13 +76,13 @@
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:fontFamily="@font/alfa_slab_one"
         android:gravity="end"
         android:maxLines="1"
-        android:text="@string/version"
+        android:text="@string/tv_versionapp"
         android:textColor="#00355C"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tvVersionBD"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
@@ -96,12 +95,11 @@
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="5dp"
         android:fontFamily="@font/alfa_slab_one"
-        android:gravity="right"
+        android:gravity="right|end"
         android:text="@string/tv_versionbd"
         android:textColor="#00355C"
-        app:layout_constraintBottom_toTopOf="@+id/tvVersionApp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />

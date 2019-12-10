@@ -49,6 +49,7 @@ public class ActivitySelecfacultad extends AppCompatActivity {
 
         CargarConsultaaRV();
         MetodoBanner();
+
     }
 
 
@@ -67,6 +68,7 @@ public class ActivitySelecfacultad extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Guardo el identificador seleccionado
+
                 int idfacuselect = MetodoAllFacultad().get(recyclerview.getChildAdapterPosition(view)).getCodigo();
                 int exoneracion = MetodoAllFacultad().get(recyclerview.getChildAdapterPosition(view)).getExoneracion();
                 double nota2 = MetodoAllFacultad().get(recyclerview.getChildAdapterPosition(view)).getNota2();
@@ -74,14 +76,12 @@ public class ActivitySelecfacultad extends AppCompatActivity {
                 double nota4 = MetodoAllFacultad().get(recyclerview.getChildAdapterPosition(view)).getNota4();
                 double nota5 = MetodoAllFacultad().get(recyclerview.getChildAdapterPosition(view)).getNota5();
 
-
                 System.out.println("Codigo; " + idfacuselect + "    Exo: " + exoneracion);
                 System.out.println("Nota2: " + nota2 + ", Nota3: " + nota3 + ", Nota4: " + nota4 + ", Nota5: " + nota5);
 
 
+
                 PreguntaSiElegirFacu();
-
-
             }
         });
 
@@ -196,12 +196,17 @@ public class ActivitySelecfacultad extends AppCompatActivity {
     private void PreguntaSiElegirFacu() {
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_dialer)
-                .setTitle("¿Deseas guardar la facultad seleccionada?")
+                .setTitle("¿Asignar por defecto la facultad seleccionada?")
                 .setCancelable(false)
                 .setPositiveButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         System.out.println("Apreto en no");
+
+
+
+                        Intent i = new Intent(ActivitySelecfacultad.this, ActivityPrincipal.class );
+                        startActivity(i);
                     }
                 })
                 .setNegativeButton("Si", new DialogInterface.OnClickListener() {// un listener que al pulsar, cierre la aplicacion

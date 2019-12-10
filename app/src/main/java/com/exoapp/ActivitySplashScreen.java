@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.exoapp.basededatos.DatabaseAccess;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
@@ -17,7 +18,6 @@ import com.google.android.gms.ads.MobileAds;
 
 
 public class ActivitySplashScreen extends Activity {
-    private TextView versionApp;
     private InterstitialAd mInterstitialAd;
     private Boolean seAbrióNextActivity = false;
 
@@ -32,9 +32,11 @@ public class ActivitySplashScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        versionApp = findViewById(R.id.tvVersionApp);
+        TextView tvVersionApp = findViewById(R.id.tvVersionApp);
+        TextView tvVersionBD = findViewById(R.id.tvVersionBD);
 
-        ObtenerVersion();
+        tvVersionApp.setText("Versión de la App: " + ObtenerVersionApp());
+        tvVersionBD.setText("Versión de la BD: " + ObtenerVersionBD());
         PublicidadInterstitial();
 
         new Handler().postDelayed(new Runnable() {
@@ -49,16 +51,32 @@ public class ActivitySplashScreen extends Activity {
         }, 5000);
     }
 
-    private void ObtenerVersion() {
+    private String ObtenerVersionApp() {
+        String versionApp = "";
         try {
+            //Obtener version app
             PackageInfo packageInfo;
             packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            versionApp.setText("v" + String.valueOf(packageInfo.versionName));
+            versionApp = packageInfo.versionName;
+
         } catch (PackageManager.NameNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-            Toast.makeText(getApplicationContext(), "No se puede cargar la version actual!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "No se puede cargar la version actual de la app", Toast.LENGTH_LONG).show();
         }
+
+        return versionApp;
+    }
+
+
+    private String ObtenerVersionBD() {
+        //Revisa si hay acutalizacioens de la bd y obtiene la version de la bd
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
+        databaseAccess.abrir();
+        String versionBD = databaseAccess.VersionBD();
+        databaseAccess.cerrar();
+
+        return versionBD;
     }
 
     private void PublicidadInterstitial() {

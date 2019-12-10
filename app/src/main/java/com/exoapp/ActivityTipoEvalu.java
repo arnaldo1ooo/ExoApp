@@ -38,7 +38,7 @@ public class ActivityTipoEvalu extends AppCompatActivity {
         btnopc1 = findViewById(R.id.btnopc1);
         btnopc2 = findViewById(R.id.btnopc2);
         btnopc3 = findViewById(R.id.btnopc3);
-        VersionActual = findViewById(R.id.tvVersionPrincipal);
+        VersionActual = findViewById(R.id.tvVersionApp);
 
         MetodoBanner();
 

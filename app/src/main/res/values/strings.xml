@@ -17,10 +17,8 @@
     <string name="hidden_text">Hidden Text</string>
     <string name="custom_page_screenshot">Captura de pantalla personalizada</string>
     <string name="btnexoneraciones">EXONERACIÓN</string>
-    <string name="v1_0">v1.0</string>
     <string name="seleccione_la_universidad">Seleccione la universidad</string>
     <string name="favoritos">Favoritos</string>
-    <string name="tv_version">v1.0</string>
     <string name="correlatividad">Correlatividad</string>
     <string name="men_principal">Menú principal</string>
     <string name="bonificacion">Bonificacion</string>
@@ -36,7 +34,6 @@
     <string name="emoji">Emoji</string>
     <string name="tvTotalText1">0 de 15 Puntos</string>
     <string name="tvTitulo">Ingrese los Puntajes Obtenidos</string>
-    <string name="version">v1.0</string>
     <string name="tv_hechopor">Desarrollado por</string>
     <string name="tv_hechopor2">Lic. Arnaldo Cantero</string>
     <string name="logo">Logo</string>
@@ -70,5 +67,6 @@
     <string name="tv_escalanota4">de 81% hasta 93%</string>
     <string name="tv_escalanota5">de 94% hasta 100%</string>
     <string name="btnevaluaciones">Evaluaciones</string>
+    <string name="tv_versionapp">Version App: 1.0</string>
     <string name="tv_versionbd">Version BD: 0</string>
 </resources>

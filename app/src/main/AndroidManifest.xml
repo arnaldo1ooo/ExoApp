@@ -9,6 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+
         <activity
             android:name=".ActivityEscala"
             android:parentActivityName=".ActivityBonificacion">
@@ -54,23 +55,9 @@
 
         <activity android:name=".ActivityPoliticasPrivacidad"
             android:parentActivityName=".ActivityPrincipal"/>
+
         <activity
-            android:name=".correlatividad.correuniversidad.activity_correuniversidad"
-            android:parentActivityName=".ActivityPrincipal" />
-        <activity
-            android:name=".correlatividad.correfacultad.activity_correfacultad"
-            android:parentActivityName=".correlatividad.correuniversidad.activity_correuniversidad" />
-        <activity
-            android:name=".correlatividad.correcarrera.activity_correcarrera"
-            android:parentActivityName=".correlatividad.correfacultad.activity_correfacultad" />
-        <activity
-            android:name=".correlatividad.corremalla.activity_corremalla"
-            android:parentActivityName=".correlatividad.correcarrera.activity_correcarrera" />
-        <activity
-            android:name=".correlatividad.activity_correlatividad"
-            android:parentActivityName=".correlatividad.corremalla.activity_corremalla" />
-        <activity
-            android:name=".ActivitySelecfacultad"/>
+            android:name=".ActivitySelecfacultad" />
 
 
         <meta-data
