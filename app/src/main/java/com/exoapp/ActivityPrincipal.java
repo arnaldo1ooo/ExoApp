@@ -54,7 +54,6 @@ public class ActivityPrincipal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
-
         //Activar icono en actionbar
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -71,6 +70,8 @@ public class ActivityPrincipal extends AppCompatActivity {
         MetodoBanner();
 
 
+        VariablesGlobales app = (VariablesGlobales) getApplication();
+        System.out.println("VariableGlobal: " + app.getIdFacuSelect().toUpperCase());
     }
 
     public void Evaluaciones(View view) {
