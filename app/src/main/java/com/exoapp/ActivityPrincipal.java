@@ -68,10 +68,6 @@ public class ActivityPrincipal extends AppCompatActivity {
         tvVersionBD.setText("Versión de la BD: " + ObtenerVersionBD());
 
         MetodoBanner();
-
-
-        VariablesGlobales app = (VariablesGlobales) getApplication();
-        System.out.println("VariableGlobal: " + app.getIdFacuSelect().toUpperCase());
     }
 
     public void Evaluaciones(View view) {

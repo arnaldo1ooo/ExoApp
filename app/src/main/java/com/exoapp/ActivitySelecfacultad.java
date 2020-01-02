@@ -50,8 +50,6 @@ public class ActivitySelecfacultad extends AppCompatActivity {
         CargarConsultaaRV();
         MetodoBanner();
 
-        lVariablesGlobales app = (VariablesGlobales) getApplication();
-        app.setIdFacuSelect("33333");
     }
 
 
