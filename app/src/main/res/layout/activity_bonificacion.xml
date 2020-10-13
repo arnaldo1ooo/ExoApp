@@ -111,7 +111,7 @@
 
                     <TextView
                         android:id="@+id/tvTituloNota2"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="13sp"
                         android:layout_marginLeft="13sp"
@@ -121,7 +121,7 @@
                         android:maxLines="1"
                         android:text="@string/tvTituloNota22"
                         android:textColor="#FFFFFF"
-                        android:textSize="21sp"
+                        android:textSize="18sp"
                         app:autoSizeTextType="uniform" />
 
                     <TextView
@@ -150,7 +150,7 @@
 
                     <TextView
                         android:id="@+id/tvTituloNota3"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="13sp"
                         android:layout_marginLeft="13sp"
@@ -160,7 +160,7 @@
                         android:maxLines="1"
                         android:text="@string/tvTituloNota3"
                         android:textColor="#FFFFFF"
-                        android:textSize="21sp"
+                        android:textSize="18sp"
                         app:autoSizeTextType="uniform" />
 
                     <TextView
@@ -199,7 +199,7 @@
                         android:maxLines="1"
                         android:text="@string/tvTituloNota4"
                         android:textColor="#FFFFFF"
-                        android:textSize="21sp"
+                        android:textSize="18sp"
                         app:autoSizeTextType="uniform" />
 
                     <TextView
@@ -238,7 +238,7 @@
                         android:maxLines="1"
                         android:text="@string/tvTituloNota5"
                         android:textColor="#FFFFFF"
-                        android:textSize="21sp"
+                        android:textSize="18sp"
                         app:autoSizeTextType="uniform" />
 
                     <TextView

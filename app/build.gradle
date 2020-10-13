@@ -10,12 +10,12 @@ android {
             storePassword '5127713-3'
         }
     }
-    compileSdkVersion 28
+    compileSdkVersion 29
     buildToolsVersion '29.0.2'
     defaultConfig {
         applicationId 'com.exofpune'
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 14
         versionName "1.2.6"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'

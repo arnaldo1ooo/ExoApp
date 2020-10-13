@@ -166,51 +166,59 @@ public class ActivityBonificacion extends AppCompatActivity {
             } else {
                 VisibilidadObjetos("VISIBLE");
 
-                double Minpara2 = 60;
-                double Minpara3 = 70;
-                double Minpara4 = 81;
-                double Minpara5 = 94;
-                double Bonif = Double.parseDouble(etBonificacion.getText().toString());
+                double minpara2 = 60;
+                double minpara3 = 70;
+                double minpara4 = 81;
+                double minpara5 = 94;
+                double bonif = Double.parseDouble(etBonificacion.getText().toString());
 
 
-                double Nota2 = Minpara2 - Bonif;
+                double Nota2 = minpara2 - bonif;
                 if (Nota2 > TotalFinal) {
+                    tvTituloNota2.setText("Para nota 2 (Ni con la rosa de Guadalupe)");
                     tvTituloNota2.setTextColor(Color.RED);
                     tvNota2.setTextColor(Color.RED);
                 }else{
+                    tvTituloNota2.setText("Para nota 2");
                     tvTituloNota2.setTextColor(Color.WHITE);
                     tvNota2.setTextColor(Color.WHITE);
                 }
                 double Nota2Porc = (Nota2 * 100) / TotalFinal;
                 tvNota2.setText(df.format(Nota2) + " puntos de " + soloentero.format(TotalFinal) + " (" + df.format(Nota2Porc) + "% de 100%)");
 
-                double Nota3 = Minpara3 - Bonif;
+                double Nota3 = minpara3 - bonif;
                 if (Nota3 > TotalFinal) {
+                    tvTituloNota3.setText("Para nota 3 (Ni con la rosa de Guadalupe)");
                     tvTituloNota3.setTextColor(Color.RED);
                     tvNota3.setTextColor(Color.RED);
                 }else{
+                    tvTituloNota3.setText("Para nota 3");
                     tvTituloNota3.setTextColor(Color.WHITE);
                     tvNota3.setTextColor(Color.WHITE);
                 }
                 double Nota3Porc = (Nota3 * 100) / TotalFinal;
                 tvNota3.setText(df.format(Nota3) + " puntos de " + soloentero.format(TotalFinal) + " (" + df.format(Nota3Porc) + "% de 100%)");
 
-                double Nota4 = Minpara4 - Bonif;
+                double Nota4 = minpara4 - bonif;
                 if (Nota4 > TotalFinal) {
+                    tvTituloNota4.setText("Para nota 4 (Ni con la rosa de Guadalupe)");
                     tvTituloNota4.setTextColor(Color.RED);
                     tvNota4.setTextColor(Color.RED);
                 }else{
+                    tvTituloNota4.setText("Para nota 4");
                     tvTituloNota4.setTextColor(Color.WHITE);
                     tvNota4.setTextColor(Color.WHITE);
                 }
                 double Nota4Porc = (Nota4 * 100) / TotalFinal;
                 tvNota4.setText(df.format(Nota4) + " puntos de " + soloentero.format(TotalFinal) + " (" + df.format(Nota4Porc) + "% de 100%)");
 
-                double Nota5 = Minpara5 - Bonif;
+                double Nota5 = minpara5 - bonif;
                 if (Nota5 > TotalFinal) {
+                    tvTituloNota5.setText("Para nota 5 (Ni con la rosa de Guadalupe)");
                     tvTituloNota5.setTextColor(Color.RED);
                     tvNota5.setTextColor(Color.RED);
                 }else{
+                    tvTituloNota5.setText("Para nota 5");
                     tvTituloNota5.setTextColor(Color.WHITE);
                     tvNota5.setTextColor(Color.WHITE);
                 }
