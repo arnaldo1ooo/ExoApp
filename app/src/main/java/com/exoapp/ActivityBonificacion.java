@@ -3,6 +3,7 @@ package com.exoapp;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -131,8 +132,7 @@ public class ActivityBonificacion extends AppCompatActivity {
         int valoor = 0;
         if (valor == "VISIBLE") {
             valoor = View.VISIBLE;
-        }
-        else if (valor == "INVISIBLE") {
+        } else if (valor == "INVISIBLE") {
             valoor = View.INVISIBLE;
         }
         tvTitulo2.setVisibility(valoor);
@@ -155,78 +155,78 @@ public class ActivityBonificacion extends AppCompatActivity {
         if (etBonificacion.getText().toString().equals("")) {//Si es vacio
             etBonificacion.setText("0");
         }
-            DecimalFormat df = new DecimalFormat("#.###");
-            DecimalFormat soloentero = new DecimalFormat("#");
-            double bonmax = 40;
-            double TotalFinal = 60;
-            double bonificacion = Double.parseDouble(etBonificacion.getText().toString());
+        DecimalFormat df = new DecimalFormat("#.###");
+        DecimalFormat soloentero = new DecimalFormat("#");
+        double bonmax = 40;
+        double TotalFinal = 60;
+        double bonificacion = Double.parseDouble(etBonificacion.getText().toString());
 
-            if (bonificacion > bonmax || bonificacion < 0) { //Si bonificacion es mayor a bonificacion maxima
-                Toast.makeText(this, "La bonificación no puede ser mayor a " + soloentero.format(bonmax) + " Puntos", Toast.LENGTH_LONG).show();
+        if (bonificacion > bonmax || bonificacion < 0) { //Si bonificacion es mayor a bonificacion maxima
+            Toast.makeText(this, "La bonificación no puede ser mayor a " + soloentero.format(bonmax) + " Puntos", Toast.LENGTH_LONG).show();
+        } else {
+            VisibilidadObjetos("VISIBLE");
+
+            double minpara2 = 60;
+            double minpara3 = 70;
+            double minpara4 = 81;
+            double minpara5 = 94;
+            double bonif = Double.parseDouble(etBonificacion.getText().toString());
+            int colorBlanco = Color.parseColor("#CCCCCC");
+            int colorRojo = Color.parseColor("#8F0000");
+
+            double Nota2 = minpara2 - bonif;
+            if (Nota2 > TotalFinal) {
+                tvTituloNota2.setText("Para nota 2 (Ni con la rosa de Guadalupe)");
+                tvTituloNota2.setTextColor(colorRojo);
+                tvNota2.setTextColor(colorRojo);
             } else {
-                VisibilidadObjetos("VISIBLE");
-
-                double minpara2 = 60;
-                double minpara3 = 70;
-                double minpara4 = 81;
-                double minpara5 = 94;
-                double bonif = Double.parseDouble(etBonificacion.getText().toString());
-
-
-                double Nota2 = minpara2 - bonif;
-                if (Nota2 > TotalFinal) {
-                    tvTituloNota2.setText("Para nota 2 (Ni con la rosa de Guadalupe)");
-                    tvTituloNota2.setTextColor(Color.RED);
-                    tvNota2.setTextColor(Color.RED);
-                }else{
-                    tvTituloNota2.setText("Para nota 2");
-                    tvTituloNota2.setTextColor(Color.WHITE);
-                    tvNota2.setTextColor(Color.WHITE);
-                }
-                double Nota2Porc = (Nota2 * 100) / TotalFinal;
-                tvNota2.setText(df.format(Nota2) + " puntos de " + soloentero.format(TotalFinal) + " (" + df.format(Nota2Porc) + "% de 100%)");
-
-                double Nota3 = minpara3 - bonif;
-                if (Nota3 > TotalFinal) {
-                    tvTituloNota3.setText("Para nota 3 (Ni con la rosa de Guadalupe)");
-                    tvTituloNota3.setTextColor(Color.RED);
-                    tvNota3.setTextColor(Color.RED);
-                }else{
-                    tvTituloNota3.setText("Para nota 3");
-                    tvTituloNota3.setTextColor(Color.WHITE);
-                    tvNota3.setTextColor(Color.WHITE);
-                }
-                double Nota3Porc = (Nota3 * 100) / TotalFinal;
-                tvNota3.setText(df.format(Nota3) + " puntos de " + soloentero.format(TotalFinal) + " (" + df.format(Nota3Porc) + "% de 100%)");
-
-                double Nota4 = minpara4 - bonif;
-                if (Nota4 > TotalFinal) {
-                    tvTituloNota4.setText("Para nota 4 (Ni con la rosa de Guadalupe)");
-                    tvTituloNota4.setTextColor(Color.RED);
-                    tvNota4.setTextColor(Color.RED);
-                }else{
-                    tvTituloNota4.setText("Para nota 4");
-                    tvTituloNota4.setTextColor(Color.WHITE);
-                    tvNota4.setTextColor(Color.WHITE);
-                }
-                double Nota4Porc = (Nota4 * 100) / TotalFinal;
-                tvNota4.setText(df.format(Nota4) + " puntos de " + soloentero.format(TotalFinal) + " (" + df.format(Nota4Porc) + "% de 100%)");
-
-                double Nota5 = minpara5 - bonif;
-                if (Nota5 > TotalFinal) {
-                    tvTituloNota5.setText("Para nota 5 (Ni con la rosa de Guadalupe)");
-                    tvTituloNota5.setTextColor(Color.RED);
-                    tvNota5.setTextColor(Color.RED);
-                }else{
-                    tvTituloNota5.setText("Para nota 5");
-                    tvTituloNota5.setTextColor(Color.WHITE);
-                    tvNota5.setTextColor(Color.WHITE);
-                }
-                double Nota5Porc = (Nota5 * 100) / TotalFinal;
-                tvNota5.setText(df.format(Nota5) + " puntos de " + soloentero.format(TotalFinal) + " (" + df.format(Nota5Porc) + "% de 100%)");
+                tvTituloNota2.setText("Para nota 2");
+                tvTituloNota2.setTextColor(Color.WHITE);
+                tvNota2.setTextColor(Color.WHITE);
             }
-    }
+            double Nota2Porc = (Nota2 * 100) / TotalFinal;
+            tvNota2.setText(df.format(Nota2) + " puntos de " + soloentero.format(TotalFinal) + " (" + df.format(Nota2Porc) + "% de 100%)");
 
+            double Nota3 = minpara3 - bonif;
+            if (Nota3 > TotalFinal) {
+                tvTituloNota3.setText("Para nota 3 (Ni con la rosa de Guadalupe)");
+                tvTituloNota3.setTextColor(colorRojo);
+                tvNota3.setTextColor(colorRojo);
+            } else {
+                tvTituloNota3.setText("Para nota 3");
+                tvTituloNota3.setTextColor(Color.WHITE);
+                tvNota3.setTextColor(Color.WHITE);
+            }
+            double Nota3Porc = (Nota3 * 100) / TotalFinal;
+            tvNota3.setText(df.format(Nota3) + " puntos de " + soloentero.format(TotalFinal) + " (" + df.format(Nota3Porc) + "% de 100%)");
+
+            double Nota4 = minpara4 - bonif;
+            if (Nota4 > TotalFinal) {
+                tvTituloNota4.setText("Para nota 4 (Ni con la rosa de Guadalupe)");
+                tvTituloNota4.setTextColor(colorRojo);
+                tvNota4.setTextColor(colorRojo);
+            } else {
+                tvTituloNota4.setText("Para nota 4");
+                tvTituloNota4.setTextColor(Color.WHITE);
+                tvNota4.setTextColor(Color.WHITE);
+            }
+            double Nota4Porc = (Nota4 * 100) / TotalFinal;
+            tvNota4.setText(df.format(Nota4) + " puntos de " + soloentero.format(TotalFinal) + " (" + df.format(Nota4Porc) + "% de 100%)");
+
+            double Nota5 = minpara5 - bonif;
+            if (Nota5 > TotalFinal) {
+                tvTituloNota5.setText("Para nota 5 (Ni con la rosa de Guadalupe)");
+                tvTituloNota5.setTextColor(colorRojo);
+                tvNota5.setTextColor(colorRojo);
+            } else {
+                tvTituloNota5.setText("Para nota 5");
+                tvTituloNota5.setTextColor(Color.WHITE);
+                tvNota5.setTextColor(Color.WHITE);
+            }
+            double Nota5Porc = (Nota5 * 100) / TotalFinal;
+            tvNota5.setText(df.format(Nota5) + " puntos de " + soloentero.format(TotalFinal) + " (" + df.format(Nota5Porc) + "% de 100%)");
+        }
+    }
 
 
     private void MetodoBanner() {

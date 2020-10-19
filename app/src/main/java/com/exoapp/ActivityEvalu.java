@@ -5,8 +5,10 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
+
 import androidx.core.content.FileProvider;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -66,7 +68,6 @@ public class ActivityEvalu extends AppCompatActivity {
     private ImageView ivEmoji;
     private AdView AdView1;
     private Button btnBonificacion;
-
 
 
     @Override
@@ -138,7 +139,7 @@ public class ActivityEvalu extends AppCompatActivity {
         et2parcial = findViewById(R.id.et2Parcial);
         etTp = findViewById(R.id.etTp);
         tvResultado = findViewById(R.id.tvResultado);
-        sp1 =findViewById(R.id.sp1);
+        sp1 = findViewById(R.id.sp1);
         sp2 = findViewById(R.id.sp2);
         sp3 = findViewById(R.id.sp3);
         tvTotalText1 = findViewById(R.id.tvTotalText1);
@@ -203,7 +204,7 @@ public class ActivityEvalu extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 //Elemento seleccionado ->
                 PuntosObtenidos1 = ConversionPorcyPunto(et1parcial, sp1, tvTotalText1, TotalPuntos1, PuntosObtenidos1);
-                Log.d("MetodoSpinner sp1: ", PuntosObtenidos1+"");
+                Log.d("MetodoSpinner sp1: ", PuntosObtenidos1 + "");
             }
 
             @Override
@@ -218,7 +219,7 @@ public class ActivityEvalu extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 //Elemento seleccionado ->
                 PuntosObtenidos2 = ConversionPorcyPunto(et2parcial, sp2, tvTotalText2, TotalPuntos2, PuntosObtenidos2);
-                Log.d("MetodoSpinner sp2: ", PuntosObtenidos2+"");
+                Log.d("MetodoSpinner sp2: ", PuntosObtenidos2 + "");
             }
 
             @Override
@@ -233,7 +234,7 @@ public class ActivityEvalu extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 //Elemento seleccionado ->
                 PuntosObtenidos3 = ConversionPorcyPunto(etTp, sp3, tvTotalText3, TotalPuntos3, PuntosObtenidos3);
-                Log.d("MetodoSpinner sp3: ", PuntosObtenidos3+"");
+                Log.d("MetodoSpinner sp3: ", PuntosObtenidos3 + "");
             }
 
             @Override

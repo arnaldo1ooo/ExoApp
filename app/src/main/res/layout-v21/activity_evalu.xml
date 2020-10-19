@@ -108,7 +108,8 @@
                 android:hint="@string/et2Parcial"
                 android:inputType="numberDecimal"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#959595" />
+                android:textColorHint="#959595"
+                android:autofillHints="" />
 
             <Spinner
                 android:id="@+id/sp2"
@@ -118,7 +119,7 @@
                 android:backgroundTint="#ffffff"
                 android:nestedScrollingEnabled="false"
                 android:spinnerMode="dialog"
-                android:translationY="1dp" />
+                android:translationY="1dp"
             />
 
             <TextView
@@ -150,7 +151,8 @@
                 android:hint="@string/etTp"
                 android:inputType="numberDecimal"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#959595" />
+                android:textColorHint="#959595"
+                android:autofillHints="" />
 
             <Spinner
                 android:id="@+id/sp3"
@@ -160,7 +162,7 @@
                 android:backgroundTint="#ffffff"
                 android:nestedScrollingEnabled="false"
                 android:spinnerMode="dialog"
-                android:translationY="1dp" />
+                android:translationY="1dp"
             />
 
             <TextView
@@ -275,7 +277,7 @@
             android:id="@+id/layout_compartir"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"></LinearLayout>
+            android:orientation="vertical" />
 
     </LinearLayout>
 

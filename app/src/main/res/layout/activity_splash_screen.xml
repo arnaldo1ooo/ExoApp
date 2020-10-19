@@ -25,10 +25,10 @@
 
         <ImageButton
             android:id="@+id/imageButton"
-            android:layout_width="245dp"
-            android:layout_height="243dp"
+            android:layout_width="261dp"
+            android:layout_height="274dp"
             android:layout_gravity="center"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="140dp"
             android:background="@drawable/logo"
             android:contentDescription="@android:string/ok" />
 
@@ -39,32 +39,6 @@
             android:layout_height="75dp"
             android:layout_gravity="center"
             android:layout_marginTop="30dp" />
-
-        <TextView
-            android:id="@+id/tv_hechopor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:fontFamily="@font/alfa_slab_one"
-            android:maxLines="2"
-            android:text="@string/tv_hechopor"
-            android:textAlignment="center"
-            android:textColor="#00355C"
-            android:textSize="18sp"
-            app:autoSizeTextType="uniform" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/alfa_slab_one"
-            android:gravity="center"
-            android:maxLines="1"
-            android:text="@string/tv_hechopor2"
-            android:textColor="#00355C"
-            android:textSize="23sp"
-            app:autoSizeTextType="uniform" />
 
     </LinearLayout>
 
@@ -96,7 +70,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:fontFamily="@font/alfa_slab_one"
-        android:gravity="right|end"
+        android:gravity="end"
         android:text="@string/tv_versionbd"
         android:textColor="#00355C"
         app:layout_constraintBottom_toBottomOf="parent"

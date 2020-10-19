@@ -3,7 +3,7 @@
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textSize="16dp"
+    android:textSize="18dp"
     android:gravity="left"
     android:textColor="#0ca9b1"
     android:padding="10dp"
