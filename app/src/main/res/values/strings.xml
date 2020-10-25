@@ -69,4 +69,6 @@
     <string name="btnevaluaciones">Evaluaciones</string>
     <string name="tv_versionapp">Version App: 1.0</string>
     <string name="tv_versionbd">Version BD: 0</string>
+    <string name="tvFaltante">Te faltó 00.000 puntos para Exonerar</string>
+    <string name="tvFaltanteParaNota5">Te faltó 0.00 puntos para nota 5</string>
 </resources>

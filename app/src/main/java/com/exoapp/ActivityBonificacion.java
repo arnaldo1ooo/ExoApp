@@ -50,6 +50,7 @@ public class ActivityBonificacion extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Bonificación total");
 
+
         etBonificacion = (TextView) findViewById(R.id.etBonificacion);
         tvTitulo2 = (TextView) findViewById(R.id.tvTitulo2);
         tvTituloNota2 = (TextView) findViewById(R.id.tvTituloNota2);
@@ -66,17 +67,17 @@ public class ActivityBonificacion extends AppCompatActivity {
         cv4 = (CardView) findViewById(R.id.cardView4);
         cv5 = (CardView) findViewById(R.id.cardView5);
 
-        VisibilidadObjetos("INVISIBLE");
-        MetodoBanner();
 
-        try {
+        VisibilidadObjetos("INVISIBLE");
+        try { //Recibir objeto Bonificacion
             String BonificacionRecibido = getIntent().getExtras().getString("bonificacion");
             Log.d("Boni", "La bonificacion recibida es: " + BonificacionRecibido + "");
             etBonificacion.setText(BonificacionRecibido);
+
         } catch (Exception e) {
             Log.d("Error trycatch ", "No se recibio ninguna bonificacion " + e);
+            etBonificacion.setText(null);
         }
-
 
         btnCalcular.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,8 +87,21 @@ public class ActivityBonificacion extends AppCompatActivity {
             }
         });
 
+        if (etBonificacion.getText().toString().equals("") == false) { //Si la bonificacion es distinto a vacio hacer click en boton calcular
+            btnCalcular.callOnClick();
+        }
+
+
+
+        MetodoBanner();
     }
 
+
+    @Override
+    public boolean onSupportNavigateUp() { //Para que retroceda en vez de que suba un nivel
+        onBackPressed();
+        return false;
+    }
 
     //Crear menu en action bar
     @Override
@@ -128,26 +142,26 @@ public class ActivityBonificacion extends AppCompatActivity {
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 
-    private void VisibilidadObjetos(String valor) {
-        int valoor = 0;
-        if (valor == "VISIBLE") {
-            valoor = View.VISIBLE;
-        } else if (valor == "INVISIBLE") {
-            valoor = View.INVISIBLE;
+    private void VisibilidadObjetos(String estadoRecibido) {
+        int estado = 0;
+        if (estadoRecibido == "VISIBLE") {
+            estado = View.VISIBLE;
+        } else if (estadoRecibido == "INVISIBLE") {
+            estado = View.INVISIBLE;
         }
-        tvTitulo2.setVisibility(valoor);
-        tvTituloNota2.setVisibility(valoor);
-        tvNota2.setVisibility(valoor);
-        tvTituloNota3.setVisibility(valoor);
-        tvNota3.setVisibility(valoor);
-        tvTituloNota4.setVisibility(valoor);
-        tvNota4.setVisibility(valoor);
-        tvTituloNota5.setVisibility(valoor);
-        tvNota5.setVisibility(valoor);
-        cv2.setVisibility(valoor);
-        cv3.setVisibility(valoor);
-        cv4.setVisibility(valoor);
-        cv5.setVisibility(valoor);
+        tvTitulo2.setVisibility(estado);
+        tvTituloNota2.setVisibility(estado);
+        tvNota2.setVisibility(estado);
+        tvTituloNota3.setVisibility(estado);
+        tvNota3.setVisibility(estado);
+        tvTituloNota4.setVisibility(estado);
+        tvNota4.setVisibility(estado);
+        tvTituloNota5.setVisibility(estado);
+        tvNota5.setVisibility(estado);
+        cv2.setVisibility(estado);
+        cv3.setVisibility(estado);
+        cv4.setVisibility(estado);
+        cv5.setVisibility(estado);
     }
 
 

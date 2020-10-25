@@ -43,7 +43,7 @@ public class ActivityEvalu extends AppCompatActivity {
     int TotalPuntos2 = 0;
     int TotalPuntos3 = 0;
     double MinNota5 = 37.6;
-    double PuntosParaExonerar = 32.4;
+    double MinExoneracion = 32.4;
     double PuntosObtenidos1 = 0;
     double PuntosObtenidos2 = 0;
     double PuntosObtenidos3 = 0;
@@ -53,6 +53,7 @@ public class ActivityEvalu extends AppCompatActivity {
     EditText etTp;
     TextView tvResultado;
     TextView tvFaltante;
+    TextView tvFaltanteNota5;
     double Resultado;
     Spinner sp1;
     Spinner sp2;
@@ -106,6 +107,12 @@ public class ActivityEvalu extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onSupportNavigateUp() { //Para que retroceda en vez de que suba un nivel
+        onBackPressed();
+        return false;
+    }
+
     //Crear boton compartir en action bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -147,6 +154,7 @@ public class ActivityEvalu extends AppCompatActivity {
         tvTotalText3 = findViewById(R.id.tvTotalText3);
         tvFeli = findViewById(R.id.tv_feli);
         tvFaltante = findViewById(R.id.tvFaltante);
+        tvFaltanteNota5 = findViewById(R.id.tvFaltanteNota5);
         btnCompartir = findViewById(R.id.btnCompartir);
         ivCompartir = findViewById(R.id.ivCompartir);
         layoutCompartir = findViewById(R.id.layout_compartir);
@@ -258,7 +266,7 @@ public class ActivityEvalu extends AppCompatActivity {
             Log.d("Click Boton Calculo", "Puntos Obtenidos1: " + PuntosObtenidos1);
             Log.d("Click Boton Calculo", "Puntos Obtenidos2: " + PuntosObtenidos2);
             Log.d("Click Boton Calculo", "Puntos Obtenidos3: " + PuntosObtenidos3);
-            tvResultado.setText(df.format(Resultado) + " Puntos de 40 Puntos");
+            tvResultado.setText(df.format(Resultado) + " puntos de 40 puntos");
             Felicitar(v);
         }
     }
@@ -313,7 +321,7 @@ public class ActivityEvalu extends AppCompatActivity {
             TotalPuntos3 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos3"));
             String Personalizado = getIntent().getExtras().getString("EsPersonalizado");
             if (Personalizado.equals("Si")) {
-                PuntosParaExonerar = Double.parseDouble(getIntent().getExtras().getString("Minimo Exoneracion"));
+                MinExoneracion = Double.parseDouble(getIntent().getExtras().getString("Minimo Exoneracion"));
                 MinNota5 = Double.parseDouble(getIntent().getExtras().getString("Minimo nota 5"));
             }
         } catch (NumberFormatException e) {
@@ -462,9 +470,9 @@ public class ActivityEvalu extends AppCompatActivity {
 
     public void Felicitar(View view) {
         DecimalFormat df = new DecimalFormat("#.###");
-        if (Resultado >= PuntosParaExonerar) {
+        if (Resultado >= MinExoneracion) {
             tvFeli.setTextColor(Color.GREEN);
-            tvFeli.setText("EXONERASTE!");
+            tvFeli.setText("¡EXONERASTE!");
             tvFeli.setVisibility(View.VISIBLE);
             ivEmoji.setVisibility(ImageView.VISIBLE);
             ivEmoji.setImageResource(R.drawable.feliz);
@@ -472,27 +480,30 @@ public class ActivityEvalu extends AppCompatActivity {
             tvResultado.setVisibility(TextView.VISIBLE);
             if (Resultado >= MinNota5) {
                 tvFaltante.setText("Obtuviste nota 5");
+                tvFaltante.setVisibility(TextView.INVISIBLE);
             } else {
                 tvFaltante.setText("Obtuviste nota 4");
+                tvFaltanteNota5.setVisibility(TextView.VISIBLE);
+                tvFaltanteNota5.setText("Te faltó " + df.format(MinNota5 - Resultado) + " puntos para nota 5");
             }
         } else {
-            if (Resultado < PuntosParaExonerar && Resultado >= 32) {
+            if (Resultado < MinExoneracion && Resultado >= 32) { //Si el resultado está entre 32 a 32,4
                 tvFeli.setTextColor(Color.YELLOW);
                 tvFeli.setText("Casi exoneraste");
                 ivEmoji.setVisibility(ImageView.VISIBLE);
                 ivEmoji.setImageResource(R.drawable.serio);
-                tvFaltante.setText("Te faltaron " + df.format(PuntosParaExonerar - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " Puntos para Exonerar");
+                tvFaltante.setText("Te faltó " + df.format(MinExoneracion - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " puntos para Exonerar");
                 tvFeli.setVisibility(View.VISIBLE);
                 tvFaltante.setVisibility(TextView.VISIBLE);
                 tvResultado.setVisibility(TextView.VISIBLE);
-                btnBonificacion.setVisibility(TextView.INVISIBLE);
+                btnBonificacion.setVisibility(TextView.VISIBLE);
             } else {
-                if (Resultado < PuntosParaExonerar) {
+                if (Resultado < MinExoneracion) {
                     tvFeli.setTextColor(Color.RED);
                     tvFeli.setText("No exoneraste");
                     ivEmoji.setVisibility(ImageView.VISIBLE);
                     ivEmoji.setImageResource(R.drawable.triste);
-                    tvFaltante.setText("Te faltaron " + df.format(PuntosParaExonerar - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " Puntos para Exonerar");
+                    tvFaltante.setText("Te faltó " + df.format(MinExoneracion - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " puntos para Exonerar");
                     tvFeli.setVisibility(View.VISIBLE);
                     tvFaltante.setVisibility(TextView.VISIBLE);
                     tvResultado.setVisibility(TextView.VISIBLE);
@@ -536,6 +547,7 @@ public class ActivityEvalu extends AppCompatActivity {
 
     private void VisibilidadObjetos() {
         tvFaltante.setVisibility(View.INVISIBLE);
+        tvFaltanteNota5.setVisibility(View.INVISIBLE);
         tvResultado.setVisibility(View.INVISIBLE);
         tvFeli.setVisibility(View.INVISIBLE);
         ivEmoji.setVisibility(ImageView.INVISIBLE);

@@ -229,7 +229,21 @@
             android:textSize="18sp"
             android:visibility="visible"
             app:autoSizeTextType="uniform"
-            tools:text="Te faltó 00.000 Puntos para Exonerar" />
+            tools:text="@string/tvFaltante" />
+
+        <TextView
+            android:id="@+id/tvFaltanteNota5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-condensed"
+            android:maxLines="1"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:visibility="visible"
+            app:autoSizeTextType="uniform"
+            tools:text="@string/tvFaltanteParaNota5" />
 
         <TextView
             android:id="@+id/tv_feli"
