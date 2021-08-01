@@ -10,24 +10,23 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.exoapp.basededatos.DatabaseAccess;
-import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+
+import static android.content.ContentValues.TAG;
 
 
 public class ActivitySplashScreen extends Activity {
     private InterstitialAd mInterstitialAd;
-    private Boolean seAbrióNextActivity = false;
 
-    //Para evitar que se cierre al oprimir boton atras
-    @Override
-    public void onBackPressed() {
-        Log.d("BotonAtras", "Se oprimió el botón atrás");
-    }
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
@@ -37,40 +36,49 @@ public class ActivitySplashScreen extends Activity {
 
         tvVersionApp.setText("Versión de la App: " + ObtenerVersionApp());
         tvVersionBD.setText("Versión de la BD: " + ObtenerVersionBD());
-        PublicidadInterstitial();
 
+        CargarInterstitial();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Log.d("Splash Screen", "Se terminó el tiempo de espera");
-                if (seAbrióNextActivity == false) {
-                    Log.d("Interstitial", "No está cargando");
-                    AbrirNextActivity();
-                }
+                IniciarSiguienteActivity();
             }
-        }, 5000);
+        }, 6000);
     }
 
-    private String ObtenerVersionApp() {
+    protected void onStart() { // Metodo al iniciar el activity
+        super.onStart();
+        //CargarIntestitialAd(); //Iniciamos el Anuncio Interstitial
+    }
+
+    public void onBackPressed() { //Para evitar que se cierre al oprimir boton atras //Metodo al oprimir boton atras
+        return;
+    }
+
+    // ------------- METODOS -------------
+
+    private void IniciarSiguienteActivity() {
+        //Ejecutar el siguiente activity
+        Intent intent = new Intent(ActivitySplashScreen.this, ActivityPrincipal.class);
+        startActivity(intent);
+    }
+
+    private String ObtenerVersionApp() { //Obtener version app
         String versionApp = "";
         try {
-            //Obtener version app
             PackageInfo packageInfo;
             packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
             versionApp = packageInfo.versionName;
 
         } catch (PackageManager.NameNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "No se puede cargar la version actual de la app", Toast.LENGTH_LONG).show();
         }
-
         return versionApp;
     }
 
 
-    private String ObtenerVersionBD() {
-        //Revisa si hay acutalizacioens de la bd y obtiene la version de la bd
+    private String ObtenerVersionBD() { //Revisa si hay acutalizacioens de la bd y obtiene la version de la bd
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
         databaseAccess.abrir();
         String versionBD = databaseAccess.VersionBD();
@@ -79,63 +87,84 @@ public class ActivitySplashScreen extends Activity {
         return versionBD;
     }
 
-    private void PublicidadInterstitial() {
-        try {
-            MobileAds.initialize(this, "ca-app-pub-8474453660271942/1150495372");
 
-            mInterstitialAd = new InterstitialAd(this);
-            mInterstitialAd.setAdUnitId("ca-app-pub-8474453660271942/1150495372");
-            mInterstitialAd.loadAd(new AdRequest.Builder().build());
+    private void CargarInterstitial() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        InterstitialAd.load(this, "ca-app-pub-8474453660271942/1150495372", adRequest, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdLoaded(InterstitialAd interstitialAd) {
+                // The mInterstitialAd reference will be null until
+                // un ad esta cargado.
 
-            mInterstitialAd.setAdListener(new AdListener() {
-                @Override
-                public void onAdLoaded() { // Código que se ejecutará cuando un anuncio termine de cargarse.
-                    Log.d("Interstititial", "Se carga el metodo onAdLoaded");
-                    if (seAbrióNextActivity == false) {
-                        AbrirNextActivity();
-                    }
-                    if (mInterstitialAd.isLoaded()) {
-                        mInterstitialAd.show(); //Mostrar el Interstittial luego de crearlo
-                    }
+                mInterstitialAd = interstitialAd;
+                Log.i(TAG, "Se cargó Interstitial");
+
+                if (mInterstitialAd != null) { //Mostrar el Interstitial
+                    mInterstitialAd.show(ActivitySplashScreen.this);
+                } else {
+                    Log.d("TAG", "El anuncio intersticial aún no esta listo.");
                 }
+            }
 
-                @Override
-                public void onAdOpened() {// Código que se ejecutará cuando se muestre el anuncio.
-
-                }
-
-                @Override
-                public void onAdFailedToLoad(int errorCode) {// Código que se ejecutará cuando una solicitud de anuncio falle.
-
-                }
-
-                @Override
-                public void onAdLeftApplication() {// Código que se ejecutará cuando el usuario haya abandonado la aplicación.
-                }
-
-                @Override
-                public void onAdClosed() {// Código que se ejecutará cuando el anuncio intersticial esté cerrado.
-                    Log.d("Interstititial", "Se carga el metodo onAdClosed");
-                    if (seAbrióNextActivity == false) {
-                        AbrirNextActivity();
-                    }
-                }
-            });
-        } catch (Exception e) {
-            Log.d("Error", "Error metodo PublicidadInterstitial() " + e);
-        }
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                // Handle the error
+                Log.i(TAG, loadAdError.getMessage());
+                mInterstitialAd = null;
+            }
+        });
     }
 
-    private void AbrirNextActivity() {
-        /*Intent intent = new Intent(ActivitySplashScreen.this, ActivitySelecfacultad.class);
-        startActivity(intent);
-        seAbrióNextActivity = true;
-        finish();*/
+    public void CargarIntestitialAd() { //ID de ejemplo interstitial ca-app-pub-3940256099942544/1033173712 //Exoapp ca-app-pub-8474453660271942/1150495372
+        AdRequest adRequest = new AdRequest.Builder().build();
 
+        InterstitialAd.load(this, "ca-app-pub-8474453660271942/1150495372", adRequest, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                // The mInterstitialAd reference will be null until
+                // an ad is loaded.
+                mInterstitialAd = interstitialAd;
+                Log.i(TAG, "onAdLoaded");
 
-                Intent intent = new Intent(ActivitySplashScreen.this, ActivityPrincipal.class);
-        startActivity(intent);
-        seAbrióNextActivity = true;
-        finish();
+                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                    @Override
+                    public void onAdDismissedFullScreenContent() {
+                        // Se llama cuando se descarta el contenido de pantalla completa.
+                        Log.d("---IntestitialAd", "El anuncio fue descartado.");
+                        IniciarSiguienteActivity();
+                    }
+
+                    @Override
+                    public void onAdFailedToShowFullScreenContent(AdError adError) {
+                        // Se llama cuando el contenido de pantalla completa no se muestra.
+                        Log.d("---IntestitialAd", "El ad fallo al mostrarse");
+                    }
+
+                    @Override
+                    public void onAdShowedFullScreenContent() {
+                        // Se llama cuando se muestra contenido en pantalla completa.
+                        mInterstitialAd = null; // Asegúrese de establecer su referencia en nula para que no muestre una segunda vez
+                        Log.d("---IntestitialAd", "Se mostró el ad");
+                    }
+                });
+
+                if (mInterstitialAd != null) {
+                    mInterstitialAd.show(ActivitySplashScreen.this);
+                } else {
+                    Log.d("---IntestitialAd", "El interstitial aun no esta listo");
+                }
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                // Handle the error
+                Log.d("---IntestitialAd", "EonAdFailedToLoad Error al cargar Interstitial");
+                Log.i(TAG, loadAdError.getMessage());
+                mInterstitialAd = null;
+                IniciarSiguienteActivity();
+            }
+        });
     }
+
 }
+

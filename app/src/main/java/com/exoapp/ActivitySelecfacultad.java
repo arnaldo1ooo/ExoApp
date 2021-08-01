@@ -161,11 +161,6 @@ public class ActivitySelecfacultad extends AppCompatActivity {
             }
 
             @Override
-            public void onAdFailedToLoad(int errorCode) {
-                // Código a ejecutar cuando falla una solicitud de anuncio.
-            }
-
-            @Override
             public void onAdOpened() {
                 // Código que se ejecutará cuando un anuncio abra una
                 // superposición que cubre la pantalla.
@@ -175,12 +170,6 @@ public class ActivitySelecfacultad extends AppCompatActivity {
             public void onAdClicked() {
                 // Código que se ejecutará cuando el usuario
                 // haga clic en un anuncio.
-            }
-
-            @Override
-            public void onAdLeftApplication() {
-                // Código a ejecutar cuando el usuario
-                // ha abandonado la aplicación.
             }
 
             @Override

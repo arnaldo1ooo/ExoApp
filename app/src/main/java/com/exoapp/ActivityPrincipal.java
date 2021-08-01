@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.exoapp.basededatos.DatabaseAccess;
+import com.exoapp.conversion.ActivityConversion;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -33,7 +34,6 @@ public class ActivityPrincipal extends AppCompatActivity {
     //Pregunta si realmente quieres salir de app
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             CerrarAplicacion();
             // Si el listener devuelve true, significa que el evento esta procesado, y nadie debe hacer nada mas
@@ -42,6 +42,8 @@ public class ActivityPrincipal extends AppCompatActivity {
         // para las demas cosas, se reenvia el evento al listener habitual
         return super.onKeyDown(keyCode, event);
     }
+
+
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
@@ -80,6 +82,10 @@ public class ActivityPrincipal extends AppCompatActivity {
         startActivityForResult(intent, 0);
     }
 
+    public void PorcAPunto(View view) {
+        Intent intent = new Intent(view.getContext(), ActivityConversion.class);
+        startActivityForResult(intent, 0);
+    }
 
     private void MetodoBanner() {
         AdView1 = findViewById(R.id.adView1);
@@ -89,11 +95,6 @@ public class ActivityPrincipal extends AppCompatActivity {
             @Override
             public void onAdLoaded() {
                 // Código a ejecutar cuando un anuncio termina de cargarse.
-            }
-
-            @Override
-            public void onAdFailedToLoad(int errorCode) {
-                // Código a ejecutar cuando falla una solicitud de anuncio.
             }
 
             @Override
@@ -109,12 +110,6 @@ public class ActivityPrincipal extends AppCompatActivity {
             }
 
             @Override
-            public void onAdLeftApplication() {
-                // Código a ejecutar cuando el usuario
-                // ha abandonado la aplicación.
-            }
-
-            @Override
             public void onAdClosed() {
                 // Código a ejecutar cuando el usuario está a punto de regresar
                 // a la aplicación después de pulsar en un anuncio.
@@ -122,63 +117,46 @@ public class ActivityPrincipal extends AppCompatActivity {
         });
     }
 
-    @Override
+
+    //Cargar menu al actionbar
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.actionbar_principal, menu);
         return true;
     }
-
-    //Al usar el action overflow
+    //Items de menu del actionbar
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.escala) {
-            Log.d("Opciones", "Abriendo escala");
-            Intent i = new Intent(this, ActivityEscala.class);
-            startActivity(i);
-            return true;
+        switch (item.getItemId()) {
+            case R.id.escala: {
+                Log.d("Opciones", "Abriendo escala");
+                Intent i = new Intent(this, ActivityEscala.class);
+                startActivity(i);
+                return true;
+            }
+
+            case R.id.politicas: {
+                Log.d("Opciones", "Abriendo politicas de privacidad");
+                Intent i = new Intent(this, ActivityPoliticasPrivacidad.class);
+                startActivity(i);
+                return true;
+            }
+
+            case R.id.acercade: {
+                Log.d("Opciones", "Abriendo acerca de");
+                Intent i = new Intent(this, ActivityAcercade.class);
+                startActivity(i);
+                return true;
+            }
+
+            default: {
+                Toast.makeText(this, "Error en menu actionbar " + item.getItemId(), Toast.LENGTH_LONG).show();
+                return super.onOptionsItemSelected(item);
+            }
         }
 
-        if (id == R.id.politicas) {
-            Log.d("Opciones", "Abriendo politicas de privacidad");
-            Intent i = new Intent(this, ActivityPoliticasPrivacidad.class);
-            startActivity(i);
-            return true;
-        }
-
-        if (id == R.id.acercade) {
-            Log.d("Opciones", "Abriendo acerca de");
-            Intent i = new Intent(this, ActivityAcercade.class);
-            startActivity(i);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-
-    // Storage Permissions
-    private static final int REQUEST_EXTERNAL_STORAGE = 1;
-    private static String[] PERMISSIONS_STORAGE = {
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-    };
-
-    public static void VerificarPermisos(Activity ElActivity) {
-        Log.d("Verificando permisos..", "");
-        // Check if we have write Permiso
-        int Permiso = ActivityCompat.checkSelfPermission(ElActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
-        if (Permiso != PackageManager.PERMISSION_GRANTED) {
-            // We don't have Permiso so prompt the user
-            ActivityCompat.requestPermissions(
-                    ElActivity,
-                    PERMISSIONS_STORAGE,
-                    REQUEST_EXTERNAL_STORAGE
-            );
-        }
     }
 
     private void CerrarAplicacion() {
-           new AlertDialog.Builder(this)
+        new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("¿Realmente desea cerrar la aplicación?")
                 .setCancelable(false)
@@ -186,8 +164,8 @@ public class ActivityPrincipal extends AppCompatActivity {
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {// un listener que al pulsar, cierre la aplicacion
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        android.os.Process.killProcess(android.os.Process.myPid()); //Su funcion es algo similar a lo que se llama cuando se presiona el botón "Forzar Detención" o "Administrar aplicaciones", lo cuál mata la aplicación
-                        //finish(); Si solo quiere mandar la aplicación a segundo plano
+                        //android.os.Process.killProcess(android.os.Process.myPid()); //Su funcion es algo similar a lo que se llama cuando se presiona el botón "Forzar Detención" o "Administrar aplicaciones", lo cuál mata la aplicación
+                        finish(); //Si solo quiere mandar la aplicación a segundo plano
                     }
                 }).show();
     }
@@ -218,8 +196,30 @@ public class ActivityPrincipal extends AppCompatActivity {
         String versionBD = databaseAccess.VersionBD();
         databaseAccess.cerrar();
 
-        return  versionBD;
+        return versionBD;
     }
+
+    public static void VerificarPermisos(Activity ElActivity) {
+        Log.d("Verificando permisos..", "");
+        // Check if we have write Permiso
+        int Permiso = ActivityCompat.checkSelfPermission(ElActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (Permiso != PackageManager.PERMISSION_GRANTED) {
+            // We don't have Permiso so prompt the user
+            ActivityCompat.requestPermissions(
+                    ElActivity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
+    }
+
+    // Storage Permissions
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
 }
 
 

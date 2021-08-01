@@ -294,8 +294,8 @@
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-8474453660271942/9184800934"

@@ -69,6 +69,7 @@ public class ActivityEvalu extends AppCompatActivity {
     private ImageView ivEmoji;
     private AdView AdView1;
     private Button btnBonificacion;
+    DecimalFormat df = new DecimalFormat("#.###");
 
 
     @Override
@@ -168,7 +169,7 @@ public class ActivityEvalu extends AppCompatActivity {
 
         try {
             //Llamada de metodos
-            VisibilidadObjetos();
+            VisibilidadObjetos("invisible");
             OcultarTrabajoPractico();
 
             AlEscribirEnEditText(et1parcial, sp1, tvTotalText1, TotalPuntos1, PuntosObtenidos1);
@@ -283,11 +284,6 @@ public class ActivityEvalu extends AppCompatActivity {
             }
 
             @Override
-            public void onAdFailedToLoad(int errorCode) {
-                // Código a ejecutar cuando falla una solicitud de anuncio.
-            }
-
-            @Override
             public void onAdOpened() {
                 // Código que se ejecutará cuando un anuncio abra una
                 // superposición que cubre la pantalla.
@@ -297,12 +293,6 @@ public class ActivityEvalu extends AppCompatActivity {
             public void onAdClicked() {
                 // Código que se ejecutará cuando el usuario
                 // haga clic en un anuncio.
-            }
-
-            @Override
-            public void onAdLeftApplication() {
-                // Código a ejecutar cuando el usuario
-                // ha abandonado la aplicación.
             }
 
             @Override
@@ -431,7 +421,7 @@ public class ActivityEvalu extends AppCompatActivity {
 
         if (ElSpinner.getSelectedItemId() == 0) {
             if (Double.parseDouble(ElEditText.getText().toString()) > 100) {
-                VisibilidadObjetos();
+                VisibilidadObjetos("invisible");
                 ElEditText.setTextColor(Color.RED);
                 Toast toast = Toast.makeText(this, "El porcentaje obtenido no puede ser mayor al 100%", Toast.LENGTH_SHORT);
                 toast.show();
@@ -442,7 +432,7 @@ public class ActivityEvalu extends AppCompatActivity {
         } else {
             if (ElSpinner.getSelectedItemId() == 1) {
                 if (Double.parseDouble(ElEditText.getText().toString()) > TotalPuntos) {
-                    VisibilidadObjetos();
+                    VisibilidadObjetos("invisible");
                     ElEditText.setTextColor(Color.RED);
                     Toast toast = Toast.makeText(this, "El punto obtenido no puede ser mayor a " + TotalPuntos + " Puntos", Toast.LENGTH_SHORT);
                     toast.show();
@@ -469,48 +459,82 @@ public class ActivityEvalu extends AppCompatActivity {
     }
 
     public void Felicitar(View view) {
-        DecimalFormat df = new DecimalFormat("#.###");
-        if (Resultado >= MinExoneracion) {
-            tvFeli.setTextColor(Color.GREEN);
-            tvFeli.setText("¡EXONERASTE!");
-            tvFeli.setVisibility(View.VISIBLE);
-            ivEmoji.setVisibility(ImageView.VISIBLE);
-            ivEmoji.setImageResource(R.drawable.feliz);
-            tvFaltante.setVisibility(TextView.VISIBLE);
-            tvResultado.setVisibility(TextView.VISIBLE);
+        if (Resultado >= MinExoneracion) { //Si exonero
+            VisibilidadObjetos("exonero");
             if (Resultado >= MinNota5) {
                 tvFaltante.setText("Obtuviste nota 5");
-                tvFaltante.setVisibility(TextView.INVISIBLE);
+                tvFaltanteNota5.setVisibility(TextView.INVISIBLE);
             } else {
                 tvFaltante.setText("Obtuviste nota 4");
                 tvFaltanteNota5.setVisibility(TextView.VISIBLE);
                 tvFaltanteNota5.setText("Te faltó " + df.format(MinNota5 - Resultado) + " puntos para nota 5");
             }
-        } else {
-            if (Resultado < MinExoneracion && Resultado >= 32) { //Si el resultado está entre 32 a 32,4
-                tvFeli.setTextColor(Color.YELLOW);
-                tvFeli.setText("Casi exoneraste");
-                ivEmoji.setVisibility(ImageView.VISIBLE);
-                ivEmoji.setImageResource(R.drawable.serio);
-                tvFaltante.setText("Te faltó " + df.format(MinExoneracion - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " puntos para Exonerar");
-                tvFeli.setVisibility(View.VISIBLE);
-                tvFaltante.setVisibility(TextView.VISIBLE);
-                tvResultado.setVisibility(TextView.VISIBLE);
-                btnBonificacion.setVisibility(TextView.VISIBLE);
+        } else { //Si no exonero
+            if (Resultado < MinExoneracion && Resultado >= 32) { //Si el resultado está entre 32 a 32,4 Si casi exonero
+                VisibilidadObjetos("casi");
             } else {
                 if (Resultado < MinExoneracion) {
-                    tvFeli.setTextColor(Color.RED);
-                    tvFeli.setText("No exoneraste");
-                    ivEmoji.setVisibility(ImageView.VISIBLE);
-                    ivEmoji.setImageResource(R.drawable.triste);
-                    tvFaltante.setText("Te faltó " + df.format(MinExoneracion - (PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3)) + " puntos para Exonerar");
-                    tvFeli.setVisibility(View.VISIBLE);
-                    tvFaltante.setVisibility(TextView.VISIBLE);
-                    tvResultado.setVisibility(TextView.VISIBLE);
-                    btnBonificacion.setVisibility(TextView.VISIBLE);
+                    VisibilidadObjetos("noExonero");
                 }
             }
         }
+    }
+
+
+    private void VisibilidadObjetos(String valor) {
+        switch (valor) {
+            case "exonero":
+                tvFeli.setText("¡EXONERASTE!");
+                tvFeli.setTextColor(Color.GREEN);
+                tvFeli.setVisibility(View.VISIBLE);
+                ivEmoji.setVisibility(ImageView.VISIBLE);
+                ivEmoji.setImageResource(R.drawable.feliz);
+                tvFaltante.setVisibility(TextView.VISIBLE);
+                tvResultado.setVisibility(TextView.VISIBLE);
+                btnBonificacion.setVisibility(TextView.INVISIBLE);
+                break;
+            case "casi":
+                tvFeli.setText("Casi exoneraste");
+                tvFeli.setTextColor(Color.YELLOW);
+                tvFeli.setVisibility(View.VISIBLE);
+                ivEmoji.setVisibility(ImageView.VISIBLE);
+                ivEmoji.setImageResource(R.drawable.serio);
+                tvFaltante.setVisibility(TextView.VISIBLE);
+                tvFaltante.setText("Te faltó " + df.format(MinExoneracion - (PuntosObtenidos1
+                        + PuntosObtenidos2 + PuntosObtenidos3)) + " puntos para Exonerar");
+                tvFaltanteNota5.setVisibility(TextView.INVISIBLE);
+                tvResultado.setVisibility(TextView.VISIBLE);
+                btnBonificacion.setVisibility(TextView.VISIBLE);
+                break;
+            case "noExonero":
+                tvFeli.setText("No exoneraste");
+                tvFeli.setTextColor(Color.RED);
+                tvFeli.setVisibility(View.VISIBLE);
+                ivEmoji.setVisibility(ImageView.VISIBLE);
+                ivEmoji.setImageResource(R.drawable.triste);
+                tvFaltante.setVisibility(TextView.VISIBLE);
+                tvFaltante.setText("Te faltó " + df.format(MinExoneracion - (PuntosObtenidos1
+                        + PuntosObtenidos2 + PuntosObtenidos3)) + " puntos para Exonerar");
+                tvFaltanteNota5.setVisibility(TextView.INVISIBLE);
+                tvResultado.setVisibility(TextView.VISIBLE);
+                btnBonificacion.setVisibility(TextView.VISIBLE);
+                break;
+
+            case "invisible":
+                tvFaltante.setVisibility(View.INVISIBLE);
+                tvFaltanteNota5.setVisibility(View.INVISIBLE);
+                tvResultado.setVisibility(View.INVISIBLE);
+                tvFeli.setVisibility(View.INVISIBLE);
+                ivEmoji.setVisibility(ImageView.INVISIBLE);
+                btnBonificacion.setVisibility(View.INVISIBLE);
+                break;
+
+            default:
+                System.out.println("Error Switch");
+                break;
+        }
+
+
     }
 
 
@@ -545,14 +569,6 @@ public class ActivityEvalu extends AppCompatActivity {
         startActivity(Intent.createChooser(intent, getString(R.string.share_title)));
     }
 
-    private void VisibilidadObjetos() {
-        tvFaltante.setVisibility(View.INVISIBLE);
-        tvFaltanteNota5.setVisibility(View.INVISIBLE);
-        tvResultado.setVisibility(View.INVISIBLE);
-        tvFeli.setVisibility(View.INVISIBLE);
-        ivEmoji.setVisibility(ImageView.INVISIBLE);
-        btnBonificacion.setVisibility(View.INVISIBLE);
-    }
 
     /*  Método que tomará una captura de pantalla en Bases de captura de pantalla Tipo ENUM  */
     private void TomarCaptura(ScreenshotType screenshotType) {

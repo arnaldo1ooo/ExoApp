@@ -91,8 +91,6 @@ public class ActivityBonificacion extends AppCompatActivity {
             btnCalcular.callOnClick();
         }
 
-
-
         MetodoBanner();
     }
 
@@ -235,6 +233,7 @@ public class ActivityBonificacion extends AppCompatActivity {
             } else {
                 tvTituloNota5.setText("Para nota 5");
                 tvTituloNota5.setTextColor(Color.WHITE);
+                tvTituloNota5.setShadowLayer(2,2,2,Color.BLACK);
                 tvNota5.setTextColor(Color.WHITE);
             }
             double Nota5Porc = (Nota5 * 100) / TotalFinal;
@@ -254,11 +253,6 @@ public class ActivityBonificacion extends AppCompatActivity {
             }
 
             @Override
-            public void onAdFailedToLoad(int errorCode) {
-                // Código a ejecutar cuando falla una solicitud de anuncio.
-            }
-
-            @Override
             public void onAdOpened() {
                 // Código que se ejecutará cuando un anuncio abra una
                 // superposición que cubre la pantalla.
@@ -268,12 +262,6 @@ public class ActivityBonificacion extends AppCompatActivity {
             public void onAdClicked() {
                 // Código que se ejecutará cuando el usuario
                 // haga clic en un anuncio.
-            }
-
-            @Override
-            public void onAdLeftApplication() {
-                // Código a ejecutar cuando el usuario
-                // ha abandonado la aplicación.
             }
 
             @Override

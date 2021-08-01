@@ -196,7 +196,7 @@
             android:layout_gravity="center"
             android:background="@drawable/boton_borde_redondo"
             android:onClick="Calcular"
-            android:text="@string/btnCalculo"
+            android:text="@string/btnCalcular"
             android:textColor="#ffffff"
             android:textSize="35sp" />
 
@@ -297,8 +297,8 @@
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView1"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:adSize="BANNER"
         app:adUnitId="ca-app-pub-8474453660271942/9184800934"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -3,18 +3,23 @@
     package="com.exoapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <application
 
+    <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="ExoApp"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        >
 
+        <activity android:name=".conversion.ActivityConversion"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
 
         <activity
             android:name=".ActivityEscala"
-            android:parentActivityName=".ActivityBonificacion">
+            android:parentActivityName=".ActivityBonificacion"
+            android:windowSoftInputMode="adjustPan">
         </activity>
 
         <activity
@@ -26,24 +31,46 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ActivityPrincipal"
             android:parentActivityName=".ActivitySelecfacultad"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+
         <activity
             android:name=".ActivityTipoEvalu"
             android:parentActivityName=".ActivityPrincipal"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+
         <activity
             android:name=".ActivityEvalu"
             android:parentActivityName=".ActivityTipoEvalu"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+
         <activity
             android:name=".ActivityAcercade"
-            android:parentActivityName=".ActivityPrincipal" />
+            android:parentActivityName=".ActivityPrincipal"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+
         <activity
             android:name=".ActivityBonificacion"
-            android:parentActivityName=".ActivityPrincipal" />
+            android:parentActivityName=".ActivityPrincipal"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+
+        <activity
+            android:name=".ActivityPoliticasPrivacidad"
+            android:parentActivityName=".ActivityPrincipal"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+
+        <activity android:name=".ActivitySelecfacultad"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -55,19 +82,14 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".ActivityPoliticasPrivacidad"
-            android:parentActivityName=".ActivityPrincipal"/>
-
-        <activity
-            android:name=".ActivitySelecfacultad" />
-
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
             android:value="true" />
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
-    </application>
 
+
+    </application>
 </manifest>
