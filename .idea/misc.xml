@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Proyectos/Repositorios_Git/ExoApp/app/src/main/res/layout/activity_acercade.xml" value="0.2518518518518518" />
+        <entry key="..\:/Proyectos/Repositorios_Git/ExoApp/app/src/main/res/layout/activity_conversion.xml" value="0.2518518518518518" />
+        <entry key="..\:/Proyectos/Repositorios_Git/ExoApp/app/src/main/res/layout/activity_escala.xml" value="0.2518518518518518" />
+        <entry key="..\:/Proyectos/Repositorios_Git/ExoApp/app/src/main/res/layout/activity_evalu.xml" value="0.22" />
+        <entry key="..\:/Proyectos/Repositorios_Git/ExoApp/app/src/main/res/layout/activity_politicas_privacidad.xml" value="0.36666666666666664" />
+        <entry key="..\:/Proyectos/Repositorios_Git/ExoApp/app/src/main/res/layout/activity_principal.xml" value="0.36666666666666664" />
+        <entry key="..\:/Proyectos/Repositorios_Git/ExoApp/app/src/main/res/layout/fragment_conversion_select_conve.xml" value="0.2518518518518518" />
+      </map>
+    </option>
+  </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
     <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />
