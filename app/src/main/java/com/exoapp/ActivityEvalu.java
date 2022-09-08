@@ -42,6 +42,7 @@ public class ActivityEvalu extends AppCompatActivity {
     int TotalPuntos1 = 0;
     int TotalPuntos2 = 0;
     int TotalPuntos3 = 0;
+    int TotalPuntaje = 0;
     double MinNota5 = 37.6;
     double MinExoneracion = 32.4;
     double PuntosObtenidos1 = 0;
@@ -264,10 +265,11 @@ public class ActivityEvalu extends AppCompatActivity {
                 MensajesError(et2parcial, sp2, PuntosObtenidos2, TotalPuntos2) == false &&
                 MensajesError(etTp, sp3, PuntosObtenidos3, TotalPuntos3) == false) {
             Resultado = PuntosObtenidos1 + PuntosObtenidos2 + PuntosObtenidos3;
+            TotalPuntaje = TotalPuntos1 +TotalPuntos2+TotalPuntos3;
             Log.d("Click Boton Calculo", "Puntos Obtenidos1: " + PuntosObtenidos1);
             Log.d("Click Boton Calculo", "Puntos Obtenidos2: " + PuntosObtenidos2);
             Log.d("Click Boton Calculo", "Puntos Obtenidos3: " + PuntosObtenidos3);
-            tvResultado.setText(df.format(Resultado) + " puntos de 40 puntos");
+            tvResultado.setText(df.format(Resultado) + " puntos de " + TotalPuntaje + " puntos");
             Felicitar(v);
         }
     }
@@ -305,11 +307,12 @@ public class ActivityEvalu extends AppCompatActivity {
 
     private void RecibeDatosPuntos() {
         try {
-            TotalPuntos1 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos1"));
+            TotalPuntos1 = Integer.parseInt(getIntent().getExtras().getString("ex_TotalPuntos1"));
             Log.d("Total de puntos 1", "" + TotalPuntos1);
-            TotalPuntos2 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos2"));
-            TotalPuntos3 = Integer.parseInt(getIntent().getExtras().getString("TotalPuntos3"));
-            String Personalizado = getIntent().getExtras().getString("EsPersonalizado");
+            TotalPuntos2 = Integer.parseInt(getIntent().getExtras().getString("ex_TotalPuntos2"));
+            TotalPuntos3 = Integer.parseInt(getIntent().getExtras().getString("ex_TotalPuntos3"));
+            String Personalizado = getIntent().getExtras().getString("ex_EsPersonalizado");
+
             if (Personalizado.equals("Si")) {
                 MinExoneracion = Double.parseDouble(getIntent().getExtras().getString("Minimo Exoneracion"));
                 MinNota5 = Double.parseDouble(getIntent().getExtras().getString("Minimo nota 5"));

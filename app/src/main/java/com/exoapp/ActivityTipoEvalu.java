@@ -57,11 +57,15 @@ public class ActivityTipoEvalu extends AppCompatActivity {
         btnopc1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int totalPuntos1 = 15;
+                int totalPuntos2 = 15;
+                int totalPuntos3 = 10;
+
                 Intent intent = new Intent(v.getContext(), ActivityEvalu.class);
-                intent.putExtra("TotalPuntos1", "15");
-                intent.putExtra("TotalPuntos2", "15");
-                intent.putExtra("TotalPuntos3", "10");
-                intent.putExtra("EsPersonalizado", "No");
+                intent.putExtra("ex_TotalPuntos1", String.valueOf(totalPuntos1));
+                intent.putExtra("ex_TotalPuntos2", String.valueOf(totalPuntos2));
+                intent.putExtra("ex_TotalPuntos3", String.valueOf(totalPuntos3));
+                intent.putExtra("ex_EsPersonalizado", "No");
                 startActivityForResult(intent, 0);
             }
         });
@@ -69,11 +73,15 @@ public class ActivityTipoEvalu extends AppCompatActivity {
         btnopc2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int totalPuntos1 = 20;
+                int totalPuntos2 = 20;
+                int totalPuntos3 = 0;
+
                 Intent intent = new Intent(v.getContext(), ActivityEvalu.class);
-                intent.putExtra("TotalPuntos1", "20");
-                intent.putExtra("TotalPuntos2", "20");
-                intent.putExtra("TotalPuntos3", "0");
-                intent.putExtra("EsPersonalizado", "No");
+                intent.putExtra("ex_TotalPuntos1", String.valueOf(totalPuntos1));
+                intent.putExtra("ex_TotalPuntos2", String.valueOf(totalPuntos2));
+                intent.putExtra("ex_TotalPuntos3", String.valueOf(totalPuntos3));
+                intent.putExtra("ex_EsPersonalizado", "No");
                 startActivityForResult(intent, 0);
             }
         });
@@ -81,11 +89,15 @@ public class ActivityTipoEvalu extends AppCompatActivity {
         btnopc3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int totalPuntos1 = 10;
+                int totalPuntos2 = 10;
+                int totalPuntos3 = 20;
+
                 Intent intent = new Intent(v.getContext(), ActivityEvalu.class);
-                intent.putExtra("TotalPuntos1", "10");
-                intent.putExtra("TotalPuntos2", "10");
-                intent.putExtra("TotalPuntos3", "20");
-                intent.putExtra("EsPersonalizado", "No");
+                intent.putExtra("ex_TotalPuntos1", String.valueOf(totalPuntos1));
+                intent.putExtra("ex_TotalPuntos2", String.valueOf(totalPuntos2));
+                intent.putExtra("ex_TotalPuntos3", String.valueOf(totalPuntos3));
+                intent.putExtra("ex_EsPersonalizado", "No");
                 startActivityForResult(intent, 0);
             }
         });
