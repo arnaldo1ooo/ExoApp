@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ExoApp.iml" filepath="$PROJECT_DIR$/ExoApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ExoApp.iml" filepath="$PROJECT_DIR$/.idea/modules/ExoApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ExoApp.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ExoApp.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ExoApp.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ExoApp.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ExoApp.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ExoApp.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ExoApp.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ExoApp.app.unitTest.iml" />
     </modules>
   </component>
 </project>
