@@ -43,8 +43,12 @@ public class ActivityEvalu extends AppCompatActivity {
     int TotalPuntos2 = 0;
     int TotalPuntos3 = 0;
     int TotalPuntaje = 0;
-    double MinNota5 = 37.6;
-    double MinExoneracion = 32.4;
+    double PorcentajeMinNota5 = 94;
+    double PorcentajeMinExoneracion = 81;
+    double PorcentajeCasiExoneracion = 80;
+    double MinNota5 = 0;
+    double MinExoneracion = 0;
+    double MinCasiExoneracion = 0;
     double PuntosObtenidos1 = 0;
     double PuntosObtenidos2 = 0;
     double PuntosObtenidos3 = 0;
@@ -313,6 +317,11 @@ public class ActivityEvalu extends AppCompatActivity {
             TotalPuntos3 = Integer.parseInt(getIntent().getExtras().getString("ex_TotalPuntos3"));
             String Personalizado = getIntent().getExtras().getString("ex_EsPersonalizado");
 
+            TotalPuntaje = TotalPuntos1 + TotalPuntos2 + TotalPuntos3;
+            MinNota5 = calcularPorcentaje(TotalPuntaje, PorcentajeMinNota5);
+            MinExoneracion = calcularPorcentaje(TotalPuntaje, PorcentajeMinExoneracion);
+            MinCasiExoneracion = calcularPorcentaje(TotalPuntaje, PorcentajeCasiExoneracion);
+
             if (Personalizado.equals("Si")) {
                 MinExoneracion = Double.parseDouble(getIntent().getExtras().getString("Minimo Exoneracion"));
                 MinNota5 = Double.parseDouble(getIntent().getExtras().getString("Minimo nota 5"));
@@ -473,7 +482,7 @@ public class ActivityEvalu extends AppCompatActivity {
                 tvFaltanteNota5.setText("Te faltó " + df.format(MinNota5 - Resultado) + " puntos para nota 5");
             }
         } else { //Si no exonero
-            if (Resultado < MinExoneracion && Resultado >= 32) { //Si el resultado está entre 32 a 32,4 Si casi exonero
+            if (Resultado < MinExoneracion && Resultado >= MinCasiExoneracion) { //Si el resultado está entre 32 a 32,4 Si casi exonero
                 VisibilidadObjetos("casi");
             } else {
                 if (Resultado < MinExoneracion) {
@@ -613,5 +622,9 @@ public class ActivityEvalu extends AppCompatActivity {
     /*  Mostrar captura de pantalla Bitmap */
     private void MostrarCapturaEnImage(Bitmap b) {
         ivCompartir.setImageBitmap(b);
+    }
+
+    private double calcularPorcentaje(double valorTotal, double porcentaje){
+        return (valorTotal * porcentaje) / 100;
     }
 }
