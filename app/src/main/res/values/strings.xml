@@ -39,6 +39,9 @@
     <string name="_15_15_10">15 - 15 -10</string>
     <string name="_20_20_0">20 - 20 - 0</string>
     <string name="_10_10_20">10 - 10 - 20</string>
+    <string name="_15_20_5">15 - 20 - 5</string>
+    <string name="_10_20_5">10 - 20 - 5</string>
+    <string name="_15_20_10">15 - 20 - 10</string>
     <string name="seleccione_el_tipo_de_evaluaci_n">Seleccione el tipo de evaluación</string>
     <string name="btnCalcular">=</string>
     <string name="tvNota2">60.999 puntos de 60 (99.999% de 100%)</string>

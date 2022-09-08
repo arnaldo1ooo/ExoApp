@@ -26,6 +26,9 @@ public class ActivityTipoEvalu extends AppCompatActivity {
     Button btnopc1;
     Button btnopc2;
     Button btnopc3;
+    Button btnopc4;
+    Button btnopc5;
+    Button btnopc6;
     TextView VersionActual;
     private AdView AdView1;
 
@@ -38,6 +41,9 @@ public class ActivityTipoEvalu extends AppCompatActivity {
         btnopc1 = findViewById(R.id.btnopc1);
         btnopc2 = findViewById(R.id.btnopc2);
         btnopc3 = findViewById(R.id.btnopc3);
+        btnopc4 = findViewById(R.id.btnopc4);
+        btnopc5 = findViewById(R.id.btnopc5);
+        btnopc6 = findViewById(R.id.btnopc6);
         VersionActual = findViewById(R.id.tvVersionApp);
 
         MetodoBanner();
@@ -101,8 +107,55 @@ public class ActivityTipoEvalu extends AppCompatActivity {
                 startActivityForResult(intent, 0);
             }
         });
-    }
 
+        btnopc4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int totalPuntos1 = 15;
+                int totalPuntos2 = 20;
+                int totalPuntos3 = 5;
+
+                Intent intent = new Intent(v.getContext(), ActivityEvalu.class);
+                intent.putExtra("ex_TotalPuntos1", String.valueOf(totalPuntos1));
+                intent.putExtra("ex_TotalPuntos2", String.valueOf(totalPuntos2));
+                intent.putExtra("ex_TotalPuntos3", String.valueOf(totalPuntos3));
+                intent.putExtra("ex_EsPersonalizado", "No");
+                startActivityForResult(intent, 0);
+            }
+        });
+
+        btnopc5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int totalPuntos1 = 10;
+                int totalPuntos2 = 20;
+                int totalPuntos3 = 5;
+
+                Intent intent = new Intent(v.getContext(), ActivityEvalu.class);
+                intent.putExtra("ex_TotalPuntos1", String.valueOf(totalPuntos1));
+                intent.putExtra("ex_TotalPuntos2", String.valueOf(totalPuntos2));
+                intent.putExtra("ex_TotalPuntos3", String.valueOf(totalPuntos3));
+                intent.putExtra("ex_EsPersonalizado", "No");
+                startActivityForResult(intent, 0);
+            }
+        });
+
+        btnopc6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int totalPuntos1 = 15;
+                int totalPuntos2 = 20;
+                int totalPuntos3 = 10;
+
+                Intent intent = new Intent(v.getContext(), ActivityEvalu.class);
+                intent.putExtra("ex_TotalPuntos1", String.valueOf(totalPuntos1));
+                intent.putExtra("ex_TotalPuntos2", String.valueOf(totalPuntos2));
+                intent.putExtra("ex_TotalPuntos3", String.valueOf(totalPuntos3));
+                intent.putExtra("ex_EsPersonalizado", "No");
+                startActivityForResult(intent, 0);
+            }
+        });
+    }
 
     private void MetodoBanner() {
         AdView1 = findViewById(R.id.adView1);
