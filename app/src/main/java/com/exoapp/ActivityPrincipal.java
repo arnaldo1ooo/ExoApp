@@ -125,34 +125,28 @@ public class ActivityPrincipal extends AppCompatActivity {
     }
     //Items de menu del actionbar
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.escala: {
-                Log.d("Opciones", "Abriendo escala");
-                Intent i = new Intent(this, ActivityEscala.class);
-                startActivity(i);
-                return true;
-            }
-
-            case R.id.politicas: {
-                Log.d("Opciones", "Abriendo politicas de privacidad");
-                Intent i = new Intent(this, ActivityPoliticasPrivacidad.class);
-                startActivity(i);
-                return true;
-            }
-
-            case R.id.acercade: {
-                Log.d("Opciones", "Abriendo acerca de");
-                Intent i = new Intent(this, ActivityAcercade.class);
-                startActivity(i);
-                return true;
-            }
-
-            default: {
-                Toast.makeText(this, "Error en menu actionbar " + item.getItemId(), Toast.LENGTH_LONG).show();
-                return super.onOptionsItemSelected(item);
-            }
+        if (item.getItemId() == R.id.escala) {
+            Log.d("Opciones", "Abriendo escala");
+            Intent i = new Intent(this, ActivityEscala.class);
+            startActivity(i);
+            return true;
         }
-
+        else if(item.getItemId() == R.id.politicas) {
+            Log.d("Opciones", "Abriendo politicas de privacidad");
+            Intent i = new Intent(this, ActivityPoliticasPrivacidad.class);
+            startActivity(i);
+            return true;
+        }
+        else if(item.getItemId() == R.id.acercade) {
+            Log.d("Opciones", "Abriendo acerca de");
+            Intent i = new Intent(this, ActivityAcercade.class);
+            startActivity(i);
+            return true;
+        }
+        else {
+            Toast.makeText(this, "Error en menu actionbar " + item.getItemId(), Toast.LENGTH_LONG).show();
+            return super.onOptionsItemSelected(item);
+        }
     }
 
     private void CerrarAplicacion() {

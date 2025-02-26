@@ -43,12 +43,17 @@ android {
             debuggable true
         }
     }
+
     productFlavors {
     }
-    buildToolsVersion '35.0.1'
+
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
+    }
+    
+    buildFeatures {
+        buildConfig true  // Habilita BuildConfig
     }
 }
 
