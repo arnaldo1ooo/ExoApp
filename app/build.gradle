@@ -1,5 +1,16 @@
 apply plugin: 'com.android.application'
 
+// ID de la app en AdMob (AdMob > Apps > ExoApp > Configuracion de la app). Formato: ca-app-pub-XXXXXXXXXXXXXXXX~YYYYYYYYYY
+// Reemplaza SOLO la parte "REEMPLAZAR" por la parte que va despues de la "~". Debug usa el ID de prueba de Google.
+def admobAppIdRelease = "ca-app-pub-8474453660271942~REEMPLAZAR"
+
+// Evita generar un release con el ID sin completar
+gradle.taskGraph.whenReady { graph ->
+    if (admobAppIdRelease.contains("REEMPLAZAR") && (graph.hasTask(':app:bundleRelease') || graph.hasTask(':app:assembleRelease'))) {
+        throw new GradleException("Falta el ID de la app de AdMob: edita admobAppIdRelease en app/build.gradle")
+    }
+}
+
 android {
     namespace 'com.exoapp'
 
@@ -17,7 +28,7 @@ android {
         minSdk 23
         targetSdk 36
         versionCode 23
-        versionName "1.3.1"
+        versionName "2.0.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true //Resuelve error
@@ -30,6 +41,8 @@ android {
             // Enables resource shrinking, which is performed by the Android Gradle plugin.
             shrinkResources true
 
+            manifestPlaceholders = [admobAppId: admobAppIdRelease]
+
             // Includes the default ProGuard rules files that are packaged with
             // the Android Gradle plugin. To learn more, go to the section about
             // R8 configuration files.
@@ -37,6 +50,11 @@ android {
 
             //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             //signingConfig signingConfigs.config
+        }
+
+        debug {
+            // ID de app de PRUEBA oficial de Google, para no usar anuncios reales mientras desarrollas
+            manifestPlaceholders = [admobAppId: "ca-app-pub-3940256099942544~3347511713"]
         }
     }
     productFlavors {
