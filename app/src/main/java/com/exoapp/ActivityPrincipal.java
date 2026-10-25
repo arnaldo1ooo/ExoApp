@@ -120,33 +120,32 @@ public class ActivityPrincipal extends AppCompatActivity {
     }
     //Items de menu del actionbar
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.escala: {
-                Log.d("Opciones", "Abriendo escala");
-                Intent i = new Intent(this, ActivityEscala.class);
-                startActivity(i);
-                return true;
-            }
+        //Se usa if en vez de switch porque los R.id ya no son constantes (AGP 8+/9)
+        int id = item.getItemId();
 
-            case R.id.politicas: {
-                Log.d("Opciones", "Abriendo politicas de privacidad");
-                Intent i = new Intent(this, ActivityPoliticasPrivacidad.class);
-                startActivity(i);
-                return true;
-            }
-
-            case R.id.acercade: {
-                Log.d("Opciones", "Abriendo acerca de");
-                Intent i = new Intent(this, ActivityAcercade.class);
-                startActivity(i);
-                return true;
-            }
-
-            default: {
-                Toast.makeText(this, "Error en menu actionbar " + item.getItemId(), Toast.LENGTH_LONG).show();
-                return super.onOptionsItemSelected(item);
-            }
+        if (id == R.id.escala) {
+            Log.d("Opciones", "Abriendo escala");
+            Intent i = new Intent(this, ActivityEscala.class);
+            startActivity(i);
+            return true;
         }
+
+        if (id == R.id.politicas) {
+            Log.d("Opciones", "Abriendo politicas de privacidad");
+            Intent i = new Intent(this, ActivityPoliticasPrivacidad.class);
+            startActivity(i);
+            return true;
+        }
+
+        if (id == R.id.acercade) {
+            Log.d("Opciones", "Abriendo acerca de");
+            Intent i = new Intent(this, ActivityAcercade.class);
+            startActivity(i);
+            return true;
+        }
+
+        Toast.makeText(this, "Error en menu actionbar " + item.getItemId(), Toast.LENGTH_LONG).show();
+        return super.onOptionsItemSelected(item);
 
     }
 

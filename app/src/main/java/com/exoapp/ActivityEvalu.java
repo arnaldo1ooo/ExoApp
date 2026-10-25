@@ -567,7 +567,7 @@ public class ActivityEvalu extends AppCompatActivity {
     private void CompartirCaptura(File file) {
         Uri uri;
         if (Build.VERSION.SDK_INT >= 26) { //Api 26 es Android 8.0
-            uri = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".provider", file);//Convierte la ruta del archivo en Uri para compartir
+            uri = FileProvider.getUriForFile(this, getPackageName() + ".provider", file);//Convierte la ruta del archivo en Uri para compartir
         } else {
             uri = Uri.fromFile(file);//Convierte la ruta del archivo en Uri para compartir
         }
