@@ -1,11 +1,12 @@
 package com.exoapp.conversion;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -29,6 +30,14 @@ public class ActivityConversion extends AppCompatActivity {
         btnAnterior = findViewById(R.id.btnAnterior);
         btnSiguiente = findViewById(R.id.btnSiguiente);
 
+        //Al oprimir atras del celular o gesto (Android 16+ ya no envia KEYCODE_BACK)
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Retroceder();
+            }
+        });
+
         CargarYMostrarBanner(R.id.adViewConversion);
 
         //Añadir el fragment 1
@@ -39,7 +48,17 @@ public class ActivityConversion extends AppCompatActivity {
     }
 
     public void Anterior(View view) {
-        onBackPressed(); //Retroceder
+        Retroceder();
+    }
+
+    //Vuelve al fragment anterior; si no hay ninguno en la pila, cierra el activity
+    private void Retroceder() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        if (fragmentManager.getBackStackEntryCount() > 0) {
+            fragmentManager.popBackStack();
+        } else {
+            finish();
+        }
         btnAnterior.setVisibility(View.INVISIBLE);
         btnSiguiente.setVisibility(View.VISIBLE);
     }
@@ -78,21 +97,8 @@ public class ActivityConversion extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() { //Boton atras de la app
-        onBackPressed();
-        btnAnterior.setVisibility(View.INVISIBLE);
-        btnSiguiente.setVisibility(View.VISIBLE);
+        Retroceder();
         return false;
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) { //Al oprimir boton atras del celular
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            onBackPressed();
-            btnAnterior.setVisibility(View.INVISIBLE);
-            btnSiguiente.setVisibility(View.VISIBLE);
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
     }
 
     private void CargarYMostrarBanner(int elAdBanner) {

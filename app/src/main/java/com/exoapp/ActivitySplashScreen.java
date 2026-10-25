@@ -10,6 +10,8 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.ComponentActivity;
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 
 import com.exoapp.basededatos.DatabaseAccess;
@@ -23,13 +25,21 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import static android.content.ContentValues.TAG;
 
 
-public class ActivitySplashScreen extends Activity {
+public class ActivitySplashScreen extends ComponentActivity {
     private InterstitialAd mInterstitialAd;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        //Para evitar que se cierre al oprimir boton atras (Android 16+ ya no llama a onBackPressed)
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // No hacer nada
+            }
+        });
 
         TextView tvVersionApp = findViewById(R.id.tvVersionApp);
         TextView tvVersionBD = findViewById(R.id.tvVersionBD);
@@ -49,10 +59,6 @@ public class ActivitySplashScreen extends Activity {
     protected void onStart() { // Metodo al iniciar el activity
         super.onStart();
         //CargarIntestitialAd(); //Iniciamos el Anuncio Interstitial
-    }
-
-    public void onBackPressed() { //Para evitar que se cierre al oprimir boton atras //Metodo al oprimir boton atras
-        return;
     }
 
     // ------------- METODOS -------------

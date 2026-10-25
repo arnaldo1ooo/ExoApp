@@ -10,11 +10,11 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,19 +31,6 @@ public class ActivityPrincipal extends AppCompatActivity {
     private AdView AdView1;
 
 
-    //Pregunta si realmente quieres salir de app
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            CerrarAplicacion();
-            // Si el listener devuelve true, significa que el evento esta procesado, y nadie debe hacer nada mas
-            return true;
-        }
-        // para las demas cosas, se reenvia el evento al listener habitual
-        return super.onKeyDown(keyCode, event);
-    }
-
-
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
@@ -55,6 +42,14 @@ public class ActivityPrincipal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
+
+        //Pregunta si realmente quieres salir de app al oprimir atras (Android 16+ ya no envia KEYCODE_BACK)
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                CerrarAplicacion();
+            }
+        });
 
         //Activar icono en actionbar
         getSupportActionBar().setDisplayShowHomeEnabled(true);

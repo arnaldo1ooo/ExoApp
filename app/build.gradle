@@ -11,13 +11,13 @@ android {
             storePassword '5127713-3'
         }
     }
-    compileSdk 35
+    compileSdk 36
     defaultConfig {
         applicationId 'com.exofpune'
         minSdkVersion 23
-        targetSdkVersion 35
-        versionCode 22
-        versionName "1.3.0"
+        targetSdkVersion 36
+        versionCode 23
+        versionName "1.3.1"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true //Resuelve error
