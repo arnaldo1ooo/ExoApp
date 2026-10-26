@@ -13,22 +13,13 @@ gradle.taskGraph.whenReady { graph ->
 
 android {
     namespace 'com.exoapp'
-
-    signingConfigs {
-        config {
-            keyAlias 'arnaldo1ooo'
-            keyPassword '5127713-3'
-            storeFile file('C:/Users/Arnaldo Cantero/Google Drive/Programas/ExoApp/firmadigitalExoApp.jks')
-            storePassword '5127713-3'
-        }
-    }
-    compileSdk 36
+    compileSdk = 37
     defaultConfig {
         applicationId 'com.exofpune'
         minSdk 23
-        targetSdk 36
-        versionCode 23
-        versionName "1.3.1"
+        targetSdk 37
+        versionCode 24
+        versionName "2.0.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true //Resuelve error
