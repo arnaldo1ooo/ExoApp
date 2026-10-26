@@ -141,6 +141,7 @@ public class ActivityEvalu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evalu);
+        com.exoapp.utilidades.Metodos.LimitarAnchoContenido(this);
 
         //Action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -205,7 +206,7 @@ public class ActivityEvalu extends AppCompatActivity {
 
                 intentBonificacion.putExtra("bonificacion", Stringcortado[0].replace(",", "."));
                 Log.d("Resultado", "Bonificacion a enviar a otro intent: " + Stringcortado[0]);
-                startActivityForResult(intentBonificacion, 0);
+                startActivity(intentBonificacion);
             }
         });
 
@@ -388,7 +389,7 @@ public class ActivityEvalu extends AppCompatActivity {
             if (ElSpinner.getSelectedItemId() == 0) { //Si en el spinner esta %
                 Log.d("Metodo Conversion", "Seleccion de Spinner %");
                 if (MensajesError(ElEditText, ElSpinner, PuntosObtenidos, Totalpuntos) == false) { //Revisa si cumple ELEditText
-                    PuntosObtenidos = (Double.parseDouble(ElEditText.getText().toString()) * Totalpuntos) / 100;
+                    PuntosObtenidos = (com.exoapp.utilidades.Metodos.ParseDoble(ElEditText.getText()) * Totalpuntos) / 100;
                     tvTotal.setText(df.format(PuntosObtenidos) + " de " + Totalpuntos + " Puntos");
                 } else {
                     PuntosObtenidos = 0.0;
@@ -398,9 +399,9 @@ public class ActivityEvalu extends AppCompatActivity {
 
             if (ElSpinner.getSelectedItemId() == 1) { //Si en el spinner esta Puntos
                 Log.d("Metodo Conversion", "Seleccion de Spinner Puntos");
-                if (MensajesError(ElEditText, ElSpinner, Double.parseDouble(ElEditText.getText().toString()), Totalpuntos) == false) { //Revisa si cumple ELEditText
-                    PuntosObtenidosporciento = (Double.parseDouble(ElEditText.getText().toString()) * 100) / Totalpuntos;
-                    PuntosObtenidos = Double.parseDouble(ElEditText.getText().toString());
+                if (MensajesError(ElEditText, ElSpinner, com.exoapp.utilidades.Metodos.ParseDoble(ElEditText.getText()), Totalpuntos) == false) { //Revisa si cumple ELEditText
+                    PuntosObtenidosporciento = (com.exoapp.utilidades.Metodos.ParseDoble(ElEditText.getText()) * 100) / Totalpuntos;
+                    PuntosObtenidos = com.exoapp.utilidades.Metodos.ParseDoble(ElEditText.getText());
                     tvTotal.setText(df.format(PuntosObtenidosporciento) + "% de 100%");
                 } else {
                     PuntosObtenidos = 0.0;
@@ -432,7 +433,7 @@ public class ActivityEvalu extends AppCompatActivity {
         }
 
         if (ElSpinner.getSelectedItemId() == 0) {
-            if (Double.parseDouble(ElEditText.getText().toString()) > 100) {
+            if (com.exoapp.utilidades.Metodos.ParseDoble(ElEditText.getText()) > 100) {
                 VisibilidadObjetos("invisible");
                 ElEditText.setTextColor(Color.RED);
                 Toast toast = Toast.makeText(this, "El porcentaje obtenido no puede ser mayor al 100%", Toast.LENGTH_SHORT);
@@ -443,7 +444,7 @@ public class ActivityEvalu extends AppCompatActivity {
             }
         } else {
             if (ElSpinner.getSelectedItemId() == 1) {
-                if (Double.parseDouble(ElEditText.getText().toString()) > TotalPuntos) {
+                if (com.exoapp.utilidades.Metodos.ParseDoble(ElEditText.getText()) > TotalPuntos) {
                     VisibilidadObjetos("invisible");
                     ElEditText.setTextColor(Color.RED);
                     Toast toast = Toast.makeText(this, "El punto obtenido no puede ser mayor a " + TotalPuntos + " Puntos", Toast.LENGTH_SHORT);
@@ -471,9 +472,10 @@ public class ActivityEvalu extends AppCompatActivity {
     }
 
     public void Felicitar(View view) {
-        if (Resultado >= MinExoneracion) { //Si exonero
+        //Se suma 1e-9 para evitar errores de redondeo de los double justo en el limite (ej: 31.999999999 vs 32)
+        if (Resultado + 1e-9 >= MinExoneracion) { //Si exonero
             VisibilidadObjetos("exonero");
-            if (Resultado >= MinNota5) {
+            if (Resultado + 1e-9 >= MinNota5) {
                 tvFaltante.setText("Obtuviste nota 5");
                 tvFaltanteNota5.setVisibility(TextView.INVISIBLE);
             } else {
@@ -482,10 +484,10 @@ public class ActivityEvalu extends AppCompatActivity {
                 tvFaltanteNota5.setText("Te faltó " + df.format(MinNota5 - Resultado) + " puntos para nota 5");
             }
         } else { //Si no exonero
-            if (Resultado < MinExoneracion && Resultado >= MinCasiExoneracion) { //Si el resultado está entre 32 a 32,4 Si casi exonero
+            if (Resultado + 1e-9 < MinExoneracion && Resultado + 1e-9 >= MinCasiExoneracion) { //Si el resultado está entre 32 a 32,4 Si casi exonero
                 VisibilidadObjetos("casi");
             } else {
-                if (Resultado < MinExoneracion) {
+                if (Resultado + 1e-9 < MinExoneracion) {
                     VisibilidadObjetos("noExonero");
                 }
             }
@@ -565,12 +567,8 @@ public class ActivityEvalu extends AppCompatActivity {
 
     /*  Compartir la captura de pantalla  */
     private void CompartirCaptura(File file) {
-        Uri uri;
-        if (Build.VERSION.SDK_INT >= 26) { //Api 26 es Android 8.0
-            uri = FileProvider.getUriForFile(this, getPackageName() + ".provider", file);//Convierte la ruta del archivo en Uri para compartir
-        } else {
-            uri = Uri.fromFile(file);//Convierte la ruta del archivo en Uri para compartir
-        }
+        //FileProvider en todas las versiones: Uri.fromFile lanza FileUriExposedException desde Android 7 (API 24)
+        Uri uri = FileProvider.getUriForFile(this, getPackageName() + ".provider", file);//Convierte la ruta del archivo en Uri para compartir
 
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_SEND);
@@ -578,6 +576,7 @@ public class ActivityEvalu extends AppCompatActivity {
         intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
         intent.putExtra(android.content.Intent.EXTRA_TEXT, getString(R.string.sharing_text));
         intent.putExtra(Intent.EXTRA_STREAM, uri);//pass uri here
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         startActivity(Intent.createChooser(intent, getString(R.string.share_title)));
     }
 

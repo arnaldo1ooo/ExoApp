@@ -2,6 +2,8 @@ package com.exoapp.capturapantalla;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
@@ -12,10 +14,12 @@ import java.io.FileOutputStream;
 public class ScreenshotUtils {
     /*  Method which will return Bitmap after taking screenshot. We have to pass the view which we want to take screenshot.  */
     public static Bitmap getScreenShot(View view) {
+        //getDrawingCache esta deprecado y puede devolver null: se dibuja la vista directamente en un Bitmap
         View screenView = view.getRootView();
-        screenView.setDrawingCacheEnabled(true);
-        Bitmap bitmap = Bitmap.createBitmap(screenView.getDrawingCache());
-        screenView.setDrawingCacheEnabled(false);
+        Bitmap bitmap = Bitmap.createBitmap(screenView.getWidth(), screenView.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        canvas.drawColor(Color.parseColor("#0A1228")); //Color de fondo de la app (el JPEG no tiene transparencia)
+        screenView.draw(canvas);
         return bitmap;
     }
 

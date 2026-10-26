@@ -91,4 +91,20 @@
     <string name="tvDesarrollador">LIC. ARNALDO CANTERO</string>
     <string name="tvDerechosReservados">2017 ExoAppp. Todos los derechos reservados.</string>
 
+    <!-- Rediseño: menu principal -->
+    <string name="menu_titulo">¿Qué quieres calcular?</string>
+    <string name="menu_subtitulo">Elige una opción para empezar.</string>
+    <string name="menu_exoneracion">Exoneración</string>
+    <string name="menu_exoneracion_desc">Ingresa tus puntajes y mira si exoneras</string>
+    <string name="menu_bonificacion">Bonificación</string>
+    <string name="menu_bonificacion_desc">¿Cuánto debo hacer en la final?</string>
+    <string name="menu_conversion">Conversión</string>
+    <string name="menu_conversion_desc">De punto a porcentaje y viceversa</string>
+    <string name="menu_escala">Escala de notas</string>
+    <string name="menu_escala_1">0–59%</string>
+    <string name="menu_escala_2">60–69%</string>
+    <string name="menu_escala_3">70–80%</string>
+    <string name="menu_escala_4">81–93%</string>
+    <string name="menu_escala_5">94–100%</string>
+
 </resources>

@@ -47,6 +47,7 @@ public class ActivityBonificacion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bonificacion);
+        com.exoapp.utilidades.Metodos.LimitarAnchoContenido(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Bonificación total");
 
@@ -171,7 +172,7 @@ public class ActivityBonificacion extends AppCompatActivity {
         DecimalFormat soloentero = new DecimalFormat("#");
         double bonmax = 40;
         double TotalFinal = 60;
-        double bonificacion = Double.parseDouble(etBonificacion.getText().toString());
+        double bonificacion = com.exoapp.utilidades.Metodos.ParseDoble(etBonificacion.getText());
 
         if (bonificacion > bonmax || bonificacion < 0) { //Si bonificacion es mayor a bonificacion maxima
             Toast.makeText(this, "La bonificación no puede ser mayor a " + soloentero.format(bonmax) + " Puntos", Toast.LENGTH_LONG).show();
@@ -182,7 +183,7 @@ public class ActivityBonificacion extends AppCompatActivity {
             double minpara3 = 70;
             double minpara4 = 81;
             double minpara5 = 94;
-            double bonif = Double.parseDouble(etBonificacion.getText().toString());
+            double bonif = com.exoapp.utilidades.Metodos.ParseDoble(etBonificacion.getText());
             int colorBlanco = Color.parseColor("#CCCCCC");
             int colorRojo = Color.parseColor("#8F0000");
 

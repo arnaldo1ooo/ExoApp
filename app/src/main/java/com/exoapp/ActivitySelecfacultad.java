@@ -36,6 +36,7 @@ public class ActivitySelecfacultad extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selecfacu);
+        com.exoapp.utilidades.Metodos.LimitarAnchoContenido(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Boton atras
         getSupportActionBar().setDisplayShowHomeEnabled(true); //Activar icono en actionbar
         getSupportActionBar().setIcon(R.mipmap.ic_launcher); //Asignar icono

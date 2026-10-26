@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#000a20</color>
-    <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#fd00c4d6</color>
+    <color name="colorPrimary">#0E1A3B</color>
+    <color name="colorPrimaryDark">#0A1228</color>
+    <color name="colorAccent">#22D3EE</color>
+
+    <!-- Paleta del rediseño -->
+    <color name="fondo_app">#0A1228</color>
+    <color name="superficie">#111C3A</color>
+    <color name="superficie_2">#16244A</color>
+    <color name="borde">#23335F</color>
+    <color name="texto_secundario">#A3B3D6</color>
+    <color name="texto_tenue">#7F90B8</color>
+    <color name="acento">#22D3EE</color>
+    <color name="acento_suave">#2422D3EE</color>
+    <color name="texto_sobre_acento">#04122B</color>
+    <color name="error_suave">#FB7185</color>
 </resources>

@@ -23,6 +23,7 @@ public class ActivityConversion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conversion);
+        com.exoapp.utilidades.Metodos.LimitarAnchoContenido(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Conversión");
 
@@ -40,11 +41,17 @@ public class ActivityConversion extends AppCompatActivity {
 
         CargarYMostrarBanner(R.id.adViewConversion);
 
-        //Añadir el fragment 1
-        this.getSupportFragmentManager().beginTransaction()
-                .replace(R.id.flContenedorFragment, new FragmentConversionSelectConve())
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .commit();
+        if (savedInstanceState == null) {
+            //Añadir el fragment 1 (al rotar, el sistema restaura los fragments solo)
+            this.getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.flContenedorFragment, new FragmentConversionSelectConve())
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .commit();
+        } else if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            //Al rotar en el paso 2, mantener los botones del paso 2
+            btnAnterior.setVisibility(View.VISIBLE);
+            btnSiguiente.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void Anterior(View view) {

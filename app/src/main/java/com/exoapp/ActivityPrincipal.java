@@ -69,17 +69,17 @@ public class ActivityPrincipal extends AppCompatActivity {
 
     public void Evaluaciones(View view) {
         Intent intent = new Intent(view.getContext(), ActivityTipoEvalu.class);
-        startActivityForResult(intent, 0);
+        startActivity(intent);
     }
 
     public void Bonificacion(View view) {
         Intent intent = new Intent(view.getContext(), ActivityBonificacion.class);
-        startActivityForResult(intent, 0);
+        startActivity(intent);
     }
 
     public void PorcAPunto(View view) {
         Intent intent = new Intent(view.getContext(), ActivityConversion.class);
-        startActivityForResult(intent, 0);
+        startActivity(intent);
     }
 
     private void MetodoBanner() {

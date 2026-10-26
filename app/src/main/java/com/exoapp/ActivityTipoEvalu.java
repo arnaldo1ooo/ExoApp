@@ -36,6 +36,7 @@ public class ActivityTipoEvalu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tipo_evalu);
+        com.exoapp.utilidades.Metodos.LimitarAnchoContenido(this);
         getSupportActionBar().setTitle("Tipo de evaluación");
 
         btnopc1 = findViewById(R.id.btnopc1);
@@ -72,7 +73,7 @@ public class ActivityTipoEvalu extends AppCompatActivity {
                 intent.putExtra("ex_TotalPuntos2", String.valueOf(totalPuntos2));
                 intent.putExtra("ex_TotalPuntos3", String.valueOf(totalPuntos3));
                 intent.putExtra("ex_EsPersonalizado", "No");
-                startActivityForResult(intent, 0);
+                startActivity(intent);
             }
         });
 
@@ -88,7 +89,7 @@ public class ActivityTipoEvalu extends AppCompatActivity {
                 intent.putExtra("ex_TotalPuntos2", String.valueOf(totalPuntos2));
                 intent.putExtra("ex_TotalPuntos3", String.valueOf(totalPuntos3));
                 intent.putExtra("ex_EsPersonalizado", "No");
-                startActivityForResult(intent, 0);
+                startActivity(intent);
             }
         });
 
@@ -104,7 +105,7 @@ public class ActivityTipoEvalu extends AppCompatActivity {
                 intent.putExtra("ex_TotalPuntos2", String.valueOf(totalPuntos2));
                 intent.putExtra("ex_TotalPuntos3", String.valueOf(totalPuntos3));
                 intent.putExtra("ex_EsPersonalizado", "No");
-                startActivityForResult(intent, 0);
+                startActivity(intent);
             }
         });
 
@@ -120,7 +121,7 @@ public class ActivityTipoEvalu extends AppCompatActivity {
                 intent.putExtra("ex_TotalPuntos2", String.valueOf(totalPuntos2));
                 intent.putExtra("ex_TotalPuntos3", String.valueOf(totalPuntos3));
                 intent.putExtra("ex_EsPersonalizado", "No");
-                startActivityForResult(intent, 0);
+                startActivity(intent);
             }
         });
 
@@ -136,7 +137,7 @@ public class ActivityTipoEvalu extends AppCompatActivity {
                 intent.putExtra("ex_TotalPuntos2", String.valueOf(totalPuntos2));
                 intent.putExtra("ex_TotalPuntos3", String.valueOf(totalPuntos3));
                 intent.putExtra("ex_EsPersonalizado", "No");
-                startActivityForResult(intent, 0);
+                startActivity(intent);
             }
         });
 
@@ -152,7 +153,7 @@ public class ActivityTipoEvalu extends AppCompatActivity {
                 intent.putExtra("ex_TotalPuntos2", String.valueOf(totalPuntos2));
                 intent.putExtra("ex_TotalPuntos3", String.valueOf(totalPuntos3));
                 intent.putExtra("ex_EsPersonalizado", "No");
-                startActivityForResult(intent, 0);
+                startActivity(intent);
             }
         });
     }

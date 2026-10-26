@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -27,6 +28,8 @@ import static android.content.ContentValues.TAG;
 
 public class ActivitySplashScreen extends ComponentActivity {
     private InterstitialAd mInterstitialAd;
+    private Handler handlerSplash;
+    private Runnable runnableSplash;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +51,23 @@ public class ActivitySplashScreen extends ComponentActivity {
         tvVersionBD.setText("Versión de la BD: " + ObtenerVersionBD());
 
         CargarInterstitial();
-        new Handler().postDelayed(new Runnable() {
+        handlerSplash = new Handler(Looper.getMainLooper());
+        runnableSplash = new Runnable() {
             @Override
             public void run() {
                 IniciarSiguienteActivity();
             }
-        }, 6000);
+        };
+        handlerSplash.postDelayed(runnableSplash, 6000);
+    }
+
+    @Override
+    protected void onDestroy() {
+        //Cancelar la espera para que no se abra la pantalla principal dos veces (rotacion o salida anticipada)
+        if (handlerSplash != null) {
+            handlerSplash.removeCallbacks(runnableSplash);
+        }
+        super.onDestroy();
     }
 
     protected void onStart() { // Metodo al iniciar el activity
@@ -65,8 +79,12 @@ public class ActivitySplashScreen extends ComponentActivity {
 
     private void IniciarSiguienteActivity() {
         //Ejecutar el siguiente activity
+        if (isFinishing()) {
+            return;
+        }
         Intent intent = new Intent(ActivitySplashScreen.this, ActivityPrincipal.class);
         startActivity(intent);
+        finish(); //El splash no debe quedar en la pila: al salir de Principal se cierra la app
     }
 
     private String ObtenerVersionApp() { //Obtener version app
@@ -105,7 +123,7 @@ public class ActivitySplashScreen extends ComponentActivity {
                 mInterstitialAd = interstitialAd;
                 Log.i(TAG, "Se cargó Interstitial");
 
-                if (mInterstitialAd != null) { //Mostrar el Interstitial
+                if (mInterstitialAd != null && !isFinishing() && !isDestroyed()) { //Mostrar el Interstitial (solo si el splash sigue abierto)
                     mInterstitialAd.show(ActivitySplashScreen.this);
                 } else {
                     Log.d("TAG", "El anuncio intersticial aún no esta listo.");

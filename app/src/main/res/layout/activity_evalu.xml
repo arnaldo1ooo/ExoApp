@@ -6,7 +6,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo"
+    android:background="@drawable/fondo_app"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -197,10 +197,10 @@
             android:layout_width="127dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:background="@drawable/boton_borde_redondo"
+            android:background="@drawable/boton_primario"
             android:onClick="Calcular"
             android:text="@string/btnCalcular"
-            android:textColor="#ffffff"
+            android:textColor="@color/texto_sobre_acento"
             android:textSize="35sp" />
 
         <TextView

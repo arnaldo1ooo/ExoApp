@@ -67,7 +67,6 @@ public class FragmentConversionConver extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
             selectRadioButton = getArguments().getString("radiobuttonselect");
 
-            getArguments().clear();
         }
     }
 
@@ -86,14 +85,14 @@ public class FragmentConversionConver extends Fragment {
         btnOk = vistaFragment.findViewById(R.id.btnOk);
 
 
-        if (selectRadioButton.equals("puntoaporc")) {
+        if ("puntoaporc".equals(selectRadioButton)) {
             tvTituloTotalConver.setText("¿De cuantos puntos es el examen?");
             tvTotalConverUnidad.setText("Puntos");
             tvTituloValorObte.setText("¿Cuantos puntos hiciste?");
             tvValorObteUnidad.setText("Puntos");
         }
 
-        if (selectRadioButton.equals("porcapunto")) {
+        if ("porcapunto".equals(selectRadioButton)) {
             tvTituloTotalConver.setText("¿De cuantos puntos es el examen?");
             tvTotalConverUnidad.setText("Puntos");
             tvTituloValorObte.setText("¿Cuantos porciento hiciste?");
@@ -124,12 +123,12 @@ public class FragmentConversionConver extends Fragment {
 
     public void Convertir(View v) {
         if (ComprobarCampos(v) == true) {
-            Double totalValor = Double.parseDouble(etTotalValor.getText().toString());
-            Double valorObte = Double.parseDouble(etValorObte.getText().toString());
+            Double totalValor = com.exoapp.utilidades.Metodos.ParseDoble(etTotalValor.getText());
+            Double valorObte = com.exoapp.utilidades.Metodos.ParseDoble(etValorObte.getText());
             Double totalPorc = 100.0;
             Double conversion;
 
-            if (selectRadioButton.equals("puntoaporc")) {
+            if ("puntoaporc".equals(selectRadioButton)) {
                 conversion = (valorObte * totalPorc) / totalValor;
                 if (conversion.isNaN()) {
                     conversion = 0.0;
@@ -137,7 +136,7 @@ public class FragmentConversionConver extends Fragment {
                 tvResultadoConver.setText("Hiciste " + df.format(conversion) + "% de " + df.format(totalPorc) + "%");
             }
 
-            if (selectRadioButton.equals("porcapunto")) {
+            if ("porcapunto".equals(selectRadioButton)) {
                 conversion = (valorObte * totalValor) / totalPorc;
                 tvResultadoConver.setText("Hiciste " + df.format(conversion) + " Puntos de " + df.format(totalValor) + " Puntos");
             }
@@ -155,8 +154,8 @@ public class FragmentConversionConver extends Fragment {
         if (etValorObte.getText().toString().equals("")) {
             etValorObte.setText("0");
         }
-        Double totalValor = Double.parseDouble(etTotalValor.getText().toString());
-        Double valorObte = Double.parseDouble(etValorObte.getText().toString());
+        Double totalValor = com.exoapp.utilidades.Metodos.ParseDoble(etTotalValor.getText());
+        Double valorObte = com.exoapp.utilidades.Metodos.ParseDoble(etValorObte.getText());
         Double totalPorc = 100.0;
 
         if (totalPorc < valorObte && tvValorObteUnidad.getText().toString().equals("%")) {
