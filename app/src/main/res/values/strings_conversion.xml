@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="conv_intro">Convierte el puntaje de un examen en porcentaje, o el porcentaje en puntos. Sirve para saber a qué nota equivale lo que hiciste.</string>
+    <string name="conv_modo_puntos_a_porc" formatted="false">Puntos → %</string>
+    <string name="conv_modo_porc_a_puntos" formatted="false">% → Puntos</string>
+    <string name="conv_total_titulo">¿De cuántos puntos es el examen?</string>
+    <string name="conv_total_hint">Ej: 30</string>
+    <string name="conv_unidad_puntos">puntos</string>
+    <string name="conv_obtenido_puntos_titulo">¿Cuántos puntos hiciste?</string>
+    <string name="conv_obtenido_porc_titulo">¿Qué porcentaje hiciste?</string>
+    <string name="conv_obtenido_puntos_hint">Ej: 18</string>
+    <string name="conv_obtenido_porc_hint">Ej: 60</string>
+    <string name="conv_ejemplo_puntos_a_porc" formatted="false">Ejemplo: si hiciste 18 puntos en un examen de 30, sacaste 60%.</string>
+    <string name="conv_ejemplo_porc_a_puntos" formatted="false">Ejemplo: si sacaste 60% en un examen de 30 puntos, hiciste 18 puntos.</string>
+    <string name="conv_resultado_titulo">Resultado</string>
+    <string name="conv_completa">Completa los dos datos para ver el resultado.</string>
+    <string name="conv_unidad_porc" formatted="false">%</string>
+    <string name="conv_aviso_total_cero">El total del examen debe ser mayor a 0.</string>
+    <string name="conv_aviso_puntos_mayor">Los puntos que hiciste no pueden ser más que el total del examen (%1$s).</string>
+    <string name="conv_aviso_porc_mayor" formatted="false">El porcentaje no puede ser mayor a 100%.</string>
+</resources>

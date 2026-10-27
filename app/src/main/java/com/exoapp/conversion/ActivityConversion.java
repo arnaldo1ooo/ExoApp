@@ -1,140 +1,147 @@
 package com.exoapp.conversion;
 
-import androidx.activity.OnBackPressedCallback;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.exoapp.R;
-import com.google.android.gms.ads.AdListener;
+import com.exoapp.utilidades.Metodos;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import java.text.DecimalFormat;
+
+/**
+ * Conversion en una sola pantalla: el usuario elige "Puntos -> %" o "% -> Puntos",
+ * escribe los dos datos y el resultado se actualiza solo mientras escribe.
+ */
 public class ActivityConversion extends AppCompatActivity {
-    private Button btnAnterior, btnSiguiente;
-    private AdView AdView1;
+    private RadioGroup rgModo;
+    private EditText etTotalValor, etValorObte;
+    private TextView tvTituloValorObte, tvValorObteUnidad, tvEjemploConver,
+            tvAvisoConver, tvResultadoConver, tvDetalleConver;
+    private final DecimalFormat df = Metodos.FormatoDecimal();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conversion);
-        com.exoapp.utilidades.Metodos.LimitarAnchoContenido(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Conversión");
 
+        rgModo = findViewById(R.id.rgModo);
+        etTotalValor = findViewById(R.id.etTotalValor);
+        etValorObte = findViewById(R.id.etValorObte);
+        tvTituloValorObte = findViewById(R.id.tvTituloValorObte);
+        tvValorObteUnidad = findViewById(R.id.tvValorObteUnidad);
+        tvEjemploConver = findViewById(R.id.tvEjemploConver);
+        tvAvisoConver = findViewById(R.id.tvAvisoConver);
+        tvResultadoConver = findViewById(R.id.tvResultadoConver);
+        tvDetalleConver = findViewById(R.id.tvDetalleConver);
 
-        btnAnterior = findViewById(R.id.btnAnterior);
-        btnSiguiente = findViewById(R.id.btnSiguiente);
+        Metodos.ConfigurarCampoDecimal(etTotalValor);
+        Metodos.ConfigurarCampoDecimal(etValorObte);
 
-        //Al oprimir atras del celular o gesto (Android 16+ ya no envia KEYCODE_BACK)
-        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+        TextWatcher alEscribir = new TextWatcher() {
             @Override
-            public void handleOnBackPressed() {
-                Retroceder();
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Actualizar();
+            }
+        };
+        etTotalValor.addTextChangedListener(alEscribir);
+        etValorObte.addTextChangedListener(alEscribir);
+
+        rgModo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                etValorObte.setText(""); // el dato cambia de unidad (puntos o %), se borra para no confundir
+                Actualizar();
             }
         });
 
-        CargarYMostrarBanner(R.id.adViewConversion);
+        AdView adView = findViewById(R.id.adViewConversion);
+        adView.loadAd(new AdRequest.Builder().build());
 
-        if (savedInstanceState == null) {
-            //Añadir el fragment 1 (al rotar, el sistema restaura los fragments solo)
-            this.getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.flContenedorFragment, new FragmentConversionSelectConve())
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .commit();
-        } else if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-            //Al rotar en el paso 2, mantener los botones del paso 2
-            btnAnterior.setVisibility(View.VISIBLE);
-            btnSiguiente.setVisibility(View.INVISIBLE);
+        Actualizar();
+    }
+
+    private boolean EsPuntosAPorc() {
+        return rgModo.getCheckedRadioButtonId() == R.id.rbPuntoAPorc;
+    }
+
+    private void Actualizar() {
+        boolean puntosAPorc = EsPuntosAPorc();
+
+        // Textos que dependen del modo
+        tvTituloValorObte.setText(puntosAPorc ? R.string.conv_obtenido_puntos_titulo : R.string.conv_obtenido_porc_titulo);
+        tvValorObteUnidad.setText(puntosAPorc ? R.string.conv_unidad_puntos : R.string.conv_unidad_porc);
+        etValorObte.setHint(puntosAPorc ? R.string.conv_obtenido_puntos_hint : R.string.conv_obtenido_porc_hint);
+        tvEjemploConver.setText(puntosAPorc ? R.string.conv_ejemplo_puntos_a_porc : R.string.conv_ejemplo_porc_a_puntos);
+
+        String textoTotal = etTotalValor.getText().toString().trim();
+        String textoObte = etValorObte.getText().toString().trim();
+        double total = Metodos.ParseDoble(textoTotal);
+        double obte = Metodos.ParseDoble(textoObte);
+
+        if (textoTotal.isEmpty() || textoObte.isEmpty()) {
+            Mostrar("—", getString(R.string.conv_completa), null);
+            return;
         }
-    }
+        if (total <= 0) {
+            Mostrar("—", getString(R.string.conv_completa), getString(R.string.conv_aviso_total_cero));
+            return;
+        }
 
-    public void Anterior(View view) {
-        Retroceder();
-    }
-
-    //Vuelve al fragment anterior; si no hay ninguno en la pila, cierra el activity
-    private void Retroceder() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        if (fragmentManager.getBackStackEntryCount() > 0) {
-            fragmentManager.popBackStack();
+        if (puntosAPorc) {
+            if (obte > total) {
+                Mostrar("—", getString(R.string.conv_completa),
+                        getString(R.string.conv_aviso_puntos_mayor, df.format(total)));
+                return;
+            }
+            double porc = (obte * 100) / total;
+            Mostrar(df.format(porc) + "%",
+                    "Hiciste " + df.format(obte) + " de " + df.format(total) + " puntos, que es el "
+                            + df.format(porc) + "% del examen.", null);
         } else {
-            finish();
+            if (obte > 100) {
+                Mostrar("—", getString(R.string.conv_completa), getString(R.string.conv_aviso_porc_mayor));
+                return;
+            }
+            double puntos = (obte * total) / 100;
+            Mostrar(df.format(puntos) + " puntos",
+                    "El " + df.format(obte) + "% de un examen de " + df.format(total)
+                            + " puntos equivale a " + df.format(puntos) + " puntos.", null);
         }
-        btnAnterior.setVisibility(View.INVISIBLE);
-        btnSiguiente.setVisibility(View.VISIBLE);
     }
 
-    public void Siguiente(View view) {
-        FragmentConversionSelectConve fragmentConversionSelectConve = (FragmentConversionSelectConve) this.getSupportFragmentManager().findFragmentById(R.id.flContenedorFragment);
-
-        String radioButtonSelect = "";
-        if (fragmentConversionSelectConve.getRbPuntoAPorc().isChecked()) {
-            radioButtonSelect = "puntoaporc";
+    private void Mostrar(String resultado, String detalle, String aviso) {
+        tvResultadoConver.setText(resultado);
+        tvDetalleConver.setText(detalle);
+        if (aviso == null) {
+            tvAvisoConver.setVisibility(View.GONE);
+        } else {
+            tvAvisoConver.setText(aviso);
+            tvAvisoConver.setVisibility(View.VISIBLE);
         }
-        if (fragmentConversionSelectConve.getRbPorcAPunto().isChecked()) {
-            radioButtonSelect = "porcapunto";
-        }
-
-        //Enviar respuesta
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("radiobuttonselect", radioButtonSelect); //Variable a enviar
-        FragmentConversionConver fragmentConversionConver = new FragmentConversionConver();
-        fragmentConversionConver.setArguments(bundle); //Asignar bundle como argumento al fragment
-
-        MostrarFragmentSeleccionado(fragmentConversionConver, R.id.flContenedorFragment);
-
-        btnAnterior.setVisibility(View.VISIBLE);
-        btnSiguiente.setVisibility(View.INVISIBLE);
-    }
-
-
-    private void MostrarFragmentSeleccionado(Fragment fragment, int elContenedor) {
-        this.getSupportFragmentManager().beginTransaction()
-                .replace(elContenedor, fragment)
-                .addToBackStack(null) //Agrega a la pila para que el fragment anterior no se pierda
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .commit();
     }
 
     @Override
-    public boolean onSupportNavigateUp() { //Boton atras de la app
-        Retroceder();
-        return false;
-    }
-
-    private void CargarYMostrarBanner(int elAdBanner) {
-        AdView1 = findViewById(elAdBanner);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        AdView1.loadAd(adRequest);
-        AdView1.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                // Código a ejecutar cuando un anuncio termina de cargarse.
-            }
-
-            @Override
-            public void onAdOpened() {
-                // Código que se ejecutará cuando un anuncio abra una
-                // superposición que cubre la pantalla.
-            }
-
-            @Override
-            public void onAdClicked() {
-                // Código que se ejecutará cuando el usuario
-                // haga clic en un anuncio.
-            }
-
-            @Override
-            public void onAdClosed() {
-                // Código a ejecutar cuando el usuario está a punto de regresar
-                // a la aplicación después de pulsar en un anuncio.
-            }
-        });
+    public boolean onSupportNavigateUp() { // Boton atras de la barra
+        finish();
+        return true;
     }
 }

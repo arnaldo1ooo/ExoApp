@@ -74,7 +74,7 @@ public class ActivityEvalu extends AppCompatActivity {
     private ImageView ivEmoji;
     private AdView AdView1;
     private Button btnBonificacion;
-    DecimalFormat df = new DecimalFormat("#.###");
+    DecimalFormat df = com.exoapp.utilidades.Metodos.FormatoDecimal();
 
 
     @Override
@@ -152,6 +152,9 @@ public class ActivityEvalu extends AppCompatActivity {
         et1parcial = findViewById(R.id.et1Parcial);
         et2parcial = findViewById(R.id.et2Parcial);
         etTp = findViewById(R.id.etTp);
+        com.exoapp.utilidades.Metodos.ConfigurarCampoDecimal(et1parcial);
+        com.exoapp.utilidades.Metodos.ConfigurarCampoDecimal(et2parcial);
+        com.exoapp.utilidades.Metodos.ConfigurarCampoDecimal(etTp);
         tvResultado = findViewById(R.id.tvResultado);
         sp1 = findViewById(R.id.sp1);
         sp2 = findViewById(R.id.sp2);
@@ -204,7 +207,7 @@ public class ActivityEvalu extends AppCompatActivity {
                 Intent intentBonificacion = new Intent(v.getContext(), ActivityBonificacion.class);
                 String[] Stringcortado = tvResultado.getText().toString().split(" ");
 
-                intentBonificacion.putExtra("bonificacion", Stringcortado[0].replace(",", "."));
+                intentBonificacion.putExtra("bonificacion", Stringcortado[0]);
                 Log.d("Resultado", "Bonificacion a enviar a otro intent: " + Stringcortado[0]);
                 startActivity(intentBonificacion);
             }
@@ -265,7 +268,7 @@ public class ActivityEvalu extends AppCompatActivity {
         OcultarTeclado(v);
         SiEsVacio();
 
-        DecimalFormat df = new DecimalFormat("#.###");
+        DecimalFormat df = com.exoapp.utilidades.Metodos.FormatoDecimal();
         if (MensajesError(et1parcial, sp1, PuntosObtenidos1, TotalPuntos1) == false &&
                 MensajesError(et2parcial, sp2, PuntosObtenidos2, TotalPuntos2) == false &&
                 MensajesError(etTp, sp3, PuntosObtenidos3, TotalPuntos3) == false) {
@@ -333,7 +336,7 @@ public class ActivityEvalu extends AppCompatActivity {
         }
 
         //Asignamos lo anterior
-        DecimalFormat df = new DecimalFormat("#.###");
+        DecimalFormat df = com.exoapp.utilidades.Metodos.FormatoDecimal();
         tvTotalText1.setText(df.format(PuntosObtenidos1) + " de " + TotalPuntos1 + " Puntos");
         tvTotalText2.setText(df.format(PuntosObtenidos2) + " de " + TotalPuntos2 + " Puntos");
         tvTotalText3.setText(df.format(PuntosObtenidos3) + " de " + TotalPuntos3 + " Puntos");
@@ -384,7 +387,7 @@ public class ActivityEvalu extends AppCompatActivity {
     Double PuntosObtenidosporciento;
 
     public double ConversionPorcyPunto(EditText ElEditText, Spinner ElSpinner, TextView tvTotal, int Totalpuntos, double PuntosObtenidos) {
-        DecimalFormat df = new DecimalFormat("#.###");
+        DecimalFormat df = com.exoapp.utilidades.Metodos.FormatoDecimal();
         if (ElEditText.getText().toString().equals("") == false) {
             if (ElSpinner.getSelectedItemId() == 0) { //Si en el spinner esta %
                 Log.d("Metodo Conversion", "Seleccion de Spinner %");

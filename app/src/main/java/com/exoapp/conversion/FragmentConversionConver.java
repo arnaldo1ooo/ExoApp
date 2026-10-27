@@ -43,7 +43,7 @@ public class FragmentConversionConver extends Fragment {
     private EditText etTotalValor, etValorObte;
     private Button btnOk;
     private Metodos metodos = new Metodos();
-    private DecimalFormat df = new DecimalFormat("#.##");
+    private DecimalFormat df = com.exoapp.utilidades.Metodos.FormatoDecimal();
 
     public FragmentConversionConver() {
         // Required empty public constructor
@@ -82,6 +82,8 @@ public class FragmentConversionConver extends Fragment {
         tvTotalConverUnidad = vistaFragment.findViewById(R.id.tvTotalValorUnidad);
         tvValorObteUnidad = vistaFragment.findViewById(R.id.tvValorObteUnidad);
         etValorObte = vistaFragment.findViewById(R.id.etValorObte);
+        com.exoapp.utilidades.Metodos.ConfigurarCampoDecimal(etTotalValor);
+        com.exoapp.utilidades.Metodos.ConfigurarCampoDecimal(etValorObte);
         btnOk = vistaFragment.findViewById(R.id.btnOk);
 
 

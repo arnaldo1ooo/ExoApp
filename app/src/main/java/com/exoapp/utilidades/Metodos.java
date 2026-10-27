@@ -42,6 +42,35 @@ public class Metodos {
         }
     }
 
+    /* Formato de numeros de la app: coma decimal y maximo 2 decimales (sin ceros sobrantes: 36,5 / 36,55 / 36). */
+    public static java.text.DecimalFormat FormatoDecimal() {
+        java.text.DecimalFormatSymbols simbolos = new java.text.DecimalFormatSymbols(java.util.Locale.US);
+        simbolos.setDecimalSeparator(',');
+        java.text.DecimalFormat formato = new java.text.DecimalFormat("0.##", simbolos);
+        formato.setRoundingMode(java.math.RoundingMode.HALF_UP);
+        formato.setGroupingUsed(false);
+        return formato;
+    }
+
+    /* Campo numerico: solo digitos y una coma, maximo 2 decimales. Si el teclado manda un punto, lo cambia por coma. */
+    public static void ConfigurarCampoDecimal(android.widget.EditText campo) {
+        campo.setKeyListener(android.text.method.DigitsKeyListener.getInstance("0123456789.,"));
+        campo.setFilters(new android.text.InputFilter[]{new android.text.InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence origen, int inicio, int fin,
+                                       android.text.Spanned destino, int dInicio, int dFin) {
+                String nuevo = origen.subSequence(inicio, fin).toString().replace('.', ',');
+                String actual = destino.toString();
+                String resultado = actual.substring(0, dInicio) + nuevo + actual.substring(dFin);
+                // Solo una coma y hasta 2 decimales; si no cumple, se rechaza lo tipeado
+                if (!resultado.matches("[0-9]*(,[0-9]{0,2})?")) {
+                    return "";
+                }
+                return nuevo;
+            }
+        }});
+    }
+
     /* Convierte el texto de un EditText a double aceptando coma o punto decimal. Devuelve 0 si no es un numero valido. */
     public static double ParseDoble(CharSequence texto) {
         if (texto == null) {

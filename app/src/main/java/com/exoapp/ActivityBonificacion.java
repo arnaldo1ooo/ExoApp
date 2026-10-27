@@ -63,6 +63,7 @@ public class ActivityBonificacion extends AppCompatActivity {
         tvTituloNota5 = (TextView) findViewById(R.id.tvTituloNota5);
         tvNota5 = (TextView) findViewById(R.id.tvNota5);
         btnCalcular = (Button) findViewById(R.id.btnCalcular);
+        com.exoapp.utilidades.Metodos.ConfigurarCampoDecimal((android.widget.EditText) etBonificacion);
         cv2 = (CardView) findViewById(R.id.cardView2);
         cv3 = (CardView) findViewById(R.id.cardView3);
         cv4 = (CardView) findViewById(R.id.cardView4);
@@ -73,7 +74,7 @@ public class ActivityBonificacion extends AppCompatActivity {
         try { //Recibir objeto Bonificacion
             String BonificacionRecibido = getIntent().getExtras().getString("bonificacion");
             Log.d("Boni", "La bonificacion recibida es: " + BonificacionRecibido + "");
-            etBonificacion.setText(BonificacionRecibido);
+            etBonificacion.setText(BonificacionRecibido.replace('.', ','));
 
         } catch (Exception e) {
             Log.d("Error trycatch ", "No se recibio ninguna bonificacion " + e);
@@ -168,7 +169,7 @@ public class ActivityBonificacion extends AppCompatActivity {
         if (etBonificacion.getText().toString().equals("")) {//Si es vacio
             etBonificacion.setText("0");
         }
-        DecimalFormat df = new DecimalFormat("#.###");
+        DecimalFormat df = com.exoapp.utilidades.Metodos.FormatoDecimal();
         DecimalFormat soloentero = new DecimalFormat("#");
         double bonmax = 40;
         double TotalFinal = 60;
@@ -185,7 +186,7 @@ public class ActivityBonificacion extends AppCompatActivity {
             double minpara5 = 94;
             double bonif = com.exoapp.utilidades.Metodos.ParseDoble(etBonificacion.getText());
             int colorBlanco = Color.parseColor("#CCCCCC");
-            int colorRojo = Color.parseColor("#FB7185");
+            int colorRojo = Color.parseColor("#8F0000");
 
             double Nota2 = minpara2 - bonif;
             if (Nota2 > TotalFinal) {
