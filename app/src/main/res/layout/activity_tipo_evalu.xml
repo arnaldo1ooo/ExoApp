@@ -6,149 +6,132 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo_app"
+    android:fitsSystemWindows="true"
     tools:context="com.exoapp.ActivityTipoEvalu">
 
-    <LinearLayout
+    <!-- Contenido con scroll y ancho maximo: nunca se recorta y en tablets queda centrado -->
+    <ScrollView
+        android:id="@+id/scrollTipoEvalu"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="3dp"
-        android:orientation="vertical"
-        ads:layout_constraintBottom_toTopOf="@+id/tvVersionApp"
-        ads:layout_constraintEnd_toEndOf="parent"
-        ads:layout_constraintHorizontal_bias="0.111"
-        ads:layout_constraintStart_toStartOf="parent"
-        ads:layout_constraintTop_toTopOf="parent">
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@+id/tvVersionApp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="@dimen/ancho_max_contenido">
 
-        <TextView
-            android:id="@+id/tvTitulo"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="8dp"
-            android:fontFamily="sans-serif-smallcaps"
-            android:text="@string/seleccione_el_tipo_de_evaluaci_n"
-            android:textAlignment="center"
-            android:textColor="#ffffff"
-            android:textSize="19sp"
-            android:typeface="serif"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            android:orientation="vertical"
+            android:paddingStart="@dimen/margen_pantalla_h"
+            android:paddingTop="@dimen/margen_pantalla_v"
+            android:paddingEnd="@dimen/margen_pantalla_h"
+            android:paddingBottom="@dimen/margen_pantalla_v">
 
-        <Button
-            android:id="@+id/btnopc1"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/boton_borde_redondo"
-            android:soundEffectsEnabled="false"
-            android:text="@string/_15_15_10"
-            android:textColor="#ffffff"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.128" />
+            <TextView
+                android:id="@+id/tvTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/seleccione_el_tipo_de_evaluaci_n"
+                android:textColor="#F2F6FF"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btnopc2"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/boton_borde_redondo"
-            android:soundEffectsEnabled="false"
-            android:text="@string/_20_20_0"
-            android:textColor="#ffffff"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/btnopc1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/boton_borde_redondo"
+                android:minHeight="@dimen/alto_minimo_boton"
+                android:soundEffectsEnabled="false"
+                android:text="@string/_15_15_10"
+                android:textAllCaps="false"
+                android:textColor="#F2F6FF"
+                android:textSize="26sp" />
 
-        <Button
-            android:id="@+id/btnopc3"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/boton_borde_redondo"
-            android:text="@string/_10_10_20"
-            android:textColor="#ffffff"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/btnopc2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/boton_borde_redondo"
+                android:minHeight="@dimen/alto_minimo_boton"
+                android:soundEffectsEnabled="false"
+                android:text="@string/_20_20_0"
+                android:textAllCaps="false"
+                android:textColor="#F2F6FF"
+                android:textSize="26sp" />
 
-        <Button
-            android:id="@+id/btnopc4"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/boton_borde_redondo"
-            android:text="@string/_15_20_5"
-            android:textColor="#ffffff"
-            android:textSize="30sp"
-            ads:layout_constraintBottom_toBottomOf="parent"
-            ads:layout_constraintEnd_toEndOf="parent"
-            ads:layout_constraintStart_toStartOf="parent"
-            ads:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/btnopc3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/boton_borde_redondo"
+                android:minHeight="@dimen/alto_minimo_boton"
+                android:text="@string/_10_10_20"
+                android:textAllCaps="false"
+                android:textColor="#F2F6FF"
+                android:textSize="26sp" />
 
-        <Button
-            android:id="@+id/btnopc5"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/boton_borde_redondo"
-            android:text="@string/_10_20_5"
-            android:textColor="#ffffff"
-            android:textSize="30sp"
-            ads:layout_constraintBottom_toBottomOf="parent"
-            ads:layout_constraintEnd_toEndOf="parent"
-            ads:layout_constraintStart_toStartOf="parent"
-            ads:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/btnopc4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/boton_borde_redondo"
+                android:minHeight="@dimen/alto_minimo_boton"
+                android:text="@string/_15_20_5"
+                android:textAllCaps="false"
+                android:textColor="#F2F6FF"
+                android:textSize="26sp" />
 
-        <Button
-            android:id="@+id/btnopc6"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/boton_borde_redondo"
-            android:text="@string/_15_20_10"
-            android:textColor="#ffffff"
-            android:textSize="30sp"
-            ads:layout_constraintBottom_toBottomOf="parent"
-            ads:layout_constraintEnd_toEndOf="parent"
-            ads:layout_constraintStart_toStartOf="parent"
-            ads:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/btnopc5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/boton_borde_redondo"
+                android:minHeight="@dimen/alto_minimo_boton"
+                android:text="@string/_10_20_5"
+                android:textAllCaps="false"
+                android:textColor="#F2F6FF"
+                android:textSize="26sp" />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/btnopc6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/boton_borde_redondo"
+                android:minHeight="@dimen/alto_minimo_boton"
+                android:text="@string/_15_20_10"
+                android:textAllCaps="false"
+                android:textColor="#F2F6FF"
+                android:textSize="26sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tvVersionApp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="@string/tv_versionapp"
+        android:textColor="@color/texto_tenue"
+        android:textSize="12sp"
+        ads:layout_constraintBottom_toTopOf="@+id/adView1"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView1"
@@ -160,23 +143,4 @@
         ads:layout_constraintEnd_toEndOf="parent"
         ads:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/tvVersionApp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="5dp"
-        android:gravity="end"
-        android:text="@string/tv_versionapp"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        ads:layout_constraintBottom_toTopOf="@+id/adView1"
-        ads:layout_constraintEnd_toEndOf="parent"
-        ads:layout_constraintStart_toStartOf="parent" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-

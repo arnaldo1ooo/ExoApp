@@ -68,7 +68,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.8.0'
     testImplementation 'junit:junit:4.13.2'
     implementation 'com.google.android.gms:play-services-ads:25.5.0'
-    implementation 'com.google.android.gms:play-services-maps:20.1.0'
 
     implementation 'com.readystatesoftware.sqliteasset:sqliteassethelper:2.0.1'
     implementation 'androidx.recyclerview:recyclerview:1.4.0'

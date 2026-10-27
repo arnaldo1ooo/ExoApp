@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Colores de la escala de notas (1 a 5), usados en la pantalla Escala y en Bonificacion -->
+    <color name="nota_1">#C7382F</color>
+    <color name="nota_2">#FF5722</color>
+    <color name="nota_3">#FF9800</color>
+    <color name="nota_4">#8BC34A</color>
+    <color name="nota_5">#009B06</color>
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Medidas comunes de las pantallas: un solo lugar para ajustar margenes -->
+    <dimen name="margen_pantalla_h">20dp</dimen>
+    <dimen name="margen_pantalla_v">16dp</dimen>
+    <dimen name="ancho_max_contenido">560dp</dimen>
+    <dimen name="alto_minimo_boton">56dp</dimen>
+</resources>

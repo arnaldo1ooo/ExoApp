@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -89,9 +88,6 @@ public class ActivitySelecfacultad extends AppCompatActivity {
 
         recyclerview.setAdapter(adaptador);
 
-        //Linea divisor de RecyclerView
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, layoutManager.getOrientation());
-        recyclerview.addItemDecoration(dividerItemDecoration);
     }
 
 

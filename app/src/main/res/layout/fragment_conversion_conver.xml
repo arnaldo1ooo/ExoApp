@@ -1,66 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".conversion.FragmentConversionConver">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/margen_pantalla_h"
+        android:paddingTop="24dp"
+        android:paddingEnd="@dimen/margen_pantalla_h"
+        android:paddingBottom="@dimen/margen_pantalla_v">
 
         <TextView
             android:id="@+id/tvTituloTotalConver"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:gravity="center"
             android:text="@string/tvTituloPuntoAPorc"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            app:autoSizeTextType="uniform" />
+            android:textSize="20sp" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout2"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/etTotalValor"
-                android:layout_width="150dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="104dp"
+                android:layout_weight="1"
                 android:backgroundTint="#FFFFFF"
-                android:ems="10"
-                android:gravity="right|center_vertical"
+                android:gravity="end|center_vertical"
                 android:importantForAutofill="no"
                 android:inputType="numberDecimal"
+                android:minHeight="48dp"
                 android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/tvTotalValorUnidad"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginBottom="3dp"
-                android:gravity="left|center_vertical"
+                android:minWidth="64dp"
+                android:gravity="start|center_vertical"
                 android:text="TextView"
                 android:textColor="#FFFFFF"
-                android:textSize="21sp"
-                app:autoSizeTextType="uniform"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/etTotalValor"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:textSize="21sp" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvTituloValorObte"
@@ -70,56 +64,49 @@
             android:gravity="center"
             android:text="@string/tvTituloValor"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            app:autoSizeTextType="uniform" />
+            android:textSize="20sp" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout3"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp">
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/etValorObte"
-                android:layout_width="150dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
+                android:layout_weight="1"
                 android:backgroundTint="#FFFFFF"
-                android:ems="10"
-                android:gravity="right|center_vertical"
+                android:gravity="end|center_vertical"
+                android:importantForAutofill="no"
                 android:inputType="numberDecimal"
+                android:minHeight="48dp"
                 android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/tvValorObteUnidad"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginBottom="3dp"
-                android:gravity="left|center_vertical"
+                android:minWidth="64dp"
+                android:gravity="start|center_vertical"
                 android:text="TextView"
                 android:textColor="#FFFFFF"
-                android:textSize="21sp"
-                app:autoSizeTextType="uniform"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/etValorObte"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:textSize="21sp" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/btnOk"
-            android:layout_width="99dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/boton_primario"
+            android:minHeight="@dimen/alto_minimo_boton"
             android:text="@string/btnCalcular"
+            android:textColor="@color/texto_sobre_acento"
             android:textSize="20sp" />
 
         <TextView
@@ -131,9 +118,7 @@
             android:text="TextView"
             android:textColor="#FFEB3B"
             android:textSize="22sp"
-            android:visibility="invisible"
-            app:autoSizeTextType="uniform" />
+            android:visibility="invisible" />
 
     </LinearLayout>
-
-</FrameLayout>
+</ScrollView>

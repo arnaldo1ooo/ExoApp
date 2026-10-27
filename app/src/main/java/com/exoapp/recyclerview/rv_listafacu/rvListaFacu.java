@@ -26,7 +26,7 @@ public class rvListaFacu extends RecyclerView.Adapter implements View.OnClickLis
     }
 
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View contentView = LayoutInflater.from(context).inflate(R.layout.rv_listafacu, null, false);
+        View contentView = LayoutInflater.from(context).inflate(R.layout.rv_listafacu, parent, false);
 
         //OnClick
         contentView.setOnClickListener(this);

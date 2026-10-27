@@ -1,14 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!-- Tema base. Desde Android 15 la app se dibuja de borde a borde: el fondo de la ventana
+         debe ser oscuro para que no aparezcan franjas claras bajo las barras del sistema. -->
+    <style name="Base.AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorButtonNormal">@color/colorAccent</item>
 
+        <item name="android:windowBackground">@color/fondo_app</item>
+        <!-- Iconos claros en las barras del sistema (el fondo es oscuro) -->
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/fondo_app</item>
     </style>
+
+    <style name="AppTheme" parent="Base.AppTheme" />
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>

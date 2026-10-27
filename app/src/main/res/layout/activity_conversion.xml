@@ -6,26 +6,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo_app"
+    android:fitsSystemWindows="true"
     tools:context=".conversion.ActivityConversion">
 
     <FrameLayout
         android:id="@+id/flContenedorFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/btnAnterior"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </FrameLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="@dimen/ancho_max_contenido" />
 
     <Button
         android:id="@+id/btnAnterior"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginBottom="28dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margen_pantalla_h"
+        android:layout_marginBottom="12dp"
+        android:minHeight="@dimen/alto_minimo_boton"
         android:onClick="Anterior"
         android:text="@string/btnAnterior"
         android:visibility="invisible"
@@ -35,9 +36,10 @@
     <Button
         android:id="@+id/btnSiguiente"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginBottom="28dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margen_pantalla_h"
+        android:layout_marginBottom="12dp"
+        android:minHeight="@dimen/alto_minimo_boton"
         android:onClick="Siguiente"
         android:text="@string/btnSiguiente"
         ads:layout_constraintBottom_toTopOf="@+id/adViewConversion"
@@ -46,7 +48,7 @@
     <com.google.android.gms.ads.AdView
         android:id="@+id/adViewConversion"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-8474453660271942/9184800934"
         ads:layout_constraintBottom_toBottomOf="parent"

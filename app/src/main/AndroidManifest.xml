@@ -24,7 +24,7 @@
         <activity
             android:name=".ActivitySplashScreen"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -93,4 +93,4 @@
 
 
     </application>
-</manifest>
+</manifest>
