@@ -67,7 +67,7 @@
                             android:id="@+id/textView15"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/alfa_slab_one"
+                            android:fontFamily="@font/poppins_bold"
                             android:text="Universidad Nacional del Este"
                             android:textColor="#FFFFFF"
                             android:textSize="16sp" />
@@ -77,7 +77,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:fontFamily="@font/alfa_slab_one"
+                            android:fontFamily="@font/poppins_bold"
                             android:text="Facultad Politécnica"
                             android:textColor="@color/texto_secundario"
                             android:textSize="16sp" />
@@ -130,7 +130,7 @@
                             android:id="@+id/textView1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/baloo"
+                            android:fontFamily="@font/poppins_bold"
                             android:text="@string/tv_nota1"
                             android:textColor="#FFFFFF"
                             android:textSize="26sp" />
@@ -181,7 +181,7 @@
                             android:id="@+id/textView2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/baloo"
+                            android:fontFamily="@font/poppins_bold"
                             android:text="@string/tv_nota2"
                             android:textColor="#FFFFFF"
                             android:textSize="26sp" />
@@ -232,7 +232,7 @@
                             android:id="@+id/textView3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/baloo"
+                            android:fontFamily="@font/poppins_bold"
                             android:text="@string/tv_nota3"
                             android:textColor="#FFFFFF"
                             android:textSize="26sp" />
@@ -283,7 +283,7 @@
                             android:id="@+id/textView4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/baloo"
+                            android:fontFamily="@font/poppins_bold"
                             android:text="@string/tv_nota4"
                             android:textColor="#FFFFFF"
                             android:textSize="26sp" />
@@ -334,7 +334,7 @@
                             android:id="@+id/textView05"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/baloo"
+                            android:fontFamily="@font/poppins_bold"
                             android:text="@string/tv_nota5"
                             android:textColor="#FFFFFF"
                             android:textSize="26sp" />

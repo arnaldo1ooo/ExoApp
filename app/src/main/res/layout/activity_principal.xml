@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="@font/poppins_medium"
                 android:text="@string/menu_titulo"
                 android:textColor="#F2F6FF"
                 android:textSize="28sp"
@@ -88,7 +88,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-medium"
+                        android:fontFamily="@font/poppins_medium"
                         android:text="@string/menu_exoneracion"
                         android:textColor="#F2F6FF"
                         android:textSize="18sp" />
@@ -146,7 +146,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-medium"
+                        android:fontFamily="@font/poppins_medium"
                         android:text="@string/menu_bonificacion"
                         android:textColor="#F2F6FF"
                         android:textSize="18sp" />
@@ -204,7 +204,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-medium"
+                        android:fontFamily="@font/poppins_medium"
                         android:text="@string/menu_conversion"
                         android:textColor="#F2F6FF"
                         android:textSize="18sp" />
@@ -214,6 +214,64 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:text="@string/menu_conversion_desc"
+                        android:textColor="@color/texto_secundario"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_chevron_derecha" />
+            </LinearLayout>
+
+            <!-- Comentarios -->
+            <LinearLayout
+                android:id="@+id/btnComentarios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/card_menu"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:minHeight="88dp"
+                android:onClick="Comentarios"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingTop="14dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="14dp"
+                android:soundEffectsEnabled="false">
+
+                <ImageView
+                    android:layout_width="52dp"
+                    android:layout_height="52dp"
+                    android:background="@drawable/icono_fondo"
+                    android:importantForAccessibility="no"
+                    android:padding="13dp"
+                    android:src="@drawable/ic_menu_comentarios" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/menu_comentarios"
+                        android:textColor="#F2F6FF"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/menu_comentarios_desc"
                         android:textColor="@color/texto_secundario"
                         android:textSize="14sp" />
                 </LinearLayout>

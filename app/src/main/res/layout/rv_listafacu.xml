@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
-                android:fontFamily="@font/baloo"
+                android:fontFamily="@font/poppins_medium"
                 android:maxLines="3"
                 android:text="Facultad ejemplo (FE)"
                 android:textColor="#FFFFFF"

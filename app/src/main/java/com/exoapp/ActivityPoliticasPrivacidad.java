@@ -65,6 +65,10 @@ public class ActivityPoliticasPrivacidad extends AppCompatActivity {
                 "\n" +
                 "These Services do not address anyone under the age of 13. I do not knowingly collect personally identifiable information from children under 13. In the case I discover that a child under 13 has provided me with personal information, I immediately delete this from our servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact me so that I will be able to do necessary actions.\n" +
                 "\n" +
+                "User Feedback\n" +
+                "\n" +
+                "The app includes an optional feedback form. If you choose to send a comment, the text you write and the type of comment you select are sent to a Google Forms form owned by the developer, together with the app version and Android version. No name or email is requested. Please do not include personal information in your message. I use these comments only to improve the app and to evaluate new app ideas.\n" +
+                "\n" +
                 "Changes to This Privacy Policy\n" +
                 "\n" +
                 "I may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. I will notify you of any changes by posting the new Privacy Policy on this page. These changes are effective immediately after they are posted on this page.\n" +

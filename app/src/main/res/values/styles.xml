@@ -10,6 +10,10 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorButtonNormal">@color/colorAccent</item>
 
+        <!-- Fuente unica de la app (Poppins). Sin esto, los textos sin fontFamily usan la del sistema. -->
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="fontFamily">@font/poppins</item>
+
         <item name="android:windowBackground">@color/fondo_app</item>
         <!-- Iconos claros en las barras del sistema (el fondo es oscuro) -->
         <item name="android:windowLightStatusBar">false</item>

@@ -34,7 +34,7 @@
                 android:id="@+id/tvTitulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="@font/poppins_medium"
                 android:gravity="center_horizontal"
                 android:text="@string/tvTitulo"
                 android:textAlignment="center"
@@ -195,7 +195,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:fontFamily="sans-serif-condensed"
+                android:fontFamily="@font/poppins_medium"
                 android:maxLines="1"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
@@ -209,7 +209,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="sans-serif-condensed"
+                android:fontFamily="@font/poppins_medium"
                 android:maxLines="1"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
@@ -223,7 +223,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="sans-serif-condensed"
+                android:fontFamily="@font/poppins_medium"
                 android:maxLines="1"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
@@ -243,7 +243,7 @@
                 android:textColor="#D61709"
                 android:textSize="50sp"
                 app:autoSizeTextType="uniform"
-                app:fontFamily="@font/bangers" />
+                app:fontFamily="@font/poppins_bold" />
 
             <ImageView
                 android:id="@+id/ivEmoji"

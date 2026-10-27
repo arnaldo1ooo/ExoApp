@@ -186,7 +186,7 @@ public class ActivityBonificacion extends AppCompatActivity {
             double minpara5 = 94;
             double bonif = com.exoapp.utilidades.Metodos.ParseDoble(etBonificacion.getText());
             int colorBlanco = Color.parseColor("#CCCCCC");
-            int colorRojo = Color.parseColor("#8F0000");
+            int colorRojo = Color.parseColor("#FB7185");
 
             double Nota2 = minpara2 - bonif;
             if (Nota2 > TotalFinal) {

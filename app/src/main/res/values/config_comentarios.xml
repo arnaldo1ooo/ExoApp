@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- CONFIGURACION DEL FORMULARIO DE GOOGLE (ver instrucciones). Reemplaza las 3 lineas que dicen REEMPLAZAR. -->
+    <!-- URL: termina en /formResponse (no en /viewform) -->
+    <string name="comentarios_form_url" translatable="false">https://docs.google.com/forms/d/e/REEMPLAZAR/formResponse</string>
+    <!-- Identificadores de las preguntas, con el formato entry.1234567890 -->
+    <string name="comentarios_entry_tipo" translatable="false">entry.REEMPLAZAR</string>
+    <string name="comentarios_entry_mensaje" translatable="false">entry.REEMPLAZAR</string>
+</resources>

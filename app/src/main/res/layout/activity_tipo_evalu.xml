@@ -35,7 +35,7 @@
                 android:id="@+id/tvTitulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="@font/poppins_medium"
                 android:text="@string/seleccione_el_tipo_de_evaluaci_n"
                 android:textColor="#F2F6FF"
                 android:textSize="22sp"

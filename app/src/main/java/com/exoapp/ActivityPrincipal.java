@@ -82,6 +82,11 @@ public class ActivityPrincipal extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void Comentarios(View view) {
+        Intent intent = new Intent(view.getContext(), ActivityComentarios.class);
+        startActivity(intent);
+    }
+
     private void MetodoBanner() {
         AdView1 = findViewById(R.id.adView1);
         AdRequest adRequest = new AdRequest.Builder().build();

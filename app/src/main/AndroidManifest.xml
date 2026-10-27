@@ -63,6 +63,12 @@
         </activity>
 
         <activity
+            android:name=".ActivityComentarios"
+            android:parentActivityName=".ActivityPrincipal"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
+
+        <activity
             android:name=".ActivityPoliticasPrivacidad"
             android:parentActivityName=".ActivityPrincipal"
             android:windowSoftInputMode="adjustPan">
@@ -81,10 +87,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
 
         <!-- ID de la app en AdMob. Se define por tipo de build en app/build.gradle (admobAppId) -->
         <meta-data

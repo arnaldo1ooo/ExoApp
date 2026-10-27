@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menu_comentarios">Comentarios</string>
+    <string name="menu_comentarios_desc">Sugiere mejoras o ideas para nuevas apps</string>
+    <string name="com_titulo">Tu opinión nos ayuda a mejorar</string>
+    <string name="com_intro">Cuéntanos qué mejorarías de ExoApp o qué otras apps te gustaría que existan. No necesitas escribir tu correo.</string>
+    <string name="com_tipo_label">¿Qué quieres enviar?</string>
+    <string name="com_mensaje_label">Tu mensaje</string>
+    <string name="com_mensaje_hint">Escribe aquí tu comentario…</string>
+    <string name="com_privacidad">Es anónimo. Por favor no escribas datos personales.</string>
+    <string name="com_enviar">Enviar</string>
+    <string name="com_enviando">Enviando…</string>
+    <string name="com_gracias">¡Gracias! Recibimos tu comentario.</string>
+    <string name="com_error_red">No se pudo enviar. Revisa tu conexión a internet e inténtalo de nuevo.</string>
+    <string name="com_error_corto">Escribe un poco más para que podamos entenderte (mínimo 10 letras).</string>
+    <string name="com_error_espera">Espera unos segundos antes de enviar otro comentario.</string>
+    <string name="com_error_config">Esta función no está disponible por ahora.</string>
+    <string-array name="com_tipos">
+        <item>Sugerencia de mejora</item>
+        <item>Idea de una nueva app</item>
+        <item>Reportar un error</item>
+        <item>Otro comentario</item>
+    </string-array>
+</resources>
