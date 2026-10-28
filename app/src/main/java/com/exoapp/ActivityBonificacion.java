@@ -113,6 +113,12 @@ public class ActivityBonificacion extends AppCompatActivity {
     //Al usar el action overflow
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        if (id == R.id.configuracion) {
+            Intent i = new Intent(this, ActivityConfiguracion.class);
+            startActivity(i);
+            return true;
+        }
+
         if (id == R.id.escala) {
             Log.d("Opciones", "Abriendo escala");
             Intent i = new Intent(this, ActivityEscala.class);
@@ -185,8 +191,8 @@ public class ActivityBonificacion extends AppCompatActivity {
             double minpara4 = 81;
             double minpara5 = 94;
             double bonif = com.exoapp.utilidades.Metodos.ParseDoble(etBonificacion.getText());
-            int colorBlanco = Color.parseColor("#CCCCCC");
-            int colorRojo = Color.parseColor("#FB7185");
+            int colorNormal = getColor(R.color.texto_principal);
+            int colorRojo = getColor(R.color.error_suave);
 
             double Nota2 = minpara2 - bonif;
             if (Nota2 > TotalFinal) {
@@ -195,8 +201,8 @@ public class ActivityBonificacion extends AppCompatActivity {
                 tvNota2.setTextColor(colorRojo);
             } else {
                 tvTituloNota2.setText("Para nota 2");
-                tvTituloNota2.setTextColor(Color.WHITE);
-                tvNota2.setTextColor(Color.WHITE);
+                tvTituloNota2.setTextColor(colorNormal);
+                tvNota2.setTextColor(colorNormal);
             }
             double Nota2Porc = (Nota2 * 100) / TotalFinal;
             tvNota2.setText(df.format(Nota2) + " puntos de " + soloentero.format(TotalFinal) + " (" + df.format(Nota2Porc) + "% de 100%)");
@@ -208,8 +214,8 @@ public class ActivityBonificacion extends AppCompatActivity {
                 tvNota3.setTextColor(colorRojo);
             } else {
                 tvTituloNota3.setText("Para nota 3");
-                tvTituloNota3.setTextColor(Color.WHITE);
-                tvNota3.setTextColor(Color.WHITE);
+                tvTituloNota3.setTextColor(colorNormal);
+                tvNota3.setTextColor(colorNormal);
             }
             double Nota3Porc = (Nota3 * 100) / TotalFinal;
             tvNota3.setText(df.format(Nota3) + " puntos de " + soloentero.format(TotalFinal) + " (" + df.format(Nota3Porc) + "% de 100%)");
@@ -221,8 +227,8 @@ public class ActivityBonificacion extends AppCompatActivity {
                 tvNota4.setTextColor(colorRojo);
             } else {
                 tvTituloNota4.setText("Para nota 4");
-                tvTituloNota4.setTextColor(Color.WHITE);
-                tvNota4.setTextColor(Color.WHITE);
+                tvTituloNota4.setTextColor(colorNormal);
+                tvNota4.setTextColor(colorNormal);
             }
             double Nota4Porc = (Nota4 * 100) / TotalFinal;
             tvNota4.setText(df.format(Nota4) + " puntos de " + soloentero.format(TotalFinal) + " (" + df.format(Nota4Porc) + "% de 100%)");
@@ -234,9 +240,8 @@ public class ActivityBonificacion extends AppCompatActivity {
                 tvNota5.setTextColor(colorRojo);
             } else {
                 tvTituloNota5.setText("Para nota 5");
-                tvTituloNota5.setTextColor(Color.WHITE);
-                tvTituloNota5.setShadowLayer(2,2,2,Color.BLACK);
-                tvNota5.setTextColor(Color.WHITE);
+                tvTituloNota5.setTextColor(colorNormal);
+                tvNota5.setTextColor(colorNormal);
             }
             double Nota5Porc = (Nota5 * 100) / TotalFinal;
             tvNota5.setText(df.format(Nota5) + " puntos de " + soloentero.format(TotalFinal) + " (" + df.format(Nota5Porc) + "% de 100%)");

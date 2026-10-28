@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Tema base. Desde Android 15 la app se dibuja de borde a borde: el fondo de la ventana
-         debe ser oscuro para que no aparezcan franjas claras bajo las barras del sistema. -->
-    <style name="Base.AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!-- Tema base (DayNight: claro/oscuro segun la configuracion de la app). Desde Android 15 la app se
+         dibuja de borde a borde: el fondo de la ventana usa los colores del modo activo. -->
+    <style name="Base.AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -15,7 +15,7 @@
         <item name="fontFamily">@font/poppins</item>
 
         <item name="android:windowBackground">@drawable/fondo_app</item>
-        <!-- Iconos claros en las barras del sistema (el fondo es oscuro) -->
+        <!-- Iconos claros en la barra de estado (siempre queda sobre la barra superior oscura) -->
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:navigationBarColor">@color/fondo_app</item>
     </style>
@@ -25,6 +25,16 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- Dialogos propios (ver utilidades/Dialogos.java): fondo transparente, la tarjeta la dibuja el layout -->
+    <style name="DialogoApp" parent="Theme.AppCompat.DayNight.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="fontFamily">@font/poppins</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

@@ -438,23 +438,23 @@ public class ActivityEvalu extends AppCompatActivity {
         if (ElSpinner.getSelectedItemId() == 0) {
             if (com.exoapp.utilidades.Metodos.ParseDoble(ElEditText.getText()) > 100) {
                 VisibilidadObjetos("invisible");
-                ElEditText.setTextColor(Color.RED);
+                ElEditText.setTextColor(getColor(R.color.error_suave));
                 Toast toast = Toast.makeText(this, "El porcentaje obtenido no puede ser mayor al 100%", Toast.LENGTH_SHORT);
                 toast.show();
                 return true;
             } else {
-                ElEditText.setTextColor(Color.WHITE);
+                ElEditText.setTextColor(getColor(R.color.texto_principal));
             }
         } else {
             if (ElSpinner.getSelectedItemId() == 1) {
                 if (com.exoapp.utilidades.Metodos.ParseDoble(ElEditText.getText()) > TotalPuntos) {
                     VisibilidadObjetos("invisible");
-                    ElEditText.setTextColor(Color.RED);
+                    ElEditText.setTextColor(getColor(R.color.error_suave));
                     Toast toast = Toast.makeText(this, "El punto obtenido no puede ser mayor a " + TotalPuntos + " Puntos", Toast.LENGTH_SHORT);
                     toast.show();
                     return true;
                 } else {
-                    ElEditText.setTextColor(Color.WHITE);
+                    ElEditText.setTextColor(getColor(R.color.texto_principal));
                 }
             }
         }
@@ -502,7 +502,7 @@ public class ActivityEvalu extends AppCompatActivity {
         switch (valor) {
             case "exonero":
                 tvFeli.setText("¡EXONERASTE!");
-                tvFeli.setTextColor(Color.GREEN);
+                tvFeli.setTextColor(getColor(R.color.resultado_ok));
                 tvFeli.setVisibility(View.VISIBLE);
                 ivEmoji.setVisibility(ImageView.VISIBLE);
                 ivEmoji.setImageResource(R.drawable.feliz);
@@ -512,7 +512,7 @@ public class ActivityEvalu extends AppCompatActivity {
                 break;
             case "casi":
                 tvFeli.setText("Casi exoneraste");
-                tvFeli.setTextColor(Color.YELLOW);
+                tvFeli.setTextColor(getColor(R.color.resultado_medio));
                 tvFeli.setVisibility(View.VISIBLE);
                 ivEmoji.setVisibility(ImageView.VISIBLE);
                 ivEmoji.setImageResource(R.drawable.serio);
@@ -525,7 +525,7 @@ public class ActivityEvalu extends AppCompatActivity {
                 break;
             case "noExonero":
                 tvFeli.setText("No exoneraste");
-                tvFeli.setTextColor(Color.RED);
+                tvFeli.setTextColor(getColor(R.color.resultado_mal));
                 tvFeli.setVisibility(View.VISIBLE);
                 ivEmoji.setVisibility(ImageView.VISIBLE);
                 ivEmoji.setImageResource(R.drawable.triste);

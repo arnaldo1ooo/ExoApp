@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Android 8.1+: iconos claros tambien en la barra de navegacion de 3 botones -->
+    <!-- Android 8.1+: iconos de la barra de navegacion segun el modo (oscuros en claro, claros en oscuro) -->
     <style name="AppTheme" parent="Base.AppTheme">
-        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowLightNavigationBar">@bool/nav_clara</item>
     </style>
 </resources>

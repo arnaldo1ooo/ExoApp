@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menu_configuracion">Configuración</string>
+    <string name="cfg_apariencia">Apariencia</string>
+    <string name="cfg_apariencia_desc">Elige cómo quieres ver ExoApp. El cambio se aplica al instante.</string>
+    <string name="cfg_tema_sistema">Automático (igual que el teléfono)</string>
+    <string name="cfg_tema_claro">Claro</string>
+    <string name="cfg_tema_oscuro">Oscuro</string>
+
+    <string name="dlg_salir_titulo">¿Salir de ExoApp?</string>
+    <string name="dlg_salir_mensaje">Se cerrará la aplicación.</string>
+    <string name="dlg_quedarme">Quedarme</string>
+    <string name="dlg_salir">Salir</string>
+    <string name="dlg_facu_titulo">¿Asignar por defecto la facultad seleccionada?</string>
+    <string name="dlg_si">Sí</string>
+    <string name="dlg_no">No</string>
+</resources>

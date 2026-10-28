@@ -3,8 +3,6 @@ package com.exoapp;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -128,6 +126,12 @@ public class ActivityPrincipal extends AppCompatActivity {
         //Se usa if en vez de switch porque los R.id ya no son constantes (AGP 8+/9)
         int id = item.getItemId();
 
+        if (id == R.id.configuracion) {
+            Intent i = new Intent(this, ActivityConfiguracion.class);
+            startActivity(i);
+            return true;
+        }
+
         if (id == R.id.escala) {
             Log.d("Opciones", "Abriendo escala");
             Intent i = new Intent(this, ActivityEscala.class);
@@ -155,18 +159,15 @@ public class ActivityPrincipal extends AppCompatActivity {
     }
 
     private void CerrarAplicacion() {
-        new AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("¿Realmente desea cerrar la aplicación?")
-                .setCancelable(false)
-                .setNegativeButton(android.R.string.cancel, null)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {// un listener que al pulsar, cierre la aplicacion
+        com.exoapp.utilidades.Dialogos.Confirmar(this, R.drawable.ic_dialogo_salir,
+                getString(R.string.dlg_salir_titulo), getString(R.string.dlg_salir_mensaje),
+                getString(R.string.dlg_quedarme), null,
+                getString(R.string.dlg_salir), new Runnable() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //android.os.Process.killProcess(android.os.Process.myPid()); //Su funcion es algo similar a lo que se llama cuando se presiona el botón "Forzar Detención" o "Administrar aplicaciones", lo cuál mata la aplicación
-                        finish(); //Si solo quiere mandar la aplicación a segundo plano
+                    public void run() {
+                        finish(); // Manda la app a segundo plano / la cierra
                     }
-                }).show();
+                }, true);
     }
 
 

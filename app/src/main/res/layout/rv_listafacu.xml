@@ -45,7 +45,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:maxLines="3"
                 android:text="Facultad ejemplo (FE)"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/texto_principal"
                 android:textSize="20sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

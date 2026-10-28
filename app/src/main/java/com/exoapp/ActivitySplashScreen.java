@@ -11,7 +11,7 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.ComponentActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 
@@ -26,7 +26,7 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import static android.content.ContentValues.TAG;
 
 
-public class ActivitySplashScreen extends ComponentActivity {
+public class ActivitySplashScreen extends AppCompatActivity {
     private InterstitialAd mInterstitialAd;
     private Handler handlerSplash;
     private Runnable runnableSplash;

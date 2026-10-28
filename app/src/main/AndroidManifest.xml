@@ -4,6 +4,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".ExoAppAplicacion"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="ExoApp"
@@ -60,6 +61,11 @@
             android:name=".ActivityBonificacion"
             android:parentActivityName=".ActivityPrincipal"
             android:windowSoftInputMode="adjustPan">
+        </activity>
+
+        <activity
+            android:name=".ActivityConfiguracion"
+            android:parentActivityName=".ActivityPrincipal">
         </activity>
 
         <activity

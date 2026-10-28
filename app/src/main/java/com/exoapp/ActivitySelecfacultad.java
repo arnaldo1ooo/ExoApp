@@ -180,26 +180,16 @@ public class ActivitySelecfacultad extends AppCompatActivity {
 
 
     private void PreguntaSiElegirFacu() {
-        new AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_dialer)
-                .setTitle("¿Asignar por defecto la facultad seleccionada?")
-                .setCancelable(false)
-                .setPositiveButton("No", new DialogInterface.OnClickListener() {
+        // Mismo comportamiento de antes: "Si" no hace nada mas, "No" continua a la pantalla principal
+        com.exoapp.utilidades.Dialogos.Confirmar(this, R.drawable.ic_dialogo_pregunta,
+                getString(R.string.dlg_facu_titulo), null,
+                getString(R.string.dlg_si), null,
+                getString(R.string.dlg_no), new Runnable() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        System.out.println("Apreto en no");
-
-
-
-                        Intent i = new Intent(ActivitySelecfacultad.this, ActivityPrincipal.class );
+                    public void run() {
+                        Intent i = new Intent(ActivitySelecfacultad.this, ActivityPrincipal.class);
                         startActivity(i);
                     }
-                })
-                .setNegativeButton("Si", new DialogInterface.OnClickListener() {// un listener que al pulsar, cierre la aplicacion
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        System.out.println("Apreto en si");
-                    }
-                }).show();
+                }, false);
     }
 }

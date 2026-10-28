@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/seleccione_el_tipo_de_evaluaci_n"
-                android:textColor="#F2F6FF"
+                android:textColor="@color/texto_principal"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
@@ -51,7 +51,7 @@
                 android:soundEffectsEnabled="false"
                 android:text="@string/_15_15_10"
                 android:textAllCaps="false"
-                android:textColor="#F2F6FF"
+                android:textColor="@color/texto_principal"
                 android:textSize="26sp" />
 
             <Button
@@ -64,7 +64,7 @@
                 android:soundEffectsEnabled="false"
                 android:text="@string/_20_20_0"
                 android:textAllCaps="false"
-                android:textColor="#F2F6FF"
+                android:textColor="@color/texto_principal"
                 android:textSize="26sp" />
 
             <Button
@@ -76,7 +76,7 @@
                 android:minHeight="@dimen/alto_minimo_boton"
                 android:text="@string/_10_10_20"
                 android:textAllCaps="false"
-                android:textColor="#F2F6FF"
+                android:textColor="@color/texto_principal"
                 android:textSize="26sp" />
 
             <Button
@@ -88,7 +88,7 @@
                 android:minHeight="@dimen/alto_minimo_boton"
                 android:text="@string/_15_20_5"
                 android:textAllCaps="false"
-                android:textColor="#F2F6FF"
+                android:textColor="@color/texto_principal"
                 android:textSize="26sp" />
 
             <Button
@@ -100,7 +100,7 @@
                 android:minHeight="@dimen/alto_minimo_boton"
                 android:text="@string/_10_20_5"
                 android:textAllCaps="false"
-                android:textColor="#F2F6FF"
+                android:textColor="@color/texto_principal"
                 android:textSize="26sp" />
 
             <Button
@@ -112,7 +112,7 @@
                 android:minHeight="@dimen/alto_minimo_boton"
                 android:text="@string/_15_20_10"
                 android:textAllCaps="false"
-                android:textColor="#F2F6FF"
+                android:textColor="@color/texto_principal"
                 android:textSize="26sp" />
 
         </LinearLayout>

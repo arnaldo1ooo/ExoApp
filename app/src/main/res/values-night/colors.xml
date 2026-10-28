@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Paleta MODO OSCURO -->
+    <color name="fondo_app">#0A1228</color>
+    <color name="fondo_app_arriba">#0F1B3D</color>
+    <color name="fondo_app_abajo">#070D1F</color>
+    <color name="superficie">#111C3A</color>
+    <color name="superficie_2">#16244A</color>
+    <color name="borde">#23335F</color>
+    <color name="texto_principal">#F2F6FF</color>
+    <color name="texto_secundario">#A3B3D6</color>
+    <color name="texto_tenue">#7F90B8</color>
+    <color name="acento">#22D3EE</color>
+    <color name="acento_suave">#2422D3EE</color>
+    <color name="texto_sobre_acento">#04122B</color>
+    <color name="error_suave">#FB7185</color>
+    <color name="ripple">#33FFFFFF</color>
+
+    <color name="resultado_ok">#00E676</color>
+    <color name="resultado_medio">#FFEB3B</color>
+    <color name="resultado_mal">#FF5252</color>
+</resources>

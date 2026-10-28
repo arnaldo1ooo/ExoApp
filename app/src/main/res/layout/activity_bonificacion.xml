@@ -38,7 +38,7 @@
                 android:gravity="center_horizontal"
                 android:text="@string/tv6"
                 android:textAllCaps="false"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/texto_principal"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
@@ -48,13 +48,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:autofillHints=""
-                android:backgroundTint="#FFFFFF"
+                android:backgroundTint="@color/texto_principal"
                 android:gravity="end"
                 android:hint="@string/etBonificacion"
                 android:inputType="numberDecimal"
                 android:minHeight="48dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#9E9E9E"
+                android:textColor="@color/texto_principal"
+                android:textColorHint="@color/texto_tenue"
                 android:textSize="23sp"
                 tools:targetApi="o" />
 
@@ -79,7 +79,7 @@
                 android:gravity="start"
                 android:text="@string/tvTitulo2"
                 android:textAllCaps="false"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/texto_principal"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -120,7 +120,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppins_bold"
                                 android:text="@string/tvTituloNota22"
-                                android:textColor="#FFFFFF"
+                                android:textColor="@color/texto_principal"
                                 android:textSize="18sp" />
 
                             <TextView
@@ -130,7 +130,7 @@
                                 android:layout_marginTop="2dp"
                                 android:fontFamily="@font/poppins_medium"
                                 android:text="@string/tvNota2"
-                                android:textColor="#FFFFFF"
+                                android:textColor="@color/texto_principal"
                                 android:textSize="16sp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -173,7 +173,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppins_bold"
                                 android:text="@string/tvTituloNota3"
-                                android:textColor="#FFFFFF"
+                                android:textColor="@color/texto_principal"
                                 android:textSize="18sp" />
 
                             <TextView
@@ -183,7 +183,7 @@
                                 android:layout_marginTop="2dp"
                                 android:fontFamily="@font/poppins_medium"
                                 android:text="@string/tvNota3"
-                                android:textColor="#FFFFFF"
+                                android:textColor="@color/texto_principal"
                                 android:textSize="16sp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -226,7 +226,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppins_bold"
                                 android:text="@string/tvTituloNota4"
-                                android:textColor="#FFFFFF"
+                                android:textColor="@color/texto_principal"
                                 android:textSize="18sp" />
 
                             <TextView
@@ -236,7 +236,7 @@
                                 android:layout_marginTop="2dp"
                                 android:fontFamily="@font/poppins_medium"
                                 android:text="@string/tvNota4"
-                                android:textColor="#FFFFFF"
+                                android:textColor="@color/texto_principal"
                                 android:textSize="16sp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -279,7 +279,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppins_bold"
                                 android:text="@string/tvTituloNota5"
-                                android:textColor="#FFFFFF"
+                                android:textColor="@color/texto_principal"
                                 android:textSize="18sp" />
 
                             <TextView
@@ -289,7 +289,7 @@
                                 android:layout_marginTop="2dp"
                                 android:fontFamily="@font/poppins_medium"
                                 android:text="@string/tvNota5"
-                                android:textColor="#FFFFFF"
+                                android:textColor="@color/texto_principal"
                                 android:textSize="16sp" />
                         </LinearLayout>
                     </LinearLayout>

@@ -63,7 +63,7 @@
                 android:layout_marginTop="2dp"
                 android:gravity="center_horizontal"
                 android:text="@string/tvVersion1"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/texto_principal"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -84,7 +84,7 @@
                 android:layout_marginTop="2dp"
                 android:gravity="center_horizontal"
                 android:text="@string/tvVersionCodigo1"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/texto_principal"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -105,7 +105,7 @@
                 android:layout_marginTop="2dp"
                 android:gravity="center_horizontal"
                 android:text="@string/tvDesarrollador"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/texto_principal"
                 android:textSize="18sp"
                 android:textAllCaps="true"
                 android:textStyle="bold|italic" />
@@ -117,7 +117,7 @@
                 android:layout_marginTop="28dp"
                 android:gravity="center_horizontal"
                 android:text="@string/tvDerechosReservados"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/texto_principal"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 

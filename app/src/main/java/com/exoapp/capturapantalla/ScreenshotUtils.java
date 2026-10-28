@@ -18,7 +18,7 @@ public class ScreenshotUtils {
         View screenView = view.getRootView();
         Bitmap bitmap = Bitmap.createBitmap(screenView.getWidth(), screenView.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
-        canvas.drawColor(Color.parseColor("#0A1228")); //Color de fondo de la app (el JPEG no tiene transparencia)
+        canvas.drawColor(androidx.core.content.ContextCompat.getColor(view.getContext(), com.exoapp.R.color.fondo_app)); //Color de fondo del modo activo (el JPEG no tiene transparencia)
         screenView.draw(canvas);
         return bitmap;
     }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Fondo de la app: degradado vertical muy suave (reemplaza a fondo.png, que ya no se usa) -->
+<!-- Fondo de la app: degradado vertical muy suave que cambia con el modo claro/oscuro -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <gradient
         android:angle="270"
-        android:centerColor="#0A1228"
-        android:endColor="#070D1F"
-        android:startColor="#0F1B3D" />
+        android:centerColor="@color/fondo_app"
+        android:endColor="@color/fondo_app_abajo"
+        android:startColor="@color/fondo_app_arriba" />
 </shape>

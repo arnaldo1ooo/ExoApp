@@ -29,7 +29,7 @@
             android:paddingTop="@dimen/margen_pantalla_v"
             android:paddingEnd="@dimen/margen_pantalla_h"
             android:paddingBottom="@dimen/margen_pantalla_v"
-            android:textColor="#F2F6FF"
+            android:textColor="@color/texto_principal"
             android:textSize="15sp" />
     </ScrollView>
 

@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Barra superior (igual en claro y oscuro) -->
     <color name="colorPrimary">#0E1A3B</color>
     <color name="colorPrimaryDark">#0A1228</color>
     <color name="colorAccent">#22D3EE</color>
 
-    <!-- Paleta del rediseño -->
-    <color name="fondo_app">#0A1228</color>
-    <color name="superficie">#111C3A</color>
-    <color name="superficie_2">#16244A</color>
-    <color name="borde">#23335F</color>
-    <color name="texto_secundario">#A3B3D6</color>
-    <color name="texto_tenue">#7F90B8</color>
-    <color name="acento">#22D3EE</color>
-    <color name="acento_suave">#2422D3EE</color>
-    <color name="texto_sobre_acento">#04122B</color>
-    <color name="error_suave">#FB7185</color>
+    <!-- Paleta MODO CLARO (la del modo oscuro esta en values-night/colors.xml) -->
+    <color name="fondo_app">#F4F7FC</color>
+    <color name="fondo_app_arriba">#FAFCFF</color>
+    <color name="fondo_app_abajo">#EBF0F9</color>
+    <color name="superficie">#FFFFFF</color>
+    <color name="superficie_2">#EAF0FA</color>
+    <color name="borde">#D3DDEE</color>
+    <color name="texto_principal">#0E1A3B</color>
+    <color name="texto_secundario">#4A5B80</color>
+    <color name="texto_tenue">#667699</color>
+    <color name="acento">#0891B2</color>
+    <color name="acento_suave">#1F0891B2</color>
+    <color name="texto_sobre_acento">#FFFFFF</color>
+    <color name="error_suave">#C62828</color>
+    <color name="ripple">#1F0E1A3B</color>
+
+    <!-- Resultado de la evaluacion -->
+    <color name="resultado_ok">#1B8E3E</color>
+    <color name="resultado_medio">#B26A00</color>
+    <color name="resultado_mal">#C62828</color>
 </resources>

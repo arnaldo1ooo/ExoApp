@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/tvSeleConv"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/texto_principal"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -35,11 +35,11 @@
                 android:id="@+id/rbPuntoAPorc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="#00BCD4"
+                android:buttonTint="@color/acento"
                 android:checked="true"
                 android:minHeight="56dp"
                 android:text="@string/tvPuntoAPorc"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/texto_principal"
                 android:textSize="22sp" />
 
             <RadioButton
@@ -47,10 +47,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:buttonTint="#00BCD4"
+                android:buttonTint="@color/acento"
                 android:minHeight="56dp"
                 android:text="@string/tvPorcAPunto"
-                android:textColor="#FDFDFD"
+                android:textColor="@color/texto_principal"
                 android:textSize="22sp" />
         </RadioGroup>
 

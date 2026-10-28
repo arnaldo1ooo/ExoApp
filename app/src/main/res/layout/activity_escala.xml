@@ -69,7 +69,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
                             android:text="Universidad Nacional del Este"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/texto_principal"
                             android:textSize="16sp" />
 
                         <TextView
@@ -92,7 +92,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="12dp"
                 android:text="@string/tv_escala"
-                android:textColor="#F2F6FF"
+                android:textColor="@color/texto_principal"
                 android:textSize="20sp" />
 
             <androidx.cardview.widget.CardView
@@ -132,7 +132,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
                             android:text="@string/tv_nota1"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/texto_principal"
                             android:textSize="26sp" />
 
                         <TextView
@@ -183,7 +183,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
                             android:text="@string/tv_nota2"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/texto_principal"
                             android:textSize="26sp" />
 
                         <TextView
@@ -234,7 +234,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
                             android:text="@string/tv_nota3"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/texto_principal"
                             android:textSize="26sp" />
 
                         <TextView
@@ -285,7 +285,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
                             android:text="@string/tv_nota4"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/texto_principal"
                             android:textSize="26sp" />
 
                         <TextView
@@ -336,7 +336,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
                             android:text="@string/tv_nota5"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/texto_principal"
                             android:textSize="26sp" />
 
                         <TextView

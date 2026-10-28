@@ -198,6 +198,12 @@ public class ActivityTipoEvalu extends AppCompatActivity {
     //Al usar el action overflow
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        if (id == R.id.configuracion) {
+            Intent i = new Intent(this, ActivityConfiguracion.class);
+            startActivity(i);
+            return true;
+        }
+
         if (id == R.id.escala) {
             Log.d("Opciones", "Abriendo escala");
             Intent i = new Intent(this, ActivityEscala.class);

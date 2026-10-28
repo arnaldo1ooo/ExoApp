@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="@string/conv_total_titulo"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/texto_principal"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -104,14 +104,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:backgroundTint="#FFFFFF"
+                    android:backgroundTint="@color/texto_principal"
                     android:gravity="end|center_vertical"
                     android:hint="@string/conv_total_hint"
                     android:importantForAutofill="no"
                     android:inputType="numberDecimal"
                     android:minHeight="52dp"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#959595"
+                    android:textColor="@color/texto_principal"
+                    android:textColorHint="@color/texto_tenue"
                     android:textSize="22sp" />
 
                 <TextView
@@ -130,7 +130,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/conv_obtenido_puntos_titulo"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/texto_principal"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -145,14 +145,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:backgroundTint="#FFFFFF"
+                    android:backgroundTint="@color/texto_principal"
                     android:gravity="end|center_vertical"
                     android:hint="@string/conv_obtenido_puntos_hint"
                     android:importantForAutofill="no"
                     android:inputType="numberDecimal"
                     android:minHeight="52dp"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#959595"
+                    android:textColor="@color/texto_principal"
+                    android:textColorHint="@color/texto_tenue"
                     android:textSize="22sp" />
 
                 <TextView
@@ -200,7 +200,7 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:text="—"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/texto_principal"
                     android:textSize="44sp"
                     android:textStyle="bold"
                     app:autoSizeMaxTextSize="44sp"

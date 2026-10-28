@@ -39,7 +39,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/menu_titulo"
-                android:textColor="#F2F6FF"
+                android:textColor="@color/texto_principal"
                 android:textSize="28sp"
                 android:textStyle="bold" />
 
@@ -90,7 +90,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:text="@string/menu_exoneracion"
-                        android:textColor="#F2F6FF"
+                        android:textColor="@color/texto_principal"
                         android:textSize="18sp" />
 
                     <TextView
@@ -148,7 +148,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:text="@string/menu_bonificacion"
-                        android:textColor="#F2F6FF"
+                        android:textColor="@color/texto_principal"
                         android:textSize="18sp" />
 
                     <TextView
@@ -206,7 +206,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:text="@string/menu_conversion"
-                        android:textColor="#F2F6FF"
+                        android:textColor="@color/texto_principal"
                         android:textSize="18sp" />
 
                     <TextView
@@ -264,7 +264,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:text="@string/menu_comentarios"
-                        android:textColor="#F2F6FF"
+                        android:textColor="@color/texto_principal"
                         android:textSize="18sp" />
 
                     <TextView
@@ -319,7 +319,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="1"
-                        android:textColor="#F2F6FF"
+                        android:textColor="@color/texto_principal"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         tools:ignore="HardcodedText" />
@@ -351,7 +351,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="2"
-                        android:textColor="#F2F6FF"
+                        android:textColor="@color/texto_principal"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         tools:ignore="HardcodedText" />
@@ -383,7 +383,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="3"
-                        android:textColor="#F2F6FF"
+                        android:textColor="@color/texto_principal"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         tools:ignore="HardcodedText" />
@@ -415,7 +415,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="4"
-                        android:textColor="#F2F6FF"
+                        android:textColor="@color/texto_principal"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         tools:ignore="HardcodedText" />
@@ -445,7 +445,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="5"
-                        android:textColor="#F2F6FF"
+                        android:textColor="@color/texto_principal"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         tools:ignore="HardcodedText" />
