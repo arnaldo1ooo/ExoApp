@@ -114,7 +114,7 @@ public class ActivitySplashScreen extends AppCompatActivity {
 
     private void CargarInterstitial() {
         AdRequest adRequest = new AdRequest.Builder().build();
-        InterstitialAd.load(this, "ca-app-pub-8474453660271942/1150495372", adRequest, new InterstitialAdLoadCallback() {
+        InterstitialAd.load(this, getString(R.string.admob_interstitial_id), adRequest, new InterstitialAdLoadCallback() {
             @Override
             public void onAdLoaded(InterstitialAd interstitialAd) {
                 // The mInterstitialAd reference will be null until
@@ -142,7 +142,7 @@ public class ActivitySplashScreen extends AppCompatActivity {
     public void CargarIntestitialAd() { //ID de ejemplo interstitial ca-app-pub-3940256099942544/1033173712 //Exoapp ca-app-pub-8474453660271942/1150495372
         AdRequest adRequest = new AdRequest.Builder().build();
 
-        InterstitialAd.load(this, "ca-app-pub-8474453660271942/1150495372", adRequest, new InterstitialAdLoadCallback() {
+        InterstitialAd.load(this, getString(R.string.admob_interstitial_id), adRequest, new InterstitialAdLoadCallback() {
             @Override
             public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                 // The mInterstitialAd reference will be null until

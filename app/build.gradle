@@ -1,15 +1,9 @@
 apply plugin: 'com.android.application'
 
-// ID de la app en AdMob (AdMob > Apps > ExoApp > Configuracion de la app). Formato: ca-app-pub-XXXXXXXXXXXXXXXX~YYYYYYYYYY
-// Reemplaza SOLO la parte "REEMPLAZAR" por la parte que va despues de la "~". Debug usa el ID de prueba de Google.
-def admobAppIdRelease = "ca-app-pub-8474453660271942~REEMPLAZAR"
-
-// Evita generar un release con el ID sin completar
-gradle.taskGraph.whenReady { graph ->
-    if (admobAppIdRelease.contains("REEMPLAZAR") && (graph.hasTask(':app:bundleRelease') || graph.hasTask(':app:assembleRelease'))) {
-        throw new GradleException("Falta el ID de la app de AdMob: edita admobAppIdRelease en app/build.gradle")
-    }
-}
+// IDs reales de AdMob (release). Debug usa los IDs de prueba oficiales de Google.
+def admobAppIdRelease          = "ca-app-pub-8474453660271942~4393829714"
+def admobBannerIdRelease       = "ca-app-pub-8474453660271942/9184800934"
+def admobInterstitialIdRelease = "ca-app-pub-8474453660271942/1150495372"
 
 android {
     namespace 'com.exoapp'
@@ -32,6 +26,8 @@ android {
             shrinkResources true
 
             manifestPlaceholders = [admobAppId: admobAppIdRelease]
+            resValue "string", "admob_banner_id", admobBannerIdRelease
+            resValue "string", "admob_interstitial_id", admobInterstitialIdRelease
 
             // Includes the default ProGuard rules files that are packaged with
             // the Android Gradle plugin. To learn more, go to the section about
@@ -45,7 +41,12 @@ android {
         debug {
             // ID de app de PRUEBA oficial de Google, para no usar anuncios reales mientras desarrollas
             manifestPlaceholders = [admobAppId: "ca-app-pub-3940256099942544~3347511713"]
+            resValue "string", "admob_banner_id", "ca-app-pub-3940256099942544/6300978111"
+            resValue "string", "admob_interstitial_id", "ca-app-pub-3940256099942544/1033173712"
         }
+    }
+    buildFeatures {
+        resValues true // necesario para los resValue de AdMob (admob_banner_id / admob_interstitial_id)
     }
     productFlavors {
     }
