@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Evita que shrinkResources elimine los drawables que se buscan por nombre con getIdentifier("facu_" + codigo) -->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@drawable/facu_*"
+    tools:shrinkMode="safe" />
