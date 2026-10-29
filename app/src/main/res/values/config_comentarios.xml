@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- CONFIGURACION DEL FORMULARIO DE GOOGLE (ver instrucciones). Reemplaza las 3 lineas que dicen REEMPLAZAR. -->
-    <!-- URL: termina en /formResponse (no en /viewform) -->
-    <string name="comentarios_form_url" translatable="false">https://docs.google.com/forms/d/e/REEMPLAZAR/formResponse</string>
-    <!-- Identificadores de las preguntas, con el formato entry.1234567890 -->
-    <string name="comentarios_entry_tipo" translatable="false">entry.REEMPLAZAR</string>
-    <string name="comentarios_entry_mensaje" translatable="false">entry.REEMPLAZAR</string>
+    <!--
+        CÓMO OBTENER O ACTUALIZAR LOS DATOS DE GOOGLE FORMS
+
+        1. Abrí el formulario en modo edición desde https://forms.google.com.
+        2. En el menú de tres puntos (⋮), elegí "Completar previamente el formulario".
+        3. Completá cada pregunta con valores de prueba fáciles de reconocer. Por ejemplo:
+               Tipo    = PRUEBA_TIPO
+               Mensaje = PRUEBA_MENSAJE
+        4. Al final, tocá "Obtener enlace" y copiá el enlace generado.
+        5. En el enlace buscá los parámetros entry.NUMERO=VALOR. El entry que aparece
+           junto a PRUEBA_TIPO corresponde a comentarios_entry_tipo; el que aparece
+           junto a PRUEBA_MENSAJE corresponde a comentarios_entry_mensaje. Copiá el
+           identificador completo, incluido el prefijo "entry.".
+        6. Para comentarios_form_url, usá el mismo ID del formulario, cambiá /viewform
+           por /formResponse y quitá los parámetros que vienen después del signo ?.
+
+        Si cambiás, eliminás o volvés a crear preguntas, generá otro enlace prellenado:
+        los identificadores entry pueden ser distintos. No confundas el ID del formulario
+        con los identificadores entry de las preguntas.
+    -->
+    <string name="comentarios_form_url" translatable="false">https://docs.google.com/forms/d/e/1FAIpQLSenpnq7xwTHVJ4kR45kYLQCfBh4U9Zy4mtT4vSF9rorot4-8Q/formResponse</string>
+    <!-- Identificador de la pregunta "Tipo", obtenido del enlace prellenado. -->
+    <string name="comentarios_entry_tipo" translatable="false">entry.1796484440</string>
+    <!-- Identificador de la pregunta "Mensaje", obtenido del enlace prellenado. -->
+    <string name="comentarios_entry_mensaje" translatable="false">entry.2114285679</string>
 </resources>
